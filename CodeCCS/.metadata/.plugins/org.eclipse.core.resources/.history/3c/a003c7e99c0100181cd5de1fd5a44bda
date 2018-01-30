@@ -1,0 +1,13 @@
+#include "Timer0A.h"
+
+void TIMER0A_Start(){
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0); // The Timer0 peripheral must be enabled for use.
+    TimerConfigure(TIMER0_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_A_PERIODIC);   // Configure Timer0B as a 16-bit periodic timer.
+    TimerLoadSet(TIMER0_BASE, TIMER_A, (SysCtlClockGet() / 1000000)* sample_period_us );// Set the Timer0B load value to ...ms.
+    TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);    // Configure the Timer0A interrupt for timer timeout.
+    IntEnable(INT_TIMER0A); // Enable the Timer0A interrupt on the processor (NVIC).
+    TimerEnable(TIMER0_BASE, TIMER_A);  // Enable Timer0A.
+    IntMasterEnable();  // Enable processor interrupts.
+    TimerIntRegister(TIMER0_BASE, TIMER_A, Timer0A_Int_Handler);
+}
+extern void Timer0A_Int_Handler(void);

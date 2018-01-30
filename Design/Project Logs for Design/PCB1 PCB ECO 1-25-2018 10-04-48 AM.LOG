@@ -1,0 +1,9 @@
+Added Component: Designator=U*(GT-521)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=VCC Pin=U*-0
+Added Pin To Net: NetName=NetIC?_19 Pin=U*-1
+Added Pin To Net: NetName=NetIC?_15 Pin=U*-3
+Added Pin To Net: NetName=NetIC?_12 Pin=U*-6
+Added Pin To Net: NetName=NetIC?_11 Pin=U*-7
+Added Member To Class: ClassName=Sheet1 Member=Component U* GY-521
+Added Room: Name=Sheet1

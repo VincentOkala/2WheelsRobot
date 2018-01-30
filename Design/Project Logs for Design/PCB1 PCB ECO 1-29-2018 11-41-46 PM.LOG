@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=3V3 Pin=B1-9
+Added Component: Designator=D?(D1A)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=3V3 Pin=D?-1
+Added Pin To Net: NetName=NetB1_9 Pin=B1-9
+Added Pin To Net: NetName=NetB1_9 Pin=D?-2
+Added Net: Name=NetB1_9
+Added Member To Class: ClassName=Sheet1 Member=Component D? Diode
+Added Room: Name=Sheet1

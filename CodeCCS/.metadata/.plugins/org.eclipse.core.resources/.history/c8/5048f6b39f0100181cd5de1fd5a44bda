@@ -1,0 +1,11 @@
+#ifndef MPU6050_H_
+#define MPU6050_H_
+
+#include "I2C/I2C.h"
+
+void MPU6050_Init(void);
+double MPU6050_Get_Pitch();
+double MPU6050_Get_Pitch_Raw();
+double MPU6050_Get_Pitch_Velocity();
+
+#endif

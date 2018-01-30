@@ -1,0 +1,22 @@
+Added Component: Designator=U?(ESP-07S)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=U?-0
+Added Pin To Net: NetName=3V3 Pin=U?-1
+Added Member To Class: ClassName=Sheet1 Member=Component B? D1_Mini
+Added Member To Class: ClassName=Sheet1 Member=Component C? Cap Non-Pol
+Added Member To Class: ClassName=Sheet1 Member=Component C? Cap Pol
+Added Member To Class: ClassName=Sheet1 Member=Component C? Cap Non-Pol
+Added Member To Class: ClassName=Sheet1 Member=Component D? Diode
+Added Member To Class: ClassName=Sheet1 Member=Component IC? EK-TM4C123GXL
+Added Member To Class: ClassName=Sheet1 Member=Component P? Header 2X2
+Added Member To Class: ClassName=Sheet1 Member=Component P? Header 2X2
+Added Member To Class: ClassName=Sheet1 Member=Component P? Header 7X2
+Added Member To Class: ClassName=Sheet1 Member=Component R? RESISTOR
+Added Member To Class: ClassName=Sheet1 Member=Component R? RESISTOR
+Added Member To Class: ClassName=Sheet1 Member=Component R? RESISTOR
+Added Member To Class: ClassName=Sheet1 Member=Component R? RESISTOR SMD
+Added Member To Class: ClassName=Sheet1 Member=Component R? RESISTOR
+Added Member To Class: ClassName=Sheet1 Member=Component R? RESISTOR
+Added Member To Class: ClassName=Sheet1 Member=Component R? RESISTOR SMD
+Added Member To Class: ClassName=Sheet1 Member=Component U? GY-521
+Added Room: Name=Sheet1

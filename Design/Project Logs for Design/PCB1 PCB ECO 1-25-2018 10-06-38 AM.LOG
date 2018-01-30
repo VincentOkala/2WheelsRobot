@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=NetIC?_19 Pin=U*-1
+Added Pin To Net: NetName=NetIC?_19 Pin=U*-2
+Added Room: Name=Sheet1

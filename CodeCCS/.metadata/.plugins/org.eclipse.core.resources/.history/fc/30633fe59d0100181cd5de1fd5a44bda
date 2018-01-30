@@ -1,0 +1,25 @@
+#ifndef MPU6050
+#define MPU6050
+
+#include <stdbool.h>
+#include <stdint.h>
+#include "inc/hw_memmap.h"
+#include "driverlib/gpio.h"
+#include "driverlib/pin_map.h"
+#include "driverlib/sysctl.h"
+
+#include "I2C/I2C.h"
+
+///////////
+//
+// Do the following steps to control MPU6050:
+// step1: call MPU6050_Start() function to start control
+// step2: call MPU6050_Get_Accel_Raw(uint16_t value) or MPU6050_Get_Gyro_Raw(int16_t * bufData)
+//
+//////////
+
+void MPU6050_Init(void);
+double MPU6050_Get_Pitch();
+double MPU6050_Get_Pitch_Raw();
+double MPU6050_Get_Pitch_Velocity();
+#endif

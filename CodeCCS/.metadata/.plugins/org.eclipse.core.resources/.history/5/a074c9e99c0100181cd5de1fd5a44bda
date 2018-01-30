@@ -1,0 +1,20 @@
+#ifndef __TIMER0A_H__
+#define __TIMER0A_H__
+
+#include <stdbool.h>
+#include <stdint.h>
+#include "inc/hw_ints.h"
+#include "inc/hw_memmap.h"
+#include "driverlib/gpio.h"
+#include "driverlib/interrupt.h"
+#include "driverlib/pin_map.h"
+#include "driverlib/sysctl.h"
+#include "driverlib/timer.h"
+#include "driverlib/uart.h"
+#include "utils/uartstdio.h"
+
+#define sample_period_us    80
+void TIMER0A_Start();
+extern void Timer0A_Int_Handler(void);
+
+#endif

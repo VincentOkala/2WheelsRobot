@@ -1,0 +1,5 @@
+Added Component: Designator=U?(ESP-07S)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=NetIC?_20 Pin=U?-1
+Added Pin To Net: NetName=NetIC?_11 Pin=U?-5
+Added Member To Class: ClassName=Sheet1 Member=Component U? CC2500
