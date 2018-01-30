@@ -1,0 +1,46 @@
+Removed Pin From Net: NetName=ECD0 Pin=B2-1
+Removed Pin From Net: NetName=ECD0IN Pin=B2-2
+Removed Pin From Net: NetName=ECD1 Pin=B2-5
+Removed Pin From Net: NetName=ECD1IN Pin=B2-6
+Removed Pin From Net: NetName=GND Pin=B2-7
+Removed Pin From Net: NetName=ECD2IN Pin=B2-8
+Removed Pin From Net: NetName=ECD2 Pin=B2-9
+Removed Pin From Net: NetName=ECD3IN Pin=B2-12
+Removed Pin From Net: NetName=ECD3 Pin=B2-13
+Removed Pin From Net: NetName=3V3 Pin=B2-14
+Removed Member From Class: ClassName=Sheet1 Member=B2
+Change component parameters (AddParameter): Name = "Value"; Value = "104"; VariantName = "[No Variations]"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "104"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "3D Package"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Allied_Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "http://componentsearchengine.com/Datasheets/3/SN74HC14N.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Texas Instruments"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SN74HC14N"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Other Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RS Part Number"; Value = "0442943"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier_Name"; Value = "RS"; VariantName = "[No Variations]"
+Added Component: Designator=B?(DIP254P762X508-14)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "3D Package"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Allied_Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "http://componentsearchengine.com/Datasheets/3/SN74HC14N.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Texas Instruments"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "SN74HC14N"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Other Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RS Part Number"; Value = "0442943"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier_Name"; Value = "RS"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=ECD0 Pin=B?-1
+Added Pin To Net: NetName=ECD0IN Pin=B?-2
+Added Pin To Net: NetName=ECD1 Pin=B?-5
+Added Pin To Net: NetName=ECD1IN Pin=B?-6
+Added Pin To Net: NetName=GND Pin=B?-7
+Added Pin To Net: NetName=ECD2IN Pin=B?-8
+Added Pin To Net: NetName=ECD2 Pin=B?-9
+Added Pin To Net: NetName=ECD3IN Pin=B?-12
+Added Pin To Net: NetName=ECD3 Pin=B?-13
+Added Pin To Net: NetName=3V3 Pin=B?-14
+Added Member To Class: ClassName=Sheet1 Member=Component B? SN74HC14N
+Added Room: Name=Sheet1

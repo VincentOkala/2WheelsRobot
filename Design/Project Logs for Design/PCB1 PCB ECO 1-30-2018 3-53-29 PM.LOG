@@ -1,0 +1,33 @@
+Removed Pin From Net: NetName=ADC0 Pin=B3-2
+Removed Pin From Net: NetName=ADC1 Pin=B4-2
+Removed Pin From Net: NetName=3V3 Pin=B5-1
+Removed Pin From Net: NetName=ADC2 Pin=B5-2
+Removed Pin From Net: NetName=GND Pin=B5-3
+Removed Member From Class: ClassName=Sheet1 Member=B5
+Add component (AddParameter): Name = "3D Package"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Allied_Number"; Value = "70153918"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "http://docs-europe.electrocomponents.com/webdocs/069c/0900766b8069ccf4.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "11.55mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Bourns"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "3296W-1-103LF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Other Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RS Part Number"; Value = "5219647P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier_Name"; Value = "RS"; VariantName = "[No Variations]"
+Added Component: Designator=B2(SHDR3W54P0X254_1X3_953X483X1155P)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "3D Package"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Allied_Number"; Value = "70153918"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "http://docs-europe.electrocomponents.com/webdocs/069c/0900766b8069ccf4.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Geometry.Height"; Value = "11.55mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Bourns"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "3296W-1-103LF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Other Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RS Part Number"; Value = "5219647P"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier_Name"; Value = "RS"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=3V3 Pin=B2-1
+Added Pin To Net: NetName=ADC0 Pin=B2-2
+Added Pin To Net: NetName=GND Pin=B2-3
+Added Pin To Net: NetName=ADC1 Pin=B3-2
+Added Pin To Net: NetName=ADC2 Pin=B4-2
+Added Member To Class: ClassName=Sheet1 Member=Component B2 3296W-1-103LF
+Added Room: Name=Sheet1
