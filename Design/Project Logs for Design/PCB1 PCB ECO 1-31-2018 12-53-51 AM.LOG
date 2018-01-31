@@ -1,5 +1,0 @@
-Removed Pin From Net: NetName=ECD0IN Pin=U2-33
-Removed Pin From Net: NetName=ECD3IN Pin=U2-35
-Added Pin To Net: NetName=ECD3IN Pin=U2-33
-Added Pin To Net: NetName=ECD0IN Pin=U2-35
-Added Room: Name=Sheet1
