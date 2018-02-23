@@ -2734,3 +2734,630 @@ gmake[1]: 'MPU6050.out' is up to date.
 gmake[1]: 'MPU6050.out' is up to date.
 
 **** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 14: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+'Finished building: "../main.c"'
+ 
+'Building file: "../lib/IRrecv.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lib/IRrecv.d_raw" --obj_directory="lib"  "../lib/IRrecv.c"
+"../lib/IRrecv.c", line 75: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 127: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 130: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 139: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 147: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 164: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+'Finished building: "../lib/IRrecv.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+gmake: *** [all] Error 2
+makefile:140: recipe for target 'all' failed
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+gmake: *** [all] Error 2
+makefile:140: recipe for target 'all' failed
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+makefile:140: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+
+>> Compilation failure
+subdir_rules.mk:9: recipe for target 'main.obj' failed
+"..\lib/IRrecv.h", line 60: error #20: identifier "uint8_t" is undefined
+"..\lib/IRrecv.h", line 61: error #20: identifier "uint8_t" is undefined
+"..\lib/IRrecv.h", line 62: error #20: identifier "uint8_t" is undefined
+"..\lib/IRrecv.h", line 63: error #20: identifier "uint8_t" is undefined
+"..\lib/IRrecv.h", line 64: error #20: identifier "uint8_t" is undefined
+"..\lib/IRrecv.h", line 67: error #20: identifier "uint8_t" is undefined
+"..\lib/IRrecv.h", line 76: error #20: identifier "uint8_t" is undefined
+"../main.c", line 12: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+7 errors detected in the compilation of "../main.c".
+gmake: *** [main.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 13: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+'Finished building: "../main.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+makefile:140: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+gmake: *** [all] Error 2
+makefile:140: recipe for target 'all' failed
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 13: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+'Finished building: "../main.c"'
+ 
+'Building file: "../lib/IRrecv.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lib/IRrecv.d_raw" --obj_directory="lib"  "../lib/IRrecv.c"
+"../lib/IRrecv.c", line 75: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 127: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 130: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 139: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 147: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 164: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+'Finished building: "../lib/IRrecv.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+gmake: *** [all] Error 2
+makefile:140: recipe for target 'all' failed
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+gmake: *** [all] Error 2
+makefile:140: recipe for target 'all' failed
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 13: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+'Finished building: "../main.c"'
+ 
+'Building file: "../lib/IRrecv.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lib/IRrecv.d_raw" --obj_directory="lib"  "../lib/IRrecv.c"
+"../lib/IRrecv.c", line 75: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 127: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 130: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 139: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 147: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 164: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+'Finished building: "../lib/IRrecv.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+makefile:140: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 12: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+'Finished building: "../main.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+makefile:140: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../lib/IRrecv.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lib/IRrecv.d_raw" --obj_directory="lib"  "../lib/IRrecv.c"
+"../lib/IRrecv.c", line 72: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 124: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 127: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 136: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 144: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 161: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+'Finished building: "../lib/IRrecv.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+makefile:140: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../lib/IRrecv.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lib/IRrecv.d_raw" --obj_directory="lib"  "../lib/IRrecv.c"
+"../lib/IRrecv.c", line 69: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 121: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 124: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 133: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 141: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 158: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+'Finished building: "../lib/IRrecv.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+makefile:140: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+makefile:140: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+makefile:140: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+gmake: *** [all] Error 2
+makefile:140: recipe for target 'all' failed
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 12: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+'Finished building: "../main.c"'
+ 
+'Building file: "../lib/IRrecv.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lib/IRrecv.d_raw" --obj_directory="lib"  "../lib/IRrecv.c"
+"../lib/IRrecv.c", line 69: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 121: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 124: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 133: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 141: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 158: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+'Finished building: "../lib/IRrecv.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: "IR.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 12: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+'Finished building: "../main.c"'
+ 
+'Building file: "../lib/IRrecv.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lib/IRrecv.d_raw" --obj_directory="lib"  "../lib/IRrecv.c"
+"../lib/IRrecv.c", line 69: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 121: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 124: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 133: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 141: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 158: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+'Finished building: "../lib/IRrecv.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: "IR.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 12: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+'Finished building: "../main.c"'
+ 
+'Building file: "../lib/IRrecv.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lib/IRrecv.d_raw" --obj_directory="lib"  "../lib/IRrecv.c"
+"../lib/IRrecv.c", line 69: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 121: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 124: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 133: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 141: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 158: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+'Finished building: "../lib/IRrecv.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+ undefined first referenced
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+
+>> Compilation failure
+makefile:144: recipe for target 'IR.out' failed
+  symbol       in file     
+ --------- ----------------
+ irparams  ./lib/IRrecv.obj
+
+error #10234-D: unresolved symbols remain
+error #10010: errors encountered during linking; "IR.out" not built
+gmake[1]: *** [IR.out] Error 1
+makefile:140: recipe for target 'all' failed
+gmake: *** [all] Error 2
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project IR ****
+
+"E:\\ProgrameFiles\\CCS\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+"../main.c", line 12: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+'Finished building: "../main.c"'
+ 
+'Building file: "../lib/IRrecv.c"'
+'Invoking: MSP430 Compiler'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --include_path="E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" --include_path="E:/github/Two-wheeled-Self-balancing-Robot/CodeCCS/IR" --include_path="E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="lib/IRrecv.d_raw" --obj_directory="lib"  "../lib/IRrecv.c"
+"../lib/IRrecv.c", line 69: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 121: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 124: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 133: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 141: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+"../lib/IRrecv.c", line 158: remark #1546-D: (ULP 15.1) Detected consecutive bitfield assigns. Recommend using bit mask instead
+'Finished building: "../lib/IRrecv.c"'
+ 
+'Building target: "IR.out"'
+'Invoking: MSP430 Linker'
+"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/bin/cl430" -vmsp --use_hw_mpy=none --advice:power=all --define=__MSP430G2553__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number -z -m"IR.map" --heap_size=80 --stack_size=80 -i"E:/ProgrameFiles/CCS/ccsv7/ccs_base/msp430/include" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib" -i"E:/ProgrameFiles/CCS/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="IR_linkInfo.xml" --use_hw_mpy=none --rom_model -o "IR.out" "./main.obj" "./lib/IRrecv.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+'Finished building target: "IR.out"'
+ 
+
+**** Build Finished ****

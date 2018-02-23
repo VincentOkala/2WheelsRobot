@@ -1,0 +1,26 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+SHELL = cmd.exe
+
+# Add inputs and outputs from these tool invocations to the build variables 
+C_SRCS += \
+../lib/IRrecv.c 
+
+C_DEPS += \
+./lib/IRrecv.d 
+
+OBJS += \
+./lib/IRrecv.obj 
+
+OBJS__QUOTED += \
+"lib\IRrecv.obj" 
+
+C_DEPS__QUOTED += \
+"lib\IRrecv.d" 
+
+C_SRCS__QUOTED += \
+"../lib/IRrecv.c" 
+
+
