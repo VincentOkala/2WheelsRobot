@@ -1,0 +1,20 @@
+
+!ENTRY org.eclipse.core.resources 4 568 2018-05-09 19:08:26.842
+!MESSAGE Could not write metadata for '/IR'.
+!STACK 0
+java.io.FileNotFoundException: /home/light/github/2WheelsRobot/Software/CCS/.metadata/.plugins/org.eclipse.core.resources/.projects/IR/.markers.snap (No such file or directory)
+	at java.io.FileOutputStream.open0(Native Method)
+	at java.io.FileOutputStream.open(FileOutputStream.java:270)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:133)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:45)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:41)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSnap(SaveManager.java:1768)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSnap(SaveManager.java:1852)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1224)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1165)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:52)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.cdt.core 1 0 2018-05-09 19:08:29.703
+!MESSAGE Indexed '2wsrobot' (6 sources, 17 headers) in 1.74 sec: 1,237 declarations; 1,693 references; 0 unresolved inclusions; 0 syntax errors; 60 unresolved names (2%)
