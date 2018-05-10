@@ -55,13 +55,14 @@ private:
     uint32_t SYSCTL_PERIPH_I2C;
     uint32_t SYSCTL_PERIPH_GPIO;
 
+    uint32_t GPIO_P_I2CSCL;
+    uint32_t GPIO_P_I2CSDA;
+
     uint32_t GPIO_PORT_BASE;
     uint32_t GPIO_PIN_SCL;
     uint32_t GPIO_PIN_SDA;
 
     uint32_t I2C_BASE;
-    uint32_t GPIO_P_I2CSCL;
-    uint32_t GPIO_P_I2CSDA;
 };
 
 #endif /* MODULES_I2C_H_ */
