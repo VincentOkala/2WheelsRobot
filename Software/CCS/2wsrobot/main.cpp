@@ -1,26 +1,22 @@
-#include <modules/GY521/GY521.h>
-#include <modules/CONSOLE/CONSOLE.h>
+#include <slib/CONSOLE/CONSOLE.h>
+#include <slib/ss/StateSystem.h>
 
 /**
  * main.c
  */
-float accel[3];
-float gyro[3];
-float pitch;
+
 float roll;
+
 int main(void)
 {
-    GY521 gy521 = GY521(I2C0);
-    gy521.Init();
+    SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
 
     CONSOLE console = CONSOLE();
+    StateSystem ss = StateSystem();
 
     while(1){
-        SysCtlDelay(16000);
-        gy521.getAccel(accel);
-        gy521.getGyro(gyro);
-        gy521.getPitch(&pitch);
-        gy521.getRoll(&roll);
-        console.printf("pitch: %d, roll: %d \r\n",(int32_t)(pitch), (int32_t)(roll));
+        SysCtlDelay(8000);
+        ss.getRoll(&roll);
+        console.printf("-90 %d %d %d 90 \r\n",(int32_t)(roll));
     }
 }

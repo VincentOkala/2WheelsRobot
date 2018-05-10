@@ -21,8 +21,8 @@ GY521::~GY521()
 }
 
 bool GY521::Init(){
-    GYRO_SCALE = GYRO_SCALE_2000;
-    ACCEL_SCALE = ACCEL_SCALE_16G;
+    GYRO_SCALE = GYRO_SCALE_250;
+    ACCEL_SCALE = ACCEL_SCALE_2G;
 
     i2c.Init(I2C_MODE_MASTER, I2C_SPEED_STANDARD);
 
@@ -99,23 +99,32 @@ bool GY521::Init(uint8_t gyroScale, uint8_t accelScale){
     return true;
 }
 
-bool GY521::getAccel(float *accel){
+bool GY521::updateAccel(){
     uint8_t buf[6];
     i2c.ReadBurst(MPU6050_ADDRESS, ACCEL_XOUT_H, buf, 6); // Note that we can't write directly into MPU6050_t, because of endian conflict. So it has to be done manually
     accel_raw[0] = (buf[0] << 8) | buf[1];
     accel_raw[1] = (buf[2] << 8) | buf[3];
     accel_raw[2] = (buf[4] << 8) | buf[5];
+    return true;
+}
+bool GY521::updateGyro(){
+    uint8_t buf[6];
+    i2c.ReadBurst(MPU6050_ADDRESS, GYRO_XOUT_H, buf, 6); // Note that we can't write directly into MPU6050_t, because of endian conflict. So it has to be done manually
+    gyro_raw[0] = (buf[0] << 8) | buf[1];
+    gyro_raw[1] = (buf[2] << 8) | buf[3];
+    gyro_raw[2] = (buf[4] << 8) | buf[5];
+    return true;
+}
+
+bool GY521::getAccel(float *accel){
+    updateAccel();
     accel[0] = accel_raw[0] * MPU6050AccelFactors[ACCEL_SCALE];
     accel[1] = accel_raw[1] * MPU6050AccelFactors[ACCEL_SCALE];
     accel[2] = accel_raw[2] * MPU6050AccelFactors[ACCEL_SCALE];
     return true;
 }
 bool GY521::getGyro(float *gyro){
-    uint8_t buf[6];
-    i2c.ReadBurst(MPU6050_ADDRESS, GYRO_XOUT_H, buf, 6); // Note that we can't write directly into MPU6050_t, because of endian conflict. So it has to be done manually
-    gyro_raw[0] = (buf[0] << 8) | buf[1];
-    gyro_raw[1] = (buf[2] << 8) | buf[3];
-    gyro_raw[2] = (buf[4] << 8) | buf[5];
+    updateGyro();
     gyro[0] = gyro_raw[0] * MPU6050GyroFactors[GYRO_SCALE];
     gyro[1] = gyro_raw[1] * MPU6050GyroFactors[GYRO_SCALE];
     gyro[2] = gyro_raw[2] * MPU6050GyroFactors[GYRO_SCALE];
@@ -123,10 +132,12 @@ bool GY521::getGyro(float *gyro){
 }
 
 bool GY521::getPitch(float *pitch){
+    updateAccel();
     *pitch =  atan2(-accel_raw[0], accel_raw[2]) * RAD_TO_DEG;
     return true;
 }
 bool GY521::getRoll(float *roll){
+    updateAccel();
     *roll =  atan2(accel_raw[1], accel_raw[2]) * RAD_TO_DEG;
     return true;
 }

@@ -45,6 +45,9 @@ private:
     int16_t accel_raw[3];
     uint8_t GYRO_SCALE;
     uint8_t ACCEL_SCALE;
+
+    bool updateAccel();
+    bool updateGyro();
 };
 
 #endif /* MODULES_GY521_H_ */

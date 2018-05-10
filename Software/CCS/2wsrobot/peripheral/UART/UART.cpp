@@ -62,7 +62,7 @@ bool UART::Init(uint32_t BAUDRATE){
 
     GPIOPinTypeUART(GPIO_PORT_BASE, GPIO_PIN_TX | GPIO_PIN_RX);
 
-    UARTClockSourceSet(UART_BASE, UART_CLOCK_PIOSC);
+    UARTClockSourceSet(UART_BASE, TIMER_CLOCK_SYSTEM);
 
     // Configure the UART for BAUDRATE, n, 8, 1
     UARTConfigSetExpClk(UART_BASE, SysCtlClockGet(), BAUDRATE,
