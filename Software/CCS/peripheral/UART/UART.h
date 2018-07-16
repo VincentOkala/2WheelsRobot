@@ -23,35 +23,25 @@
 //*****************************************************************************
 // The following are defines for ID of UART modules
 //*****************************************************************************
-#define UART0    0
-#define UART1    1
-#define UART2    2
-#define UART3    3
-#define UART4    4
-#define UART5    5
-#define UART6    6
-#define UART7    7
+#define UART_0    0
+#define UART_1    1
+#define UART_2    2
+#define UART_3    3
+#define UART_4    4
+#define UART_5    5
+#define UART_6    6
+#define UART_7    7
 
 class UART
 {
 public:
     UART();
-    UART(uint8_t ID);
+    UART(uint8_t UART_, uint32_t BAUDRATE);
     virtual ~UART();
-    bool Init(uint32_t BAUDRATE);
-    bool send(const char *str, uint8_t length);
-    bool reicv(uint8_t *str, uint8_t length);
+    void send(const char *str);
+    void send(const char *str, uint8_t length);
+    void reicv(uint8_t *str, uint8_t length);
 private:
-    uint32_t SYSCTL_PERIPH_GPIO;
-    uint32_t SYSCTL_PERIPH_UART;
-
-    uint32_t GPIO_P_URX;
-    uint32_t GPIO_P_UTX;
-
-    uint32_t GPIO_PORT_BASE;
-    uint32_t GPIO_PIN_TX;
-    uint32_t GPIO_PIN_RX;
-
     uint32_t UART_BASE;
 };
 

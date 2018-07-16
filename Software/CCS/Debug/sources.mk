@@ -116,5 +116,7 @@ modules/GY521 \
 peripheral/I2C \
 peripheral/TIME \
 peripheral/UART \
-slib/CONSOLE \
+slib/console \
+slib/log \
+slib/system \
 

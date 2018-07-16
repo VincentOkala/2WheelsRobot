@@ -1,4 +1,8 @@
-#include <slib/CONSOLE/CONSOLE.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include "driverlib/sysctl.h"
+
+#include <slib/system/System.h>
 
 /**
  * main.c
@@ -8,11 +12,10 @@ float roll;
 
 int main(void)
 {
-    SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
 
-    CONSOLE console = CONSOLE();
+    System::init();
     while(1){
-        SysCtlDelay(8000);
-        console.printf("-90 %d %d %d 90 \r\n",(int32_t)(roll));
+        Log::logInfo("hi %d", 123);
+        System::delayMs(1000);
     }
 }

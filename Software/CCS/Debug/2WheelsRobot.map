@@ -1,35 +1,35 @@
 ******************************************************************************
                   TI ARM Linker PC v18.1.2                     
 ******************************************************************************
->> Linked Mon Jul 16 14:36:17 2018
+>> Linked Mon Jul 16 17:44:42 2018
 
 OUTPUT FILE NAME:   <2WheelsRobot.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 0000102d
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00001569
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00040000  00001464  0003eb9c  R  X
-  SRAM                  20000000   00008000  00000258  00007da8  RW X
+  FLASH                 00000000   00040000  00001a58  0003e5a8  R  X
+  SRAM                  20000000   00008000  00000240  00007dc0  RW X
 
 
 SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    00001468   00001468    r-x
+00000000    00000000    00001a58   00001a58    r-x
   00000000    00000000    0000026c   0000026c    r-- .intvecs
-  0000026c    0000026c    00000fc4   00000fc4    r-x .text
-  00001230    00001230    000001f0   000001f0    r-- .const
-  00001420    00001420    00000004   00000004    r-- .init_array
-  00001428    00001428    00000040   00000040    r-- .cinit
-20000000    20000000    00000258   00000000    rw-
+  0000026c    0000026c    00001540   00001540    r-x .text
+  000017ac    000017ac    00000264   00000264    r-- .const
+  00001a10    00001a10    00000008   00000008    r-- .init_array
+  00001a18    00001a18    00000040   00000040    r-- .cinit
+20000000    20000000    00000240   00000000    rw-
   20000000    20000000    00000200   00000000    rw- .stack
-  20000200    20000200    0000002c   00000000    rw- .bss
-  2000022c    2000022c    00000024   00000000    rw- .data
-  20000250    20000250    00000008   00000000    rw- .sysmem
+  20000200    20000200    00000024   00000000    rw- .data
+  20000224    20000224    00000014   00000000    rw- .bss
+  20000238    20000238    00000008   00000000    rw- .sysmem
 
 
 SECTION ALLOCATION MAP
@@ -40,110 +40,128 @@ section   page    origin      length       input sections
 .intvecs   0    00000000    0000026c     
                   00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
 
-.text      0    0000026c    00000fc4     
-                  0000026c    000003c4     CONSOLE.obj (.text)
-                  00000630    000001b4     UART.obj (.text)
-                  000007e4    00000132     driverlib.lib : gpio.obj (.text:GPIOPadConfigSet)
-                  00000916    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : stdlib_typeinfo.cpp.obj (.text:_ZNSt9type_infoD1Ev)
-                  00000918    00000110     driverlib.lib : sysctl.obj (.text:SysCtlClockGet)
-                  00000a28    000000f4                   : sysctl.obj (.text:SysCtlClockSet)
-                  00000b1c    000000d8     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.text:free)
-                  00000bf4    0000009c                                   : memcpy_t2.asm.obj (.text)
-                  00000c90    00000078                                   : memory.c.obj (.text:malloc)
-                  00000d08    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  00000d70    00000060                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit:__TI_auto_init_nobinit)
-                  00000dd0    00000048     driverlib.lib : gpio.obj (.text:GPIOPinConfigure)
-                  00000e18    00000048     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.c.obj (.text:exit)
-                  00000e60    00000048     main.obj (.text)
-                  00000ea8    00000046     driverlib.lib : uart.obj (.text:UARTConfigSetExpClk)
-                  00000eee    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.c.obj (.text:_nop)
-                  00000ef0    00000044                                   : dtor_list.c.obj (.text:_Z25__add_destruction_to_listPP20a_needed_destructionPFYvPvES2_S2_)
-                  00000f34    00000042                                   : dtor_list.c.obj (.text:_Z23__finalize_destructionsPP20a_needed_destructionPv)
-                  00000f76    00000040                                   : u_divt2.asm.obj (.text)
-                  00000fb6    00000002                                   : div0.asm.obj (.text)
-                  00000fb8    0000003c                                   : memory.c.obj (.text:minsert)
-                  00000ff4    00000038     driverlib.lib : sysctl.obj (.text:SysCtlPeripheralReady)
-                  0000102c    00000038     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
-                  00001064    00000038                                   : memory.c.obj (.text:minit)
-                  0000109c    00000034     driverlib.lib : sysctl.obj (.text:SysCtlPeripheralEnable)
-                  000010d0    00000034     rtsv7M4_T_le_v4SPD16_eabi.lib : dtor_list.c.obj (.text:__aeabi_atexit)
-                  00001104    0000002a     driverlib.lib : gpio.obj (.text:GPIODirModeSet)
-                  0000112e    00000002     --HOLE-- [fill = 0]
-                  00001130    00000028     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.text:mremove)
-                  00001158    00000020     driverlib.lib : uart.obj (.text:UARTDisable)
-                  00001178    00000014                   : uart.obj (.text:UARTEnable)
-                  0000118c    00000012                   : gpio.obj (.text:GPIOPinTypeUART)
-                  0000119e    00000012     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  000011b0    0000000e                                   : typeinfo.c.obj (.text:_ZN10__cxxabiv117__class_type_infoD0Ev)
-                  000011be    0000000e                                   : typeinfo.c.obj (.text:_ZN10__cxxabiv120__si_class_type_infoD0Ev)
-                  000011cc    0000000e                                   : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  000011da    00000002     --HOLE-- [fill = 0]
-                  000011dc    0000000c                                   : dtor_list.c.obj (.text:__cxa_ia64_exit)
-                  000011e8    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
-                  000011f4    0000000a     driverlib.lib : uart.obj (.text:UARTCharGet)
-                  000011fe    0000000a                   : uart.obj (.text:UARTCharPut)
-                  00001208    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : new.cpp.obj (.text:_ZdlPv)
-                  00001210    00000006     driverlib.lib : sysctl.obj (.text:SysCtlDelay)
-                  00001216    00000006                   : uart.obj (.text:UARTClockSourceSet)
-                  0000121c    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo.c.obj (.text:_ZN10__cxxabiv117__class_type_infoD1Ev)
-                  00001220    00000004                                   : typeinfo.c.obj (.text:_ZN10__cxxabiv120__si_class_type_infoD1Ev)
-                  00001224    00000004                                   : new.cpp.obj (.text:_ZdlPvj)
-                  00001228    00000004                                   : pre_init.c.obj (.text:_system_pre_init)
-                  0000122c    00000004                                   : exit.c.obj (.text:abort:abort)
+.text      0    0000026c    00001540     
+                  0000026c    00000460     Log.obj (.text)
+                  000006cc    000003d4     Console.obj (.text)
+                  00000aa0    000001dc     UART.obj (.text)
+                  00000c7c    00000132     driverlib.lib : gpio.obj (.text:GPIOPadConfigSet)
+                  00000dae    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : stdlib_typeinfo.cpp.obj (.text:_ZNSt9type_infoD1Ev)
+                  00000db0    00000110     driverlib.lib : sysctl.obj (.text:SysCtlClockGet)
+                  00000ec0    000000f4                   : sysctl.obj (.text:SysCtlClockSet)
+                  00000fb4    000000d8     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.text:free)
+                  0000108c    0000009c                                   : memcpy_t2.asm.obj (.text)
+                  00001128    00000090     System.obj (.text)
+                  000011b8    00000078     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.text:malloc)
+                  00001230    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00001298    00000060                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit:__TI_auto_init_nobinit)
+                  000012f8    0000005c     Logger.obj (.text)
+                  00001354    00000048     driverlib.lib : gpio.obj (.text:GPIOPinConfigure)
+                  0000139c    00000048     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.c.obj (.text:exit)
+                  000013e4    00000046     driverlib.lib : uart.obj (.text:UARTConfigSetExpClk)
+                  0000142a    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : _lock.c.obj (.text:_nop)
+                  0000142c    00000044                                   : dtor_list.c.obj (.text:_Z25__add_destruction_to_listPP20a_needed_destructionPFYvPvES2_S2_)
+                  00001470    00000042                                   : dtor_list.c.obj (.text:_Z23__finalize_destructionsPP20a_needed_destructionPv)
+                  000014b2    00000040                                   : u_divt2.asm.obj (.text)
+                  000014f2    00000002                                   : div0.asm.obj (.text)
+                  000014f4    0000003c                                   : memory.c.obj (.text:minsert)
+                  00001530    00000038     driverlib.lib : sysctl.obj (.text:SysCtlPeripheralReady)
+                  00001568    00000038     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  000015a0    00000038                                   : memory.c.obj (.text:minit)
+                  000015d8    00000034     driverlib.lib : sysctl.obj (.text:SysCtlPeripheralEnable)
+                  0000160c    00000034     rtsv7M4_T_le_v4SPD16_eabi.lib : dtor_list.c.obj (.text:__aeabi_atexit)
+                  00001640    0000002a     driverlib.lib : gpio.obj (.text:GPIODirModeSet)
+                  0000166a    00000002     --HOLE-- [fill = 0]
+                  0000166c    00000028     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.text:mremove)
+                  00001694    00000020     driverlib.lib : uart.obj (.text:UARTDisable)
+                  000016b4    0000001e     main.obj (.text)
+                  000016d2    00000016     Console.obj (.text:_ZN4UARTaSERKS_)
+                  000016e8    00000014     driverlib.lib : uart.obj (.text:UARTEnable)
+                  000016fc    00000012                   : gpio.obj (.text:GPIOPinTypeUART)
+                  0000170e    00000012     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  00001720    0000000e                                   : typeinfo.c.obj (.text:_ZN10__cxxabiv117__class_type_infoD0Ev)
+                  0000172e    0000000e                                   : typeinfo.c.obj (.text:_ZN10__cxxabiv120__si_class_type_infoD0Ev)
+                  0000173c    0000000e     System.obj (.text:_ZN6LoggeraSERKS_)
+                  0000174a    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00001758    0000000c                                   : dtor_list.c.obj (.text:__cxa_ia64_exit)
+                  00001764    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  00001770    0000000a     driverlib.lib : uart.obj (.text:UARTCharGet)
+                  0000177a    0000000a                   : uart.obj (.text:UARTCharPut)
+                  00001784    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : new.cpp.obj (.text:_ZdlPv)
+                  0000178c    00000006     driverlib.lib : sysctl.obj (.text:SysCtlDelay)
+                  00001792    00000006                   : uart.obj (.text:UARTClockSourceSet)
+                  00001798    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo.c.obj (.text:_ZN10__cxxabiv117__class_type_infoD1Ev)
+                  0000179c    00000004                                   : typeinfo.c.obj (.text:_ZN10__cxxabiv120__si_class_type_infoD1Ev)
+                  000017a0    00000004                                   : new.cpp.obj (.text:_ZdlPvj)
+                  000017a4    00000004                                   : pre_init.c.obj (.text:_system_pre_init)
+                  000017a8    00000004                                   : exit.c.obj (.text:abort:abort)
 
-.const     0    00001230    000001f0     
-                  00001230    00000090     driverlib.lib : gpio.obj (.const:g_pui32GPIOBaseAddrs)
-                  000012c0    0000006c                   : sysctl.obj (.const:g_pui32Xtals)
-                  0000132c    00000025     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo.c.obj (.const:.typeinfo:_ZTSN10__cxxabiv120__si_class_type_infoE)
-                  00001351    00000022                                   : typeinfo.c.obj (.const:.typeinfo:_ZTSN10__cxxabiv117__class_type_infoE)
-                  00001373    00000001     --HOLE-- [fill = 0]
-                  00001374    00000012     CONSOLE.obj (.const:.string)
-                  00001386    00000002     --HOLE-- [fill = 0]
-                  00001388    00000010     UART.obj (.const:_ZTV4UART)
-                  00001398    00000010     CONSOLE.obj (.const:_ZTV7CONSOLE)
-                  000013a8    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo.c.obj (.const:_ZTVN10__cxxabiv117__class_type_infoE)
-                  000013b8    00000010                                   : typeinfo.c.obj (.const:_ZTVN10__cxxabiv120__si_class_type_infoE)
-                  000013c8    0000000d                                   : stdlib_typeinfo.cpp.obj (.const:.typeinfo:_ZTSSt9type_info)
-                  000013d5    00000003     --HOLE-- [fill = 0]
-                  000013d8    0000000c                                   : typeinfo.c.obj (.const:.typeinfo:_ZTIN10__cxxabiv117__class_type_infoE)
-                  000013e4    0000000c                                   : typeinfo.c.obj (.const:.typeinfo:_ZTIN10__cxxabiv120__si_class_type_infoE)
-                  000013f0    00000009     CONSOLE.obj (.const:.typeinfo:_ZTS7CONSOLE)
-                  000013f9    00000003     --HOLE-- [fill = 0]
-                  000013fc    00000008     UART.obj (.const:.typeinfo:_ZTI4UART)
-                  00001404    00000008     CONSOLE.obj (.const:.typeinfo:_ZTI7CONSOLE)
-                  0000140c    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : stdlib_typeinfo.cpp.obj (.const:.typeinfo:_ZTISt9type_info)
-                  00001414    00000006     UART.obj (.const:.typeinfo:_ZTS4UART)
-                  0000141a    00000002     --HOLE-- [fill = 0]
-                  0000141c    00000004     CONSOLE.obj (.const)
+.const     0    000017ac    00000264     
+                  000017ac    00000090     driverlib.lib : gpio.obj (.const:g_pui32GPIOBaseAddrs)
+                  0000183c    0000006c                   : sysctl.obj (.const:g_pui32Xtals)
+                  000018a8    00000025     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo.c.obj (.const:.typeinfo:_ZTSN10__cxxabiv120__si_class_type_infoE)
+                  000018cd    00000022                                   : typeinfo.c.obj (.const:.typeinfo:_ZTSN10__cxxabiv117__class_type_infoE)
+                  000018ef    00000001     --HOLE-- [fill = 0]
+                  000018f0    00000012     Console.obj (.const:.string)
+                  00001902    00000002     --HOLE-- [fill = 0]
+                  00001904    00000012     Log.obj (.const:.string)
+                  00001916    00000002     --HOLE-- [fill = 0]
+                  00001918    00000010     Log.obj (.const:_ZTV3Log)
+                  00001928    00000010     UART.obj (.const:_ZTV4UART)
+                  00001938    00000010     Logger.obj (.const:_ZTV6Logger)
+                  00001948    00000010     System.obj (.const:_ZTV6System)
+                  00001958    00000010     Console.obj (.const:_ZTV7Console)
+                  00001968    00000010     rtsv7M4_T_le_v4SPD16_eabi.lib : typeinfo.c.obj (.const:_ZTVN10__cxxabiv117__class_type_infoE)
+                  00001978    00000010                                   : typeinfo.c.obj (.const:_ZTVN10__cxxabiv120__si_class_type_infoE)
+                  00001988    0000000d                                   : stdlib_typeinfo.cpp.obj (.const:.typeinfo:_ZTSSt9type_info)
+                  00001995    00000003     --HOLE-- [fill = 0]
+                  00001998    0000000c                                   : typeinfo.c.obj (.const:.typeinfo:_ZTIN10__cxxabiv117__class_type_infoE)
+                  000019a4    0000000c                                   : typeinfo.c.obj (.const:.typeinfo:_ZTIN10__cxxabiv120__si_class_type_infoE)
+                  000019b0    00000009     Console.obj (.const:.typeinfo:_ZTS7Console)
+                  000019b9    00000003     --HOLE-- [fill = 0]
+                  000019bc    00000008     Log.obj (.const:.typeinfo:_ZTI3Log)
+                  000019c4    00000008     UART.obj (.const:.typeinfo:_ZTI4UART)
+                  000019cc    00000008     Logger.obj (.const:.typeinfo:_ZTI6Logger)
+                  000019d4    00000008     System.obj (.const:.typeinfo:_ZTI6System)
+                  000019dc    00000008     Console.obj (.const:.typeinfo:_ZTI7Console)
+                  000019e4    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : stdlib_typeinfo.cpp.obj (.const:.typeinfo:_ZTISt9type_info)
+                  000019ec    00000008     Logger.obj (.const:.typeinfo:_ZTS6Logger)
+                  000019f4    00000008     System.obj (.const:.typeinfo:_ZTS6System)
+                  000019fc    00000006     UART.obj (.const:.typeinfo:_ZTS4UART)
+                  00001a02    00000005     Log.obj (.const:.typeinfo:_ZTS3Log)
+                  00001a07    00000001     --HOLE-- [fill = 0]
+                  00001a08    00000004     Console.obj (.const)
+                  00001a0c    00000004     Log.obj (.const)
 
-.cinit     0    00001428    00000040     
-                  00001428    0000001a     (.cinit..data.load) [load image, compression = lzss]
-                  00001442    00000002     --HOLE-- [fill = 0]
-                  00001444    0000000c     (__TI_handler_table)
-                  00001450    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  00001458    00000010     (__TI_cinit_table)
+.cinit     0    00001a18    00000040     
+                  00001a18    0000001a     (.cinit..data.load) [load image, compression = lzss]
+                  00001a32    00000002     --HOLE-- [fill = 0]
+                  00001a34    0000000c     (__TI_handler_table)
+                  00001a40    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00001a48    00000010     (__TI_cinit_table)
 
 .init_array 
-*          0    00001420    00000004     
-                  00001420    00000004     CONSOLE.obj (.init_array)
+*          0    00001a10    00000008     
+                  00001a10    00000004     System.obj (.init_array)
+                  00001a14    00000004     Console.obj (.init_array)
 
 .stack     0    20000000    00000200     UNINITIALIZED
                   20000000    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
                   20000004    000001fc     --HOLE--
 
-.bss       0    20000200    0000002c     UNINITIALIZED
-                  20000200    00000024     CONSOLE.obj (.bss:_ZN7CONSOLE4uartE)
-                  20000224    00000004     (.common:__dso_handle)
-                  20000228    00000004     (.common:roll)
+.data      0    20000200    00000024     UNINITIALIZED
+                  20000200    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.c.obj (.data:$O1$$)
+                  2000020c    0000000c                                   : memory.c.obj (.data:$O1$$)
+                  20000218    00000008                                   : _lock.c.obj (.data:$O1$$)
+                  20000220    00000004                                   : dtor_list.c.obj (.data)
 
-.data      0    2000022c    00000024     UNINITIALIZED
-                  2000022c    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.c.obj (.data:$O1$$)
-                  20000238    0000000c                                   : memory.c.obj (.data:$O1$$)
-                  20000244    00000008                                   : _lock.c.obj (.data:$O1$$)
-                  2000024c    00000004                                   : dtor_list.c.obj (.data)
+.bss       0    20000224    00000014     UNINITIALIZED
+                  20000224    00000008     Console.obj (.bss:_ZN7Console4uartE)
+                  2000022c    00000004     System.obj (.bss:_ZN6System6loggerE)
+                  20000230    00000004     (.common:_ZN3Log6loggerE)
+                  20000234    00000004     (.common:__dso_handle)
 
-.sysmem    0    20000250    00000008     UNINITIALIZED
-                  20000250    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.sysmem)
+.sysmem    0    20000238    00000008     UNINITIALIZED
+                  20000238    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.c.obj (.sysmem)
 
 MODULE SUMMARY
 
@@ -151,19 +169,30 @@ MODULE SUMMARY
        ------                         ----   -------   -------
     .\
        tm4c123gh6pm_startup_ccs.obj   12     620       0      
-       main.obj                       72     0         4      
+       main.obj                       30     0         0      
     +--+------------------------------+------+---------+---------+
-       Total:                         84     620       4      
+       Total:                         42     620       0      
                                                               
     .\peripheral\UART\
-       UART.obj                       436    30        0      
+       UART.obj                       476    30        0      
     +--+------------------------------+------+---------+---------+
-       Total:                         436    30        0      
+       Total:                         476    30        0      
                                                               
-    .\slib\CONSOLE\
-       CONSOLE.obj                    964    59        36     
+    .\slib\console\
+       Console.obj                    1002   59        8      
     +--+------------------------------+------+---------+---------+
-       Total:                         964    59        36     
+       Total:                         1002   59        8      
+                                                              
+    .\slib\log\
+       Log.obj                        1120   51        4      
+       Logger.obj                     92     32        0      
+    +--+------------------------------+------+---------+---------+
+       Total:                         1212   83        4      
+                                                              
+    .\slib\system\
+       System.obj                     158    36        4      
+    +--+------------------------------+------+---------+---------+
+       Total:                         158    36        4      
                                                               
     ../driverlib.lib
        sysctl.obj                     630    108       0      
@@ -196,19 +225,19 @@ MODULE SUMMARY
        Stack:                         0      0         512    
        Linker Generated:              0      62        0      
     +--+------------------------------+------+---------+---------+
-       Grand Total:                   4032   1171      600    
+       Grand Total:                   5438   1290      576    
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 00001458 records: 2, size/record: 8, table size: 16
-	.data: load addr=00001428, load size=0000001a bytes, run addr=2000022c, run size=00000024 bytes, compression=lzss
-	.bss: load addr=00001450, load size=00000008 bytes, run addr=20000200, run size=0000002c bytes, compression=zero_init
+__TI_cinit_table @ 00001a48 records: 2, size/record: 8, table size: 16
+	.data: load addr=00001a18, load size=0000001a bytes, run addr=20000200, run size=00000024 bytes, compression=lzss
+	.bss: load addr=00001a40, load size=00000008 bytes, run addr=20000224, run size=00000014 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 00001444 records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 00001a34 records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_decompress_lzss
 	index: 1, handler: __TI_decompress_none
 	index: 2, handler: __TI_zero_init
@@ -218,122 +247,161 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 
 address   name                                                              
 -------   ----                                                              
-0000122d  C$$EXIT                                                           
-00001105  GPIODirModeSet                                                    
-000007e5  GPIOPadConfigSet                                                  
-00000dd1  GPIOPinConfigure                                                  
-0000118d  GPIOPinTypeUART                                                   
-000011e9  ResetISR                                                          
-00001420  SHT$$INIT_ARRAY$$Base                                             
-00001424  SHT$$INIT_ARRAY$$Limit                                            
-00000919  SysCtlClockGet                                                    
-00000a29  SysCtlClockSet                                                    
-00001211  SysCtlDelay                                                       
-0000109d  SysCtlPeripheralEnable                                            
-00000ff5  SysCtlPeripheralReady                                             
-000011f5  UARTCharGet                                                       
-000011ff  UARTCharPut                                                       
-00001217  UARTClockSourceSet                                                
-00000ea9  UARTConfigSetExpClk                                               
-00001159  UARTDisable                                                       
-00001179  UARTEnable                                                        
-00000f35  _Z23__finalize_destructionsPP20a_needed_destructionPv             
-00000ef1  _Z25__add_destruction_to_listPP20a_needed_destructionPFYvPvES2_S2_
-000011b1  _ZN10__cxxabiv117__class_type_infoD0Ev                            
-0000121d  _ZN10__cxxabiv117__class_type_infoD1Ev                            
-0000121d  _ZN10__cxxabiv117__class_type_infoD2Ev                            
-000011bf  _ZN10__cxxabiv120__si_class_type_infoD0Ev                         
-00001221  _ZN10__cxxabiv120__si_class_type_infoD1Ev                         
-00001221  _ZN10__cxxabiv120__si_class_type_infoD2Ev                         
-000006e3  _ZN4UART4InitEj                                                   
-0000075d  _ZN4UART4sendEPKch                                                
-00000799  _ZN4UART5reicvEPhh                                                
-00000643  _ZN4UARTC1Eh                                                      
-00000631  _ZN4UARTC1Ev                                                      
-00000643  _ZN4UARTC2Eh                                                      
-00000631  _ZN4UARTC2Ev                                                      
-000006cf  _ZN4UARTD0Ev                                                      
-000006c3  _ZN4UARTD1Ev                                                      
-000006c3  _ZN4UARTD2Ev                                                      
-000002e9  _ZN7CONSOLE11UARTvprintfEPKc11__va_list_t                         
-000002a5  _ZN7CONSOLE4getsEPhh                                              
-20000200  _ZN7CONSOLE4uartE                                                 
-000002bd  _ZN7CONSOLE6printfEPKcz                                           
-0000026d  _ZN7CONSOLEC1Ev                                                   
-0000026d  _ZN7CONSOLEC2Ev                                                   
-00000291  _ZN7CONSOLED0Ev                                                   
-00000285  _ZN7CONSOLED1Ev                                                   
-00000285  _ZN7CONSOLED2Ev                                                   
-00000917  _ZNSt9type_infoD1Ev                                               
-00000917  _ZNSt9type_infoD2Ev                                               
-0000122d  _ZSt17__throw_bad_allocv                                          
-000013fc  _ZTI4UART                                                         
-00001404  _ZTI7CONSOLE                                                      
-000013d8  _ZTIN10__cxxabiv117__class_type_infoE                             
-000013e4  _ZTIN10__cxxabiv120__si_class_type_infoE                          
-0000140c  _ZTISt9type_info                                                  
-00001414  _ZTS4UART                                                         
-000013f0  _ZTS7CONSOLE                                                      
-00001351  _ZTSN10__cxxabiv117__class_type_infoE                             
-0000132c  _ZTSN10__cxxabiv120__si_class_type_infoE                          
-000013c8  _ZTSSt9type_info                                                  
-00001388  _ZTV4UART                                                         
-00001398  _ZTV7CONSOLE                                                      
-000013a8  _ZTVN10__cxxabiv117__class_type_infoE                             
-000013b8  _ZTVN10__cxxabiv120__si_class_type_infoE                          
-00001209  _ZdlPv                                                            
-00001225  _ZdlPvj                                                           
+000017a9  C$$EXIT                                                           
+00001641  GPIODirModeSet                                                    
+00000c7d  GPIOPadConfigSet                                                  
+00001355  GPIOPinConfigure                                                  
+000016fd  GPIOPinTypeUART                                                   
+00001765  ResetISR                                                          
+00001a10  SHT$$INIT_ARRAY$$Base                                             
+00001a18  SHT$$INIT_ARRAY$$Limit                                            
+00000db1  SysCtlClockGet                                                    
+00000ec1  SysCtlClockSet                                                    
+0000178d  SysCtlDelay                                                       
+000015d9  SysCtlPeripheralEnable                                            
+00001531  SysCtlPeripheralReady                                             
+00001771  UARTCharGet                                                       
+0000177b  UARTCharPut                                                       
+00001793  UARTClockSourceSet                                                
+000013e5  UARTConfigSetExpClk                                               
+00001695  UARTDisable                                                       
+000016e9  UARTEnable                                                        
+00001471  _Z23__finalize_destructionsPP20a_needed_destructionPv             
+0000142d  _Z25__add_destruction_to_listPP20a_needed_destructionPFYvPvES2_S2_
+00001721  _ZN10__cxxabiv117__class_type_infoD0Ev                            
+00001799  _ZN10__cxxabiv117__class_type_infoD1Ev                            
+00001799  _ZN10__cxxabiv117__class_type_infoD2Ev                            
+0000172f  _ZN10__cxxabiv120__si_class_type_infoD0Ev                         
+0000179d  _ZN10__cxxabiv120__si_class_type_infoD1Ev                         
+0000179d  _ZN10__cxxabiv120__si_class_type_infoD2Ev                         
+000002e7  _ZN3Log10logWarningEPKcz                                          
+0000029f  _ZN3Log4initEP6Logger                                             
+00000357  _ZN3Log6logStrEPKc                                                
+20000230  _ZN3Log6loggerE                                                   
+000002af  _ZN3Log7logInfoEPKcz                                              
+0000031f  _ZN3Log8logErrorEPKcz                                             
+00000395  _ZN3Log8vprintf2EPKc11__va_list_t                                 
+0000026d  _ZN3LogC1Ev                                                       
+0000026d  _ZN3LogC2Ev                                                       
+0000028b  _ZN3LogD0Ev                                                       
+0000027f  _ZN3LogD1Ev                                                       
+0000027f  _ZN3LogD2Ev                                                       
+00000ba5  _ZN4UART4sendEPKc                                                 
+00000bf9  _ZN4UART4sendEPKch                                                
+00000c33  _ZN4UART5reicvEPhh                                                
+00000ab3  _ZN4UARTC1Ehj                                                     
+00000aa1  _ZN4UARTC1Ev                                                      
+00000ab3  _ZN4UARTC2Ehj                                                     
+00000aa1  _ZN4UARTC2Ev                                                      
+00000b91  _ZN4UARTD0Ev                                                      
+00000b85  _ZN4UARTD1Ev                                                      
+00000b85  _ZN4UARTD2Ev                                                      
+000016d3  _ZN4UARTaSERKS_                                                   
+0000132b  _ZN6Logger4initEv                                                 
+00001335  _ZN6Logger5writeEPKc                                              
+00001341  _ZN6Logger5writeEPKch                                             
+000012f9  _ZN6LoggerC1Ev                                                    
+000012f9  _ZN6LoggerC2Ev                                                    
+00001317  _ZN6LoggerD0Ev                                                    
+0000130b  _ZN6LoggerD1Ev                                                    
+0000130b  _ZN6LoggerD2Ev                                                    
+0000173d  _ZN6LoggeraSERKS_                                                 
+0000115b  _ZN6System4initEv                                                 
+2000022c  _ZN6System6loggerE                                                
+0000117f  _ZN6System7delayMsEj                                              
+00001129  _ZN6SystemC1Ev                                                    
+00001129  _ZN6SystemC2Ev                                                    
+00001147  _ZN6SystemD0Ev                                                    
+0000113b  _ZN6SystemD1Ev                                                    
+0000113b  _ZN6SystemD2Ev                                                    
+00000759  _ZN7Console11UARTvprintfEPKc11__va_list_t                         
+00000715  _ZN7Console4getsEPhh                                              
+20000224  _ZN7Console4uartE                                                 
+0000072d  _ZN7Console6printfEPKcz                                           
+000006cd  _ZN7ConsoleC1Ev                                                   
+000006cd  _ZN7ConsoleC2Ev                                                   
+00000701  _ZN7ConsoleD0Ev                                                   
+000006f5  _ZN7ConsoleD1Ev                                                   
+000006f5  _ZN7ConsoleD2Ev                                                   
+00000daf  _ZNSt9type_infoD1Ev                                               
+00000daf  _ZNSt9type_infoD2Ev                                               
+000017a9  _ZSt17__throw_bad_allocv                                          
+000019bc  _ZTI3Log                                                          
+000019c4  _ZTI4UART                                                         
+000019cc  _ZTI6Logger                                                       
+000019d4  _ZTI6System                                                       
+000019dc  _ZTI7Console                                                      
+00001998  _ZTIN10__cxxabiv117__class_type_infoE                             
+000019a4  _ZTIN10__cxxabiv120__si_class_type_infoE                          
+000019e4  _ZTISt9type_info                                                  
+00001a02  _ZTS3Log                                                          
+000019fc  _ZTS4UART                                                         
+000019ec  _ZTS6Logger                                                       
+000019f4  _ZTS6System                                                       
+000019b0  _ZTS7Console                                                      
+000018cd  _ZTSN10__cxxabiv117__class_type_infoE                             
+000018a8  _ZTSN10__cxxabiv120__si_class_type_infoE                          
+00001988  _ZTSSt9type_info                                                  
+00001918  _ZTV3Log                                                          
+00001928  _ZTV4UART                                                         
+00001938  _ZTV6Logger                                                       
+00001948  _ZTV6System                                                       
+00001958  _ZTV7Console                                                      
+00001968  _ZTVN10__cxxabiv117__class_type_infoE                             
+00001978  _ZTVN10__cxxabiv120__si_class_type_infoE                          
+00001785  _ZdlPv                                                            
+000017a1  _ZdlPvj                                                           
 20000200  __STACK_END                                                       
 00000200  __STACK_SIZE                                                      
 20000200  __STACK_TOP                                                       
 00000008  __SYSMEM_SIZE                                                     
-00001458  __TI_CINIT_Base                                                   
-00001468  __TI_CINIT_Limit                                                  
-00001444  __TI_Handler_Table_Base                                           
-00001450  __TI_Handler_Table_Limit                                          
-00000d71  __TI_auto_init_nobinit                                            
-2000022c  __TI_cleanup_ptr                                                  
-00000d09  __TI_decompress_lzss                                              
-000011cd  __TI_decompress_none                                              
-20000230  __TI_dtors_ptr                                                    
-20000234  __TI_enable_exit_profile_output                                   
+00001a48  __TI_CINIT_Base                                                   
+00001a58  __TI_CINIT_Limit                                                  
+00001a34  __TI_Handler_Table_Base                                           
+00001a40  __TI_Handler_Table_Limit                                          
+00001299  __TI_auto_init_nobinit                                            
+20000200  __TI_cleanup_ptr                                                  
+00001231  __TI_decompress_lzss                                              
+0000174b  __TI_decompress_none                                              
+20000204  __TI_dtors_ptr                                                    
+20000208  __TI_enable_exit_profile_output                                   
 ffffffff  __TI_pprof_out_hndl                                               
 ffffffff  __TI_prof_data_size                                               
 ffffffff  __TI_prof_data_start                                              
 00000000  __TI_static_base__                                                
-0000119f  __TI_zero_init_nomemset                                           
-000010d1  __aeabi_atexit                                                    
-00000fb7  __aeabi_idiv0                                                     
-00000fb7  __aeabi_ldiv0                                                     
-00000bf5  __aeabi_memcpy                                                    
-00000bf5  __aeabi_memcpy4                                                   
-00000bf5  __aeabi_memcpy8                                                   
-00000f77  __aeabi_uidiv                                                     
-00000f77  __aeabi_uidivmod                                                  
+0000170f  __TI_zero_init_nomemset                                           
+0000160d  __aeabi_atexit                                                    
+000014f3  __aeabi_idiv0                                                     
+000014f3  __aeabi_ldiv0                                                     
+0000108d  __aeabi_memcpy                                                    
+0000108d  __aeabi_memcpy4                                                   
+0000108d  __aeabi_memcpy8                                                   
+000014b3  __aeabi_uidiv                                                     
+000014b3  __aeabi_uidivmod                                                  
 ffffffff  __binit__                                                         
 ffffffff  __c_args__                                                        
-000011dd  __cxa_ia64_exit                                                   
-20000224  __dso_handle                                                      
+00001759  __cxa_ia64_exit                                                   
+20000234  __dso_handle                                                      
 UNDEFED   __mpu_init                                                        
 20000000  __stack                                                           
-000005ff  __sti___11_CONSOLE_cpp_5a575588                                   
-0000102d  _c_int00_noargs                                                   
-20000244  _lock                                                             
-00000eef  _nop                                                              
-20000250  _sys_memory                                                       
+00001191  __sti___10_System_cpp_524050c4                                    
+00000a6f  __sti___11_Console_cpp_3f9ddb1e                                   
+00001569  _c_int00_noargs                                                   
+20000218  _lock                                                             
+0000142b  _nop                                                              
+20000238  _sys_memory                                                       
 UNDEFED   _system_post_cinit                                                
-00001229  _system_pre_init                                                  
-20000248  _unlock                                                           
-0000122d  abort                                                             
+000017a5  _system_pre_init                                                  
+2000021c  _unlock                                                           
+000017a9  abort                                                             
 ffffffff  binit                                                             
-00000e19  exit                                                              
-00000b1d  free                                                              
+0000139d  exit                                                              
+00000fb5  free                                                              
 00000000  g_pfnVectors                                                      
-00000e61  main                                                              
-00000c91  malloc                                                            
-00000bf5  memcpy                                                            
-00001065  minit                                                             
-20000228  roll                                                              
+000016b5  main                                                              
+000011b9  malloc                                                            
+0000108d  memcpy                                                            
+000015a1  minit                                                             
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -344,110 +412,149 @@ address   name
 00000000  g_pfnVectors                                                      
 00000008  __SYSMEM_SIZE                                                     
 00000200  __STACK_SIZE                                                      
-0000026d  _ZN7CONSOLEC1Ev                                                   
-0000026d  _ZN7CONSOLEC2Ev                                                   
-00000285  _ZN7CONSOLED1Ev                                                   
-00000285  _ZN7CONSOLED2Ev                                                   
-00000291  _ZN7CONSOLED0Ev                                                   
-000002a5  _ZN7CONSOLE4getsEPhh                                              
-000002bd  _ZN7CONSOLE6printfEPKcz                                           
-000002e9  _ZN7CONSOLE11UARTvprintfEPKc11__va_list_t                         
-000005ff  __sti___11_CONSOLE_cpp_5a575588                                   
-00000631  _ZN4UARTC1Ev                                                      
-00000631  _ZN4UARTC2Ev                                                      
-00000643  _ZN4UARTC1Eh                                                      
-00000643  _ZN4UARTC2Eh                                                      
-000006c3  _ZN4UARTD1Ev                                                      
-000006c3  _ZN4UARTD2Ev                                                      
-000006cf  _ZN4UARTD0Ev                                                      
-000006e3  _ZN4UART4InitEj                                                   
-0000075d  _ZN4UART4sendEPKch                                                
-00000799  _ZN4UART5reicvEPhh                                                
-000007e5  GPIOPadConfigSet                                                  
-00000917  _ZNSt9type_infoD1Ev                                               
-00000917  _ZNSt9type_infoD2Ev                                               
-00000919  SysCtlClockGet                                                    
-00000a29  SysCtlClockSet                                                    
-00000b1d  free                                                              
-00000bf5  __aeabi_memcpy                                                    
-00000bf5  __aeabi_memcpy4                                                   
-00000bf5  __aeabi_memcpy8                                                   
-00000bf5  memcpy                                                            
-00000c91  malloc                                                            
-00000d09  __TI_decompress_lzss                                              
-00000d71  __TI_auto_init_nobinit                                            
-00000dd1  GPIOPinConfigure                                                  
-00000e19  exit                                                              
-00000e61  main                                                              
-00000ea9  UARTConfigSetExpClk                                               
-00000eef  _nop                                                              
-00000ef1  _Z25__add_destruction_to_listPP20a_needed_destructionPFYvPvES2_S2_
-00000f35  _Z23__finalize_destructionsPP20a_needed_destructionPv             
-00000f77  __aeabi_uidiv                                                     
-00000f77  __aeabi_uidivmod                                                  
-00000fb7  __aeabi_idiv0                                                     
-00000fb7  __aeabi_ldiv0                                                     
-00000ff5  SysCtlPeripheralReady                                             
-0000102d  _c_int00_noargs                                                   
-00001065  minit                                                             
-0000109d  SysCtlPeripheralEnable                                            
-000010d1  __aeabi_atexit                                                    
-00001105  GPIODirModeSet                                                    
-00001159  UARTDisable                                                       
-00001179  UARTEnable                                                        
-0000118d  GPIOPinTypeUART                                                   
-0000119f  __TI_zero_init_nomemset                                           
-000011b1  _ZN10__cxxabiv117__class_type_infoD0Ev                            
-000011bf  _ZN10__cxxabiv120__si_class_type_infoD0Ev                         
-000011cd  __TI_decompress_none                                              
-000011dd  __cxa_ia64_exit                                                   
-000011e9  ResetISR                                                          
-000011f5  UARTCharGet                                                       
-000011ff  UARTCharPut                                                       
-00001209  _ZdlPv                                                            
-00001211  SysCtlDelay                                                       
-00001217  UARTClockSourceSet                                                
-0000121d  _ZN10__cxxabiv117__class_type_infoD1Ev                            
-0000121d  _ZN10__cxxabiv117__class_type_infoD2Ev                            
-00001221  _ZN10__cxxabiv120__si_class_type_infoD1Ev                         
-00001221  _ZN10__cxxabiv120__si_class_type_infoD2Ev                         
-00001225  _ZdlPvj                                                           
-00001229  _system_pre_init                                                  
-0000122d  C$$EXIT                                                           
-0000122d  _ZSt17__throw_bad_allocv                                          
-0000122d  abort                                                             
-0000132c  _ZTSN10__cxxabiv120__si_class_type_infoE                          
-00001351  _ZTSN10__cxxabiv117__class_type_infoE                             
-00001388  _ZTV4UART                                                         
-00001398  _ZTV7CONSOLE                                                      
-000013a8  _ZTVN10__cxxabiv117__class_type_infoE                             
-000013b8  _ZTVN10__cxxabiv120__si_class_type_infoE                          
-000013c8  _ZTSSt9type_info                                                  
-000013d8  _ZTIN10__cxxabiv117__class_type_infoE                             
-000013e4  _ZTIN10__cxxabiv120__si_class_type_infoE                          
-000013f0  _ZTS7CONSOLE                                                      
-000013fc  _ZTI4UART                                                         
-00001404  _ZTI7CONSOLE                                                      
-0000140c  _ZTISt9type_info                                                  
-00001414  _ZTS4UART                                                         
-00001420  SHT$$INIT_ARRAY$$Base                                             
-00001424  SHT$$INIT_ARRAY$$Limit                                            
-00001444  __TI_Handler_Table_Base                                           
-00001450  __TI_Handler_Table_Limit                                          
-00001458  __TI_CINIT_Base                                                   
-00001468  __TI_CINIT_Limit                                                  
+0000026d  _ZN3LogC1Ev                                                       
+0000026d  _ZN3LogC2Ev                                                       
+0000027f  _ZN3LogD1Ev                                                       
+0000027f  _ZN3LogD2Ev                                                       
+0000028b  _ZN3LogD0Ev                                                       
+0000029f  _ZN3Log4initEP6Logger                                             
+000002af  _ZN3Log7logInfoEPKcz                                              
+000002e7  _ZN3Log10logWarningEPKcz                                          
+0000031f  _ZN3Log8logErrorEPKcz                                             
+00000357  _ZN3Log6logStrEPKc                                                
+00000395  _ZN3Log8vprintf2EPKc11__va_list_t                                 
+000006cd  _ZN7ConsoleC1Ev                                                   
+000006cd  _ZN7ConsoleC2Ev                                                   
+000006f5  _ZN7ConsoleD1Ev                                                   
+000006f5  _ZN7ConsoleD2Ev                                                   
+00000701  _ZN7ConsoleD0Ev                                                   
+00000715  _ZN7Console4getsEPhh                                              
+0000072d  _ZN7Console6printfEPKcz                                           
+00000759  _ZN7Console11UARTvprintfEPKc11__va_list_t                         
+00000a6f  __sti___11_Console_cpp_3f9ddb1e                                   
+00000aa1  _ZN4UARTC1Ev                                                      
+00000aa1  _ZN4UARTC2Ev                                                      
+00000ab3  _ZN4UARTC1Ehj                                                     
+00000ab3  _ZN4UARTC2Ehj                                                     
+00000b85  _ZN4UARTD1Ev                                                      
+00000b85  _ZN4UARTD2Ev                                                      
+00000b91  _ZN4UARTD0Ev                                                      
+00000ba5  _ZN4UART4sendEPKc                                                 
+00000bf9  _ZN4UART4sendEPKch                                                
+00000c33  _ZN4UART5reicvEPhh                                                
+00000c7d  GPIOPadConfigSet                                                  
+00000daf  _ZNSt9type_infoD1Ev                                               
+00000daf  _ZNSt9type_infoD2Ev                                               
+00000db1  SysCtlClockGet                                                    
+00000ec1  SysCtlClockSet                                                    
+00000fb5  free                                                              
+0000108d  __aeabi_memcpy                                                    
+0000108d  __aeabi_memcpy4                                                   
+0000108d  __aeabi_memcpy8                                                   
+0000108d  memcpy                                                            
+00001129  _ZN6SystemC1Ev                                                    
+00001129  _ZN6SystemC2Ev                                                    
+0000113b  _ZN6SystemD1Ev                                                    
+0000113b  _ZN6SystemD2Ev                                                    
+00001147  _ZN6SystemD0Ev                                                    
+0000115b  _ZN6System4initEv                                                 
+0000117f  _ZN6System7delayMsEj                                              
+00001191  __sti___10_System_cpp_524050c4                                    
+000011b9  malloc                                                            
+00001231  __TI_decompress_lzss                                              
+00001299  __TI_auto_init_nobinit                                            
+000012f9  _ZN6LoggerC1Ev                                                    
+000012f9  _ZN6LoggerC2Ev                                                    
+0000130b  _ZN6LoggerD1Ev                                                    
+0000130b  _ZN6LoggerD2Ev                                                    
+00001317  _ZN6LoggerD0Ev                                                    
+0000132b  _ZN6Logger4initEv                                                 
+00001335  _ZN6Logger5writeEPKc                                              
+00001341  _ZN6Logger5writeEPKch                                             
+00001355  GPIOPinConfigure                                                  
+0000139d  exit                                                              
+000013e5  UARTConfigSetExpClk                                               
+0000142b  _nop                                                              
+0000142d  _Z25__add_destruction_to_listPP20a_needed_destructionPFYvPvES2_S2_
+00001471  _Z23__finalize_destructionsPP20a_needed_destructionPv             
+000014b3  __aeabi_uidiv                                                     
+000014b3  __aeabi_uidivmod                                                  
+000014f3  __aeabi_idiv0                                                     
+000014f3  __aeabi_ldiv0                                                     
+00001531  SysCtlPeripheralReady                                             
+00001569  _c_int00_noargs                                                   
+000015a1  minit                                                             
+000015d9  SysCtlPeripheralEnable                                            
+0000160d  __aeabi_atexit                                                    
+00001641  GPIODirModeSet                                                    
+00001695  UARTDisable                                                       
+000016b5  main                                                              
+000016d3  _ZN4UARTaSERKS_                                                   
+000016e9  UARTEnable                                                        
+000016fd  GPIOPinTypeUART                                                   
+0000170f  __TI_zero_init_nomemset                                           
+00001721  _ZN10__cxxabiv117__class_type_infoD0Ev                            
+0000172f  _ZN10__cxxabiv120__si_class_type_infoD0Ev                         
+0000173d  _ZN6LoggeraSERKS_                                                 
+0000174b  __TI_decompress_none                                              
+00001759  __cxa_ia64_exit                                                   
+00001765  ResetISR                                                          
+00001771  UARTCharGet                                                       
+0000177b  UARTCharPut                                                       
+00001785  _ZdlPv                                                            
+0000178d  SysCtlDelay                                                       
+00001793  UARTClockSourceSet                                                
+00001799  _ZN10__cxxabiv117__class_type_infoD1Ev                            
+00001799  _ZN10__cxxabiv117__class_type_infoD2Ev                            
+0000179d  _ZN10__cxxabiv120__si_class_type_infoD1Ev                         
+0000179d  _ZN10__cxxabiv120__si_class_type_infoD2Ev                         
+000017a1  _ZdlPvj                                                           
+000017a5  _system_pre_init                                                  
+000017a9  C$$EXIT                                                           
+000017a9  _ZSt17__throw_bad_allocv                                          
+000017a9  abort                                                             
+000018a8  _ZTSN10__cxxabiv120__si_class_type_infoE                          
+000018cd  _ZTSN10__cxxabiv117__class_type_infoE                             
+00001918  _ZTV3Log                                                          
+00001928  _ZTV4UART                                                         
+00001938  _ZTV6Logger                                                       
+00001948  _ZTV6System                                                       
+00001958  _ZTV7Console                                                      
+00001968  _ZTVN10__cxxabiv117__class_type_infoE                             
+00001978  _ZTVN10__cxxabiv120__si_class_type_infoE                          
+00001988  _ZTSSt9type_info                                                  
+00001998  _ZTIN10__cxxabiv117__class_type_infoE                             
+000019a4  _ZTIN10__cxxabiv120__si_class_type_infoE                          
+000019b0  _ZTS7Console                                                      
+000019bc  _ZTI3Log                                                          
+000019c4  _ZTI4UART                                                         
+000019cc  _ZTI6Logger                                                       
+000019d4  _ZTI6System                                                       
+000019dc  _ZTI7Console                                                      
+000019e4  _ZTISt9type_info                                                  
+000019ec  _ZTS6Logger                                                       
+000019f4  _ZTS6System                                                       
+000019fc  _ZTS4UART                                                         
+00001a02  _ZTS3Log                                                          
+00001a10  SHT$$INIT_ARRAY$$Base                                             
+00001a18  SHT$$INIT_ARRAY$$Limit                                            
+00001a34  __TI_Handler_Table_Base                                           
+00001a40  __TI_Handler_Table_Limit                                          
+00001a48  __TI_CINIT_Base                                                   
+00001a58  __TI_CINIT_Limit                                                  
 20000000  __stack                                                           
-20000200  _ZN7CONSOLE4uartE                                                 
 20000200  __STACK_END                                                       
 20000200  __STACK_TOP                                                       
-20000224  __dso_handle                                                      
-20000228  roll                                                              
-2000022c  __TI_cleanup_ptr                                                  
-20000230  __TI_dtors_ptr                                                    
-20000234  __TI_enable_exit_profile_output                                   
-20000244  _lock                                                             
-20000248  _unlock                                                           
-20000250  _sys_memory                                                       
+20000200  __TI_cleanup_ptr                                                  
+20000204  __TI_dtors_ptr                                                    
+20000208  __TI_enable_exit_profile_output                                   
+20000218  _lock                                                             
+2000021c  _unlock                                                           
+20000224  _ZN7Console4uartE                                                 
+2000022c  _ZN6System6loggerE                                                
+20000230  _ZN3Log6loggerE                                                   
+20000234  __dso_handle                                                      
+20000238  _sys_memory                                                       
 ffffffff  __TI_pprof_out_hndl                                               
 ffffffff  __TI_prof_data_size                                               
 ffffffff  __TI_prof_data_start                                              
@@ -457,4 +564,4 @@ ffffffff  binit
 UNDEFED   __mpu_init                                                        
 UNDEFED   _system_post_cinit                                                
 
-[116 symbols]
+[155 symbols]

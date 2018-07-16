@@ -1,23 +1,23 @@
 /*
- * CONSOLE.h
+ * Console.h
  *
  *  Created on: May 9, 2018
  *      Author: light
  */
 
-#ifndef MODULES_CONSOLE_CONSOLE_H_
-#define MODULES_CONSOLE_CONSOLE_H_
+#ifndef MODULES_Console_Console_H_
+#define MODULES_Console_Console_H_
 
 #include <stdbool.h>
 #include <stdint.h>
 
 #include <peripheral/UART/UART.h>
 
-class CONSOLE
+class Console
 {
 public:
-    CONSOLE();
-    virtual ~CONSOLE();
+    Console();
+    virtual ~Console();
     static bool gets(uint8_t *str, uint8_t length);
     static bool printf(const char *pcString, ...);
 private:
@@ -26,4 +26,4 @@ private:
 
 };
 
-#endif /* MODULES_CONSOLE_CONSOLE_H_ */
+#endif /* MODULES_Console_Console_H_ */

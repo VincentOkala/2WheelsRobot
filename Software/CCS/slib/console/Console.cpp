@@ -1,32 +1,32 @@
 /*
- * CONSOLE.cpp
+ * Console.cpp
  *
  *  Created on: May 9, 2018
  *      Author: light
  */
 
-#include "CONSOLE.h"
+#include <slib/console/Console.h>
 
 static const char * const g_pcHex = "0123456789abcdef";
-UART CONSOLE::uart = UART(UART0);
+UART Console::uart;
 
-CONSOLE::CONSOLE()
+Console::Console()
 {
     // TODO Auto-generated constructor stub
-    uart.Init(115200);
+    Console::uart = UART(UART_0, 115200);
 }
 
-CONSOLE::~CONSOLE()
+Console::~Console()
 {
     // TODO Auto-generated destructor stub
 }
 
-bool CONSOLE::gets(uint8_t *str, uint8_t length){
+bool Console::gets(uint8_t *str, uint8_t length){
     uart.reicv(str, length);
     return true;
 }
 
-bool CONSOLE::printf(const char *pcString, ...)
+bool Console::printf(const char *pcString, ...)
 {
     va_list vaArgP;
 
@@ -82,7 +82,7 @@ bool CONSOLE::printf(const char *pcString, ...)
 //! \return None.
 //
 //*****************************************************************************
-void CONSOLE::UARTvprintf(const char *pcString, va_list vaArgP)
+void Console::UARTvprintf(const char *pcString, va_list vaArgP)
 {
     uint32_t ui32Idx, ui32Value, ui32Pos, ui32Count, ui32Base, ui32Neg;
     char *pcStr, pcBuf[16], cFill;

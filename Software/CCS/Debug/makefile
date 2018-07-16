@@ -16,7 +16,10 @@ ORDERED_OBJS += \
 "./peripheral/I2C/I2C.obj" \
 "./peripheral/TIME/TIME.obj" \
 "./peripheral/UART/UART.obj" \
-"./slib/CONSOLE/CONSOLE.obj" \
+"./slib/console/Console.obj" \
+"./slib/log/Log.obj" \
+"./slib/log/Logger.obj" \
+"./slib/system/System.obj" \
 "../driverlib.lib" \
 "../tm4c123gh6pm.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -34,13 +37,17 @@ RMDIR := RMDIR /S/Q
 -include peripheral/I2C/subdir_vars.mk
 -include peripheral/TIME/subdir_vars.mk
 -include peripheral/UART/subdir_vars.mk
--include slib/CONSOLE/subdir_vars.mk
+-include slib/console/subdir_vars.mk
+-include slib/log/subdir_vars.mk
+-include slib/system/subdir_vars.mk
 -include subdir_rules.mk
 -include modules/GY521/subdir_rules.mk
 -include peripheral/I2C/subdir_rules.mk
 -include peripheral/TIME/subdir_rules.mk
 -include peripheral/UART/subdir_rules.mk
--include slib/CONSOLE/subdir_rules.mk
+-include slib/console/subdir_rules.mk
+-include slib/log/subdir_rules.mk
+-include slib/system/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -171,9 +178,9 @@ all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\GY521\GY521.obj" "peripheral\I2C\I2C.obj" "peripheral\TIME\TIME.obj" "peripheral\UART\UART.obj" "slib\CONSOLE\CONSOLE.obj" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\GY521\GY521.obj" "peripheral\I2C\I2C.obj" "peripheral\TIME\TIME.obj" "peripheral\UART\UART.obj" "slib\console\Console.obj" "slib\log\Log.obj" "slib\log\Logger.obj" "slib\system\System.obj" 
 	-$(RM) "tm4c123gh6pm_startup_ccs.d" 
-	-$(RM) "main.d" "modules\GY521\GY521.d" "peripheral\I2C\I2C.d" "peripheral\TIME\TIME.d" "peripheral\UART\UART.d" "slib\CONSOLE\CONSOLE.d" 
+	-$(RM) "main.d" "modules\GY521\GY521.d" "peripheral\I2C\I2C.d" "peripheral\TIME\TIME.d" "peripheral\UART\UART.d" "slib\console\Console.d" "slib\log\Log.d" "slib\log\Logger.d" "slib\system\System.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
