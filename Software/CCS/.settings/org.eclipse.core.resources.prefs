@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//Debug/makefile=UTF-8
+encoding//Debug/modules/GY521/subdir_rules.mk=UTF-8
+encoding//Debug/modules/GY521/subdir_vars.mk=UTF-8
+encoding//Debug/objects.mk=UTF-8
+encoding//Debug/peripheral/I2C/subdir_rules.mk=UTF-8
+encoding//Debug/peripheral/I2C/subdir_vars.mk=UTF-8
+encoding//Debug/peripheral/TIME/subdir_rules.mk=UTF-8
+encoding//Debug/peripheral/TIME/subdir_vars.mk=UTF-8
+encoding//Debug/peripheral/UART/subdir_rules.mk=UTF-8
+encoding//Debug/peripheral/UART/subdir_vars.mk=UTF-8
+encoding//Debug/slib/CONSOLE/subdir_rules.mk=UTF-8
+encoding//Debug/slib/CONSOLE/subdir_vars.mk=UTF-8
+encoding//Debug/sources.mk=UTF-8
+encoding//Debug/subdir_rules.mk=UTF-8
+encoding//Debug/subdir_vars.mk=UTF-8
