@@ -182,7 +182,7 @@ BIN_OUTPUTS__QUOTED += \
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "2WheelsRobot.out" secondary-outputs
+	@$(MAKE) --no-print-directory -Onone "2WheelsRobot.out"
 
 # Tool invocations
 2WheelsRobot.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
@@ -207,8 +207,6 @@ clean:
 	-$(RM) "main.d" "modules\DRV8412\DRV8412.d" "modules\ESP8266\ESP8266.d" "modules\ESP8266\PARAMETER\PARAMETER.d" "modules\GY521\GY521.d" "peripheral\GPIO\GPIO.d" "peripheral\I2C\I2C.d" "peripheral\PWM\PWM.d" "peripheral\TIME\TIME.d" "peripheral\Timer\TIMER.d" "peripheral\UART\UART.d" "slib\DRIVER\DRIVER.d" "slib\StateSystem\StateSystem.d" "slib\console\Console.d" "slib\log\Log.d" "slib\log\Logger.d" "slib\system\System.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
-
-secondary-outputs: $(BIN_OUTPUTS)
 
 .PHONY: all clean dependents
 .SECONDARY:
