@@ -10,14 +10,17 @@
 
 #include <stdint.h>
 
+#include <peripheral/UART/UART.h>
+
 class Logger
 {
 public:
     Logger();
     virtual ~Logger();
-    void init();
     void write(const char* str);
     void write(const char* str, uint8_t length);
+private:
+    static UART uart;
 };
 
 #endif /* SLIB_LOG_LOGGER_H_ */

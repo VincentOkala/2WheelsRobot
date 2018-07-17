@@ -6,6 +6,7 @@
  */
 
 #include <slib/system/System.h>
+#include <slib/console/Console.h>
 
 Logger System::logger;
 
@@ -23,9 +24,10 @@ System::~System()
 void System::init(){
     SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
     logger = Logger();
+    Console::init();
     Log::init(&logger);
 }
 
 void System::delayMs(uint32_t time){
-    SysCtlDelay(time * 30000);
+    SysCtlDelay(time * 20000);
 }

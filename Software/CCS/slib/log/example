@@ -1,0 +1,26 @@
+#include <stdbool.h>
+#include <stdint.h>
+#include "driverlib/sysctl.h"
+
+#include <slib/system/System.h>
+#include <slib/console/Console.h>
+
+/**
+ * main.c
+ */
+
+float roll;
+
+int main(void)
+{
+    System::init();
+
+    while(1){
+        Log::logInfo("so1 %d", SysCtlClockGet());
+        System::delayMs(1000);
+        Log::logError("so2 %d", 123);
+        System::delayMs(1000);
+        Log::logWarning("so3 %d", 456);
+        System::delayMs(1000);
+    }
+}

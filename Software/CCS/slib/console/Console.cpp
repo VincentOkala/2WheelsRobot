@@ -13,20 +13,21 @@ UART Console::uart;
 Console::Console()
 {
     // TODO Auto-generated constructor stub
-    Console::uart = UART(UART_0, 115200);
 }
 
 Console::~Console()
 {
     // TODO Auto-generated destructor stub
 }
-
-bool Console::gets(uint8_t *str, uint8_t length){
-    uart.reicv(str, length);
-    return true;
+void Console::init(){
+    Console::uart = UART(UART_0, 115200);
 }
 
-bool Console::printf(const char *pcString, ...)
+void Console::gets(uint8_t *str, uint8_t length){
+    uart.reicv(str, length);
+}
+
+void Console::printf(const char *pcString, ...)
 {
     va_list vaArgP;
 
@@ -41,7 +42,6 @@ bool Console::printf(const char *pcString, ...)
     // We're finished with the varargs now.
     //
     va_end(vaArgP);
-    return true;
 }
 
 //*****************************************************************************

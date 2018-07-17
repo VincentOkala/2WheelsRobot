@@ -6,7 +6,7 @@
  */
 
 #include <peripheral/I2C/I2C.h>
-
+#include <slib/log/Log.h>
 
 //*****************************************************************************
 // @params:
@@ -19,6 +19,7 @@ I2C::I2C(){
 I2C::I2C(uint8_t I2C_, uint8_t I2C_SPEED_)
 {
     // TODO Auto-generated constructor stub
+    Log::logDoing("Initialize I2C %d", I2C_);
 
     uint32_t SYSCTL_PERIPH_I2C;
     uint32_t SYSCTL_PERIPH_GPIO;
@@ -120,6 +121,8 @@ I2C::I2C(uint8_t I2C_, uint8_t I2C_SPEED_)
     case I2C_SPEED_HIGH:
         break;
     }
+
+    Log::logDone("Initialize I2C %d", I2C_);
 }
 
 I2C::~I2C()

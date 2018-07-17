@@ -53,6 +53,24 @@ void Log::logStr(const char *str){
     logger->write(str);
 }
 
+void Log::logDoing(const char* pcDoing, ...){
+    logger->write("[DOIN]: ");
+    va_list vaArgP;
+    va_start(vaArgP, pcDoing);   // Start the varargs processing.
+    vprintf2(pcDoing, vaArgP);
+    va_end(vaArgP);             // We're finished with the varargs now.
+    logger->write("\r\n");
+}
+
+void Log::logDone(const char* pcDone, ...){
+    logger->write("[DONE]: ");
+    va_list vaArgP;
+    va_start(vaArgP, pcDone);   // Start the varargs processing.
+    vprintf2(pcDone, vaArgP);
+    va_end(vaArgP);             // We're finished with the varargs now.
+    logger->write("\r\n");
+}
+
 //*****************************************************************************
 //
 //! A simple UART based vprintf function supporting \%c, \%d, \%p, \%s, \%u,

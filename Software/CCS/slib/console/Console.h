@@ -18,8 +18,9 @@ class Console
 public:
     Console();
     virtual ~Console();
-    static bool gets(uint8_t *str, uint8_t length);
-    static bool printf(const char *pcString, ...);
+    static void init();
+    static void gets(uint8_t *str, uint8_t length);
+    static void printf(const char *pcString, ...);
 private:
     static UART uart;
     static void UARTvprintf(const char *pcString, va_list vaArgP);

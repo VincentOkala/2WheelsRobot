@@ -31,14 +31,13 @@ class GY521
 {
 public:
     GY521();
-    GY521(uint8_t I2CID);
+    GY521(uint8_t I2C_, uint8_t GYRO_SCALE_, uint8_t ACCEL_SCALE_);
     virtual ~GY521();
-    bool Init();
-    bool Init(uint8_t gyroScale, uint8_t accelScale);
-    bool getAccel(float *accel);
-    bool getGyro(float *gyro);
-    bool getPitch(float *pitch);
-    bool getRoll(float *roll);
+    void Init();
+    void getAccel(float *accel);
+    void getGyro(float *gyro);
+    float getPitch();
+    float getRoll();
 private:
     I2C i2c;
     int16_t gyro_raw[3];
@@ -46,8 +45,8 @@ private:
     uint8_t GYRO_SCALE;
     uint8_t ACCEL_SCALE;
 
-    bool updateAccel();
-    bool updateGyro();
+    void updateAccel();
+    void updateGyro();
 };
 
 #endif /* MODULES_GY521_H_ */

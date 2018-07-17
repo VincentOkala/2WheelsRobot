@@ -112,10 +112,16 @@ PDE_DEPS__QUOTED :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+modules/DRV8412 \
 modules/GY521 \
+peripheral/GPIO \
 peripheral/I2C \
+peripheral/PWM \
 peripheral/TIME \
+peripheral/TIMER \
 peripheral/UART \
+slib/DRIVER \
+slib/StateSystem \
 slib/console \
 slib/log \
 slib/system \

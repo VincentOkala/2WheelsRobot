@@ -20,6 +20,6 @@ int main(void)
     while(1){
         roll = ss.getRoll();
         Console::printf("-180 %d 180 \r\n", (int)roll);
-        System::delayMs(10);
+        System::delayMs(500);
     }
 }

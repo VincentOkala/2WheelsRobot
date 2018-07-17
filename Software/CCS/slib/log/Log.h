@@ -23,6 +23,8 @@ public:
     static void logWarning(const char* pcWarn, ...);
     static void logError(const char* pcError, ...);
     static void logStr(const char *str);
+    static void logDoing(const char* pcDoing, ...);
+    static void logDone(const char* pcDone, ...);
 
 private:
     static Logger* logger;

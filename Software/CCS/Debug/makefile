@@ -12,10 +12,16 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./main.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
+"./modules/DRV8412/DRV8412.obj" \
 "./modules/GY521/GY521.obj" \
+"./peripheral/GPIO/GPIO.obj" \
 "./peripheral/I2C/I2C.obj" \
+"./peripheral/PWM/PWM.obj" \
 "./peripheral/TIME/TIME.obj" \
+"./peripheral/TIMER/TIMER.obj" \
 "./peripheral/UART/UART.obj" \
+"./slib/DRIVER/DRIVER.obj" \
+"./slib/StateSystem/StateSystem.obj" \
 "./slib/console/Console.obj" \
 "./slib/log/Log.obj" \
 "./slib/log/Logger.obj" \
@@ -33,18 +39,30 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include modules/DRV8412/subdir_vars.mk
 -include modules/GY521/subdir_vars.mk
+-include peripheral/GPIO/subdir_vars.mk
 -include peripheral/I2C/subdir_vars.mk
+-include peripheral/PWM/subdir_vars.mk
 -include peripheral/TIME/subdir_vars.mk
+-include peripheral/TIMER/subdir_vars.mk
 -include peripheral/UART/subdir_vars.mk
+-include slib/DRIVER/subdir_vars.mk
+-include slib/StateSystem/subdir_vars.mk
 -include slib/console/subdir_vars.mk
 -include slib/log/subdir_vars.mk
 -include slib/system/subdir_vars.mk
 -include subdir_rules.mk
+-include modules/DRV8412/subdir_rules.mk
 -include modules/GY521/subdir_rules.mk
+-include peripheral/GPIO/subdir_rules.mk
 -include peripheral/I2C/subdir_rules.mk
+-include peripheral/PWM/subdir_rules.mk
 -include peripheral/TIME/subdir_rules.mk
+-include peripheral/TIMER/subdir_rules.mk
 -include peripheral/UART/subdir_rules.mk
+-include slib/DRIVER/subdir_rules.mk
+-include slib/StateSystem/subdir_rules.mk
 -include slib/console/subdir_rules.mk
 -include slib/log/subdir_rules.mk
 -include slib/system/subdir_rules.mk
@@ -178,9 +196,9 @@ all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\GY521\GY521.obj" "peripheral\I2C\I2C.obj" "peripheral\TIME\TIME.obj" "peripheral\UART\UART.obj" "slib\console\Console.obj" "slib\log\Log.obj" "slib\log\Logger.obj" "slib\system\System.obj" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\DRV8412\DRV8412.obj" "modules\GY521\GY521.obj" "peripheral\GPIO\GPIO.obj" "peripheral\I2C\I2C.obj" "peripheral\PWM\PWM.obj" "peripheral\TIME\TIME.obj" "peripheral\TIMER\TIMER.obj" "peripheral\UART\UART.obj" "slib\DRIVER\DRIVER.obj" "slib\StateSystem\StateSystem.obj" "slib\console\Console.obj" "slib\log\Log.obj" "slib\log\Logger.obj" "slib\system\System.obj" 
 	-$(RM) "tm4c123gh6pm_startup_ccs.d" 
-	-$(RM) "main.d" "modules\GY521\GY521.d" "peripheral\I2C\I2C.d" "peripheral\TIME\TIME.d" "peripheral\UART\UART.d" "slib\console\Console.d" "slib\log\Log.d" "slib\log\Logger.d" "slib\system\System.d" 
+	-$(RM) "main.d" "modules\DRV8412\DRV8412.d" "modules\GY521\GY521.d" "peripheral\GPIO\GPIO.d" "peripheral\I2C\I2C.d" "peripheral\PWM\PWM.d" "peripheral\TIME\TIME.d" "peripheral\TIMER\TIMER.d" "peripheral\UART\UART.d" "slib\DRIVER\DRIVER.d" "slib\StateSystem\StateSystem.d" "slib\console\Console.d" "slib\log\Log.d" "slib\log\Logger.d" "slib\system\System.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
