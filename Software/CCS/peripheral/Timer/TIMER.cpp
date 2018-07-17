@@ -5,10 +5,10 @@
  *      Author: light
  */
 
+#include <peripheral/Timer/TIMER.h>
 #include <stdbool.h>
 #include <stdint.h>
 
-#include <peripheral/TIMER/TIMER.h>
 #include <slib/LOG/LOG.h>
 
 TIMER::TIMER(){

@@ -113,12 +113,14 @@ PDE_DEPS__QUOTED :=
 SUBDIRS := \
 . \
 modules/DRV8412 \
+modules/ESP8266 \
+modules/ESP8266/PARAMETER \
 modules/GY521 \
 peripheral/GPIO \
 peripheral/I2C \
 peripheral/PWM \
 peripheral/TIME \
-peripheral/TIMER \
+peripheral/Timer \
 peripheral/UART \
 slib/DRIVER \
 slib/StateSystem \

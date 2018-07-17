@@ -34,8 +34,18 @@ UART::UART(uint8_t UART_, uint32_t BAUDRATE){
         GPIO_PIN_RX     = GPIO_PIN_0;
         GPIO_PIN_TX     = GPIO_PIN_1;
         UART_BASE       = UART0_BASE;
+        INT_UART        = INT_UART0;
         break;
     case UART_1:
+        SYSCTL_PERIPH_GPIO = SYSCTL_PERIPH_GPIOB;
+        SYSCTL_PERIPH_UART = SYSCTL_PERIPH_UART1;
+        GPIO_P_URX = GPIO_PB0_U1RX;
+        GPIO_P_UTX = GPIO_PB1_U1TX;
+        GPIO_PORT_BASE  = GPIO_PORTB_BASE;
+        GPIO_PIN_RX     = GPIO_PIN_0;
+        GPIO_PIN_TX     = GPIO_PIN_1;
+        UART_BASE       = UART1_BASE;
+        INT_UART        = INT_UART1;
         break;
     case UART_2:
         break;

@@ -12,8 +12,10 @@
 #include <stdbool.h>
 
 #include <modules/GY521/GY521.h>
-#include <peripheral/TIMER/TIMER.h>
 #include <peripheral/GPIO/GPIO.h>
+#include "../../peripheral/Timer/TIMER.h"
+
+#define UPDATE_FREQ     100
 
 class StateSystem
 {

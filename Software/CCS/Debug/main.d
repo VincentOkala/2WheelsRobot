@@ -42,11 +42,13 @@ main.obj: E:/github/2WheelsRobot/Software/CCS/peripheral/I2C/I2C.h
 main.obj: E:/ProgrameFiles/TivaWare/driverlib/i2c.h
 main.obj: E:/github/2WheelsRobot/Software/CCS/modules/GY521/MPU6050.h
 main.obj: E:/github/2WheelsRobot/Software/CCS/slib/BIT.h
-main.obj: E:/github/2WheelsRobot/Software/CCS/peripheral/TIMER/TIMER.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/slib/StateSystem/../../peripheral/Timer/TIMER.h
 main.obj: E:/ProgrameFiles/TivaWare/driverlib/debug.h
 main.obj: E:/ProgrameFiles/TivaWare/driverlib/fpu.h
 main.obj: E:/ProgrameFiles/TivaWare/driverlib/rom.h
 main.obj: E:/ProgrameFiles/TivaWare/grlib/grlib.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/ESP8266.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/PARAMETER/PARAMETER.h
 
 ../main.cpp: 
 D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/libcxx/stdbool.h: 
@@ -90,8 +92,10 @@ E:/github/2WheelsRobot/Software/CCS/peripheral/I2C/I2C.h:
 E:/ProgrameFiles/TivaWare/driverlib/i2c.h: 
 E:/github/2WheelsRobot/Software/CCS/modules/GY521/MPU6050.h: 
 E:/github/2WheelsRobot/Software/CCS/slib/BIT.h: 
-E:/github/2WheelsRobot/Software/CCS/peripheral/TIMER/TIMER.h: 
+E:/github/2WheelsRobot/Software/CCS/slib/StateSystem/../../peripheral/Timer/TIMER.h: 
 E:/ProgrameFiles/TivaWare/driverlib/debug.h: 
 E:/ProgrameFiles/TivaWare/driverlib/fpu.h: 
 E:/ProgrameFiles/TivaWare/driverlib/rom.h: 
 E:/ProgrameFiles/TivaWare/grlib/grlib.h: 
+E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/ESP8266.h: 
+E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/PARAMETER/PARAMETER.h: 

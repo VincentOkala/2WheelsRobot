@@ -41,8 +41,9 @@ public:
     void send(const char *str);
     void send(const char *str, uint8_t length);
     void reicv(uint8_t *str, uint8_t length);
-private:
+
     uint32_t UART_BASE;
+    uint32_t INT_UART;
 };
 
 #endif /* PERIPHERAL_UART_UART_H_ */

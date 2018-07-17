@@ -5,6 +5,7 @@
 #include <slib/console/Console.h>
 #include <slib/DRIVER/DRIVER.h>
 #include <slib/StateSystem/StateSystem.h>
+#include <modules/ESP8266/ESP8266.h>
 
 /**
  * main.c
@@ -14,12 +15,8 @@ int main(void)
 {
     System::init();
 
-    StateSystem ss = StateSystem();
-    float roll;
+    ESP8266 esp8266 = ESP8266();
 
     while(1){
-        roll = ss.getRoll();
-        Console::printf("-180 %d 180 \r\n", (int)roll);
-        System::delayMs(10);
     }
 }

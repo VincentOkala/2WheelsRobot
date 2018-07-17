@@ -8,8 +8,8 @@
 #include <slib/StateSystem/StateSystem.h>
 #include <slib/log/Log.h>
 
-GY521 StateSystem::gy521 = GY521(I2C_1, GYRO_SCALE_250, ACCEL_SCALE_2G);
-GPIO  StateSystem::portF = GPIO(PORTF);
+GY521 StateSystem::gy521;
+GPIO  StateSystem::portF;
 float StateSystem::roll = 0;
 
 StateSystem::StateSystem()
@@ -17,7 +17,10 @@ StateSystem::StateSystem()
     // TODO Auto-generated constructor stub
     Log::logDoing("Initialize State System ");
 
-    timer3 = TIMER(TIMER_3, 100);
+    gy521 = GY521(I2C_1, GYRO_SCALE_250, ACCEL_SCALE_2G);
+    portF = GPIO(PORTF);
+
+    timer3 = TIMER(TIMER_3, UPDATE_FREQ);
 
     TimerIntEnable(TIMER3_BASE, TIMER_TIMA_TIMEOUT);
     TimerIntRegister(TIMER3_BASE, TIMER_BOTH, StateSystem::timer3ISR);
