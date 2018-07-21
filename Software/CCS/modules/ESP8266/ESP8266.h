@@ -13,34 +13,35 @@
 #include <slib/CONSOLE/CONSOLE.h>
 
 typedef enum{
+    NEXT_STT,
     READY,
     RESETING,
     WIFI_CONNECTING,
-    READ_PARAM,
+    READ_FULL_PARAM,
+    READ_PARAM
 }ESP8266_STT;
 
 class ESP8266
 {
 public:
-    ESP8266();
+    ESP8266(PARAMETER *param);
     virtual ~ESP8266();
     static void UARTIntHandler();
-    static void UartRxISR();
-    void reset();
-    void connect();
-    void readFullParamList();
-    static bool getKey(char *key);
-    static bool getValue(char *value);
+    static void paramParse();
+    static void reset();
+    static void connect();
+    static void readFullParamList();
+    static void startServer();
 
     static UART uart;
 private:
 
-    static PARAMETER param;
+    static bool getKeyValue(char* key, char* value);
+
+    static PARAMETER *param;
 
     static char buf[100];
     static uint8_t bufIndex;
-    static uint8_t getFunctionIndex;
-    static bool end;
 
     static ESP8266_STT esp8266Status;
 };

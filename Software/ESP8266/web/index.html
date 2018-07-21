@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Esp8266 Server</title>
+	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+</head>
+<body>
+	<div class="container" id="body">
+		<div class="row-1">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="#">Esp8266 Server</a>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Link</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<ol style="visibility:hidden;"></ol>
+		<div class="row">
+			<div class="col">
+				<table class="table" >
+					<thead>
+						<tr>
+							<th scope="col" class="text-center">#</th>
+							<th scope="col" class="text-center">Key</th>
+							<th scope="col" class="text-center">Value</th>
+						</tr>
+					</thead>
+					<tbody id="table-body"></tbody>
+				</table>
+			</div>
+		</div>
+		<button type="button" class="btn btn-primary float-right" onclick="SaveToSD()">Save to SD card</button>
+	</div>
+	<script id="row_templ" type="text/x-jQuery-tmpl">
+		<tr>
+			<th scope="row-6" class="text-center">${num_index}</th>
+			<td>
+				<div class="col-5 mx-auto">
+					<input class="form-control text-center" type="text" value="${param_key}" id ="key_${num_index}" readonly>
+				</div>
+			</td>
+			<td>
+				<div class="col-5 mx-auto">
+					<input class="form-control text-center" type="number" value="${param_value}" id="value_${num_index}" onchange="value_changed(${num_index})" step="0.01">
+				</div>
+			</td>
+		</tr>
+	</script>
+	<script type="text/javascript">
+		toastr.options = {
+			"closeButton": false,
+			"debug": false,
+			"newestOnTop": false,
+			"progressBar": false,
+			"positionClass": "toast-top-right",
+			"preventDuplicates": false,
+			"onclick": null,
+			"showDuration": "500",
+			"hideDuration": "500",
+			"timeOut": "3000",
+			"extendedTimeOut": "1000",
+			"showEasing": "swing",
+			"hideEasing": "linear",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+	</script>
+	<script>
+		var param;
+		function ajax(method, content, cFunction) {
+			var xhttp;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					cFunction(this);
+				}
+			};
+			xhttp.open(method, content, true);
+			xhttp.send();
+		}
+		$(document).ready(function() {
+			var index = 0;
+			ajax("GET","param.json",function(xhttp){
+				var str = xhttp.responseText;
+				param = JSON.parse(JSON.stringify(eval("(" + str + ")")));
+				for (key in param) {
+					$("#row_templ").tmpl({
+						num_index: index,
+						param_key: key,
+						param_value: param[key]
+					}).appendTo("#table-body");
+					index+=1;
+				}
+			});
+		});
+		function showUpdate(mess,old_v,new_v) {
+			showInfo(mess+": "+old_v + " --> " + new_v);
+		}
+		function showInfo(mess){
+			toastr["info"](mess);
+		}
+		function showSucc(mess){
+			toastr["success"](mess);
+		}
+		function showErro(mess){
+			toastr["error"](mess);
+		}
+		function value_changed(value_change_index){
+			var key = document.getElementById("key_"+value_change_index).value;
+			var old_val = param[key];
+			var new_val = document.getElementById("value_"+value_change_index).value;
+			param[key] = new_val;
+			showUpdate(key,old_val,new_val);
+			ajax("POST",key+"/"+new_val,function(xhttp){
+				if(xhttp.responseText == "success"){
+					showSucc("Success");
+				}
+				else{
+					param[key] = old_val;
+					document.getElementById("value_"+value_change_index).value = old_val;
+					showErro("Please try again!")
+				}
+			});
+			console.log(JSON.stringify(param))
+		}
+		function SaveToSD(){
+			showInfo("Save Parameter to SD card");
+			ajax("POST","SaveToSD",function(xhttp){
+				if(xhttp.responseText == "success"){
+					showSucc("Success");
+				}
+				else{
+					showErro("Please try again!")
+				}
+			});
+		}
+	</script>
+</body>
+</html>

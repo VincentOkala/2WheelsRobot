@@ -1,0 +1,42 @@
+Net Status Report
+Filename     : E:\github\2WheelsRobot\Hardware\Board\PCB1.PcbDoc
+Date         : 7/21/2018
+Time         : 8:09:19 AM
+Time Elapsed : 00:00:00
+
+Nets, Layer, Length
+    3V3, Signal Layers Only, 9550.134mils
+    5V, Signal Layers Only, 1742.021mils
+    5VS, Signal Layers Only, 3882.055mils
+    CC_RXD, Signal Layers Only, 1632.229mils
+    CC_SET, Signal Layers Only, 1607.315mils
+    CC_TXD, Signal Layers Only, 1607.315mils
+    ENC0A, Signal Layers Only, 1398.968mils
+    ENC0Y, Signal Layers Only, 1128.987mils
+    ENC1A, Signal Layers Only, 1614.411mils
+    ENC1Y, Signal Layers Only, 1205.14mils
+    ENC2A, Signal Layers Only, 1795.061mils
+    ENC2Y, Signal Layers Only, 1264.074mils
+    ENC3A, Signal Layers Only, 1911.688mils
+    ENC3Y, Signal Layers Only, 1714.429mils
+    ESPRX, Signal Layers Only, 1622.731mils
+    ESPTX, Signal Layers Only, 1287.401mils
+    FALT, Signal Layers Only, 0mils
+    GND, Signal Layers Only, 17879.85mils
+    GY521SCL, Signal Layers Only, 772.279mils
+    GY521SDA, Signal Layers Only, 777.279mils
+    M1, Signal Layers Only, 0mils
+    M2, Signal Layers Only, 0mils
+    M3, Signal Layers Only, 0mils
+    OTW, Signal Layers Only, 0mils
+    PWMA, Signal Layers Only, 3426.215mils
+    PWMA_A, Signal Layers Only, 593.848mils
+    PWMB, Signal Layers Only, 108.707mils
+    PWMC, Signal Layers Only, 3929.845mils
+    PWMC_A, Signal Layers Only, 588.762mils
+    PWMD, Signal Layers Only, 0mils
+    RSTAB, Signal Layers Only, 3572.69mils
+    RSTAB_A, Signal Layers Only, 1680.956mils
+    RSTCD, Signal Layers Only, 4323.347mils
+    RSTCD_A, Signal Layers Only, 1723.226mils
+count : 34
