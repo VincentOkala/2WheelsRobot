@@ -5,10 +5,10 @@
  *      Author: 16138
  */
 
-#include <slib/system/System.h>
-#include <slib/console/Console.h>
+#include <slib/System/System.h>
 
 Logger System::logger;
+Task   System::task;
 
 System::System()
 {
@@ -26,6 +26,7 @@ void System::init(){
     logger = Logger();
     Console::init();
     Log::init(&logger);
+    task.init();
 }
 
 void System::delayMs(uint32_t time){

@@ -14,13 +14,14 @@
 #include <modules/GY521/GY521.h>
 #include <peripheral/GPIO/GPIO.h>
 #include "../../peripheral/Timer/TIMER.h"
+#include <slib/Params/Params.h>
 
 #define UPDATE_FREQ     100
 
 class StateSystem
 {
 public:
-    StateSystem();
+    StateSystem(Params* params);
     virtual ~StateSystem();
 
     float getRoll();
@@ -29,10 +30,9 @@ private:
     static GY521 gy521;
     static GPIO portF;
 
-    TIMER timer3;
-
     static float roll;
-    static void timer3ISR(void);
+    static void stateUpdateTask(void);
+    static Params* params;
 };
 
 #endif /* SLIB_STATESYSTEM_H_ */

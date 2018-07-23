@@ -5,28 +5,28 @@
  *      Author: light
  */
 
+#include <slib/Log/Log.h>
 #include <slib/StateSystem/StateSystem.h>
-#include <slib/log/Log.h>
+#include <slib/Task/Task.h>
 
 GY521 StateSystem::gy521;
 GPIO  StateSystem::portF;
 float StateSystem::roll = 0;
+Params* StateSystem::params;
 
-StateSystem::StateSystem()
+StateSystem::StateSystem(Params* params)
 {
     // TODO Auto-generated constructor stub
     Log::logDoing("Initialize State System ");
+    this->params = params;
 
     gy521 = GY521(I2C_1, GYRO_SCALE_250, ACCEL_SCALE_2G);
     portF = GPIO(PORTF);
 
-    timer3 = TIMER(TIMER_3, UPDATE_FREQ);
-
-    TimerIntEnable(TIMER3_BASE, TIMER_TIMA_TIMEOUT);
-    TimerIntRegister(TIMER3_BASE, TIMER_BOTH, StateSystem::timer3ISR);
-
     portF.mode(GPIO_PIN_1, MODE_OUTPUT);
     portF.mode(GPIO_PIN_2, MODE_OUTPUT);
+
+    Task::registerEvent(StateSystem::stateUpdateTask, (unsigned long)((1.0/UPDATE_FREQ) * 1000));
 
     Log::logDone("Initialize State System");
 
@@ -42,16 +42,14 @@ float StateSystem::getRoll(){
     return roll;
 }
 
-void StateSystem::timer3ISR(void){
+void StateSystem::stateUpdateTask(void){
     float accRoll;
     float gyro[3];
-    uint32_t flag = TimerIntStatus(TIMER3_BASE, true);
-    TimerIntClear(TIMER3_BASE, flag);
 
     accRoll = gy521.getRoll();
     gy521.getGyro(gyro);
 
-    roll = 0.90 * (roll + gyro[0] * 0.01) + 0.1 * accRoll;
+    roll = params->AG_ACC_COEFI * (roll + gyro[0] * 0.01) + (1-params->AG_ACC_COEFI) * accRoll;
 
     if(roll > 0){
         portF.write(GPIO_PIN_1, VALUE_ON);

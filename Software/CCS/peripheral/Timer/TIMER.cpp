@@ -6,10 +6,10 @@
  */
 
 #include <peripheral/Timer/TIMER.h>
+#include <slib/Log/Log.h>
 #include <stdbool.h>
 #include <stdint.h>
 
-#include <slib/LOG/LOG.h>
 
 TIMER::TIMER(){
 

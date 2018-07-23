@@ -5,8 +5,8 @@
  *      Author: 16138
  */
 
-#include <slib/DRIVER/DRIVER.h>
-#include <slib/log/Log.h>
+#include <slib/Driver/Driver.h>
+#include <slib/Log/Log.h>
 
 DRIVER::DRIVER()
 {

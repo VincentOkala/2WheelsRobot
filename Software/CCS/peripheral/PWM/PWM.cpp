@@ -6,7 +6,7 @@
  */
 
 #include <peripheral/PWM/PWM.h>
-#include <slib/log/Log.h>
+#include <slib/Log/Log.h>
 
 PWM::PWM(){
 

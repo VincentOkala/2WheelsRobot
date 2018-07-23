@@ -5,7 +5,7 @@
  *      Author: light
  */
 
-#include <slib/console/Console.h>
+#include <slib/Console/Console.h>
 
 static const char * const g_pcHex = "0123456789abcdef";
 UART Console::uart;

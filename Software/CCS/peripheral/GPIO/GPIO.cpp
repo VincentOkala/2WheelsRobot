@@ -6,7 +6,7 @@
  */
 
 #include <peripheral/GPIO/GPIO.h>
-#include <slib/log/Log.h>
+#include <slib/Log/Log.h>
 
 GPIO::GPIO(){
 

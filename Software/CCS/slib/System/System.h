@@ -10,11 +10,13 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-
-#include <slib/log/Log.h>
-#include <slib/log/Logger.h>
+#include "../Log/Log.h"
+#include "../Log/Logger.h"
 
 #include "driverlib/sysctl.h"
+
+#include <slib/Task/Task.h>
+#include <slib/Console/Console.h>
 
 class System
 {
@@ -25,6 +27,7 @@ public:
     static void delayMs(uint32_t time);
 private:
     static Logger logger;
+    static Task   task;
 };
 
 #endif /* SLIB_SYSTEM_SYSTEM_H_ */

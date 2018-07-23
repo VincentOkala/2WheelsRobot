@@ -8,10 +8,9 @@
 #ifndef SLIB_LOG_LOG_H_
 #define SLIB_LOG_LOG_H_
 
-#include <slib/log/Logger.h>
-
 #include <stdarg.h>
 #include <stdint.h>
+#include "Logger.h"
 
 class Log
 {

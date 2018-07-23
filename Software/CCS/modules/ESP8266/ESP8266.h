@@ -9,8 +9,8 @@
 #define MODULES_ESP8266_ESP8266_H_
 
 #include <peripheral/UART/UART.h>
-#include <modules/ESP8266/PARAMETER/PARAMETER.h>
-#include <slib/CONSOLE/CONSOLE.h>
+#include "../../slib/Console/Console.h"
+#include "../../slib/Params/Params.h"
 
 typedef enum{
     NEXT_STT,
@@ -24,7 +24,7 @@ typedef enum{
 class ESP8266
 {
 public:
-    ESP8266(PARAMETER *param);
+    ESP8266(Params* params);
     virtual ~ESP8266();
     static void UARTIntHandler();
     static void paramParse();
@@ -38,7 +38,7 @@ private:
 
     static bool getKeyValue(char* key, char* value);
 
-    static PARAMETER *param;
+    static Params* param;
 
     static char buf[100];
     static uint8_t bufIndex;

@@ -5,10 +5,10 @@
  *      Author: light
  */
 
+#include <slib/Log/Log.h>
 #include "GY521.h"
 #include "math.h"
 
-#include <slib/log/Log.h>
 
 GY521::GY521()
 {

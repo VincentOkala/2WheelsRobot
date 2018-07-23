@@ -14,9 +14,7 @@ main.obj: D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/includ
 main.obj: D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h
 main.obj: D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h
 main.obj: D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h
-main.obj: E:/github/2WheelsRobot/Software/CCS/slib/system/System.h
-main.obj: E:/github/2WheelsRobot/Software/CCS/slib/log/Log.h
-main.obj: E:/github/2WheelsRobot/Software/CCS/slib/log/Logger.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/ESP8266.h
 main.obj: E:/github/2WheelsRobot/Software/CCS/peripheral/UART/UART.h
 main.obj: E:/ProgrameFiles/TivaWare/inc/hw_ints.h
 main.obj: E:/ProgrameFiles/TivaWare/inc/hw_memmap.h
@@ -28,8 +26,9 @@ main.obj: E:/ProgrameFiles/TivaWare/driverlib/timer.h
 main.obj: E:/ProgrameFiles/TivaWare/driverlib/uart.h
 main.obj: E:/ProgrameFiles/TivaWare/utils/uartstdio.h
 main.obj: D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdarg.h
-main.obj: E:/github/2WheelsRobot/Software/CCS/slib/console/Console.h
-main.obj: E:/github/2WheelsRobot/Software/CCS/slib/DRIVER/DRIVER.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/../../slib/Console/Console.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/../../slib/Params/Params.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/slib/Driver/Driver.h
 main.obj: E:/github/2WheelsRobot/Software/CCS/modules/DRV8412/DRV8412.h
 main.obj: E:/github/2WheelsRobot/Software/CCS/peripheral/GPIO/GPIO.h
 main.obj: E:/ProgrameFiles/TivaWare/inc/hw_types.h
@@ -47,8 +46,10 @@ main.obj: E:/ProgrameFiles/TivaWare/driverlib/debug.h
 main.obj: E:/ProgrameFiles/TivaWare/driverlib/fpu.h
 main.obj: E:/ProgrameFiles/TivaWare/driverlib/rom.h
 main.obj: E:/ProgrameFiles/TivaWare/grlib/grlib.h
-main.obj: E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/ESP8266.h
-main.obj: E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/PARAMETER/PARAMETER.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/slib/System/System.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/slib/System/../Log/Log.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/slib/System/../Log/Logger.h
+main.obj: E:/github/2WheelsRobot/Software/CCS/slib/Task/Task.h
 
 ../main.cpp: 
 D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/libcxx/stdbool.h: 
@@ -64,9 +65,7 @@ D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_typ
 D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h: 
 D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h: 
 D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h: 
-E:/github/2WheelsRobot/Software/CCS/slib/system/System.h: 
-E:/github/2WheelsRobot/Software/CCS/slib/log/Log.h: 
-E:/github/2WheelsRobot/Software/CCS/slib/log/Logger.h: 
+E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/ESP8266.h: 
 E:/github/2WheelsRobot/Software/CCS/peripheral/UART/UART.h: 
 E:/ProgrameFiles/TivaWare/inc/hw_ints.h: 
 E:/ProgrameFiles/TivaWare/inc/hw_memmap.h: 
@@ -78,8 +77,9 @@ E:/ProgrameFiles/TivaWare/driverlib/timer.h:
 E:/ProgrameFiles/TivaWare/driverlib/uart.h: 
 E:/ProgrameFiles/TivaWare/utils/uartstdio.h: 
 D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdarg.h: 
-E:/github/2WheelsRobot/Software/CCS/slib/console/Console.h: 
-E:/github/2WheelsRobot/Software/CCS/slib/DRIVER/DRIVER.h: 
+E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/../../slib/Console/Console.h: 
+E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/../../slib/Params/Params.h: 
+E:/github/2WheelsRobot/Software/CCS/slib/Driver/Driver.h: 
 E:/github/2WheelsRobot/Software/CCS/modules/DRV8412/DRV8412.h: 
 E:/github/2WheelsRobot/Software/CCS/peripheral/GPIO/GPIO.h: 
 E:/ProgrameFiles/TivaWare/inc/hw_types.h: 
@@ -97,5 +97,7 @@ E:/ProgrameFiles/TivaWare/driverlib/debug.h:
 E:/ProgrameFiles/TivaWare/driverlib/fpu.h: 
 E:/ProgrameFiles/TivaWare/driverlib/rom.h: 
 E:/ProgrameFiles/TivaWare/grlib/grlib.h: 
-E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/ESP8266.h: 
-E:/github/2WheelsRobot/Software/CCS/modules/ESP8266/PARAMETER/PARAMETER.h: 
+E:/github/2WheelsRobot/Software/CCS/slib/System/System.h: 
+E:/github/2WheelsRobot/Software/CCS/slib/System/../Log/Log.h: 
+E:/github/2WheelsRobot/Software/CCS/slib/System/../Log/Logger.h: 
+E:/github/2WheelsRobot/Software/CCS/slib/Task/Task.h: 

@@ -5,17 +5,18 @@
  *      Author: 16138
  */
 
-#include <modules/ESP8266/PARAMETER/PARAMETER.h>
+#include <slib/Params/Params.h>
 
-PARAMETER::PARAMETER()
+Params::Params()
 {
     // TODO Auto-generated constructor stub
     Kp = 0;
     Ki = 0;
     Kd = 0;
+    AG_ACC_COEFI = 0.9;
 }
 
-PARAMETER::~PARAMETER()
+Params::~Params()
 {
     // TODO Auto-generated destructor stub
 }

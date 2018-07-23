@@ -6,7 +6,7 @@
  */
 
 #include <modules/DRV8412/DRV8412.h>
-#include <slib/log/Log.h>
+#include <slib/Log/Log.h>
 
 DRV8412::DRV8412(){
 

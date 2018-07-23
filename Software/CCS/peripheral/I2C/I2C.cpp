@@ -6,7 +6,7 @@
  */
 
 #include <peripheral/I2C/I2C.h>
-#include <slib/log/Log.h>
+#include <slib/Log/Log.h>
 
 //*****************************************************************************
 // @params:

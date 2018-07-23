@@ -114,7 +114,6 @@ SUBDIRS := \
 . \
 modules/DRV8412 \
 modules/ESP8266 \
-modules/ESP8266/PARAMETER \
 modules/GY521 \
 peripheral/GPIO \
 peripheral/I2C \
@@ -122,9 +121,11 @@ peripheral/PWM \
 peripheral/TIME \
 peripheral/Timer \
 peripheral/UART \
-slib/DRIVER \
+slib/Console \
+slib/Driver \
+slib/Log \
+slib/Params \
 slib/StateSystem \
-slib/console \
-slib/log \
-slib/system \
+slib/System \
+slib/Task \
 

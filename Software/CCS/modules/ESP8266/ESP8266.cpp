@@ -6,9 +6,9 @@
  */
 
 #include <modules/ESP8266/ESP8266.h>
-
-#include <slib/system/System.h>
 #include <slib/Log/Log.h>
+
+#include <slib/System/System.h>
 
 #include <string.h>
 #include <stdlib.h>
@@ -17,18 +17,19 @@
 #define MAX_TRY_TIME 10
 
 UART ESP8266::uart;
-PARAMETER* ESP8266::param;
+Params* ESP8266::param;
 
 uint8_t ESP8266::bufIndex = 0;
 char ESP8266::buf[RX_BUFF_SIZE];
 ESP8266_STT ESP8266::esp8266Status;
 
-ESP8266::ESP8266(PARAMETER *param)
+ESP8266::ESP8266(Params* params)
 {
     // TODO Auto-generated constructor stub
 
     Log::logDoing("Initialize ESP8266");
 
+    param = params;
     uart = UART(UART_1, 115200);
 
 
@@ -248,8 +249,8 @@ bool compareString(const char* str1, const char * str2){
 void ESP8266::paramParse(){
     char key[10] = "", value[10] = "";
     while(getKeyValue(key, value)){
-        if(compareString(key, "Kp")) param.Kp = atof(value);
-        if(compareString(key, "Ki")) param.Ki = atof(value);
-        if(compareString(key, "Kd")) param.Kd = atof(value);
+        if(compareString(key, "Kp")) param->Kp = atof(value);
+        if(compareString(key, "Ki")) param->Ki = atof(value);
+        if(compareString(key, "Kd")) param->Kd = atof(value);
     }
 }
