@@ -125,6 +125,7 @@ slib/Console \
 slib/Driver \
 slib/Log \
 slib/Params \
+slib/StateSystem/Kalman \
 slib/StateSystem \
 slib/System \
 slib/Task \

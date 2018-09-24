@@ -16,6 +16,8 @@
 #include "../../peripheral/Timer/TIMER.h"
 #include <slib/Params/Params.h>
 
+#include <slib/StateSystem/Kalman/Kalman.h>
+
 #define UPDATE_FREQ     100
 
 class StateSystem
@@ -33,6 +35,8 @@ private:
     static float roll;
     static void stateUpdateTask(void);
     static Params* params;
+
+    static Kalman kalman;
 };
 
 #endif /* SLIB_STATESYSTEM_H_ */

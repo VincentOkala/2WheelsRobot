@@ -13,6 +13,7 @@ GY521 StateSystem::gy521;
 GPIO  StateSystem::portF;
 float StateSystem::roll = 0;
 Params* StateSystem::params;
+Kalman StateSystem::kalman = Kalman();
 
 StateSystem::StateSystem(Params* params)
 {
@@ -49,7 +50,8 @@ void StateSystem::stateUpdateTask(void){
     accRoll = gy521.getRoll();
     gy521.getGyro(gyro);
 
-    roll = params->AG_ACC_COEFI * (roll + gyro[0] * 0.01) + (1-params->AG_ACC_COEFI) * accRoll;
+    // roll = params->AG_ACC_COEFI * (roll + gyro[0] * 0.01) + (1-params->AG_ACC_COEFI) * accRoll;
+    kalman.getAngle(accRoll, gyro[0], 0.01);
 
     if(roll > 0){
         portF.write(GPIO_PIN_1, VALUE_ON);

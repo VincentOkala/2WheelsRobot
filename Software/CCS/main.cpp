@@ -19,7 +19,7 @@ int main(void)
     System::init();
 
     Params params;
-    ESP8266 esp8266 = ESP8266(&params);
+    // ESP8266 esp8266 = ESP8266(&params);
     StateSystem ss = StateSystem(&params);
 
     while(1){

@@ -77,6 +77,8 @@
 							<tool id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.516441538" name="ARM Hex Utility" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex">
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.TOOL_ENABLE.757015998" name="Enable tool" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.TOOL_ENABLE" value="false" valueType="boolean"/>
 								<option id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.OUTPUT_FILE.1552460125" name="Specify output file names (--outfile, -o=file)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.OUTPUT_FILE" value="${BuildArtifactFileBaseName}.bin" valueType="string"/>
+								<option id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.OUTPUT_FORMAT.166800523" name="Output format" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.OUTPUT_FORMAT" value="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.OUTPUT_FORMAT.INTEL" valueType="enumerated"/>
+								<option id="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.ARRAY.1258441466" name="Array output format (--array)" superClass="com.ti.ccstudio.buildDefinitions.TMS470_18.1.hex.ARRAY" value="false" valueType="boolean"/>
 							</tool>
 						</toolChain>
 					</folderInfo>

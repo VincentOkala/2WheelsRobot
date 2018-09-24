@@ -26,6 +26,7 @@ ORDERED_OBJS += \
 "./slib/Log/Log.obj" \
 "./slib/Log/Logger.obj" \
 "./slib/Params/Params.obj" \
+"./slib/StateSystem/Kalman/Kalman.obj" \
 "./slib/StateSystem/StateSystem.obj" \
 "./slib/System/System.obj" \
 "./slib/Task/Task.obj" \
@@ -55,6 +56,7 @@ RMDIR := RMDIR /S/Q
 -include slib/Driver/subdir_vars.mk
 -include slib/Log/subdir_vars.mk
 -include slib/Params/subdir_vars.mk
+-include slib/StateSystem/Kalman/subdir_vars.mk
 -include slib/StateSystem/subdir_vars.mk
 -include slib/System/subdir_vars.mk
 -include slib/Task/subdir_vars.mk
@@ -72,6 +74,7 @@ RMDIR := RMDIR /S/Q
 -include slib/Driver/subdir_rules.mk
 -include slib/Log/subdir_rules.mk
 -include slib/Params/subdir_rules.mk
+-include slib/StateSystem/Kalman/subdir_rules.mk
 -include slib/StateSystem/subdir_rules.mk
 -include slib/System/subdir_rules.mk
 -include slib/Task/subdir_rules.mk
@@ -198,16 +201,16 @@ all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 2WheelsRobot.bin: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: ARM Hex Utility'
-	"D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/bin/armhex"  -o "2WheelsRobot.bin" $(EXE_OUTPUTS__QUOTED)
+	"D:/ProgrameFiles/CCS/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/bin/armhex" --intel -o "2WheelsRobot.bin" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\DRV8412\DRV8412.obj" "modules\ESP8266\ESP8266.obj" "modules\GY521\GY521.obj" "peripheral\GPIO\GPIO.obj" "peripheral\I2C\I2C.obj" "peripheral\PWM\PWM.obj" "peripheral\TIME\TIME.obj" "peripheral\Timer\TIMER.obj" "peripheral\UART\UART.obj" "slib\Console\Console.obj" "slib\Driver\Driver.obj" "slib\Log\Log.obj" "slib\Log\Logger.obj" "slib\Params\Params.obj" "slib\StateSystem\StateSystem.obj" "slib\System\System.obj" "slib\Task\Task.obj" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\DRV8412\DRV8412.obj" "modules\ESP8266\ESP8266.obj" "modules\GY521\GY521.obj" "peripheral\GPIO\GPIO.obj" "peripheral\I2C\I2C.obj" "peripheral\PWM\PWM.obj" "peripheral\TIME\TIME.obj" "peripheral\Timer\TIMER.obj" "peripheral\UART\UART.obj" "slib\Console\Console.obj" "slib\Driver\Driver.obj" "slib\Log\Log.obj" "slib\Log\Logger.obj" "slib\Params\Params.obj" "slib\StateSystem\Kalman\Kalman.obj" "slib\StateSystem\StateSystem.obj" "slib\System\System.obj" "slib\Task\Task.obj" 
 	-$(RM) "tm4c123gh6pm_startup_ccs.d" 
-	-$(RM) "main.d" "modules\DRV8412\DRV8412.d" "modules\ESP8266\ESP8266.d" "modules\GY521\GY521.d" "peripheral\GPIO\GPIO.d" "peripheral\I2C\I2C.d" "peripheral\PWM\PWM.d" "peripheral\TIME\TIME.d" "peripheral\Timer\TIMER.d" "peripheral\UART\UART.d" "slib\Console\Console.d" "slib\Driver\Driver.d" "slib\Log\Log.d" "slib\Log\Logger.d" "slib\Params\Params.d" "slib\StateSystem\StateSystem.d" "slib\System\System.d" "slib\Task\Task.d" 
+	-$(RM) "main.d" "modules\DRV8412\DRV8412.d" "modules\ESP8266\ESP8266.d" "modules\GY521\GY521.d" "peripheral\GPIO\GPIO.d" "peripheral\I2C\I2C.d" "peripheral\PWM\PWM.d" "peripheral\TIME\TIME.d" "peripheral\Timer\TIMER.d" "peripheral\UART\UART.d" "slib\Console\Console.d" "slib\Driver\Driver.d" "slib\Log\Log.d" "slib\Log\Logger.d" "slib\Params\Params.d" "slib\StateSystem\Kalman\Kalman.d" "slib\StateSystem\StateSystem.d" "slib\System\System.d" "slib\Task\Task.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
