@@ -7,13 +7,16 @@
 
 #include <peripheral/UART/UART.h>
 
-UART::UART()
-{
-    // TODO Auto-generated constructor stub
+UART::UART(){}
+UART::~UART(){}
 
-}
-
-UART::UART(uint8_t UART_, uint32_t BAUDRATE){
+/**
+ * @brief Construct a new UART::UART object
+ * 
+ * @param UART_ UART_0 --> UART_7
+ * @param BAUDRATE 115200 v 9600 v ...
+ */
+UART::UART(UART_ UART_, uint32_t BAUDRATE){
     uint32_t SYSCTL_PERIPH_GPIO;
     uint32_t SYSCTL_PERIPH_UART;
 
@@ -85,11 +88,12 @@ UART::UART(uint8_t UART_, uint32_t BAUDRATE){
     UARTEnable(UART_BASE);
 }
 
-UART::~UART()
-{
-    // TODO Auto-generated destructor stub
-}
-
+/**
+ * @brief Send an array width length via serial port
+ * 
+ * @param str Pointer to array
+ * @param length Length of array
+ */
 void UART::send(const char *str, uint8_t length){
     uint8_t index;
     for(index = 0; index < length; index++){
@@ -97,6 +101,11 @@ void UART::send(const char *str, uint8_t length){
     }
 }
 
+/**
+ * @brief Send a string via serial port
+ * 
+ * @param str Pointer to string
+ */
 void UART::send(const char *str){
     uint8_t length = 0;
     while(str[length] != 0) length++;
@@ -106,9 +115,32 @@ void UART::send(const char *str){
     }
 }
 
+/**
+ * @brief Receive an array from serial port. This is a bloking function
+ * 
+ * @param str Pointer to receiver array
+ * @param length Length of package 
+ */
 void UART::reicv(uint8_t *str, uint8_t length){
     uint8_t index;
     for(index = 0; index < length; index++){
         str[index] = UARTCharGet(UART_BASE);
     }
+}
+
+/**
+ * @brief Receive an array from serial port until read the delimiter
+ * 
+ * @param str Pointer to receiver array
+ * @param delimiter End token
+ * @return uint8_t Length of the package
+ */
+uint8_t UART::reicv(uint8_t *str, char delimiter){
+    uint8_t index = 0;
+    do{
+        str[index] = UARTCharGet(UART_BASE);
+        index++;
+    }
+    while( str[index-1] != delimiter);
+    return index;
 }

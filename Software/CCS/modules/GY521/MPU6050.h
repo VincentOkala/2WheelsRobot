@@ -8,7 +8,7 @@
 #ifndef MPU6050_H_
 #define MPU6050_H_
 
-#include <slib/BIT.h>
+#include "../../slib/Bit.h"
 
 #define SELF_TEST_X      0x0D
 #define SELF_TEST_Y      0x0E

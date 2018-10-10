@@ -16,18 +16,17 @@ ORDERED_OBJS += \
 "./modules/ESP8266/ESP8266.obj" \
 "./modules/GY521/GY521.obj" \
 "./peripheral/GPIO/GPIO.obj" \
+"./peripheral/GPTM/GPTM.obj" \
 "./peripheral/I2C/I2C.obj" \
 "./peripheral/PWM/PWM.obj" \
-"./peripheral/TIME/TIME.obj" \
-"./peripheral/Timer/TIMER.obj" \
+"./peripheral/QEI/QEI.obj" \
 "./peripheral/UART/UART.obj" \
-"./slib/Console/Console.obj" \
 "./slib/Driver/Driver.obj" \
 "./slib/Log/Log.obj" \
 "./slib/Log/Logger.obj" \
 "./slib/Params/Params.obj" \
-"./slib/StateSystem/Kalman/Kalman.obj" \
-"./slib/StateSystem/StateSystem.obj" \
+"./slib/State/Kalman/Kalman.obj" \
+"./slib/State/State.obj" \
 "./slib/System/System.obj" \
 "./slib/Task/Task.obj" \
 "../driverlib.lib" \
@@ -47,17 +46,16 @@ RMDIR := RMDIR /S/Q
 -include modules/ESP8266/subdir_vars.mk
 -include modules/GY521/subdir_vars.mk
 -include peripheral/GPIO/subdir_vars.mk
+-include peripheral/GPTM/subdir_vars.mk
 -include peripheral/I2C/subdir_vars.mk
 -include peripheral/PWM/subdir_vars.mk
--include peripheral/TIME/subdir_vars.mk
--include peripheral/Timer/subdir_vars.mk
+-include peripheral/QEI/subdir_vars.mk
 -include peripheral/UART/subdir_vars.mk
--include slib/Console/subdir_vars.mk
 -include slib/Driver/subdir_vars.mk
 -include slib/Log/subdir_vars.mk
 -include slib/Params/subdir_vars.mk
--include slib/StateSystem/Kalman/subdir_vars.mk
--include slib/StateSystem/subdir_vars.mk
+-include slib/State/Kalman/subdir_vars.mk
+-include slib/State/subdir_vars.mk
 -include slib/System/subdir_vars.mk
 -include slib/Task/subdir_vars.mk
 -include subdir_rules.mk
@@ -65,17 +63,16 @@ RMDIR := RMDIR /S/Q
 -include modules/ESP8266/subdir_rules.mk
 -include modules/GY521/subdir_rules.mk
 -include peripheral/GPIO/subdir_rules.mk
+-include peripheral/GPTM/subdir_rules.mk
 -include peripheral/I2C/subdir_rules.mk
 -include peripheral/PWM/subdir_rules.mk
--include peripheral/TIME/subdir_rules.mk
--include peripheral/Timer/subdir_rules.mk
+-include peripheral/QEI/subdir_rules.mk
 -include peripheral/UART/subdir_rules.mk
--include slib/Console/subdir_rules.mk
 -include slib/Driver/subdir_rules.mk
 -include slib/Log/subdir_rules.mk
 -include slib/Params/subdir_rules.mk
--include slib/StateSystem/Kalman/subdir_rules.mk
--include slib/StateSystem/subdir_rules.mk
+-include slib/State/Kalman/subdir_rules.mk
+-include slib/State/subdir_rules.mk
 -include slib/System/subdir_rules.mk
 -include slib/Task/subdir_rules.mk
 -include objects.mk
@@ -208,9 +205,9 @@ all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\DRV8412\DRV8412.obj" "modules\ESP8266\ESP8266.obj" "modules\GY521\GY521.obj" "peripheral\GPIO\GPIO.obj" "peripheral\I2C\I2C.obj" "peripheral\PWM\PWM.obj" "peripheral\TIME\TIME.obj" "peripheral\Timer\TIMER.obj" "peripheral\UART\UART.obj" "slib\Console\Console.obj" "slib\Driver\Driver.obj" "slib\Log\Log.obj" "slib\Log\Logger.obj" "slib\Params\Params.obj" "slib\StateSystem\Kalman\Kalman.obj" "slib\StateSystem\StateSystem.obj" "slib\System\System.obj" "slib\Task\Task.obj" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\DRV8412\DRV8412.obj" "modules\ESP8266\ESP8266.obj" "modules\GY521\GY521.obj" "peripheral\GPIO\GPIO.obj" "peripheral\GPTM\GPTM.obj" "peripheral\I2C\I2C.obj" "peripheral\PWM\PWM.obj" "peripheral\QEI\QEI.obj" "peripheral\UART\UART.obj" "slib\Driver\Driver.obj" "slib\Log\Log.obj" "slib\Log\Logger.obj" "slib\Params\Params.obj" "slib\State\Kalman\Kalman.obj" "slib\State\State.obj" "slib\System\System.obj" "slib\Task\Task.obj" 
 	-$(RM) "tm4c123gh6pm_startup_ccs.d" 
-	-$(RM) "main.d" "modules\DRV8412\DRV8412.d" "modules\ESP8266\ESP8266.d" "modules\GY521\GY521.d" "peripheral\GPIO\GPIO.d" "peripheral\I2C\I2C.d" "peripheral\PWM\PWM.d" "peripheral\TIME\TIME.d" "peripheral\Timer\TIMER.d" "peripheral\UART\UART.d" "slib\Console\Console.d" "slib\Driver\Driver.d" "slib\Log\Log.d" "slib\Log\Logger.d" "slib\Params\Params.d" "slib\StateSystem\Kalman\Kalman.d" "slib\StateSystem\StateSystem.d" "slib\System\System.d" "slib\Task\Task.d" 
+	-$(RM) "main.d" "modules\DRV8412\DRV8412.d" "modules\ESP8266\ESP8266.d" "modules\GY521\GY521.d" "peripheral\GPIO\GPIO.d" "peripheral\GPTM\GPTM.d" "peripheral\I2C\I2C.d" "peripheral\PWM\PWM.d" "peripheral\QEI\QEI.d" "peripheral\UART\UART.d" "slib\Driver\Driver.d" "slib\Log\Log.d" "slib\Log\Logger.d" "slib\Params\Params.d" "slib\State\Kalman\Kalman.d" "slib\State\State.d" "slib\System\System.d" "slib\Task\Task.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

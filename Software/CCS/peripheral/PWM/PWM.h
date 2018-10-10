@@ -17,27 +17,34 @@
 #include "driverlib/gpio.h"
 #include "driverlib/pwm.h"
 
-#define PWM0 0
-#define PWM1 1
+#include <peripheral/GPIO/GPIO.h>
 
-#define PORTA 0
-#define PORTB 1
-#define PORTC 2
-#define PORTD 3
-#define PORTE 4
-#define PORTF 5
+typedef enum{
+    PWM_0,
+    PWM_1
+}PWM_;
+
+typedef enum{
+    GEN_0,
+    GEN_1,
+    GEN_2,
+    GEN_3
+}PWM_GEN_;
 
 class PWM
 {
 public:
     PWM();
-    PWM(uint8_t PWM, uint16_t PWM_GEN_, uint32_t freq);
+    PWM(PWM_ PWM_, PWM_GEN_ GEN_, uint32_t freq);
     virtual ~PWM();
-    void setOutMode(uint8_t PWM_OUT_BIT, uint8_t PORT, uint8_t GPIO_PIN_, uint32_t GPIO_P_MPWM, uint8_t duty);
-    void setDuty(uint32_t PWM_OUT_, float duty);
+    void configOutPin(GPIO_PORT_ GPIO_PORT_, uint8_t GPIO_PIN_, uint32_t GPIO_P_MPWM);
+    void setDutyA(float duty);
+    void setDutyB(float duty);
 private:
     uint32_t PWM_BASE;
     uint16_t PWM_GEN;
+    uint32_t PWM_OUT_A;
+    uint32_t PWM_OUT_B;
     uint32_t ulPeriod;
 };
 

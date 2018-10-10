@@ -7,7 +7,7 @@
 
 #include <slib/Task/Task.h>
 
-TIMER Task::task_timer;
+GPTM Task::task_timer;
 
 Task::Task()
 {
@@ -20,7 +20,7 @@ Task::~Task()
 }
 
 void Task::init(){
-    task_timer = TIMER(TIMER_0, TIMER_FREQ);
+    task_timer = GPTM(GPTM_0, TIMER_FREQ);
 
     TimerIntEnable(TIMER0_BASE, TIMER_TIMA_TIMEOUT);
     TimerIntRegister(TIMER0_BASE, TIMER_BOTH, Task::timerISR);

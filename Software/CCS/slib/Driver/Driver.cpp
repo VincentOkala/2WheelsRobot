@@ -8,11 +8,12 @@
 #include <slib/Driver/Driver.h>
 #include <slib/Log/Log.h>
 
+#include <define.h>
+
 DRIVER::DRIVER()
 {
     Log::logDoing("Initialize Driver");
-    // TODO Auto-generated constructor stub
-    drv8421 = DRV8412(PWM1, PWM_GEN_0, PORTD, GPIO_PIN_0, PWM_OUT_0_BIT, GPIO_PD0_M1PWM0, GPIO_PIN_1, PWM_OUT_1_BIT, GPIO_PD1_M1PWM1, PORTD, GPIO_PIN_2, GPIO_PIN_3);
+    drv8421 = DRV8412();
     Log::logDone("Initialize Driver");
 }
 
@@ -22,13 +23,13 @@ DRIVER::~DRIVER()
 }
 
 void DRIVER::setVelocityLeft(float duty){
-    duty = duty < 100 ? duty : 100;
-    duty = duty > -100 ? duty : -100;
+    duty = duty < DRIVER_UPPER_DUTY ? duty : DRIVER_UPPER_DUTY;
+    duty = duty > DRIVER_LOWER_DUTY ? duty : DRIVER_LOWER_DUTY;
     drv8421.setVelocityLeft(duty);
 }
 void DRIVER::setVelocityRight(float duty){
-    duty = duty < 100 ? duty : 100;
-    duty = duty > -100 ? duty : -100;
+    duty = duty < DRIVER_UPPER_DUTY ? duty : DRIVER_UPPER_DUTY;
+    duty = duty > DRIVER_LOWER_DUTY ? duty : DRIVER_LOWER_DUTY;
     drv8421.setVelocityRight(duty);
 }
 

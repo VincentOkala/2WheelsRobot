@@ -11,7 +11,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include <peripheral/Timer/TIMER.h>
+#include "../../peripheral/GPTM/GPTM.h"
 
 #define MAX_TIMEOUT_EVT     10
 #define INVALID_TIMER_ID    0xff
@@ -40,7 +40,7 @@ public:
     static bool unregisterEvent(Task_ID timer_id);
     static void timerISR();
 private:
-    static TIMER task_timer;
+    static GPTM task_timer;
 };
 
 #endif /* SLIB_TASK_TASK_H_ */

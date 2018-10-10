@@ -1,30 +1,29 @@
 /*
- * StateSystem.h
+ * State.h
  *
  *  Created on: May 10, 2018
  *      Author: light
  */
 
-#ifndef SLIB_STATESYSTEM_H_
-#define SLIB_STATESYSTEM_H_
+#ifndef SLIB_State_H_
+#define SLIB_State_H_
 
 #include <stdint.h>
 #include <stdbool.h>
 
 #include <modules/GY521/GY521.h>
 #include <peripheral/GPIO/GPIO.h>
-#include "../../peripheral/Timer/TIMER.h"
 #include <slib/Params/Params.h>
-
-#include <slib/StateSystem/Kalman/Kalman.h>
+#include "../../peripheral/GPTM/GPTM.h"
+#include "../State/Kalman/Kalman.h"
 
 #define UPDATE_FREQ     100
 
-class StateSystem
+class State
 {
 public:
-    StateSystem(Params* params);
-    virtual ~StateSystem();
+    State(Params* params);
+    virtual ~State();
 
     float getRoll();
 
@@ -39,4 +38,4 @@ private:
     static Kalman kalman;
 };
 
-#endif /* SLIB_STATESYSTEM_H_ */
+#endif /* SLIB_State_H_ */

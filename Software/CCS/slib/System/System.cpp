@@ -23,8 +23,9 @@ System::~System()
 
 void System::init(){
     SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
+    IntMasterEnable();  // Enable master interrupt
+
     logger = Logger();
-    Console::init();
     Log::init(&logger);
     task.init();
 }

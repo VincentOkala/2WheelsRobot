@@ -6,20 +6,18 @@
  */
 
 #include <peripheral/I2C/I2C.h>
-#include <slib/Log/Log.h>
 
-//*****************************************************************************
-// @params:
-// I2C: I2C0, I2C1, I2C2, I2C3
-// speed: only support I2C_SPEED_STANDARD, I2C_SPEED_FAST
-//*****************************************************************************
-I2C::I2C(){
-    // TODO Auto-generated constructor stub
-}
-I2C::I2C(uint8_t I2C_, uint8_t I2C_SPEED_)
+I2C::I2C(){}
+I2C::~I2C(){}
+
+/**
+ * @brief Construct a new I2C::I2C object
+ * 
+ * @param I2C_          I2C_0 --> I2C_3
+ * @param I2C_SPEED_    I2C_SPEED_STANDARD, I2C_SPEED_FAST, I2C_SPEED_FAST_PLUS, I2C_SPEED_HIGH
+ */
+I2C::I2C(I2C_ I2C_, I2C_SPEED_ I2C_SPEED_)
 {
-    // TODO Auto-generated constructor stub
-    Log::logDoing("Initialize I2C %d", I2C_);
 
     uint32_t SYSCTL_PERIPH_I2C;
     uint32_t SYSCTL_PERIPH_GPIO;
@@ -122,15 +120,53 @@ I2C::I2C(uint8_t I2C_, uint8_t I2C_SPEED_)
         break;
     }
 
-    Log::logDone("Initialize I2C %d", I2C_);
 }
 
-I2C::~I2C()
-{
-    // TODO Auto-generated destructor stub
+/**
+ * @brief Write a char to I2C port
+ * 
+ * @param addr Address of slave
+ * @param data Char to write
+ */
+void I2C::Write(uint8_t addr, uint8_t data){
+    WriteBurst(addr, &data, 1);
 }
 
-bool I2C::WriteBurst(uint8_t addr,uint8_t regAddr,uint8_t *data,uint8_t length){
+/**
+ * @brief Write a array to I2C port
+ * 
+ * @param addr Address of slave
+ * @param data Pointer to array
+ * @param length Array length
+ */
+void I2C::WriteBurst(uint8_t addr, uint8_t *data, uint8_t length){
+    I2CMasterSlaveAddrSet(I2C_BASE, addr, false); // Set to write mode
+
+    I2CMasterDataPut(I2C_BASE, data[0]); // Place address into data register
+    I2CMasterControl(I2C_BASE, I2C_MASTER_CMD_BURST_SEND_START); // Send start condition
+    while (I2CMasterBusy(I2C_BASE)); // Wait until transfer is done
+
+    uint8_t i;
+    for (i = 1; i < length - 1; i++) {
+        I2CMasterDataPut(I2C_BASE, data[i]); // Place data into data register
+        I2CMasterControl(I2C_BASE, I2C_MASTER_CMD_BURST_SEND_CONT); // Send continues condition
+        while (I2CMasterBusy(I2C_BASE)); // Wait until transfer is done
+    }
+
+    I2CMasterDataPut(I2C_BASE, data[length - 1]); // Place data into data register
+    I2CMasterControl(I2C_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH); // Send finish condition
+    while (I2CMasterBusy(I2C_BASE)); // Wait until transfer is done
+}
+
+/**
+ * @brief Write an array to I2C port with register address
+ * 
+ * @param addr Address of slave
+ * @param regAddr Register address
+ * @param data Pointer to array
+ * @param length Array length
+ */
+void I2C::WriteBurst(uint8_t addr,uint8_t regAddr,uint8_t *data,uint8_t length){
     I2CMasterSlaveAddrSet(I2C_BASE, addr, false); // Set to write mode
 
     I2CMasterDataPut(I2C_BASE, regAddr); // Place address into data register
@@ -148,15 +184,28 @@ bool I2C::WriteBurst(uint8_t addr,uint8_t regAddr,uint8_t *data,uint8_t length){
     I2CMasterControl(I2C_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH); // Send finish condition
     while (I2CMasterBusy(I2C_BASE)); // Wait until transfer is done
 
-    return true;
 }
 
-bool I2C::Write(uint8_t addr, uint8_t regAddr, uint8_t data){
+/**
+ * @brief Write a char to I2C port with register address
+ * 
+ * @param addr Address of slave
+ * @param regAddr Register address
+ * @param data Char to write
+ */
+void I2C::Write(uint8_t addr, uint8_t regAddr, uint8_t data){
     WriteBurst(addr, regAddr, &data, 1);
-    return true;
 }
 
-bool I2C::ReadBurst(uint8_t addr, uint8_t regAddr, uint8_t *data, uint8_t length){
+/**
+ * @brief Read an array from I2C port with register address
+ * 
+ * @param addr Address of slave
+ * @param regAddr Register address
+ * @param data Pointer to array
+ * @param length Array length
+ */
+void I2C::ReadBurst(uint8_t addr, uint8_t regAddr, uint8_t *data, uint8_t length){
     I2CMasterSlaveAddrSet(I2C_BASE, addr, false); // Set to write mode
 
     I2CMasterDataPut(I2C_BASE, regAddr); // Place address into data register
@@ -180,10 +229,16 @@ bool I2C::ReadBurst(uint8_t addr, uint8_t regAddr, uint8_t *data, uint8_t length
     while (I2CMasterBusy(I2C_BASE)); // Wait until transfer is done
     data[length - 1] = I2CMasterDataGet(I2C_BASE); // Place data into data register
 
-    return true;
 }
 
-bool I2C::Read(uint8_t addr, uint8_t regAddr, uint8_t *data) {
+/**
+ * @brief Read an char from I2C port with register address
+ * 
+ * @param addr Address of slave
+ * @param regAddr Register address
+ * @param data Point to where return char will be save
+ */
+void I2C::Read(uint8_t addr, uint8_t regAddr, uint8_t *data) {
     I2CMasterSlaveAddrSet(I2C_BASE, addr, false); // Set to write mode
 
     I2CMasterDataPut(I2C_BASE, regAddr); // Place address into data register
@@ -196,5 +251,4 @@ bool I2C::Read(uint8_t addr, uint8_t regAddr, uint8_t *data) {
     while (I2CMasterBusy(I2C_BASE)); // Wait until transfer is done
     *data = I2CMasterDataGet(I2C_BASE); // Read data
 
-    return true;
 }

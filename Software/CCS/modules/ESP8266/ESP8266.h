@@ -9,41 +9,30 @@
 #define MODULES_ESP8266_ESP8266_H_
 
 #include <peripheral/UART/UART.h>
-#include "../../slib/Console/Console.h"
-#include "../../slib/Params/Params.h"
 
 typedef enum{
-    NEXT_STT,
-    READY,
-    RESETING,
-    WIFI_CONNECTING,
-    READ_FULL_PARAM,
-    READ_PARAM
+    ESP8266_BEGIN,
+    ESP8266_READY_BEFORE_RESET, // >>>
+    ESP8266_READY_AFTER_RESET, // >>>
+    ESP8266_SERVER_RUNNING, // OK
 }ESP8266_STT;
+
+typedef void (*UARTOnReceive)(char);
 
 class ESP8266
 {
 public:
-    ESP8266(Params* params);
+    ESP8266();
     virtual ~ESP8266();
-    static void UARTIntHandler();
-    static void paramParse();
     static void reset();
     static void connect();
-    static void readFullParamList();
     static void startServer();
-
-    static UART uart;
+    static void setOnReceiveFcn(UARTOnReceive UARTOnReceive_);
 private:
-
-    static bool getKeyValue(char* key, char* value);
-
-    static Params* param;
-
-    static char buf[100];
-    static uint8_t bufIndex;
-
     static ESP8266_STT esp8266Status;
+    static UARTOnReceive uartOnReceive;
+    static void UARTIntHandler();
+    static UART uart;
 };
 
 #endif /* MODULES_ESP8266_ESP8266_H_ */

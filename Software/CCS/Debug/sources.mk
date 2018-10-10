@@ -116,17 +116,16 @@ modules/DRV8412 \
 modules/ESP8266 \
 modules/GY521 \
 peripheral/GPIO \
+peripheral/GPTM \
 peripheral/I2C \
 peripheral/PWM \
-peripheral/TIME \
-peripheral/Timer \
+peripheral/QEI \
 peripheral/UART \
-slib/Console \
 slib/Driver \
 slib/Log \
 slib/Params \
-slib/StateSystem/Kalman \
-slib/StateSystem \
+slib/State/Kalman \
+slib/State \
 slib/System \
 slib/Task \
 

@@ -15,7 +15,7 @@
  e-mail   :  kristianl@tkjelectronics.com
  */
 
-#include "Kalman.h"
+#include <slib/State/Kalman/Kalman.h>
 
 Kalman::Kalman() {
     /* We will set the variables like so, these can also be tuned by the user */

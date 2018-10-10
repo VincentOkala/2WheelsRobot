@@ -31,9 +31,7 @@ class GY521
 {
 public:
     GY521();
-    GY521(uint8_t I2C_, uint8_t GYRO_SCALE_, uint8_t ACCEL_SCALE_);
     virtual ~GY521();
-    void Init();
     void getAccel(float *accel);
     void getGyro(float *gyro);
     float getPitch();

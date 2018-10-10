@@ -23,24 +23,28 @@
 //*****************************************************************************
 // The following are defines for ID of UART modules
 //*****************************************************************************
-#define UART_0    0
-#define UART_1    1
-#define UART_2    2
-#define UART_3    3
-#define UART_4    4
-#define UART_5    5
-#define UART_6    6
-#define UART_7    7
+typedef enum{
+    UART_0,
+    UART_1,
+    UART_2,
+    UART_3,
+    UART_4,
+    UART_5,
+    UART_6,
+    UART_7
+}UART_;
+
 
 class UART
 {
 public:
     UART();
-    UART(uint8_t UART_, uint32_t BAUDRATE);
+    UART(UART_ UART_, uint32_t BAUDRATE);
     virtual ~UART();
     void send(const char *str);
     void send(const char *str, uint8_t length);
     void reicv(uint8_t *str, uint8_t length);
+    uint8_t reicv(uint8_t *str, char delimiter);
 
     uint32_t UART_BASE;
     uint32_t INT_UART;

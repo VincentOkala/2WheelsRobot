@@ -5,8 +5,8 @@
  *      Author: light
  */
 
-#ifndef PERIPHERAL_TIME_TIME_H_
-#define PERIPHERAL_TIME_TIME_H_
+#ifndef PERIPHERAL_GPTM_GPTM_H_
+#define PERIPHERAL_GPTM_GPTM_H_
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -21,20 +21,23 @@
 #include "driverlib/rom.h"
 #include "grlib/grlib.h"
 
-class TIME
+typedef enum{
+    GPTM_0,
+    GPTM_1,
+    GPTM_2,
+    GPTM_3,
+    GPTM_4,
+    GPTM_5,
+}GPTM_;
+
+/* Wide timer is not supported now */
+class GPTM
 {
 public:
-    TIME();
-    virtual ~TIME();
-    static uint64_t tick();
-    static uint32_t getTickPerUs();
-    static void TIMER0_ISR();
-
-    static uint32_t tickPerUs;
-
-private:
-    static uint32_t count;
-    static uint32_t timerLoad;
+    GPTM();
+    virtual ~GPTM();
+    GPTM(GPTM_ GPTM_, uint16_t freq);
+    uint32_t TIMER_BASE;
 };
 
-#endif /* PERIPHERAL_TIME_TIME_H_ */
+#endif /* PERIPHERAL_GPTM_GPTM_H_ */

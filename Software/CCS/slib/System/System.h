@@ -16,8 +16,6 @@
 #include "driverlib/sysctl.h"
 
 #include <slib/Task/Task.h>
-#include <slib/Console/Console.h>
-
 class System
 {
 public:

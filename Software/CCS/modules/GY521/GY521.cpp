@@ -5,22 +5,17 @@
  *      Author: light
  */
 
-#include <slib/Log/Log.h>
-#include "GY521.h"
 #include "math.h"
 
+#include <modules/GY521/GY521.h>
+#include <define.h>
 
-GY521::GY521()
-{
-   // TODO Auto-generated constructor stub
-}
-GY521::GY521(uint8_t I2C_, uint8_t GYRO_SCALE_, uint8_t ACCEL_SCALE_){
-    Log::logDoing("Initialize GY521");
+GY521::GY521(){
 
-    i2c = I2C(I2C_, I2C_SPEED_STANDARD);
+    i2c = I2C(GY521_I2C, GY521_I2C_SPEED);
 
-    GYRO_SCALE  = GYRO_SCALE_;
-    ACCEL_SCALE = ACCEL_SCALE_;
+    GYRO_SCALE  = GY521_GYRO_SCALE;
+    ACCEL_SCALE = GY521_ACCEL_SCALE;
 
     i2c.Write(MPU6050_ADDRESS, PWR_MGMT_1, TEMP_DIS | CLKSEL1); // Disable sleep mode, disable temperature sensor and use PLL as clock reference
 
@@ -60,12 +55,9 @@ GY521::GY521(uint8_t I2C_, uint8_t GYRO_SCALE_, uint8_t ACCEL_SCALE_){
     i2cBuffer[3] = AFS_SEL3; // ACCEL_SCALE_16G
     i2c.WriteBurst(MPU6050_ADDRESS, SMPLRT_DIV, i2cBuffer, 4); // Write to all five registers at once
 
-    Log::logDone("Initialize GY521");
 }
-GY521::~GY521()
-{
-    // TODO Auto-generated destructor stub
-}
+
+GY521::~GY521(){}
 
 void GY521::updateAccel(){
     uint8_t buf[6];

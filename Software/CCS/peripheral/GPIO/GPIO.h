@@ -18,27 +18,34 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/gpio.h"
 
-#define PORTA 0
-#define PORTB 1
-#define PORTC 2
-#define PORTD 3
-#define PORTE 4
-#define PORTF 5
+typedef enum{
+    GPIO_PORT_A,
+    GPIO_PORT_B,
+    GPIO_PORT_C,
+    GPIO_PORT_D,
+    GPIO_PORT_E,
+    GPIO_PORT_F
+}GPIO_PORT_;
 
-#define MODE_OUTPUT 0
-#define MODE_INPUT  1
+typedef enum{
+    GPIO_MODE_OUTPUT,
+    GPIO_MODE_INPUT
+}GPIO_MODE_;
 
-#define VALUE_OFF 0
-#define VALUE_ON  1
+typedef enum{
+    VALUE_OFF,
+    VALUE_ON,
+}VALUE_;
 
 class GPIO
 {
 public:
     GPIO();
-    GPIO(uint8_t port);
+    GPIO(GPIO_PORT_ GPIO_PORT_);
     virtual ~GPIO();
+    void mode(uint8_t GPIO_PIN_, GPIO_MODE_ MODE_);
     void write(uint8_t GPIO_PIN_, uint8_t VALUE_);
-    void mode(uint8_t GPIO_PIN_, uint8_t MODE_);
+    uint8_t read(uint8_t GPIO_PIN_);
 private:
     uint32_t GPIO_PORT_BASE;
 };
