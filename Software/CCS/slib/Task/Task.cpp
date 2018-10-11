@@ -26,7 +26,7 @@ void Task::init(){
  * @param ms event timeout
  * @return timer ID
  */
-Task_ID Task::registerEvent(TIMER_CALLBACK_FUNC callback, unsigned long ms)
+Task_ID Task::registerEvent(TIMER_CALLBACK_FUNC callback, unsigned int ms)
 {
     int i;
     for(i=0; i< MAX_TIMEOUT_EVT; i++)

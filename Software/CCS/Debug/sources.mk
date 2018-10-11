@@ -112,6 +112,7 @@ PDE_DEPS__QUOTED :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+modules/CC1101 \
 modules/DRV8412 \
 modules/ESP8266 \
 modules/GY521 \

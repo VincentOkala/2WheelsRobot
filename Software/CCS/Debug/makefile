@@ -12,6 +12,7 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./main.obj" \
 "./tm4c123gh6pm_startup_ccs.obj" \
+"./modules/CC1101/CC1101.obj" \
 "./modules/DRV8412/DRV8412.obj" \
 "./modules/ESP8266/ESP8266.obj" \
 "./modules/GY521/GY521.obj" \
@@ -41,6 +42,7 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include modules/CC1101/subdir_vars.mk
 -include modules/DRV8412/subdir_vars.mk
 -include modules/ESP8266/subdir_vars.mk
 -include modules/GY521/subdir_vars.mk
@@ -58,6 +60,7 @@ RMDIR := RMDIR /S/Q
 -include slib/System/subdir_vars.mk
 -include slib/Task/subdir_vars.mk
 -include subdir_rules.mk
+-include modules/CC1101/subdir_rules.mk
 -include modules/DRV8412/subdir_rules.mk
 -include modules/ESP8266/subdir_rules.mk
 -include modules/GY521/subdir_rules.mk
@@ -204,9 +207,9 @@ all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\DRV8412\DRV8412.obj" "modules\ESP8266\ESP8266.obj" "modules\GY521\GY521.obj" "peripheral\GPIO\GPIO.obj" "peripheral\GPTM\GPTM.obj" "peripheral\I2C\I2C.obj" "peripheral\PWM\PWM.obj" "peripheral\QEI\QEI.obj" "peripheral\UART\UART.obj" "slib\Controller\Controller.obj" "slib\Controller\PID\PID.obj" "slib\Driver\Driver.obj" "slib\PAV\PAV.obj" "slib\State\State.obj" "slib\System\System.obj" "slib\Task\Task.obj" 
+	-$(RM) "main.obj" "tm4c123gh6pm_startup_ccs.obj" "modules\CC1101\CC1101.obj" "modules\DRV8412\DRV8412.obj" "modules\ESP8266\ESP8266.obj" "modules\GY521\GY521.obj" "peripheral\GPIO\GPIO.obj" "peripheral\GPTM\GPTM.obj" "peripheral\I2C\I2C.obj" "peripheral\PWM\PWM.obj" "peripheral\QEI\QEI.obj" "peripheral\UART\UART.obj" "slib\Controller\Controller.obj" "slib\Controller\PID\PID.obj" "slib\Driver\Driver.obj" "slib\PAV\PAV.obj" "slib\State\State.obj" "slib\System\System.obj" "slib\Task\Task.obj" 
 	-$(RM) "tm4c123gh6pm_startup_ccs.d" 
-	-$(RM) "main.d" "modules\DRV8412\DRV8412.d" "modules\ESP8266\ESP8266.d" "modules\GY521\GY521.d" "peripheral\GPIO\GPIO.d" "peripheral\GPTM\GPTM.d" "peripheral\I2C\I2C.d" "peripheral\PWM\PWM.d" "peripheral\QEI\QEI.d" "peripheral\UART\UART.d" "slib\Controller\Controller.d" "slib\Controller\PID\PID.d" "slib\Driver\Driver.d" "slib\PAV\PAV.d" "slib\State\State.d" "slib\System\System.d" "slib\Task\Task.d" 
+	-$(RM) "main.d" "modules\CC1101\CC1101.d" "modules\DRV8412\DRV8412.d" "modules\ESP8266\ESP8266.d" "modules\GY521\GY521.d" "peripheral\GPIO\GPIO.d" "peripheral\GPTM\GPTM.d" "peripheral\I2C\I2C.d" "peripheral\PWM\PWM.d" "peripheral\QEI\QEI.d" "peripheral\UART\UART.d" "slib\Controller\Controller.d" "slib\Controller\PID\PID.d" "slib\Driver\Driver.d" "slib\PAV\PAV.d" "slib\State\State.d" "slib\System\System.d" "slib\Task\Task.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

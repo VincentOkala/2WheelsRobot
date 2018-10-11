@@ -33,8 +33,6 @@ private:
     float maxOut;
 
     float pre_err;
-    float pre_pre_err;
-    float pre_Uout;
 };
 
 #endif /* SLIB_CONTROLLER_PID_PID_H_ */

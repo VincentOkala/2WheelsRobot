@@ -26,7 +26,7 @@ void State::init(PAV* _pav){
     portF.mode(GPIO_PIN_1, GPIO_MODE_OUTPUT);
     portF.mode(GPIO_PIN_2, GPIO_MODE_OUTPUT);
 
-    Task::registerEvent(stateUpdateTask, (unsigned long)((1.0/UPDATE_FREQ) * 1000));
+    Task::registerEvent(stateUpdateTask, (unsigned long)((1.0/STATE_UPDATE_FREQ) * 1000));
 }
 
 void State::stateUpdateTask(void){
@@ -38,7 +38,7 @@ void State::stateUpdateTask(void){
 
     float comp_coef = pav->state.COMP_COEFF;
     float roll = pav->state.altitude.roll;
-    roll = comp_coef * (roll + gyro[0] * 0.01) + (1-comp_coef) * accRoll;
+    roll = comp_coef * (roll + gyro[1] * 1.0/STATE_UPDATE_FREQ) + (1-comp_coef) * accRoll;
 
     if(roll > 0){
         portF.write(GPIO_PIN_1, VALUE_ON);

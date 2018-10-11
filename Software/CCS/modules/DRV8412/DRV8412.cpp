@@ -17,8 +17,8 @@ void DRV8412::init(){
     pwm = PWM(DRV8421_PWM, DRV8421_PWM_GEN, DRV8421_PWM_FREQ);
     pwm.setDutyA(50);
     pwm.setDutyB(50);
-    pwm.configOutPin(DRV8421_PWM_PORT, DRV8421_PIN_A, DRV8421_PIN_A);
-    pwm.configOutPin(DRV8421_PWM_PORT, DRV8421_PIN_B, DRV8421_PIN_B);
+    pwm.configOutPin(DRV8421_PWM_PORT, DRV8421_PIN_A, DRV8421_MPWM_A);
+    pwm.configOutPin(DRV8421_PWM_PORT, DRV8421_PIN_B, DRV8421_MPWM_B);
 
     port = GPIO(DRV8421_PORT_RST);
     port.mode(DRV8421_RSTAB_PIN, GPIO_MODE_OUTPUT);

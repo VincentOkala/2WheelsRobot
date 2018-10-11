@@ -36,7 +36,7 @@ public:
     Task();
     virtual ~Task();
     static void init();
-    static Task_ID registerEvent(TIMER_CALLBACK_FUNC callback, unsigned long ms);
+    static Task_ID registerEvent(TIMER_CALLBACK_FUNC callback, unsigned int ms);
     static bool unregisterEvent(Task_ID timer_id);
     static void timerISR();
 private:

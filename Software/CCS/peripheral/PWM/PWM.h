@@ -37,12 +37,12 @@ public:
     PWM();
     PWM(PWM_ PWM_, PWM_GEN_ GEN_, uint32_t freq);
     virtual ~PWM();
-    void configOutPin(GPIO_PORT_ GPIO_PORT_, uint8_t GPIO_PIN_, uint32_t GPIO_P_MPWM);
+    static void configOutPin(GPIO_PORT_ GPIO_PORT_, uint8_t GPIO_PIN_, uint32_t GPIO_P_MPWM);
     void setDutyA(float duty);
     void setDutyB(float duty);
 private:
     uint32_t PWM_BASE;
-    uint16_t PWM_GEN;
+    uint32_t PWM_GEN;
     uint32_t PWM_OUT_A;
     uint32_t PWM_OUT_B;
     uint32_t ulPeriod;

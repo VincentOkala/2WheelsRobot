@@ -43,4 +43,8 @@
 #define ESP8266_UART                UART_1
 #define ESP8266_UART_BAUD           115200
 
+/* CC1101 */
+#define CC1101_UART                 UART_2
+#define CC1101_UART_BAUD            115200
+
 #endif /* DEFINE_H_ */

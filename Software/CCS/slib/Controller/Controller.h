@@ -11,9 +11,10 @@
 #include <stdio.h>
 #include <stdint.h>
 
+#include <define.h>
 
 #include <slib/Driver/Driver.h>
-#include <define.h>
+#include <slib/Controller/PID/PID.h>
 #include <slib/PAV/PAV.h>
 
 #define CONTROLLER_CALLBACK_FRQ 100
@@ -27,6 +28,8 @@ public:
 private:
     static PAV* pav;
     static Driver driver;
+    static PID pid;
+
     static void controllerCallBack();
 };
 

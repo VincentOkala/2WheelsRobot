@@ -19,6 +19,25 @@ typedef struct{
     Altitude altitude;
 }StatePAV;
 
+typedef struct{
+    float KP;
+    float KI;
+    float KD;
+    float MinIpart;
+    float MaxIpart;
+    float MinUout;
+    float MaxUout;
+    float Ppart;
+    float Ipart;
+    float Dpart;
+    float Uout;
+}Pid;
+
+typedef struct{
+    Pid pid;
+
+}ControllerPAV;
+
 class PAV
 {
 public:
@@ -26,6 +45,7 @@ public:
     virtual ~PAV();
     void init();
     StatePAV state;
+    ControllerPAV controller;
 };
 
 #endif /* SLIB_PAV_PAV_H_ */

@@ -19,8 +19,9 @@ PWM::~PWM(){}
  */
 PWM::PWM(PWM_ PWM_, PWM_GEN_ PWM_GEN_, uint32_t freq)
 {
-    // TODO Auto-generated constructor stub
     uint32_t SYSCTL_PERIPH_PWM;
+    uint32_t PWM_OUT_A_BIT;
+    uint32_t PWM_OUT_B_BIT;
 
     switch(PWM_){
     case PWM_0:
@@ -38,21 +39,29 @@ PWM::PWM(PWM_ PWM_, PWM_GEN_ PWM_GEN_, uint32_t freq)
         PWM_GEN = PWM_GEN_0;
         PWM_OUT_A = PWM_OUT_0;
         PWM_OUT_B = PWM_OUT_1;
+        PWM_OUT_A_BIT = PWM_OUT_0_BIT;
+        PWM_OUT_B_BIT = PWM_OUT_1_BIT;
         break;
     case GEN_1:
         PWM_GEN = PWM_GEN_1;
         PWM_OUT_A = PWM_OUT_2;
         PWM_OUT_B = PWM_OUT_3;
+        PWM_OUT_A_BIT = PWM_OUT_2_BIT;
+        PWM_OUT_B_BIT = PWM_OUT_3_BIT;
         break;
     case GEN_2:
         PWM_GEN = PWM_GEN_2;
         PWM_OUT_A = PWM_OUT_4;
         PWM_OUT_B = PWM_OUT_5;
+        PWM_OUT_A_BIT = PWM_OUT_4_BIT;
+        PWM_OUT_B_BIT = PWM_OUT_5_BIT;
         break;
     case GEN_3:
         PWM_GEN = PWM_GEN_3;
         PWM_OUT_A = PWM_OUT_6;
         PWM_OUT_B = PWM_OUT_7;
+        PWM_OUT_A_BIT = PWM_OUT_6_BIT;
+        PWM_OUT_B_BIT = PWM_OUT_7_BIT;
         break;
     }
 
@@ -61,10 +70,13 @@ PWM::PWM(PWM_ PWM_, PWM_GEN_ PWM_GEN_, uint32_t freq)
     SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM);
     while(!(SysCtlPeripheralReady(SYSCTL_PERIPH_PWM)));
 
-    SysCtlPWMClockSet(SYSCTL_PWMDIV_1);
+    SysCtlPWMClockSet(SYSCTL_PWMDIV_2);
     PWMGenConfigure(PWM_BASE, PWM_GEN, PWM_GEN_MODE_DOWN | PWM_GEN_MODE_NO_SYNC);
     PWMGenPeriodSet(PWM_BASE, PWM_GEN, ulPeriod);
     PWMGenEnable(PWM_BASE, PWM_GEN);
+
+    PWMOutputState(PWM_BASE, PWM_OUT_A_BIT, true);
+    PWMOutputState(PWM_BASE, PWM_OUT_B_BIT, true);
 }
 
 /**

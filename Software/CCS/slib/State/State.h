@@ -15,7 +15,7 @@
 #include <peripheral/GPIO/GPIO.h>
 #include "../PAV/PAV.h"
 
-#define UPDATE_FREQ     100
+#define STATE_UPDATE_FREQ     100
 
 class State
 {
