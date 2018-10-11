@@ -19,10 +19,11 @@ void CC1101::init(){
     uart = UART(CC1101_UART, CC1101_UART_BAUD);
 
     IntEnable(uart.INT_UART);
-    UARTIntEnable(uart.UART_BASE, UART_INT_RX);
+    UARTIntEnable(uart.UART_BASE, UART_INT_RX | UART_INT_RT);
 
     UARTIntRegister(uart.UART_BASE, UARTIntHandler);
-    UARTFIFODisable(uart.UART_BASE);
+    UARTFIFOLevelSet(uart.UART_BASE,UART_FIFO_TX4_8, UART_FIFO_RX4_8);
+    UARTFIFOEnable(uart.UART_BASE);
 
     cc1101_stt = CC1101_IDLE;
 }
