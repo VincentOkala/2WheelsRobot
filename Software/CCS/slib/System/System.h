@@ -24,7 +24,6 @@ public:
     static void init();
     static void delayMs(uint32_t time);
 private:
-    static Logger logger;
     static Task   task;
 };
 

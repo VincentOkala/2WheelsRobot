@@ -25,6 +25,7 @@ class DRV8412
 public:
     DRV8412();
     virtual ~DRV8412();
+    void init();
     void setVelocityLeft(float duty);
     void setVelocityRight(float duty);
     void disable();

@@ -121,10 +121,10 @@ peripheral/I2C \
 peripheral/PWM \
 peripheral/QEI \
 peripheral/UART \
+slib/Controller \
+slib/Controller/PID \
 slib/Driver \
-slib/Log \
-slib/Params \
-slib/State/Kalman \
+slib/PAV \
 slib/State \
 slib/System \
 slib/Task \

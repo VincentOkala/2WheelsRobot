@@ -7,26 +7,15 @@
 
 #include <slib/System/System.h>
 
-Logger System::logger;
 Task   System::task;
 
-System::System()
-{
-    // TODO Auto-generated constructor stub
+System::System(){}
 
-}
-
-System::~System()
-{
-    // TODO Auto-generated destructor stub
-}
+System::~System(){}
 
 void System::init(){
     SysCtlClockSet(SYSCTL_SYSDIV_2_5|SYSCTL_USE_PLL|SYSCTL_OSC_MAIN|SYSCTL_XTAL_16MHZ);
     IntMasterEnable();  // Enable master interrupt
-
-    logger = Logger();
-    Log::init(&logger);
     task.init();
 }
 

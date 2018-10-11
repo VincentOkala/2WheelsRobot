@@ -13,29 +13,25 @@
 
 #include <modules/GY521/GY521.h>
 #include <peripheral/GPIO/GPIO.h>
-#include <slib/Params/Params.h>
-#include "../../peripheral/GPTM/GPTM.h"
-#include "../State/Kalman/Kalman.h"
+#include "../PAV/PAV.h"
 
 #define UPDATE_FREQ     100
 
 class State
 {
 public:
-    State(Params* params);
+    State();
     virtual ~State();
 
+    void init(PAV* _pav);
     float getRoll();
 
 private:
     static GY521 gy521;
     static GPIO portF;
+    static PAV* pav;
 
-    static float roll;
     static void stateUpdateTask(void);
-    static Params* params;
-
-    static Kalman kalman;
 };
 
 #endif /* SLIB_State_H_ */

@@ -10,8 +10,10 @@
 #include <modules/GY521/GY521.h>
 #include <define.h>
 
-GY521::GY521(){
+GY521::GY521(){}
+GY521::~GY521(){}
 
+void GY521::init(){
     i2c = I2C(GY521_I2C, GY521_I2C_SPEED);
 
     GYRO_SCALE  = GY521_GYRO_SCALE;
@@ -54,10 +56,7 @@ GY521::GY521(){
 
     i2cBuffer[3] = AFS_SEL3; // ACCEL_SCALE_16G
     i2c.WriteBurst(MPU6050_ADDRESS, SMPLRT_DIV, i2cBuffer, 4); // Write to all five registers at once
-
 }
-
-GY521::~GY521(){}
 
 void GY521::updateAccel(){
     uint8_t buf[6];

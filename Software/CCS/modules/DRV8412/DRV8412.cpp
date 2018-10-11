@@ -10,9 +10,10 @@
 #include <slib/Log/Log.h>
 
 
-DRV8412::DRV8412()
-{
+DRV8412::DRV8412(){}
+DRV8412::~DRV8412(){}
 
+void DRV8412::init(){
     pwm = PWM(DRV8421_PWM, DRV8421_PWM_GEN, DRV8421_PWM_FREQ);
     pwm.setDutyA(50);
     pwm.setDutyB(50);
@@ -26,10 +27,7 @@ DRV8412::DRV8412()
 
     port.write(DRV8421_RSTAB_PIN, VALUE_OFF);
     port.write(DRV8421_RSTCD_PIN, VALUE_OFF);
-
 }
-
-DRV8412::~DRV8412(){}
 
 void DRV8412::setVelocityLeft(float duty){
 

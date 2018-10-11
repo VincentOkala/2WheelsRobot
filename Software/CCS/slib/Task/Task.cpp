@@ -9,15 +9,9 @@
 
 GPTM Task::task_timer;
 
-Task::Task()
-{
-    // TODO Auto-generated constructor stub
-}
+Task::Task(){}
 
-Task::~Task()
-{
-    // TODO Auto-generated destructor stub
-}
+Task::~Task(){}
 
 void Task::init(){
     task_timer = GPTM(GPTM_0, TIMER_FREQ);

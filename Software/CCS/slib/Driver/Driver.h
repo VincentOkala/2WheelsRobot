@@ -12,18 +12,20 @@
 #include <stdbool.h>
 
 #include <modules/DRV8412/DRV8412.h>
+#include <slib/PAV/PAV.h>
 
-class DRIVER
+class Driver
 {
 public:
-    DRIVER();
-    virtual ~DRIVER();
+    Driver();
+    virtual ~Driver();
+    void init();
     void setVelocityLeft(float duty);
     void setVelocityRight(float duty);
     void disable();
     void enable();
 private:
-    DRV8412 drv8421;
+    static DRV8412 drv8421;
 };
 
 #endif /* SLIB_DRIVER_DRIVER_H_ */

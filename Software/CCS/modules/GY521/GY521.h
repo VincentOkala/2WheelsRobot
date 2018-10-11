@@ -32,6 +32,8 @@ class GY521
 public:
     GY521();
     virtual ~GY521();
+
+    void init();
     void getAccel(float *accel);
     void getGyro(float *gyro);
     float getPitch();

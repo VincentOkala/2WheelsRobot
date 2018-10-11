@@ -9,6 +9,7 @@
 #include <slib/Log/Log.h>
 
 GPIO::GPIO(){}
+GPIO::~GPIO(){}
 
 /**
  * @brief Construct a new GPIO::GPIO object
@@ -49,8 +50,6 @@ GPIO::GPIO(GPIO_PORT_ GPIO_PORT_)
     while(!(SysCtlPeripheralReady(SYSCTL_PERIPH_GPIO)));
 
 }
-
-GPIO::~GPIO(){}
 
 /**
 * @brief choose mode for a pin
