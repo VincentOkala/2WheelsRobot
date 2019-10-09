@@ -15,7 +15,11 @@
 #define MOTOR0_CHANNEL 	TIM_CHANNEL_3
 #define MOTOR1_CHANNEL 	TIM_CHANNEL_3
 
-//#define MOTOR0_INVERT
-//#define MOTOR1_INVERT
+// define if you want to change motor direction
+#define MOTOR0_INVERT
+#define MOTOR1_INVERT
+
+#define MPU6050_I2C			hi2c1
+#define MPU6050_ADDRESS 	(MPU6050_DEFAULT_ADDRESS << 1)
 
 #endif /* USERCODE_USER_DEFINE_H_ */
