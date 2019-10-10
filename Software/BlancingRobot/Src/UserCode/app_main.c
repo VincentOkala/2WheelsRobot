@@ -71,11 +71,11 @@ static void serial_callback(uint8_t* ctx){
 void app_main(){
 	HAL_Delay(1000);
 	motors_init();
-	IMU_init();
+//	IMU_init();
 	uart_init(&uart_drv);
 	timer_register_callback(log_callback, 100, 0, TIMER_MODE_REPEAT);
-	timer_register_callback(controller_callback, 20, 0, TIMER_MODE_REPEAT);
-	timer_register_callback(serial_callback, 20, 0, TIMER_MODE_REPEAT);
+//	timer_register_callback(controller_callback, 20, 0, TIMER_MODE_REPEAT);
+	timer_register_callback(serial_callback, 10, 0, TIMER_MODE_REPEAT);
 }
 
 #endif /* USERCODE_APP_MAIN_C_ */

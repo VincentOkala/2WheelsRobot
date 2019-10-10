@@ -17,10 +17,10 @@
 
 typedef void (*on_char_recv_cb_t)(const uint8_t);
 
-#define TX_DMA_BUF_SIZE 64
-#define RX_DMA_BUF_SIZE	64
-#define TX_CIR_BUF_SIZE 64
-#define RX_CIR_BUF_SIZE 64
+#define TX_DMA_BUF_SIZE 128
+#define RX_DMA_BUF_SIZE	128
+#define TX_CIR_BUF_SIZE 128
+#define RX_CIR_BUF_SIZE 128
 
 typedef struct{
 	// Public elements. Should be changed by user

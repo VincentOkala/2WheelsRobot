@@ -12,6 +12,11 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
 }
 
 void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart){
+	uart_drv->rx_timeout_flag = true;
+	HAL_UART_RxCpltCallback(huart);
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	if(huart->Instance == uart_drv->huart->Instance){
 	    uint16_t i, start, length;
 	    uint16_t currCNDTR = __HAL_DMA_GET_COUNTER(huart->hdmarx);
@@ -68,7 +73,7 @@ void uart_cb()
 	}
 
     uart_drv->rx_timeout_flag = true;
-    uart_drv->huart->hdmarx->XferHalfCpltCallback(uart_drv->huart->hdmarx);
+    uart_drv->huart->hdmarx->XferCpltCallback(uart_drv->huart->hdmarx);
 }
 
 /**
@@ -91,8 +96,9 @@ bool uart_init(uart_drv_t* const uart_drv_){
 	uart_drv->rx_timeout_flag = false;
 	HAL_UART_Receive_DMA(uart_drv->huart, (uint8_t*)uart_drv->rx_dma_buffer, sizeof(uart_drv->rx_dma_buffer));
 
+	uart_drv->tx_completed = true;
 
-	timer_register_callback(uart_cb, 20, 0, TIMER_MODE_REPEAT);
+	timer_register_callback(uart_cb, 5, 0, TIMER_MODE_REPEAT);
 	return true;
 }
 
@@ -108,7 +114,7 @@ bool uart_read(uart_drv_t* uart_drv, uint8_t* data, uint16_t* len){
 	for(uint16_t i=0; i<*len; i++){
 		bool drv_stt = uart_read_chr(uart_drv, data + i);
 		if(drv_stt != true){
-			*len = i+1;
+			*len = i;
 			return drv_stt;
 		}
 	}
