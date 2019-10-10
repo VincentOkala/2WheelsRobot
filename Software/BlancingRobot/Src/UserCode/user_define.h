@@ -22,4 +22,6 @@
 #define MPU6050_I2C			hi2c1
 #define MPU6050_ADDRESS 	(MPU6050_DEFAULT_ADDRESS << 1)
 
+#define COM_USART			huart1
+
 #endif /* USERCODE_USER_DEFINE_H_ */
