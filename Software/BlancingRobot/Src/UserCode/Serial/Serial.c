@@ -12,49 +12,21 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
 }
 
 void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart){
-	uart_drv->rx_timeout_flag = true;
 	HAL_UART_RxCpltCallback(huart);
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	if(huart->Instance == uart_drv->huart->Instance){
-	    uint16_t i, start, length;
+		 __HAL_DMA_DISABLE(huart->hdmarx);
 	    uint16_t currCNDTR = __HAL_DMA_GET_COUNTER(huart->hdmarx);
-
-	    /* Ignore IDLE Timeout when the received characters exactly filled up the DMA buffer and DMA Rx Complete IT is generated, but there is no new character during timeout */
-	    if(uart_drv->rx_timeout_flag && currCNDTR == sizeof(uart_drv->rx_dma_buffer))
-	    {
-	    	uart_drv->rx_timeout_flag = false;
-	        return;
-	    }
-
-	    /* Determine start position in DMA buffer based on previous CNDTR value */
-	    start = (uart_drv->prevCNDTR < sizeof(uart_drv->rx_dma_buffer)) ? ( sizeof(uart_drv->rx_dma_buffer) - uart_drv->prevCNDTR) : 0;
-
-	    if(uart_drv->rx_timeout_flag)    /* Timeout event */
-	    {
-	        /* Determine new data length based on previous DMA_CNDTR value:
-	         *  If previous CNDTR is less than DMA buffer size: there is old data in DMA buffer (from previous timeout) that has to be ignored.
-	         *  If CNDTR == DMA buffer size: entire buffer content is new and has to be processed.
-	        */
-	        length = (uart_drv->prevCNDTR < sizeof(uart_drv->rx_dma_buffer)) ? (uart_drv->prevCNDTR - currCNDTR) : (sizeof(uart_drv->rx_dma_buffer) - currCNDTR);
-	        uart_drv->prevCNDTR = currCNDTR;
-	        uart_drv->rx_timeout_flag = false;
-	    }
-	    else                /* DMA Rx Complete event */
-	    {
-	        length = sizeof(uart_drv->rx_dma_buffer) - start;
-	        uart_drv->prevCNDTR = sizeof(uart_drv->rx_dma_buffer);
-	    }
-
-	    /* Change the previous remaining data unit to current remaining data unit */
-	    uart_drv->prevCNDTR = currCNDTR;
-
+	    uint16_t length =  sizeof(uart_drv->rx_dma_buffer) - currCNDTR;
 	    /* Copy and Process new data */
-	    for(i=start; i<start+length; i++)
+	    for(uint16_t i=0; i<length; i++)
 	    {
 	    	circular_buf_put(&uart_drv->rx_cbuf_handle, uart_drv->rx_dma_buffer[i]);
 	    }
+	    huart->hdmarx->Instance->CNDTR = sizeof(uart_drv->rx_dma_buffer);
+	    __HAL_DMA_ENABLE(huart->hdmarx);
 	}
 }
 
@@ -71,8 +43,6 @@ void uart_cb()
 			HAL_UART_Transmit_DMA(uart_drv->huart, uart_drv->tx_dma_buffer, size);
 		}
 	}
-
-    uart_drv->rx_timeout_flag = true;
     uart_drv->huart->hdmarx->XferCpltCallback(uart_drv->huart->hdmarx);
 }
 
@@ -92,8 +62,6 @@ bool uart_init(uart_drv_t* const uart_drv_){
 	circular_buf_init(&uart_drv->tx_cbuf_handle, uart_drv->tx_buf, sizeof(uart_drv->tx_buf));
 	circular_buf_init(&uart_drv->rx_cbuf_handle, uart_drv->rx_buf, sizeof(uart_drv->rx_buf));
 
-	uart_drv->prevCNDTR =  sizeof(uart_drv->rx_buf);
-	uart_drv->rx_timeout_flag = false;
 	HAL_UART_Receive_DMA(uart_drv->huart, (uint8_t*)uart_drv->rx_dma_buffer, sizeof(uart_drv->rx_dma_buffer));
 
 	uart_drv->tx_completed = true;
