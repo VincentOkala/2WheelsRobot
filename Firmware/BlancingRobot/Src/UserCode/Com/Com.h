@@ -9,10 +9,12 @@
 #define USERCODE_COM_COM_H_
 
 #include "UserCode/Serial/Serial.h"
+#include "UserCode/Mav/protocol/mavlink.h"
 
-typedef void (*on_mav_recv_t)();
+typedef void (*on_mav_recv_t)(mavlink_message_t*);
 
 void com_init();
-void set_on_mav_recv(on_mav_recv_t on_mav_recv);
+void com_set_on_mav_recv(on_mav_recv_t on_mav_recv);
+void com_send(uint8_t *data, uint16_t len);
 
 #endif /* USERCODE_COM_COM_H_ */

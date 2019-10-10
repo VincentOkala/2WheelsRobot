@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<mavlink>
+	<version>3</version>
+	<enums>
+		<enum name="resond_t">
+			<entry name="RESPOND_OK"></entry>
+			<entry name="RESPOND_ERROR"></entry>
+		</enum>
+		<enum name="robot_mode_t">
+			<entry name="MODE_BASIC"></entry>
+			<entry name="MODE_IMU_CALIBRATION"></entry>
+			<entry name="MODE_PID_TUNNING"></entry>
+		</enum>
+		<enum name="cmd_params_t">
+			<entry name="CMD_SAVE"></entry>
+			<entry name="CMD_LOAD"></entry>
+		</enum>
+	</enums>
+	<messages>
+		<message id="0" name="EVT_RESPOND">
+			<description>Command Respond</description>
+			<field type="uint8_t" name="EVT_RESPOND" enum="resond_t">Respond</field>
+		</message>
+		<message id="1" name="CMD_CHANGE_MODE">
+			<description>Command Change Mode</description>
+			<field type="uint8_t" name="CMD_CHANGE_MODE" enum="mode_t">Mode</field>
+		</message>
+
+		<message id="2" name="CMD_VELOCITY">
+			<description>Velocity command</description>
+			<field type="int16_t" name="vx">Velocity x</field>
+			<field type="int16_t" name="vy">Velocity y</field>
+			<field type="int16_t" name="omega">Omega</field>
+		</message>
+		<message id="3" name="EVT_RPY">
+			<description>Velocity command</description>
+			<field type="float" name="roll">Roll</field>
+			<field type="float" name="pitch">Pitch</field>
+		</message>
+
+		<message id="4" name="CMD_MOTOR_SPEED">
+			<description>Velocity command</description>
+			<field type="int16_t" name="motor_speed_0">Motor 0 Speed</field>
+			<field type="int16_t" name="motor_speed_1">Motor 1 Speed</field>
+		</message>
+		<message id="5" name="EVT_MOTOR_SPEED">
+			<description>Velocity command</description>
+			<field type="int16_t" name="motor_speed_0">Motor 0 Speed</field>
+			<field type="int16_t" name="motor_speed_1">Motor 1 Speed</field>
+		</message>
+
+		<message id="6" name="CMD_SET_GYRO_OFFSET">
+			<description>Set Gyro Offset</description>
+			<field type="int16_t" name="gyro_offet_x">Gyro Offset X</field>
+			<field type="int16_t" name="gyro_offet_y">Gyro Offset Y</field>
+			<field type="int16_t" name="gyro_offet_z">Gyro Offset Z</field>
+		</message>
+		<message id="7" name="CMD_GYRO_OFFSET">
+			<description>Save Or Load Gyro Offet</description>
+			<field type="int8_t" name="cmd_params" enum="cmd_params_t">Save Or Load Gyro Offet</field>
+		</message>
+
+		<message id="8" name="CMD_SET_ACCEL_OFFSET">
+			<description>Set Accel Offset</description>
+			<field type="int16_t" name="accel_offet_x">Accel Offset X</field>
+			<field type="int16_t" name="accel_offet_y">Accel Offset Y</field>
+			<field type="int16_t" name="accel_offet_z">Accel Offset Z</field>
+		</message>
+		<message id="9" name="CMD_ACCEL_OFFSET">
+			<description>Save Or Load Accel Offset</description>
+			<field type="int8_t" name="cmd_params" enum="cmd_params_t">Save Or Load Accel Offset</field>
+		</message>
+
+		<message id="10" name="EVT_GYRO_RAW">
+			<description>Get Gyro Offset</description>
+			<field type="int16_t" name="gyro_x">Gyro X</field>
+			<field type="int16_t" name="gyro_y">Gyro Y</field>
+			<field type="int16_t" name="gyro_z">Gyro Z</field>
+		</message>
+
+		<message id="11" name="EVT_ACCEL_RAW">
+			<description>Get Accel Offset</description>
+			<field type="int16_t" name="accel_x">Accel X</field>
+			<field type="int16_t" name="accel_y">Accel Y</field>
+			<field type="int16_t" name="accel_z">Accel Z</field>
+		</message>
+
+		<message id="12" name="CMD_SET_PID">
+			<description>Set PID Coefficent</description>
+			<field type="float" name="KP">KP</field>
+			<field type="float" name="KI">KI</field>
+			<field type="float" name="KD">KD</field>
+		</message>
+		<message id="13" name="CMD_PID">
+			<description>Save Or Load PID Coefficent</description>
+			<field type="int8_t" name="cmd_params" enum="cmd_params_t">Save Or Load PID Coefficent</field>
+		</message>
+
+	</messages>
+</mavlink>
