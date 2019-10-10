@@ -15,7 +15,6 @@ void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart){
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	if(huart->Instance == uart_drv->huart->Instance){
-		 __HAL_DMA_DISABLE(huart->hdmarx);
 	    uint16_t currCNDTR = __HAL_DMA_GET_COUNTER(huart->hdmarx);
 	    uint16_t length =  sizeof(uart_drv->rx_dma_buffer) - currCNDTR;
 	    /* Copy and Process new data */
@@ -23,6 +22,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	    {
 	    	circular_buf_put(&uart_drv->rx_cbuf_handle, uart_drv->rx_dma_buffer[i]);
 	    }
+	    __HAL_DMA_DISABLE(huart->hdmarx);
 	    huart->hdmarx->Instance->CNDTR = sizeof(uart_drv->rx_dma_buffer);
 	    __HAL_DMA_ENABLE(huart->hdmarx);
 	}

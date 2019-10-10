@@ -27,5 +27,5 @@
 #define RX_DMA_BUF_SIZE		512
 #define TX_CIR_BUF_SIZE 	512
 #define RX_CIR_BUF_SIZE 	512
-#define SERIAL_PERIOD		1
+#define SERIAL_PERIOD		50
 #endif /* USERCODE_USER_DEFINE_H_ */

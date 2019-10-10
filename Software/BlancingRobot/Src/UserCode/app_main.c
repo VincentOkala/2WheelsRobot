@@ -75,7 +75,7 @@ void app_main(){
 	uart_init(&uart_drv);
 	timer_register_callback(log_callback, 100, 0, TIMER_MODE_REPEAT);
 //	timer_register_callback(controller_callback, 20, 0, TIMER_MODE_REPEAT);
-	timer_register_callback(serial_callback, 5, 0, TIMER_MODE_REPEAT);
+	timer_register_callback(serial_callback, 50, 0, TIMER_MODE_REPEAT);
 }
 
 #endif /* USERCODE_APP_MAIN_C_ */
