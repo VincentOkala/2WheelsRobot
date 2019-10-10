@@ -1,9 +1,7 @@
 #include "Serial.h"
 #include "UserCode/Timer/timer.h"
 
-#define CIRCULAR_BUFFER_FULL_TIMEOUT	5
 static uart_drv_t* uart_drv;
-
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
 	if(huart->Instance == uart_drv->huart->Instance){
@@ -98,7 +96,7 @@ bool uart_init(uart_drv_t* const uart_drv_){
 
 	uart_drv->tx_completed = true;
 
-	timer_register_callback(uart_cb, 5, 0, TIMER_MODE_REPEAT);
+	timer_register_callback(uart_cb, SERIAL_PERIOD, 0, TIMER_MODE_REPEAT);
 	return true;
 }
 

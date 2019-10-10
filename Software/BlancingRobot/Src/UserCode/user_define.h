@@ -23,5 +23,9 @@
 #define MPU6050_ADDRESS 	(MPU6050_DEFAULT_ADDRESS << 1)
 
 #define COM_USART			huart1
-
+#define TX_DMA_BUF_SIZE 	512
+#define RX_DMA_BUF_SIZE		512
+#define TX_CIR_BUF_SIZE 	512
+#define RX_CIR_BUF_SIZE 	512
+#define SERIAL_PERIOD		1
 #endif /* USERCODE_USER_DEFINE_H_ */

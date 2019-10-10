@@ -14,13 +14,7 @@
 #include <stdbool.h>
 #include "usart.h"
 #include "circular_buffer/circular_buffer.h"
-
-typedef void (*on_char_recv_cb_t)(const uint8_t);
-
-#define TX_DMA_BUF_SIZE 128
-#define RX_DMA_BUF_SIZE	128
-#define TX_CIR_BUF_SIZE 128
-#define RX_CIR_BUF_SIZE 128
+#include "UserCode/user_define.h"
 
 typedef struct{
 	// Public elements. Should be changed by user
@@ -49,7 +43,6 @@ bool uart_read_chr(uart_drv_t* uart_drv, uint8_t* chr);
 bool uart_send(uart_drv_t* uart_drv, const uint8_t* data, const uint16_t len);
 bool uart_read(uart_drv_t* const uart_drv, uint8_t* data, uint16_t* len);
 bool uart_readline(uart_drv_t* uart_drv, uint8_t* data, uint16_t* len);
-bool uart_set_on_char_recv_cb(uart_drv_t* uart_drv, const on_char_recv_cb_t on_char_recv_cb);
 
 bool uart_tx_reset(uart_drv_t* uart_drv);
 bool uart_rx_reset(uart_drv_t* uart_drv);

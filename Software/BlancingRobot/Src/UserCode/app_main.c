@@ -62,8 +62,8 @@ static void controller_callback(uint8_t* ctx){
 }
 
 static void serial_callback(uint8_t* ctx){
-	uint8_t data[20];
-	uint16_t size = 20;
+	uint8_t data[512];
+	uint16_t size = 512;
 	uart_read(&uart_drv, data, &size);
 	uart_send(&uart_drv,data, size);
 }
@@ -75,7 +75,7 @@ void app_main(){
 	uart_init(&uart_drv);
 	timer_register_callback(log_callback, 100, 0, TIMER_MODE_REPEAT);
 //	timer_register_callback(controller_callback, 20, 0, TIMER_MODE_REPEAT);
-	timer_register_callback(serial_callback, 10, 0, TIMER_MODE_REPEAT);
+	timer_register_callback(serial_callback, 5, 0, TIMER_MODE_REPEAT);
 }
 
 #endif /* USERCODE_APP_MAIN_C_ */
