@@ -15,8 +15,8 @@
 
 typedef void (*func_t)(void);
 
-static robot_mode_t  mode = MODE_BASIC;
-static uint8_t 		 mav_send_buf[255];
+static robot_mode_t  gmode = MODE_BASIC;
+static uint8_t 		 gmav_send_buf[255];
 static func_t 		 gmode_init;
 static func_t 		 gmode_deinit;
 static on_mav_recv_t gon_mode_mav_recv;
@@ -26,7 +26,7 @@ static void on_mavlink_recv(mavlink_message_t *msg){
 		mavlink_cmd_change_mode_t cmd_change_mode;
 		mavlink_msg_cmd_change_mode_decode(msg, &cmd_change_mode);
 		if(cmd_change_mode.CMD_CHANGE_MODE == MODE_BASIC){
-			mode = MODE_BASIC;
+			gmode = MODE_BASIC;
 			gmode_deinit();
 			gmode_init = mode_basic_init;
 			gmode_deinit = mode_basic_deinit;
@@ -34,19 +34,19 @@ static void on_mavlink_recv(mavlink_message_t *msg){
 			gmode_init();
 		}
 		else if(cmd_change_mode.CMD_CHANGE_MODE == MODE_IMU_CALIBRATION){
-			mode = MODE_IMU_CALIBRATION;
+			gmode = MODE_IMU_CALIBRATION;
 			gmode_deinit();
 		}
 		else if(cmd_change_mode.CMD_CHANGE_MODE == MODE_IMU_CALIBRATION){
-			mode = MODE_IMU_CALIBRATION;
+			gmode = MODE_IMU_CALIBRATION;
 			gmode_deinit();
 		}
 		mavlink_message_t msg;
 		mavlink_msg_evt_respond_pack(0,0,&msg,RESPOND_OK);
-		uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-		com_send(mav_send_buf, len);
+		uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &msg);
+		com_send(gmav_send_buf, len);
 	}
-	else if(mode == MODE_BASIC){
+	else{
 		gon_mode_mav_recv(msg);
 	}
 }
