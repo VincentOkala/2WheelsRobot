@@ -29,10 +29,6 @@ typedef struct{
 	uint8_t rx_buf[RX_CIR_BUF_SIZE];
 
 	bool tx_completed;
-	bool rx_completed;
-
-	uint16_t prevCNDTR;
-	bool rx_timeout_flag;
 }uart_drv_t;
 
 bool uart_init(uart_drv_t* const uart_drv_);
