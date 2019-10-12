@@ -13,6 +13,7 @@
 #include "Com/Com.h"
 #include "UserCode/Mav/protocol/mavlink.h"
 #include "Mode_Basic/Mode_Basic.h"
+#include "UserCode/Params/Params.h"
 
 typedef void (*func_t)(void);
 
@@ -58,6 +59,8 @@ void app_main(){
 	gmode_deinit = mode_basic_deinit;
 	gon_mode_mav_recv = on_mode_basic_mavlink_recv;
 	gmode_init();
+
+	params_load();
 
 	// Initialize communication
 	com_init();

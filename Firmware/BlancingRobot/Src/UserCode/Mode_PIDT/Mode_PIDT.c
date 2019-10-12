@@ -26,6 +26,7 @@ static void controller_callback(uint8_t* ctx){
 
 static void load_PID(){
 	// Load params from nonvolatile memory
+	params_load();
 
 	// Send params to gcs
 	mavlink_message_t msg;
@@ -37,6 +38,8 @@ static void load_PID(){
 
 static void save_PID(){
 	// Save params to non volatile memory
+	params_save();
+	respond_ok();
 }
 
 static void write_param(mavlink_message_t *msg){

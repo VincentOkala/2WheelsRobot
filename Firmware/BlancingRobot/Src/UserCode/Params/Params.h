@@ -21,4 +21,7 @@ typedef struct{
 
 extern params_t params;
 
+void params_save();
+bool params_load();
+
 #endif /* USERCODE_PARAMS_PARAMS_H_ */

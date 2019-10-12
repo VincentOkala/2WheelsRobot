@@ -8,7 +8,6 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
             qDebug() << "recv msgid: " << msg.msgid;
             if(msg.msgid == MAVLINK_MSG_ID_EVT_RESPOND && isChangeMode){
                 isChangeMode = false;
-                qDebug() << "Response of mode changing";
                 mavlink_evt_respond_t evt_respond;
                 mavlink_msg_evt_respond_decode(&msg, &evt_respond);
                 if(evt_respond.EVT_RESPOND == RESPOND_OK){

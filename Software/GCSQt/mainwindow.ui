@@ -1009,7 +1009,7 @@
        <string>Write params</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btn_change_mode_pid_tunning_4">
+     <widget class="QPushButton" name="btn_mode_pidt_save_params">
       <property name="geometry">
        <rect>
         <x>490</x>

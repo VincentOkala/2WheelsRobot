@@ -49,6 +49,7 @@ private slots:
 
     void mode_pidt_load_timeout();
     void mode_pidt_write_timeout();
+    void mode_pidt_save_timeout();
 
     void on_btn_mode_pidt_load_params_clicked();
 
@@ -61,6 +62,8 @@ private slots:
     void on_sb_step_KI_valueChanged(const QString &arg1);
 
     void on_sb_KD_valueChanged(const QString &arg1);
+
+    void on_btn_mode_pidt_save_params_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -78,8 +81,7 @@ private:
     robot_mode_t changeToMode = MODE_BASIC;
     robot_mode_t currentMode = MODE_BASIC;
 
-    bool isLoadPIDParamSuccessful = false;
-    bool isWritePIDParamSuccessful = false;
+    bool isDoStSuccessfull = false;
 
     bool send(QByteArray bytes);
     void receive(QByteArray bytes);
@@ -94,6 +96,7 @@ private:
 
     void load_pid_params();
     void write_pid_params();
+    void save_pid_params();
     void on_mode_pidt_mav_recv(mavlink_message_t *msg);
 
 };
