@@ -8,11 +8,15 @@
 #ifndef USERCODE_PARAMS_PARAMS_H_
 #define USERCODE_PARAMS_PARAMS_H_
 
+#include <stdint.h>
 #include "UserCode/PID/PID.h"
 
 typedef struct{
 	pid_params_t pid_params;
 	float believe_in_gyro;
+	int32_t gx_offset;
+	int32_t gy_offset;
+	int32_t gz_offset;
 }params_t;
 
 extern params_t params;
