@@ -15,9 +15,10 @@
 typedef void (*connection_failed_cb_t)(void);
 
 bool  IMU_init(void);
+bool  IMU_deinit(void);
 float IMU_get_roll(void);
 float IMU_get_pitch(void);
 void  IMU_set_failed_cb(connection_failed_cb_t connection_failed_cb);
-
+bool IMU_test_connection();
 
 #endif /* USERCODE_IMU_IMU_H_ */

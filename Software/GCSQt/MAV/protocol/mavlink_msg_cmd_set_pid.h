@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE CMD_SET_PID PACKING
 
-#define MAVLINK_MSG_ID_CMD_SET_PID 12
+#define MAVLINK_MSG_ID_CMD_SET_PID 13
 
 MAVPACKED(
 typedef struct __mavlink_cmd_set_pid_t {
@@ -12,17 +12,17 @@ typedef struct __mavlink_cmd_set_pid_t {
 
 #define MAVLINK_MSG_ID_CMD_SET_PID_LEN 12
 #define MAVLINK_MSG_ID_CMD_SET_PID_MIN_LEN 12
-#define MAVLINK_MSG_ID_12_LEN 12
-#define MAVLINK_MSG_ID_12_MIN_LEN 12
+#define MAVLINK_MSG_ID_13_LEN 12
+#define MAVLINK_MSG_ID_13_MIN_LEN 12
 
 #define MAVLINK_MSG_ID_CMD_SET_PID_CRC 73
-#define MAVLINK_MSG_ID_12_CRC 73
+#define MAVLINK_MSG_ID_13_CRC 73
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CMD_SET_PID { \
-    12, \
+    13, \
     "CMD_SET_PID", \
     3, \
     {  { "KP", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_cmd_set_pid_t, KP) }, \

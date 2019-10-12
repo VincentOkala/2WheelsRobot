@@ -10,20 +10,21 @@
 
 #include <math.h>
 #include "IMU.h"
+#include "UserCode/Params/Params.h"
 
 static connection_failed_cb_t gconnection_failed_cb = 0;
 static float roll;
 static float pitch;
-
-static void mpu_callback(uint8_t* ctx){
+static timer_ID_t gtimer_ID_imu_callback;
+static void imu_callback(uint8_t* ctx){
 	int16_t motion_6[6];
 	mpu6050_get_motion(&motion_6[0], &motion_6[1], &motion_6[2], &motion_6[3], &motion_6[4], &motion_6[5]);
 	float accel_roll = atan2(motion_6[1], motion_6[2])*360/M_PI;
 	float accel_pitch = atan2(motion_6[0], motion_6[2])*360/M_PI;
 	float roll_rate = (motion_6[3]*250.0/32768.0)/100.0;
 	float pitch_rate = (motion_6[4]*250.0/32768.0)/100.0;
-	roll = 0.98 *(roll+roll_rate) + 0.02*accel_roll;
-	pitch = 0.98 *(pitch+pitch_rate) + 0.02*accel_pitch;
+	roll = params.believe_in_gyro *(roll+roll_rate) + (1-params.believe_in_gyro)*accel_roll;
+	pitch = params.believe_in_gyro *(pitch+pitch_rate) + (1-params.believe_in_gyro)*accel_pitch;
 }
 
 bool IMU_init(void){
@@ -34,7 +35,12 @@ bool IMU_init(void){
 		gconnection_failed_cb();
 		return false;
 	}
-	timer_register_callback(mpu_callback, 10, 0, TIMER_MODE_REPEAT);
+	gtimer_ID_imu_callback = timer_register_callback(imu_callback, 10, 0, TIMER_MODE_REPEAT);
+	return true;
+}
+
+bool  IMU_deinit(void){
+	timer_unregister_callback(gtimer_ID_imu_callback);
 	return true;
 }
 
@@ -48,6 +54,10 @@ float IMU_get_pitch(void){
 
 void IMU_set_failed_cb(connection_failed_cb_t connection_failed_cb){
 	gconnection_failed_cb = connection_failed_cb;
+}
+
+bool IMU_test_connection(){
+	return MPU6050_test_connection();
 }
 
 #endif /* USERCODE_IMU_IMU_C_ */

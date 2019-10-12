@@ -11,7 +11,6 @@
 #include "UserCode/Timer/timer.h"
 
 static uint8_t mavbuf[MAV_BUFF_SIZE];
-static uint16_t mavbuf_len = 0;
 static mavlink_message_t msg;
 static mavlink_status_t  status;
 static on_mav_recv_t gon_mav_recv;
@@ -21,6 +20,7 @@ static uart_drv_t uart_drv = {
 };
 
 void mavlink_callback(uint8_t* cntx){
+	uint16_t mavbuf_len = MAV_BUFF_SIZE;
 	uart_read(&uart_drv, mavbuf, &mavbuf_len);
 	for(uint16_t i = 0; i < mavbuf_len; i++){
 		uint8_t msg_received = mavlink_parse_char(MAVLINK_COMM_0, mavbuf[i], &msg, &status);
@@ -41,4 +41,12 @@ void com_set_on_mav_recv(on_mav_recv_t on_mav_recv){
 
 void com_send(uint8_t *data, uint16_t len){
 	uart_send(&uart_drv, data, len);
+}
+
+void respond_ok(void){
+	mavlink_message_t msg;
+	uint8_t gmav_send_buf[255];
+	mavlink_msg_evt_respond_pack(0,0,&msg,RESPOND_OK);
+	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &msg);
+	com_send(gmav_send_buf, len);
 }

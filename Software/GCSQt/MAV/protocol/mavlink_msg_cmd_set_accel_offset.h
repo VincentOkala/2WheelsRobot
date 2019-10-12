@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE CMD_SET_ACCEL_OFFSET PACKING
 
-#define MAVLINK_MSG_ID_CMD_SET_ACCEL_OFFSET 8
+#define MAVLINK_MSG_ID_CMD_SET_ACCEL_OFFSET 9
 
 MAVPACKED(
 typedef struct __mavlink_cmd_set_accel_offset_t {
@@ -12,17 +12,17 @@ typedef struct __mavlink_cmd_set_accel_offset_t {
 
 #define MAVLINK_MSG_ID_CMD_SET_ACCEL_OFFSET_LEN 6
 #define MAVLINK_MSG_ID_CMD_SET_ACCEL_OFFSET_MIN_LEN 6
-#define MAVLINK_MSG_ID_8_LEN 6
-#define MAVLINK_MSG_ID_8_MIN_LEN 6
+#define MAVLINK_MSG_ID_9_LEN 6
+#define MAVLINK_MSG_ID_9_MIN_LEN 6
 
 #define MAVLINK_MSG_ID_CMD_SET_ACCEL_OFFSET_CRC 86
-#define MAVLINK_MSG_ID_8_CRC 86
+#define MAVLINK_MSG_ID_9_CRC 86
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CMD_SET_ACCEL_OFFSET { \
-    8, \
+    9, \
     "CMD_SET_ACCEL_OFFSET", \
     3, \
     {  { "accel_offet_x", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_cmd_set_accel_offset_t, accel_offet_x) }, \

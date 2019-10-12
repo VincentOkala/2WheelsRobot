@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE CMD_SET_GYRO_OFFSET PACKING
 
-#define MAVLINK_MSG_ID_CMD_SET_GYRO_OFFSET 6
+#define MAVLINK_MSG_ID_CMD_SET_GYRO_OFFSET 7
 
 MAVPACKED(
 typedef struct __mavlink_cmd_set_gyro_offset_t {
@@ -12,17 +12,17 @@ typedef struct __mavlink_cmd_set_gyro_offset_t {
 
 #define MAVLINK_MSG_ID_CMD_SET_GYRO_OFFSET_LEN 6
 #define MAVLINK_MSG_ID_CMD_SET_GYRO_OFFSET_MIN_LEN 6
-#define MAVLINK_MSG_ID_6_LEN 6
-#define MAVLINK_MSG_ID_6_MIN_LEN 6
+#define MAVLINK_MSG_ID_7_LEN 6
+#define MAVLINK_MSG_ID_7_MIN_LEN 6
 
 #define MAVLINK_MSG_ID_CMD_SET_GYRO_OFFSET_CRC 146
-#define MAVLINK_MSG_ID_6_CRC 146
+#define MAVLINK_MSG_ID_7_CRC 146
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CMD_SET_GYRO_OFFSET { \
-    6, \
+    7, \
     "CMD_SET_GYRO_OFFSET", \
     3, \
     {  { "gyro_offet_x", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_cmd_set_gyro_offset_t, gyro_offet_x) }, \

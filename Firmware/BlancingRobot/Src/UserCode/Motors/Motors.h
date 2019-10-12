@@ -16,6 +16,7 @@ typedef enum{
 }motors_t;
 
 void motors_init();
+void motors_deinit();
 void motors_setspeed(motors_t motor, int32_t speed); // Speed range -1000, 1000
 
 #endif /* USERCODE_MOTORS_MOTORS_H_ */

@@ -16,5 +16,6 @@ typedef void (*on_mav_recv_t)(mavlink_message_t*);
 void com_init();
 void com_set_on_mav_recv(on_mav_recv_t on_mav_recv);
 void com_send(uint8_t *data, uint16_t len);
+void respond_ok(void);
 
 #endif /* USERCODE_COM_COM_H_ */
