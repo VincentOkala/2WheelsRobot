@@ -34,6 +34,7 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
                     on_mode_basic_mav_recv(&msg);
                     break;
                 case MODE_IMU_CALIBRATION:
+                    on_mode_imu_mav_recv(&msg);
                     break;
                 case MODE_PID_TUNNING:
                     on_mode_pidt_mav_recv(&msg);

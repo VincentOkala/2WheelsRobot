@@ -18,7 +18,7 @@ float pid_compute(pid_params_t *pid_params, float error){
 		pid_params->preError = error;
 		pid_params->isFistCompute = false;
 	}
-	float D_part = pid_params->KD*(error - pid_params->preError);
+	float D_part = pid_params->KD*(pid_params->preError-error);
 	if(D_part < pid_params->minDpart) D_part = pid_params->minDpart;
 	if(D_part > pid_params->maxDPart) D_part = pid_params->maxDPart;
 	pid_params->preError = error;

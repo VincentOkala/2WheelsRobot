@@ -18,7 +18,7 @@ static timer_ID_t gtimer_ID_IMU_rpy;
 
 static void controller_callback(uint8_t* ctx){
 	float roll = IMU_get_roll();
-	float speed = pid_compute(&params.pid_params,roll);
+	float speed = pid_compute(&params.pid_params,roll-ROLL_OFFSET);
 	motors_setspeed(MOTOR_0, speed);
 	motors_setspeed(MOTOR_1, speed);
 }

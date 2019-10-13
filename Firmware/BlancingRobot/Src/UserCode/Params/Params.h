@@ -14,6 +14,7 @@
 typedef struct{
 	pid_params_t pid_params;
 	float believe_in_gyro;
+	float stand_point;
 	int32_t gx_offset;
 	int32_t gy_offset;
 	int32_t gz_offset;

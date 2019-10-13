@@ -26,7 +26,8 @@ params_t params = {
 				.maxOut = 1000,
 				.isFistCompute = true
 		},
-		.believe_in_gyro = 0.98,
+		.stand_point = 0,
+		.believe_in_gyro = 0.90,
 
 		.gx_offset = 1,
 		.gy_offset = 2,
@@ -62,6 +63,10 @@ void params_save(){
 	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, *ptr);
 	address+=4;
 
+	ptr = &params.stand_point;
+	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, *ptr);
+	address+=4;
+
 	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, params.gx_offset);
 	address+=4;
 
@@ -89,6 +94,9 @@ bool params_load(){
 	address+=4;
 	ptr = (__IO uint32_t*) address;
 	params.pid_params.KD = *ptr;
+	address+=4;
+	ptr = (__IO uint32_t*) address;
+	params.stand_point = *ptr;
 	address+=4;
 	params.gx_offset = (*(__IO uint32_t*) address);
 	address+=4;

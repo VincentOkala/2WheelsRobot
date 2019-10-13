@@ -51,6 +51,10 @@ private slots:
     void mode_pidt_write_timeout();
     void mode_pidt_save_timeout();
 
+    void mode_imu_load_timeout();
+    void mode_imu_write_timeout();
+    void mode_imu_save_timeout();
+
     void on_btn_mode_pidt_load_params_clicked();
 
     void on_btn_respond_ok_clicked();
@@ -64,6 +68,14 @@ private slots:
     void on_sb_KD_valueChanged(const QString &arg1);
 
     void on_btn_mode_pidt_save_params_clicked();
+
+    void on_btn_mode_imu_load_params_clicked();
+
+    void on_btn_mode_imu_write_params_clicked();
+
+    void on_btn_mode_imu_save_params_clicked();
+
+    void on_btn_gyro_calib_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -80,8 +92,12 @@ private:
     bool changeModeSuccess = false;
     robot_mode_t changeToMode = MODE_BASIC;
     robot_mode_t currentMode = MODE_BASIC;
-
     bool isDoStSuccessfull = false;
+    int16_t gx_offset;
+    int16_t gy_offset;
+    int16_t gz_offset;
+    float stand_point;
+    bool is_imu_calibrating = false;
 
     bool send(QByteArray bytes);
     void receive(QByteArray bytes);
@@ -91,7 +107,6 @@ private:
     void app_main_init();
     void app_main_on_data_recv(QByteArray bytes);
     void app_command_change_mode(robot_mode_t mode);
-
     void on_mode_basic_mav_recv(mavlink_message_t *msg);
 
     void load_pid_params();
@@ -99,6 +114,7 @@ private:
     void save_pid_params();
     void on_mode_pidt_mav_recv(mavlink_message_t *msg);
 
+    void on_mode_imu_mav_recv(mavlink_message_t *msg);
 };
 
 #endif // MAINWINDOW_H

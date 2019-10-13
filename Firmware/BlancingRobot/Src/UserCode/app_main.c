@@ -9,10 +9,12 @@
 #define USERCODE_APP_MAIN_C_
 
 #include <UserCode/Mode_PIDT/Mode_PIDT.h>
+#include <UserCode/Mode_IMU/Mode_IMU.h>
+#include <UserCode/Mode_Basic/Mode_Basic.h>
+
 #include "app_main.h"
 #include "Com/Com.h"
 #include "UserCode/Mav/protocol/mavlink.h"
-#include "Mode_Basic/Mode_Basic.h"
 #include "UserCode/Params/Params.h"
 
 typedef void (*func_t)(void);
@@ -34,6 +36,10 @@ static void on_mavlink_recv(mavlink_message_t *msg){
 			gon_mode_mav_recv = on_mode_basic_mavlink_recv;
 		}
 		else if(cmd_change_mode.CMD_CHANGE_MODE == MODE_IMU_CALIBRATION){
+			gmode = MODE_IMU_CALIBRATION;
+			gmode_init = mode_imu_init;
+			gmode_deinit = mode_imu_deinit;
+			gon_mode_mav_recv = on_mode_imu_mavlink_recv;
 			gmode = MODE_IMU_CALIBRATION;
 		}
 		else if(cmd_change_mode.CMD_CHANGE_MODE == MODE_PID_TUNNING){

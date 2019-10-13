@@ -32,7 +32,8 @@ SOURCES += \
     appmain.cpp \
     mode_basic.cpp \
     ledindicator.cpp \
-    mode_pidt.cpp
+    mode_pidt.cpp \
+    modu_imu.cpp
 
 HEADERS += \
         mainwindow.h \

@@ -63,6 +63,7 @@
 			<field type="int16_t" name="gyro_offet_x">Gyro Offset X</field>
 			<field type="int16_t" name="gyro_offet_y">Gyro Offset Y</field>
 			<field type="int16_t" name="gyro_offet_z">Gyro Offset Z</field>
+			<field type="float" name="stand_point">Stand point</field>
 		</message>
 		<message id="8" name="CMD_GYRO_OFFSET">
 			<description>Save Or Load Gyro Offet</description>
@@ -85,6 +86,7 @@
 			<field type="int16_t" name="gyro_x">Gyro X</field>
 			<field type="int16_t" name="gyro_y">Gyro Y</field>
 			<field type="int16_t" name="gyro_z">Gyro Z</field>
+			<field type="float" name="stand_point">Stand point</field>
 		</message>
 
 		<message id="12" name="EVT_ACCEL_RAW">
