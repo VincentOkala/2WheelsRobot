@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=E:/Projects/2WheelsRobot/Software/BlancingRobot/Inc
+HeaderPath=E:/Projects/2WheelsRobot/Firmware/BlancingRobot/Inc
 HeaderFiles=usb_device.h;usbd_conf.h;usbd_desc.h;usbd_cdc_if.h;stm32f1xx_it.h;stm32f1xx_hal_conf.h;main.h;gpio.h;i2c.h;tim.h;usart.h;FreeRTOSConfig.h;dma.h;
-SourcePath=E:/Projects/2WheelsRobot/Software/BlancingRobot/Src
+SourcePath=E:/Projects/2WheelsRobot/Firmware/BlancingRobot/Src
 SourceFiles=usb_device.c;usbd_conf.c;usbd_desc.c;usbd_cdc_if.c;stm32f1xx_it.c;stm32f1xx_hal_msp.c;main.c;gpio.c;i2c.c;tim.c;usart.c;freertos.c;stm32f1xx_hal_timebase_tim.c;dma.c;
 
 [PreviousLibFiles]

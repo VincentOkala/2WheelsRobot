@@ -5,14 +5,14 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
     for(uint16_t i = 0; i < bytes.size(); i++){
         uint8_t msg_received = mavlink_parse_char(MAVLINK_COMM_0, bytes[i], &msg, &status);
         if(msg_received == 1){
-            qDebug() << "recv msgid: " << msg.msgid;
+            qDebug() << "Recv msgid: " << msg.msgid;
             if(msg.msgid == MAVLINK_MSG_ID_EVT_RESPOND && isChangeMode){
                 isChangeMode = false;
                 mavlink_evt_respond_t evt_respond;
                 mavlink_msg_evt_respond_decode(&msg, &evt_respond);
                 if(evt_respond.EVT_RESPOND == RESPOND_OK){
                     changeModeSuccess = true;
-                    showStatus("Succeed to change mode",3000);
+                    showStatus("Succeed to change mode",1000);
                     switch (changeToMode) {
                     case MODE_BASIC:
                         currentMode = MODE_BASIC;
@@ -27,6 +27,7 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
                         break;
                     }
                 }
+                qDebug() << "Mode: " << currentMode;
             }
             else{
                 switch (currentMode) {
@@ -54,7 +55,7 @@ void MainWindow::app_main_init(){
 void MainWindow::app_command_timeout(){
     isChangeMode = false;
     if(!changeModeSuccess){
-        showStatus("Unable to change mode",3000);
+        showStatus("Unable to change mode",1000);
     }
 }
 
@@ -67,8 +68,8 @@ void MainWindow::app_command_change_mode(robot_mode_t mode){
     mavlink_msg_cmd_change_mode_pack(0,0,&msg, mode);
     uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &msg);
     if(send(QByteArray::fromRawData((char*)(gmav_send_buf),len))){
-         showStatus("Requesting to change mode",1000);
-         QTimer::singleShot(2000, this, SLOT(app_command_timeout()));
+         showStatus("Requesting to change mode",500);
+         QTimer::singleShot(1000, this, SLOT(app_command_timeout()));
     }
     else{
         showStatus("Cannot request to change mode",1000);

@@ -8,7 +8,7 @@
 #ifndef USERCODE_MODE_IMU_MODE_IMU_H_
 #define USERCODE_MODE_IMU_MODE_IMU_H_
 
-#include "UserCode/Mav/protocol/mavlink.h"
+#include "UserCode/Com/Com.h"
 #include "UserCode/user_define.h"
 
 void mode_imu_init();

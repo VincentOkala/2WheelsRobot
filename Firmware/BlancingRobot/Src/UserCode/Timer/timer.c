@@ -6,8 +6,8 @@
  */
 #include "tim.h"
 #include "timer.h"
+#include "UserCode/user_define.h"
 
-#define MAX_CALLBACK_FUNC	15
 
 static callback_t callbacks[MAX_CALLBACK_FUNC];
 
@@ -17,9 +17,9 @@ timer_ID_t timer_register_callback(timer_callback_func_t timer_callback_func, ui
 			callbacks[i].timer_callback_func = timer_callback_func;
 			callbacks[i].period_ms = period_ms;
 			callbacks[i].context = context;
-			callbacks[i].cnt = 0;
-			callbacks[i].id = i;
 			callbacks[i].mode = mode;
+			callbacks[i].cnt = period_ms;
+			callbacks[i].id = i;
 			return i;
 		}
 	}
@@ -38,10 +38,10 @@ void user_systick()
 {
 	for(uint8_t i = 0; i < MAX_CALLBACK_FUNC; i++){
 		if(callbacks[i].timer_callback_func != 0){
-			callbacks[i].cnt++;
-			if(callbacks[i].cnt == callbacks[i].period_ms){
+			callbacks[i].cnt--;
+			if(callbacks[i].cnt == 0){
 				callbacks[i].timer_callback_func(callbacks[i].context);
-				callbacks[i].cnt = 0;
+				callbacks[i].cnt = callbacks[i].period_ms;
 				if(callbacks[i].mode == TIMER_MODE_ONE_SHOT) callbacks[i].timer_callback_func = 0;
 			}
 		}

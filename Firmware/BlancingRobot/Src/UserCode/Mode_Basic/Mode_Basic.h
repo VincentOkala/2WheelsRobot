@@ -8,7 +8,7 @@
 #ifndef USERCODE_MODE_BASIC_MODE_BASIC_H_
 #define USERCODE_MODE_BASIC_MODE_BASIC_H_
 
-#include "UserCode/Mav/protocol/mavlink.h"
+#include "UserCode/Com/Com.h"
 #include "UserCode/user_define.h"
 
 void mode_basic_init();

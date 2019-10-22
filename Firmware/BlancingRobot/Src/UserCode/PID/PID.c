@@ -18,7 +18,7 @@ float pid_compute(pid_params_t *pid_params, float error){
 		pid_params->preError = error;
 		pid_params->isFistCompute = false;
 	}
-	float D_part = pid_params->KD*(pid_params->preError-error);
+	float D_part = pid_params->KD*(error-pid_params->preError);
 	if(D_part < pid_params->minDpart) D_part = pid_params->minDpart;
 	if(D_part > pid_params->maxDPart) D_part = pid_params->maxDPart;
 	pid_params->preError = error;
@@ -28,4 +28,10 @@ float pid_compute(pid_params_t *pid_params, float error){
 	if(out > pid_params->maxOut) out = pid_params->maxOut;
 
 	return out;
+}
+
+void pid_reset(pid_params_t *pid_params){
+	pid_params->isFistCompute = true;
+	pid_params->preIPart = 0;
+	pid_params->preError = 0;
 }

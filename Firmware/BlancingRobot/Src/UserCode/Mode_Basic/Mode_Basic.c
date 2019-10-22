@@ -18,13 +18,9 @@ static timer_ID_t gtimer_ID_IMU_rpy;
 
 static void controller_callback(uint8_t* ctx){
 	float roll = IMU_get_roll();
-	float speed = pid_compute(&params.pid_params,roll-ROLL_OFFSET);
+	float speed = pid_compute(&params.pid_params,params.stand_point - roll);
 	motors_setspeed(MOTOR_0, speed);
 	motors_setspeed(MOTOR_1, speed);
-}
-
-void on_mode_basic_mavlink_recv(mavlink_message_t *msg){
-
 }
 
 static void imu_status_report_callback(uint8_t* ctx){
@@ -42,24 +38,33 @@ static void rqy_report_callback(uint8_t *ctx){
 	uint8_t gmav_send_buf[256];
 	float roll = IMU_get_roll();
 	float pitch = IMU_get_pitch();
-	mavlink_msg_evt_rpy_pack(0,0,&rpy_msg,roll,pitch);
+	mavlink_msg_evt_rpy_pack(0,0,&rpy_msg,roll-params.stand_point,pitch);
 	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &rpy_msg);
 	com_send(gmav_send_buf, len);
 }
 
 void mode_basic_init(){
+	// Hardware initialization
 	motors_init();
 	IMU_init();
 
+	// Periodic task initialization
 	gtimer_ID_controller = timer_register_callback(controller_callback, CONTROLLER_PERIOD, 0, TIMER_MODE_REPEAT);
 	gtimer_ID_IMU_status_report = timer_register_callback(imu_status_report_callback, IMU_STATUS_REPORT_PERIOD, 0, TIMER_MODE_REPEAT);
 	gtimer_ID_IMU_rpy = timer_register_callback(rqy_report_callback, RPY_REPORT_PERIOD, 0, TIMER_MODE_REPEAT);
 }
 
 void mode_basic_deinit(){
+	// Hardware de-initialization
 	motors_deinit();
 	IMU_deinit();
+
+	// Background task de-initialization
 	timer_unregister_callback(gtimer_ID_controller);
 	timer_unregister_callback(gtimer_ID_IMU_status_report);
 	timer_unregister_callback(gtimer_ID_IMU_rpy);
+}
+
+void on_mode_basic_mavlink_recv(mavlink_message_t *msg){
+
 }

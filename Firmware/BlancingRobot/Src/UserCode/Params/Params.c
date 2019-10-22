@@ -16,18 +16,20 @@ params_t params = {
 				.KP = 10,
 				.KI = 0.1,
 				.KD = 0,
-				.preIPart = 0,
-				.preError = 0,
+
 				.minIpart = -500,
 				.maxIPart = 500,
 				.minDpart = -500,
 				.maxDPart = 500,
 				.minOut = -1000,
 				.maxOut = 1000,
+
+				.preIPart = 0,
+				.preError = 0,
 				.isFistCompute = true
 		},
 		.stand_point = 0,
-		.believe_in_gyro = 0.90,
+		.believe_in_gyro = 0.98,
 
 		.gx_offset = 1,
 		.gy_offset = 2,

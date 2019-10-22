@@ -31,11 +31,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ledIndicator = new LedIndicator();
     ui->statusBar->addPermanentWidget(ledIndicator);
 
-//    ui->txtBoxRoll->setDisabled(true);
-//    ui->txtBoxPitch->setDisabled(true);
-//    ui->txtBoxYaw->setDisabled(true);
-//    ui->txtBoxMPU->setDisabled(true);
-
     app_main_init();
 }
 

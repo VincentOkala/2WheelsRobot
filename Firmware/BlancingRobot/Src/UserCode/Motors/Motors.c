@@ -22,10 +22,8 @@ void motors_init(){
 }
 
 void motors_deinit(){
-	__HAL_TIM_SET_COMPARE(&MOTOR0_TIMER, MOTOR0_CHANNEL, 0);
-	__HAL_TIM_SET_COMPARE(&MOTOR1_TIMER, MOTOR1_CHANNEL, 0);
-	motors_setspeed(MOTOR_0, 0);
-	motors_setspeed(MOTOR_1, 0);
+	HAL_GPIO_WritePin(MOTORS_EN0_GPIO_Port, MOTORS_EN0_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(MOTORS_EN1_GPIO_Port, MOTORS_EN1_Pin, GPIO_PIN_RESET);
 }
 
 void motors_setspeed(motors_t motor, int32_t speed){

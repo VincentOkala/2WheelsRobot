@@ -10,7 +10,8 @@
 
 #include "tim.h"
 
-#define IMU_PERIOD		10
+#define MAX_CALLBACK_FUNC	15
+#define IMU_PERIOD			10
 
 #define MOTOR0_TIMER 	htim2
 #define MOTOR1_TIMER 	htim3
@@ -18,8 +19,8 @@
 #define MOTOR1_CHANNEL 	TIM_CHANNEL_3
 
 // define if you want to change motor direction
-//#define MOTOR0_INVERT
-//#define MOTOR1_INVERT
+#define MOTOR0_INVERT
+#define MOTOR1_INVERT
 
 #define MPU6050_I2C			hi2c1
 #define MPU6050_ADDRESS 	(MPU6050_DEFAULT_ADDRESS << 1)
@@ -31,13 +32,13 @@
 #define RX_CIR_BUF_SIZE 	512
 #define SERIAL_PERIOD		50
 
-#define MAV_BUFF_SIZE 			256
-#define MAVLINK_CALLBACK_PERIOD	10
+#define MAV_BUFF_SIZE 				256
+#define MAVLINK_CALLBACK_PERIOD		10
 
 #define CONTROLLER_PERIOD			20
 #define IMU_STATUS_REPORT_PERIOD	1000
-#define RPY_REPORT_PERIOD			500
+#define RPY_REPORT_PERIOD			1000
 
-#define IMU_RAW_PERIOD			50
-#define ROLL_OFFSET				-6.7974
+#define IMU_RAW_PERIOD				200
+#define ROLL_OFFSET					-6.7974
 #endif /* USERCODE_USER_DEFINE_H_ */

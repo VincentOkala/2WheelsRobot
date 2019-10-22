@@ -24,36 +24,28 @@ static void imu_raw_callback(uint8_t* ctx){
 	com_send(gmav_send_buf, len);
 }
 
-void mode_imu_init(){
-	IMU_init();
-	gtimer_ID_IMU_Raw = timer_register_callback(imu_raw_callback, IMU_RAW_PERIOD, 0, TIMER_MODE_REPEAT);
-}
-
-void mode_imu_deinit(){
-	timer_unregister_callback(gtimer_ID_IMU_Raw);
-}
-
 static void load_gyro_offset(){
-	// Load params from nonvolatile memory
+	// Load parameters from non-volatile memory
 	params_load();
 
-	// Send params to gcs
+	// Send parameters to GCS
 	mavlink_message_t msg;
 	uint8_t gmav_send_buf[256];
-	float roll = IMU_get_roll();
-	mavlink_msg_gyro_offset_pack(0,0,&msg, params.gx_offset, params.gy_offset, params.gz_offset, roll);
+	mavlink_msg_gyro_offset_pack(0,0,&msg, params.gx_offset, params.gy_offset, params.gz_offset, params.stand_point);
 	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &msg);
 	com_send(gmav_send_buf, len);
 }
 
 static void save_gyro_offset(){
-	// Save params to non volatile memory
+	// Save parameters to non-volatile memory
 	params_save();
+
+	// Respond a successful operation
 	respond_ok();
 }
 
 static void write_param(mavlink_message_t *msg){
-	// Change current params according to GCS
+	// Change current parameters according to GCS
 	mavlink_gyro_offset_t gyro_offset;
 	mavlink_msg_gyro_offset_decode(msg,&gyro_offset);
 	params.gx_offset = gyro_offset.gyro_offet_x;
@@ -61,7 +53,24 @@ static void write_param(mavlink_message_t *msg){
 	params.gz_offset = gyro_offset.gyro_offet_z;
 	params.stand_point = gyro_offset.stand_point;
 
+	// Respond a successful operation
 	respond_ok();
+}
+
+void mode_imu_init(){
+	// Hardware initialization
+	IMU_init();
+
+	// Periodic task initialization
+	gtimer_ID_IMU_Raw = timer_register_callback(imu_raw_callback, IMU_RAW_PERIOD, 0, TIMER_MODE_REPEAT);
+}
+
+void mode_imu_deinit(){
+	// Hardware de-initialization
+	IMU_deinit();
+
+	// Periodic task initialization
+	timer_unregister_callback(gtimer_ID_IMU_Raw);
 }
 
 void on_mode_imu_mavlink_recv(mavlink_message_t *msg){

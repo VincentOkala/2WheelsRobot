@@ -21,8 +21,8 @@ static int16_t motion_6[6];
 
 static void imu_callback(uint8_t* ctx){
 	mpu6050_get_motion(&motion_6[0], &motion_6[1], &motion_6[2], &motion_6[3], &motion_6[4], &motion_6[5]);
-	float accel_roll = atan2(motion_6[1], motion_6[2])*360/M_PI;
-	float accel_pitch = atan2(motion_6[0], motion_6[2])*360/M_PI;
+	float accel_roll  = atan2(motion_6[1], sqrt(motion_6[0]*motion_6[0] + motion_6[2]*motion_6[2]))*360/M_PI;
+	float accel_pitch = atan2(-motion_6[0], sqrt(motion_6[1]*motion_6[1] + motion_6[2]*motion_6[2]))*360/M_PI;
 	float roll_rate = ((motion_6[3]-params.gx_offset)*250.0/32768.0)/100.0;
 	float pitch_rate = ((motion_6[4]-params.gy_offset)*250.0/32768.0)/100.0;
 	roll = params.believe_in_gyro *(roll+roll_rate) + (1-params.believe_in_gyro)*accel_roll;

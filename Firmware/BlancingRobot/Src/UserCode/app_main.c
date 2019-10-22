@@ -13,22 +13,21 @@
 #include <UserCode/Mode_Basic/Mode_Basic.h>
 
 #include "app_main.h"
-#include "Com/Com.h"
-#include "UserCode/Mav/protocol/mavlink.h"
+#include "UserCode/Com/Com.h"
 #include "UserCode/Params/Params.h"
 
 typedef void (*func_t)(void);
 
-static robot_mode_t  gmode = MODE_BASIC;
+static robot_mode_t  gmode;
 static func_t 		 gmode_init;
 static func_t 		 gmode_deinit;
 static on_mav_recv_t gon_mode_mav_recv;
 
 static void on_mavlink_recv(mavlink_message_t *msg){
 	if(msg->msgid == MAVLINK_MSG_ID_CMD_CHANGE_MODE){
+		gmode_deinit();
 		mavlink_cmd_change_mode_t cmd_change_mode;
 		mavlink_msg_cmd_change_mode_decode(msg, &cmd_change_mode);
-		gmode_deinit();
 		if(cmd_change_mode.CMD_CHANGE_MODE == MODE_BASIC){
 			gmode = MODE_BASIC;
 			gmode_init = mode_basic_init;
@@ -60,17 +59,19 @@ void app_main(){
 	// Delay for other module to start
 	HAL_Delay(1000);
 
-	// Run default mode
-	gmode_init = mode_basic_init;
-	gmode_deinit = mode_basic_deinit;
-	gon_mode_mav_recv = on_mode_basic_mavlink_recv;
-	gmode_init();
-
+	// Load parameters from non-volatile memory
 	params_load();
 
 	// Initialize communication
 	com_init();
 	com_set_on_mav_recv(on_mavlink_recv);
+
+	// Run default mode
+	gmode = MODE_BASIC;
+	gmode_init = mode_basic_init;
+	gmode_deinit = mode_basic_deinit;
+	gon_mode_mav_recv = on_mode_basic_mavlink_recv;
+	gmode_init();
 }
 
 #endif /* USERCODE_APP_MAIN_C_ */
