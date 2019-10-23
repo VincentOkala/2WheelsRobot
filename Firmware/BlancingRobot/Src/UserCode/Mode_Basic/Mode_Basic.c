@@ -12,11 +12,36 @@
 #include "UserCode/Com/Com.h"
 #include "UserCode/Params/Params.h"
 
+typedef struct{
+	int16_t vx;
+	int16_t vy;
+	int16_t omega;
+	uint8_t cnt;
+}cmd_velocity_t;
+
 static timer_ID_t gtimer_ID_controller;
 static timer_ID_t gtimer_ID_IMU_status_report;
 static timer_ID_t gtimer_ID_IMU_rpy;
+static cmd_velocity_t gcmd_velocity;
 
 static void controller_callback(uint8_t* ctx){
+	float vx, vy, omega;
+
+	if(gcmd_velocity.cnt == 0){
+		gcmd_velocity.vx = 0;
+		gcmd_velocity.vy = 0;
+		gcmd_velocity.omega = 0;
+	}
+	else{
+		gcmd_velocity.cnt--;
+		vx = gcmd_velocity.vx*VX_MAX/100.0;
+		vy = gcmd_velocity.vy*VY_MAX/100.0;
+		omega = gcmd_velocity.omega*OMEGA_MAX/100.0;
+	}
+
+	float vr = (2*vx + omega);
+	float vl = (2*vx - omega);
+
 	float roll = IMU_get_roll();
 	float speed = pid_compute(&params.pid_params,params.stand_point - roll);
 	motors_setspeed(MOTOR_0, speed);
@@ -66,5 +91,18 @@ void mode_basic_deinit(){
 }
 
 void on_mode_basic_mavlink_recv(mavlink_message_t *msg){
-
+	switch(msg->msgid){
+	case MAVLINK_MSG_ID_CMD_VELOCITY:
+		{
+			mavlink_cmd_velocity_t cmd_velocity;
+			mavlink_msg_cmd_velocity_decode(msg, &cmd_velocity);
+			gcmd_velocity.vx = cmd_velocity.vx;
+			gcmd_velocity.vy = cmd_velocity.vy;
+			gcmd_velocity.omega = cmd_velocity.omega;
+			gcmd_velocity.cnt = 50; // 1s timeout
+		}
+		break;
+	default:
+		break;
+	}
 }
