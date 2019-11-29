@@ -14,7 +14,7 @@
 
 #include "MAV/protocol/mavlink.h"
 #include "ledindicator.h"
-#include "joystick.hh"
+#include <QJoysticks.h>
 
 #define MAV_BUFF_SIZE 256
 
@@ -58,26 +58,19 @@ private slots:
     void mode_imu_save_timeout();
 
     void on_btn_mode_pidt_load_params_clicked();
-
     void on_btn_respond_ok_clicked();
-
     void on_btn_mode_pidt_write_params_clicked();
-
     void on_sb_step_KP_valueChanged(const QString &arg1);
-
     void on_sb_step_KI_valueChanged(const QString &arg1);
-
     void on_sb_KD_valueChanged(const QString &arg1);
-
     void on_btn_mode_pidt_save_params_clicked();
-
     void on_btn_mode_imu_load_params_clicked();
-
     void on_btn_mode_imu_write_params_clicked();
-
     void on_btn_mode_imu_save_params_clicked();
-
     void on_btn_gyro_calib_clicked();
+
+    void on_js_axis_change(const int js, const int axis, const qreal value);
+    void on_controller_cmd();
 
 private:
     Ui::MainWindow *ui;
@@ -85,7 +78,8 @@ private:
     QTcpServer *tcpServer;
     QTcpSocket *socket;
     LedIndicator *ledIndicator;
-    QGamepad *gamepad;
+    QJoysticks* qjs;
+    QTimer *controller_timer;
 
     uint8_t mavbuf[MAV_BUFF_SIZE];
     mavlink_message_t msg;

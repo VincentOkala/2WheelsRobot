@@ -133,6 +133,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="text">
+        <string>0</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txtBoxVX">
        <property name="geometry">

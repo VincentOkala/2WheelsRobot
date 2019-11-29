@@ -25,7 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    joystick.cc \
     main.cpp \
     mainwindow.cpp \
     appmain.cpp \
@@ -35,7 +34,6 @@ SOURCES += \
     modu_imu.cpp
 
 HEADERS += \
-    joystick.hh \
         mainwindow.h \
     MAV/protocol/mavlink.h \
     MAV/protocol/mavlink_msg_cmd_accel_offset.h \
@@ -71,3 +69,5 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+include (QJoysticks/QJoysticks.pri)

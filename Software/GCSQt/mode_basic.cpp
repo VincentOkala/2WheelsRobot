@@ -21,3 +21,22 @@ void MainWindow::on_mode_basic_mav_recv(mavlink_message_t *msg){
         break;
     }
 }
+
+void MainWindow::on_js_axis_change(const int js, const int axis, const qreal value){
+    if(axis == 0){
+            ui->txtBoxOMEGA->setText(QString::number(value));
+    }
+    else if(axis == 1){
+            ui->txtBoxVX->setText(QString::number(value));
+    }
+}
+
+void MainWindow::on_controller_cmd(){
+    mavlink_message_t msg;
+    uint8_t mav_send_buf[255];
+    double VX = ui->txtBoxVX->text().toDouble();
+    double OMEGA = ui->txtBoxOMEGA->text().toDouble();
+    mavlink_msg_cmd_velocity_pack(0,0,&msg,VX,0,OMEGA);
+    uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
+    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
+}

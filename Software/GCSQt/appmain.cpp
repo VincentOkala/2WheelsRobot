@@ -30,9 +30,11 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
                 qDebug() << "Mode: " << currentMode;
             }
             else{
+                controller_timer->stop();
                 switch (currentMode) {
                 case MODE_BASIC:
                     on_mode_basic_mav_recv(&msg);
+                    controller_timer->start(100);
                     break;
                 case MODE_IMU_CALIBRATION:
                     on_mode_imu_mav_recv(&msg);
