@@ -16,9 +16,9 @@
 static timer_ID_t gtimer_ID_controller;
 
 static void controller_callback(uint8_t* ctx){
-	float roll = IMU_get_roll();
-	float speed = pid_compute(&params.pid_params,params.stand_point-roll);
-	if(roll > 60 || roll < -60) {
+	float tilt = IMU_get_tilt();
+	float speed = pid_compute(&params.pid_params,params.stand_point-tilt);
+	if(tilt > 60 || tilt < -60) {
 		speed = 0;
 		pid_reset(&params.pid_params);
 	}

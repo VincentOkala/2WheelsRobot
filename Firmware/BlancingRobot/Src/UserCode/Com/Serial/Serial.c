@@ -41,7 +41,9 @@ void uart_cb()
 			HAL_UART_Transmit_DMA(uart_drv->huart, uart_drv->tx_dma_buffer, size);
 		}
 	}
-    uart_drv->huart->hdmarx->XferCpltCallback(uart_drv->huart->hdmarx);
+
+	// Check RX Timeout
+	HAL_UART_RxCpltCallback(uart_drv->huart);
 }
 
 /**

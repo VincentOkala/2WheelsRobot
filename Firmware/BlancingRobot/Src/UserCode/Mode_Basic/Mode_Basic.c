@@ -25,27 +25,33 @@ static timer_ID_t gtimer_ID_IMU_rpy;
 static cmd_velocity_t gcmd_velocity;
 
 static void controller_callback(uint8_t* ctx){
-	float vx, vy, omega;
+	float vx=0, omega=0;
 
 	if(gcmd_velocity.cnt == 0){
 		gcmd_velocity.vx = 0;
-		gcmd_velocity.vy = 0;
+//		gcmd_velocity.vy = 0;
 		gcmd_velocity.omega = 0;
 	}
 	else{
 		gcmd_velocity.cnt--;
 		vx = gcmd_velocity.vx*VX_MAX/100.0;
-		vy = gcmd_velocity.vy*VY_MAX/100.0;
+//		vy = gcmd_velocity.vy*VY_MAX/100.0;
 		omega = gcmd_velocity.omega*OMEGA_MAX/100.0;
 	}
 
-	float vr = (2*vx + omega);
-	float vl = (2*vx - omega);
+	float vr = (vx + omega);
+	float vl = (vx - omega);
 
-	float roll = IMU_get_roll();
-	float speed = pid_compute(&params.pid_params,params.stand_point - roll);
-	motors_setspeed(MOTOR_0, speed);
-	motors_setspeed(MOTOR_1, speed);
+	float tilt = IMU_get_tilt();
+	float speed = pid_compute(&params.pid_params,params.stand_point - tilt);
+
+	if(tilt > 60 || tilt < -60) {
+		speed = 0;
+		pid_reset(&params.pid_params);
+	}
+
+	motors_setspeed(MOTOR_0, speed + vr);
+	motors_setspeed(MOTOR_1, speed + vl);
 }
 
 static void imu_status_report_callback(uint8_t* ctx){

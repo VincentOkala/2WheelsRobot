@@ -54,6 +54,14 @@ float IMU_get_pitch(void){
 	return pitch;
 }
 
+float IMU_get_tilt(void){
+#if TILT == 0
+	return pitch;
+#elif TILT == 1
+	return roll;
+#endif
+}
+
 void IMU_set_failed_cb(connection_failed_cb_t connection_failed_cb){
 	gconnection_failed_cb = connection_failed_cb;
 }

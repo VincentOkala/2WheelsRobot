@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="modeBasic">
      <attribute name="title">
@@ -122,6 +122,75 @@
          <width>113</width>
          <height>20</height>
         </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtBoxVY">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>70</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtBoxVX">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>70</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="txtBoxOMEGA">
+       <property name="geometry">
+        <rect>
+         <x>490</x>
+         <y>70</y>
+         <width>113</width>
+         <height>20</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_61">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>VX:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_62">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>70</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>VY:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_63">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>70</y>
+         <width>41</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>OMEGA:</string>
        </property>
       </widget>
      </widget>
@@ -506,6 +575,9 @@
          <height>22</height>
         </rect>
        </property>
+       <property name="maximum">
+        <double>1000.000000000000000</double>
+       </property>
        <property name="singleStep">
         <double>0.100000000000000</double>
        </property>
@@ -545,6 +617,9 @@
          <height>22</height>
         </rect>
        </property>
+       <property name="maximum">
+        <double>1000.000000000000000</double>
+       </property>
        <property name="singleStep">
         <double>0.100000000000000</double>
        </property>
@@ -570,6 +645,9 @@
          <width>371</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="maximum">
+        <double>1000.000000000000000</double>
        </property>
        <property name="singleStep">
         <double>0.100000000000000</double>

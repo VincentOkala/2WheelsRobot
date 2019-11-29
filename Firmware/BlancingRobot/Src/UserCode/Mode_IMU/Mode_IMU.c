@@ -18,8 +18,8 @@ static void imu_raw_callback(uint8_t* ctx){
 	uint8_t gmav_send_buf[256];
 	int16_t raw[3];
 	IMU_get_gyro_raw(raw);
-	float roll = IMU_get_roll();
-	mavlink_msg_evt_gyro_raw_pack(0,0,&imu_raw_msg,raw[0],raw[1],raw[2], roll);
+	float tilt = IMU_get_tilt();
+	mavlink_msg_evt_gyro_raw_pack(0,0,&imu_raw_msg,raw[0],raw[1],raw[2], tilt);
 	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &imu_raw_msg);
 	com_send(gmav_send_buf, len);
 }

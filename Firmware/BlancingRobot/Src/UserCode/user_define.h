@@ -10,12 +10,14 @@
 
 #include "tim.h"
 
+#define TILT				0 // 0: pitch, 1: roll
+
 #define MAX_CALLBACK_FUNC	15
 #define IMU_PERIOD			10
 
-#define MOTOR0_TIMER 	htim2
-#define MOTOR1_TIMER 	htim3
-#define MOTOR0_CHANNEL 	TIM_CHANNEL_3
+#define MOTOR0_TIMER 	htim1
+#define MOTOR1_TIMER 	htim1
+#define MOTOR0_CHANNEL 	TIM_CHANNEL_4
 #define MOTOR1_CHANNEL 	TIM_CHANNEL_3
 
 // define if you want to change motor direction
@@ -25,7 +27,7 @@
 #define MPU6050_I2C			hi2c1
 #define MPU6050_ADDRESS 	(MPU6050_DEFAULT_ADDRESS << 1)
 
-#define COM_USART			huart1
+#define COM_USART			huart3
 #define TX_DMA_BUF_SIZE 	512
 #define RX_DMA_BUF_SIZE		512
 #define TX_CIR_BUF_SIZE 	512
@@ -36,10 +38,10 @@
 #define MAVLINK_CALLBACK_PERIOD		10
 
 #define CONTROLLER_PERIOD			20
-#define IMU_STATUS_REPORT_PERIOD	1000
-#define RPY_REPORT_PERIOD			1000
+#define IMU_STATUS_REPORT_PERIOD	100
+#define RPY_REPORT_PERIOD			100
 
-#define IMU_RAW_PERIOD				200
+#define IMU_RAW_PERIOD				50
 #define ROLL_OFFSET					-6.7974
 
 #define VX_MAX			10.0

@@ -10,9 +10,11 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QTimer>
+#include <QtGamepad/QGamepad>
 
 #include "MAV/protocol/mavlink.h"
 #include "ledindicator.h"
+#include "joystick.hh"
 
 #define MAV_BUFF_SIZE 256
 
@@ -83,7 +85,7 @@ private:
     QTcpServer *tcpServer;
     QTcpSocket *socket;
     LedIndicator *ledIndicator;
-
+    QGamepad *gamepad;
 
     uint8_t mavbuf[MAV_BUFF_SIZE];
     mavlink_message_t msg;

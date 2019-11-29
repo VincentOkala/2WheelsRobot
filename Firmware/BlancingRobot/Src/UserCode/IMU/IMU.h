@@ -18,6 +18,7 @@ bool  IMU_init(void);
 bool  IMU_deinit(void);
 float IMU_get_roll(void);
 float IMU_get_pitch(void);
+float IMU_get_tilt(void);
 void IMU_get_gyro_raw(int16_t raw[3]);
 void  IMU_set_failed_cb(connection_failed_cb_t connection_failed_cb);
 bool IMU_test_connection();

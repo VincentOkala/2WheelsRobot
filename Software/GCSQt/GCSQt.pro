@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui serialport network
+QT       += core gui serialport network gamepad
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,8 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
+    joystick.cc \
     main.cpp \
     mainwindow.cpp \
     appmain.cpp \
@@ -36,6 +35,7 @@ SOURCES += \
     modu_imu.cpp
 
 HEADERS += \
+    joystick.hh \
         mainwindow.h \
     MAV/protocol/mavlink.h \
     MAV/protocol/mavlink_msg_cmd_accel_offset.h \

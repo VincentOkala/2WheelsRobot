@@ -1,0 +1,10 @@
+release/joystick.o
+release/main.o
+release/mainwindow.o
+release/appmain.o
+release/mode_basic.o
+release/ledindicator.o
+release/mode_pidt.o
+release/modu_imu.o
+release/moc_mainwindow.o
+release/moc_ledindicator.o

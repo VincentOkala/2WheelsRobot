@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->cbCOM->addItem(port.portName());
     }
 
+    ui->cbBaud->addItem("57600");
     ui->cbBaud->addItem("115200");
     ui->cbBaud->addItem("9600");
 
@@ -32,6 +33,38 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->statusBar->addPermanentWidget(ledIndicator);
 
     app_main_init();
+
+    auto gamepads = QGamepadManager::instance()->connectedGamepads();
+    gamepad = new QGamepad(*gamepads.begin(), this);
+
+    qDebug() << "Number of gamepads:" << gamepads.size();
+
+    for (auto i : gamepads) {
+        QGamepad *gamepad = new QGamepad(i);
+        qDebug() << "Gamepad:" << i;
+        qDebug() << "  device id:   " << gamepad->deviceId();
+        qDebug() << "  name:        " << gamepad->name();
+        qDebug() << "  is connected?" << gamepad->isConnected();
+    }
+
+    connect(gamepad, &QGamepad::axisLeftXChanged, this, [](double value){
+        qDebug() << "Left X" << value;
+    });
+    connect(gamepad, &QGamepad::axisLeftYChanged, this, [](double value){
+        qDebug() << "Left Y" << value;
+    });
+    connect(gamepad, &QGamepad::axisRightXChanged, this, [](double value){
+        qDebug() << "Right X" << value;
+    });
+    connect(gamepad, &QGamepad::axisRightYChanged, this, [](double value){
+        qDebug() << "Right Y" << value;
+    });
+
+    Joystick js0(0);
+    if (!js0.isFound())
+    {
+      qDebug() << "open failed.\n";
+    }
 }
 
 MainWindow::~MainWindow()

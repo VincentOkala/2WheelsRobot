@@ -60,21 +60,25 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define ONBOARD_LED_Pin GPIO_PIN_13
 #define ONBOARD_LED_GPIO_Port GPIOC
-#define MOTORS_EN0_Pin GPIO_PIN_2
-#define MOTORS_EN0_GPIO_Port GPIOA
-#define MOTORS_EN1_Pin GPIO_PIN_3
-#define MOTORS_EN1_GPIO_Port GPIOA
-#define PWM_Pin GPIO_PIN_0
-#define PWM_GPIO_Port GPIOB
-#define DIR1_Pin GPIO_PIN_1
-#define DIR1_GPIO_Port GPIOB
-#define PWMB10_Pin GPIO_PIN_10
-#define PWMB10_GPIO_Port GPIOB
-#define DIR0_Pin GPIO_PIN_11
-#define DIR0_GPIO_Port GPIOB
-#define IMU_SCL_Pin GPIO_PIN_6
+#define MOTOR03_DIR_Pin GPIO_PIN_2
+#define MOTOR03_DIR_GPIO_Port GPIOA
+#define MOTOR2_DIR_Pin GPIO_PIN_3
+#define MOTOR2_DIR_GPIO_Port GPIOA
+#define MOTOR1_DIR_Pin GPIO_PIN_4
+#define MOTOR1_DIR_GPIO_Port GPIOA
+#define MOTOR0_DIR_Pin GPIO_PIN_5
+#define MOTOR0_DIR_GPIO_Port GPIOA
+#define MOTOR3_PWM_Pin GPIO_PIN_8
+#define MOTOR3_PWM_GPIO_Port GPIOA
+#define MOTOR2_PWM_Pin GPIO_PIN_9
+#define MOTOR2_PWM_GPIO_Port GPIOA
+#define MOTOR1_PWM_Pin GPIO_PIN_10
+#define MOTOR1_PWM_GPIO_Port GPIOA
+#define MOTOR0_PWM_Pin GPIO_PIN_11
+#define MOTOR0_PWM_GPIO_Port GPIOA
+#define IMU_SCL_Pin GPIO_PIN_8
 #define IMU_SCL_GPIO_Port GPIOB
-#define IMU_SDA_Pin GPIO_PIN_7
+#define IMU_SDA_Pin GPIO_PIN_9
 #define IMU_SDA_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
