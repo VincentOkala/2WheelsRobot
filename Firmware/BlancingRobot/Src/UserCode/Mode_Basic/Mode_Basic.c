@@ -34,9 +34,9 @@ static void controller_callback(uint8_t* ctx){
 	}
 	else{
 		gcmd_velocity.cnt--;
-		vx = gcmd_velocity.vx*VX_MAX/100.0;
+		vx = gcmd_velocity.vx*VX_MAX;
 //		vy = gcmd_velocity.vy*VY_MAX/100.0;
-		omega = gcmd_velocity.omega*OMEGA_MAX/100.0;
+		omega = gcmd_velocity.omega*OMEGA_MAX;
 	}
 
 	float vr = (vx + omega);

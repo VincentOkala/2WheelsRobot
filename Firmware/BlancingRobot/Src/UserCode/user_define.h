@@ -46,7 +46,7 @@
 
 #define VX_MAX			10.0
 #define VY_MAX			10.0
-#define OMEGA_MAX		10.0
+#define OMEGA_MAX		30.0
 #define WHEEL_DISTANCE	10.0
 
 #endif /* USERCODE_USER_DEFINE_H_ */
