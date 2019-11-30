@@ -34,24 +34,24 @@ static void controller_callback(uint8_t* ctx){
 	}
 	else{
 		gcmd_velocity.cnt--;
-		vx = gcmd_velocity.vx*VX_MAX;
+		vx = (float)gcmd_velocity.vx;
 //		vy = gcmd_velocity.vy*VY_MAX/100.0;
-		omega = gcmd_velocity.omega*OMEGA_MAX;
+		omega = (float)gcmd_velocity.omega;
 	}
 
-	float vr = (vx + omega);
-	float vl = (vx - omega);
-
 	float tilt = IMU_get_tilt();
-	float speed = pid_compute(&params.pid_params,params.stand_point - tilt);
+	float setpoint = params.stand_point - vx*VX_COEFF;
+	float speed = pid_compute(&params.pid_params,setpoint - tilt);
 
 	if(tilt > 60 || tilt < -60) {
 		speed = 0;
 		pid_reset(&params.pid_params);
 	}
 
-	motors_setspeed(MOTOR_0, speed + vr);
-	motors_setspeed(MOTOR_1, speed + vl);
+	speed += vx*THROTTLE_COEFF;
+
+	motors_setspeed(MOTOR_0, speed - omega*OMEGA_COEFF);
+	motors_setspeed(MOTOR_1, speed + omega*OMEGA_COEFF);
 }
 
 static void imu_status_report_callback(uint8_t* ctx){
@@ -102,8 +102,8 @@ void on_mode_basic_mavlink_recv(mavlink_message_t *msg){
 		{
 			mavlink_cmd_velocity_t cmd_velocity;
 			mavlink_msg_cmd_velocity_decode(msg, &cmd_velocity);
-			gcmd_velocity.vx = cmd_velocity.vx;
-			gcmd_velocity.vy = cmd_velocity.vy;
+			gcmd_velocity.vx = cmd_velocity.vx*0.5;
+			gcmd_velocity.vy = cmd_velocity.vy*0.5;
 			gcmd_velocity.omega = cmd_velocity.omega;
 			gcmd_velocity.cnt = 50; // 1s timeout
 		}

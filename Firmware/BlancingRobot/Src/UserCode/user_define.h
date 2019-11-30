@@ -44,9 +44,10 @@
 #define IMU_RAW_PERIOD				50
 #define ROLL_OFFSET					-6.7974
 
-#define VX_MAX			10.0
-#define VY_MAX			10.0
-#define OMEGA_MAX		30.0
+#define VX_COEFF		0.05
+#define VY_COEFF		0.05
+#define OMEGA_COEFF		3.0
+#define THROTTLE_COEFF	3
 #define WHEEL_DISTANCE	10.0
 
 #endif /* USERCODE_USER_DEFINE_H_ */

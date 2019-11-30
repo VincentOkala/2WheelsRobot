@@ -27,6 +27,8 @@ static void imu_callback(uint8_t* ctx){
 	float pitch_rate = ((motion_6[4]-params.gy_offset)*250.0/32768.0)/100.0;
 	roll = params.believe_in_gyro *(roll+roll_rate) + (1-params.believe_in_gyro)*accel_roll;
 	pitch = params.believe_in_gyro *(pitch+pitch_rate) + (1-params.believe_in_gyro)*accel_pitch;
+	if(isnan(roll)) roll = 0;
+	if(isnan(pitch)) pitch = 0;
 }
 
 bool IMU_init(void){

@@ -146,6 +146,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="text">
+        <string>0</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txtBoxOMEGA">
        <property name="geometry">
@@ -155,6 +158,9 @@
          <width>113</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="text">
+        <string>0</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_61">
