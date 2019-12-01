@@ -43,7 +43,7 @@ static void controller_callback(uint8_t* ctx){
 	float setpoint = params.stand_point - vx*VX_COEFF;
 	float speed = pid_compute(&params.pid_params,setpoint - tilt);
 
-	if(tilt > 60 || tilt < -60) {
+	if(tilt > 150 || tilt < -150) {
 		speed = 0;
 		pid_reset(&params.pid_params);
 	}
@@ -102,8 +102,8 @@ void on_mode_basic_mavlink_recv(mavlink_message_t *msg){
 		{
 			mavlink_cmd_velocity_t cmd_velocity;
 			mavlink_msg_cmd_velocity_decode(msg, &cmd_velocity);
-			gcmd_velocity.vx = cmd_velocity.vx*0.5;
-			gcmd_velocity.vy = cmd_velocity.vy*0.5;
+			gcmd_velocity.vx = cmd_velocity.vx;
+			gcmd_velocity.vy = cmd_velocity.vy;
 			gcmd_velocity.omega = cmd_velocity.omega;
 			gcmd_velocity.cnt = 50; // 1s timeout
 		}

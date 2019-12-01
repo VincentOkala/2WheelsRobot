@@ -27,7 +27,7 @@ void MainWindow::on_js_axis_change(const int js, const int axis, const qreal val
             ui->txtBoxOMEGA->setText((QString::number(value)));
     }
     else if(axis == 1){
-            ui->txtBoxVX->setText(QString::number((value+0.5)*2));
+            ui->txtBoxVX->setText(QString::number((value)));
     }
 }
 

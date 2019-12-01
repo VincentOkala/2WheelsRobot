@@ -29,7 +29,7 @@ params_t params = {
 				.isFistCompute = true
 		},
 		.stand_point = 0,
-		.believe_in_gyro = 0.98,
+		.believe_in_gyro = 0.99,
 
 		.gx_offset = 1,
 		.gy_offset = 2,

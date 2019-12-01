@@ -25,8 +25,8 @@ static void imu_callback(uint8_t* ctx){
 	float accel_pitch = atan2(-motion_6[0], sqrt(motion_6[1]*motion_6[1] + motion_6[2]*motion_6[2]))*360/M_PI;
 	float roll_rate = ((motion_6[3]-params.gx_offset)*250.0/32768.0)/100.0;
 	float pitch_rate = ((motion_6[4]-params.gy_offset)*250.0/32768.0)/100.0;
-	roll = params.believe_in_gyro *(roll+roll_rate) + (1-params.believe_in_gyro)*accel_roll;
-	pitch = params.believe_in_gyro *(pitch+pitch_rate) + (1-params.believe_in_gyro)*accel_pitch;
+	roll = 0.995 *(roll+roll_rate) + (1-0.995)*accel_roll;
+	pitch = 0.995 *(pitch+pitch_rate) + (1-0.995)*accel_pitch;
 	if(isnan(roll)) roll = 0;
 	if(isnan(pitch)) pitch = 0;
 }

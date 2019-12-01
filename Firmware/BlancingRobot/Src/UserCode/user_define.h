@@ -13,7 +13,7 @@
 #define TILT				0 // 0: pitch, 1: roll
 
 #define MAX_CALLBACK_FUNC	15
-#define IMU_PERIOD			10
+#define IMU_PERIOD			5
 
 #define MOTOR0_TIMER 	htim1
 #define MOTOR1_TIMER 	htim1
@@ -44,8 +44,8 @@
 #define IMU_RAW_PERIOD				50
 #define ROLL_OFFSET					-6.7974
 
-#define VX_COEFF		0.05
-#define VY_COEFF		0.05
+#define VX_COEFF		0.03
+#define VY_COEFF		0.03
 #define OMEGA_COEFF		3.0
 #define THROTTLE_COEFF	3
 #define WHEEL_DISTANCE	10.0
