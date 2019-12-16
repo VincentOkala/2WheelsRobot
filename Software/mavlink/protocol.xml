@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<mavlink>
+	<version>3</version>
+	<enums>
+		<enum name="resond_t">
+			<entry name="RESPOND_OK"></entry>
+			<entry name="RESPOND_ERROR"></entry>
+		</enum>
+		<enum name="robot_mode_t">
+			<entry name="MODE_BASIC"></entry>
+			<entry name="MODE_MOTORS">Motor configuration mode</entry>
+			<entry name="MODE_IMU">IMU calibration mode</entry>
+			<entry name="MODE_PID">PID calibration mode</entry>
+		</enum>
+		<enum name="cmd_params_t">
+			<entry name="CMD_SAVE"></entry>
+			<entry name="CMD_LOAD"></entry>
+		</enum>
+		<enum name="sensor_status_t">
+			<entry name="SENSOR_STATUS_IMU_OK"></entry>
+			<entry name="SENSOR_STATUS_IMU_ERROR"></entry>
+		</enum>
+	</enums>
+
+	<messages>
+		<message id="0" name="EVT_RESPOND">
+			<description>Command Respond</description>
+			<field type="uint8_t" name="EVT_RESPOND" enum="resond_t">Respond</field>
+		</message>
+		<message id="1" name="CMD_CHANGE_MODE">
+			<description>Command Change Mode</description>
+			<field type="uint8_t" name="CMD_CHANGE_MODE" enum="mode_t">Mode</field>
+		</message>
+
+		<message id="2" name="CMD_VELOCITY">
+			<description>Velocity command</description>
+			<field type="int16_t" name="v">Velocity</field>
+			<field type="int16_t" name="omega">Omega</field>
+		</message>
+		<message id="3" name="EVT_TILT">
+			<description>Tilt angle</description>
+			<field type="float" name="tilt">Tilt</field>
+		</message>
+		<message id="4" name="EVT_SENSOR_STATUS">
+			<description>Event Report sensor status</description>
+			<field type="int8_t" name="imu_status" enum="sensor_status_t">IMU status</field>
+		</message>
+
+		<message id="5" name="MOTOR_SPEED">
+			<description>Velocity command</description>
+			<field type="int16_t" name="motor_speed_0">Motor 0 Speed</field>
+			<field type="int16_t" name="motor_speed_1">Motor 1 Speed</field>
+		</message>
+		<message id="6" name="CMD_MOTOR_INVERT">
+			<description>Switch to invert motor rotation direction</description>
+			<field type="int8_t" name="motor_0_invert">Motor 0 Invert</field>
+			<field type="int8_t" name="motor_1_invert">Motor 1 Invert</field>
+		</message>
+
+		<message id="7" name="IMU_CALIBRATION_PARAMS">
+			<description>IMU calibration parameters</description>
+			<field type="int16_t" name="gyro_offet_x">Gyro Offset X</field>
+			<field type="int16_t" name="gyro_offet_y">Gyro Offset Y</field>
+			<field type="int16_t" name="gyro_offet_z">Gyro Offset Z</field>
+			<field type="float"  name="angle_ajusted">Angle ajusted</field>
+		</message>
+		<message id="8" name="CMD_IMU_CALIBRATION_PARAMS">
+			<description>Save or load imu calibration parameter</description>
+			<field type="int8_t" name="cmd_params" enum="cmd_params_t">Save Or Load IMU calibration parameters</field>
+		</message>
+		<message id="9" name="EVT_IMU">
+			<description>Gyro raw value</description>
+			<field type="int16_t" name="gyro_x">Gyro X</field>
+			<field type="int16_t" name="gyro_y">Gyro Y</field>
+			<field type="int16_t" name="gyro_z">Gyro Z</field>
+		</message>
+
+		<message id="10" name="PID_TUNNING_PARAMS">
+			<description>PID Coefficent</description>
+			<field type="float" name="sta_KP">Stability control KP</field>
+			<field type="float" name="sta_KI">Stability control KI</field>
+			<field type="float" name="sta_KD">Stability control KD</field>
+			<field type="float" name="spe_KP">Speed control KP</field>
+			<field type="float" name="spe_KI">Speed control KI</field>
+			<field type="float" name="spe_KD">Speed control KD</field>
+		</message>
+		<message id="11" name="CMD_PID">
+			<description>Save Or Load PID Coefficent</description>
+			<field type="int8_t" name="cmd_params" enum="cmd_params_t">Save Or Load PID Coefficent</field>
+		</message>
+
+	</messages>
+</mavlink>
