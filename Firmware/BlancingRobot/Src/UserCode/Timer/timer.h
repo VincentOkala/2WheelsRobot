@@ -11,7 +11,7 @@
 #include <stdint.h>
 
 typedef void (*timer_callback_func_t)(uint8_t *context);
-typedef uint8_t timer_ID_t;
+typedef int8_t timer_ID_t;
 
 typedef enum{
 	TIMER_MODE_REPEAT,

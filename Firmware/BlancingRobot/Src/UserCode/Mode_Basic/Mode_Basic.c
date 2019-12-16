@@ -48,7 +48,7 @@ static void controller_callback(uint8_t* ctx){
 		pid_reset(&params.pid_params);
 	}
 
-	speed += vx*THROTTLE_COEFF;
+	speed -= vx*THROTTLE_COEFF;
 
 	motors_setspeed(MOTOR_0, speed - omega*OMEGA_COEFF);
 	motors_setspeed(MOTOR_1, speed + omega*OMEGA_COEFF);

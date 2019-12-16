@@ -17,10 +17,10 @@ params_t params = {
 				.KI = 0.1,
 				.KD = 0,
 
-				.minIpart = -500,
-				.maxIPart = 500,
-				.minDpart = -500,
-				.maxDPart = 500,
+				.minIpart = -1000,
+				.maxIPart = 1000,
+				.minDpart = -1000,
+				.maxDPart = 1000,
 				.minOut = -1000,
 				.maxOut = 1000,
 
