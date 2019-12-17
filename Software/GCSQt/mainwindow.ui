@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>662</width>
-    <height>436</height>
+    <width>1405</width>
+    <height>667</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,15 +20,15 @@
       <x>10</x>
       <y>80</y>
       <width>651</width>
-      <height>301</height>
+      <height>551</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
-    <widget class="QWidget" name="modeBasic">
+    <widget class="QWidget" name="modeRUN">
      <attribute name="title">
-      <string>Mode Basic</string>
+      <string>Mode Run</string>
      </attribute>
      <widget class="QPushButton" name="btn_change_mode_basic">
       <property name="geometry">
@@ -240,9 +240,14 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="modeIMUCalibration">
+    <widget class="QWidget" name="modeHW">
      <attribute name="title">
-      <string>Mode IMU Calibration</string>
+      <string>Mode Hardware</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="modeIMU">
+     <attribute name="title">
+      <string>Mode IMU</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox_7">
       <property name="geometry">
@@ -507,9 +512,9 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="modePIDTunnig">
+    <widget class="QWidget" name="modePIDT">
      <attribute name="title">
-      <string>Mode PID Tunning</string>
+      <string>Mode PIDT</string>
      </attribute>
      <widget class="QPushButton" name="btn_change_mode_pid_tunning">
       <property name="geometry">
@@ -567,7 +572,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
+        <y>280</y>
         <width>621</width>
         <height>111</height>
        </rect>
@@ -750,19 +755,197 @@
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_3">
+     <widget class="QGroupBox" name="groupBox_4">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>160</y>
+        <y>400</y>
         <width>621</width>
         <height>111</height>
        </rect>
       </property>
       <property name="title">
-       <string>Speed Control</string>
+       <string>Robot Control</string>
       </property>
-      <widget class="QDoubleSpinBox" name="sb_KP_2">
+      <widget class="QDoubleSpinBox" name="sb_KP_3">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>20</y>
+         <width>371</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_42">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>21</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>KP:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_64">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>21</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>KI:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_KI_3">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>50</y>
+         <width>371</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_65">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>21</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>KD:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_KD_3">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>80</y>
+         <width>371</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_66">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>20</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Step:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_step_KP_3">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>20</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_67">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>50</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Step:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_step_KI_3">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>50</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_68">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>80</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Step:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_step_KD_3">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>80</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>621</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Wheel 0 Control</string>
+      </property>
+      <widget class="QDoubleSpinBox" name="sb_">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -912,6 +1095,184 @@
        </property>
       </widget>
       <widget class="QDoubleSpinBox" name="sb_step_KD_2">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>80</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>621</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Wheel 1 Control</string>
+      </property>
+      <widget class="QDoubleSpinBox" name="sb_1">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>20</y>
+         <width>371</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_43">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>21</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>KP:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_69">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>21</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>KI:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_KI_4">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>50</y>
+         <width>371</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_70">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>21</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>KD:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_KD_4">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>80</y>
+         <width>371</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_71">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>20</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Step:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_step_KP_4">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>20</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_72">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>50</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Step:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_step_KI_4">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>50</y>
+         <width>161</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_73">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>80</y>
+         <width>31</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Step:</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="sb_step_KD_4">
        <property name="geometry">
         <rect>
          <x>450</x>
@@ -1128,13 +1489,23 @@
      </property>
     </widget>
    </widget>
+   <widget class="QCustomPlot" name="plot" native="true">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>10</y>
+      <width>721</width>
+      <height>601</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>662</width>
+     <width>1405</width>
      <height>21</height>
     </rect>
    </property>
@@ -1150,6 +1521,14 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

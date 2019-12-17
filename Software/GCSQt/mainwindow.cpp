@@ -40,6 +40,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     controller_timer = new QTimer(this);
     connect(controller_timer, SIGNAL(timeout()), this, SLOT(on_controller_cmd()));
+
+    ui->plot->addGraph();
+    ui->plot->xAxis->setLabel("Time");
+    ui->plot->yAxis->setLabel("Tilt");
+
+    ui->plot->xAxis->setRange(0, 40);
+    ui->plot->yAxis->setRange(-20, 20);
 }
 
 MainWindow::~MainWindow()
@@ -188,7 +195,7 @@ void MainWindow::on_btn_respond_ok_clicked()
 {
     mavlink_message_t msg;
     uint8_t mav_send_buf[255];
-    mavlink_msg_evt_respond_pack(0,0,&msg,RESPOND_OK);
+    mavlink_msg_respond_pack(0,0,&msg,RESPOND_OK);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
         showStatus("Sending Respond OK",1000);

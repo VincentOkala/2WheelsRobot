@@ -15,6 +15,7 @@
 #include "MAV/protocol/mavlink.h"
 #include "ledindicator.h"
 #include <QJoysticks.h>
+#include <qcustomplot/qcustomplot.h>
 
 #define MAV_BUFF_SIZE 256
 
@@ -80,6 +81,7 @@ private:
     LedIndicator *ledIndicator;
     QJoysticks* qjs;
     QTimer *controller_timer;
+    QVector<double> qv_x, qv_y;
 
     uint8_t mavbuf[MAV_BUFF_SIZE];
     mavlink_message_t msg;
@@ -111,6 +113,7 @@ private:
     void on_mode_pidt_mav_recv(mavlink_message_t *msg);
 
     void on_mode_imu_mav_recv(mavlink_message_t *msg);
+    void on_tilt_recv(float tilt);
 };
 
 #endif // MAINWINDOW_H

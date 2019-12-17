@@ -18,25 +18,26 @@ static void imu_raw_callback(uint8_t* ctx){
 	uint8_t gmav_send_buf[256];
 	int16_t raw[3];
 	IMU_get_gyro_raw(raw);
-	float tilt = IMU_get_tilt();
-	mavlink_msg_evt_gyro_raw_pack(0,0,&imu_raw_msg,raw[0],raw[1],raw[2], tilt);
+	float roll = IMU_get_roll();
+	mavlink_msg_evt_imu_raw_pack(0,0,&imu_raw_msg,raw[0],raw[1],raw[2], roll);
 	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &imu_raw_msg);
 	com_send(gmav_send_buf, len);
 }
 
-static void load_gyro_offset(){
+static void load_imu_params(){
 	// Load parameters from non-volatile memory
 	params_load();
 
 	// Send parameters to GCS
 	mavlink_message_t msg;
 	uint8_t gmav_send_buf[256];
-	mavlink_msg_gyro_offset_pack(0,0,&msg, params.gx_offset, params.gy_offset, params.gz_offset, params.stand_point);
+	mavlink_msg_imu_params_pack(0,0,&msg, params.gx_offset, params.gy_offset, params.gz_offset,
+			params.angle_ajusted, params.believe_in_gyro);
 	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &msg);
 	com_send(gmav_send_buf, len);
 }
 
-static void save_gyro_offset(){
+static void save_imu_params(){
 	// Save parameters to non-volatile memory
 	params_save();
 
@@ -44,14 +45,15 @@ static void save_gyro_offset(){
 	respond_ok();
 }
 
-static void write_param(mavlink_message_t *msg){
+static void write_imu_params(mavlink_message_t *msg){
 	// Change current parameters according to GCS
-	mavlink_gyro_offset_t gyro_offset;
-	mavlink_msg_gyro_offset_decode(msg,&gyro_offset);
-	params.gx_offset = gyro_offset.gyro_offet_x;
-	params.gy_offset = gyro_offset.gyro_offet_y;
-	params.gz_offset = gyro_offset.gyro_offet_z;
-	params.stand_point = gyro_offset.stand_point;
+	mavlink_imu_params_t imu_params;
+	mavlink_msg_imu_params_decode(msg,&imu_params);
+	params.gx_offset = imu_params.gyro_offet_x;
+	params.gy_offset = imu_params.gyro_offet_y;
+	params.gz_offset = imu_params.gyro_offet_z;
+	params.angle_ajusted = imu_params.angle_ajusted;
+	params.believe_in_gyro = imu_params.believe_in_gyro;
 
 	// Respond a successful operation
 	respond_ok();
@@ -75,16 +77,16 @@ void mode_imu_deinit(){
 
 void on_mode_imu_mavlink_recv(mavlink_message_t *msg){
 	switch(msg->msgid){
-	case MAVLINK_MSG_ID_CMD_GYRO_OFFSET:
+	case MAVLINK_MSG_ID_CMD_PARAMS:
 		{
-			mavlink_cmd_gyro_offset_t cmd_gyro_offet;
-			mavlink_msg_cmd_gyro_offset_decode(msg, &cmd_gyro_offet);
-			if(cmd_gyro_offet.cmd_params == CMD_LOAD) load_gyro_offset();
-			else if(cmd_gyro_offet.cmd_params == CMD_SAVE) save_gyro_offset();
+			mavlink_cmd_params_t cmd;
+			mavlink_msg_cmd_params_decode(msg, &cmd);
+			if(cmd.cmd_params == CMD_LOAD) load_imu_params();
+			else if(cmd.cmd_params == CMD_SAVE) save_imu_params();
 		}
 		break;
-	case MAVLINK_MSG_ID_GYRO_OFFSET:
-		write_param(msg);
+	case MAVLINK_MSG_ID_IMU_PARAMS:
+		write_imu_params(msg);
 		break;
 	default:
 		break;

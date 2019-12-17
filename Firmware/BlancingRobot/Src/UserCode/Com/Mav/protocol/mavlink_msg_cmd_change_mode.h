@@ -5,7 +5,7 @@
 
 MAVPACKED(
 typedef struct __mavlink_cmd_change_mode_t {
- uint8_t CMD_CHANGE_MODE; /*<  Mode*/
+ uint8_t cmd_change_mode; /*<  Mode*/
 }) mavlink_cmd_change_mode_t;
 
 #define MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN 1
@@ -13,8 +13,8 @@ typedef struct __mavlink_cmd_change_mode_t {
 #define MAVLINK_MSG_ID_1_LEN 1
 #define MAVLINK_MSG_ID_1_MIN_LEN 1
 
-#define MAVLINK_MSG_ID_CMD_CHANGE_MODE_CRC 111
-#define MAVLINK_MSG_ID_1_CRC 111
+#define MAVLINK_MSG_ID_CMD_CHANGE_MODE_CRC 44
+#define MAVLINK_MSG_ID_1_CRC 44
 
 
 
@@ -23,14 +23,14 @@ typedef struct __mavlink_cmd_change_mode_t {
     1, \
     "CMD_CHANGE_MODE", \
     1, \
-    {  { "CMD_CHANGE_MODE", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_cmd_change_mode_t, CMD_CHANGE_MODE) }, \
+    {  { "cmd_change_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_cmd_change_mode_t, cmd_change_mode) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_CMD_CHANGE_MODE { \
     "CMD_CHANGE_MODE", \
     1, \
-    {  { "CMD_CHANGE_MODE", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_cmd_change_mode_t, CMD_CHANGE_MODE) }, \
+    {  { "cmd_change_mode", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_cmd_change_mode_t, cmd_change_mode) }, \
          } \
 }
 #endif
@@ -41,20 +41,20 @@ typedef struct __mavlink_cmd_change_mode_t {
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param msg The MAVLink message to compress the data into
  *
- * @param CMD_CHANGE_MODE  Mode
+ * @param cmd_change_mode  Mode
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_cmd_change_mode_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t CMD_CHANGE_MODE)
+                               uint8_t cmd_change_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN];
-    _mav_put_uint8_t(buf, 0, CMD_CHANGE_MODE);
+    _mav_put_uint8_t(buf, 0, cmd_change_mode);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN);
 #else
     mavlink_cmd_change_mode_t packet;
-    packet.CMD_CHANGE_MODE = CMD_CHANGE_MODE;
+    packet.cmd_change_mode = cmd_change_mode;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN);
 #endif
@@ -69,21 +69,21 @@ static inline uint16_t mavlink_msg_cmd_change_mode_pack(uint8_t system_id, uint8
  * @param component_id ID of this component (e.g. 200 for IMU)
  * @param chan The MAVLink channel this message will be sent over
  * @param msg The MAVLink message to compress the data into
- * @param CMD_CHANGE_MODE  Mode
+ * @param cmd_change_mode  Mode
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_cmd_change_mode_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   uint8_t CMD_CHANGE_MODE)
+                                   uint8_t cmd_change_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN];
-    _mav_put_uint8_t(buf, 0, CMD_CHANGE_MODE);
+    _mav_put_uint8_t(buf, 0, cmd_change_mode);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN);
 #else
     mavlink_cmd_change_mode_t packet;
-    packet.CMD_CHANGE_MODE = CMD_CHANGE_MODE;
+    packet.cmd_change_mode = cmd_change_mode;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN);
 #endif
@@ -102,7 +102,7 @@ static inline uint16_t mavlink_msg_cmd_change_mode_pack_chan(uint8_t system_id, 
  */
 static inline uint16_t mavlink_msg_cmd_change_mode_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_cmd_change_mode_t* cmd_change_mode)
 {
-    return mavlink_msg_cmd_change_mode_pack(system_id, component_id, msg, cmd_change_mode->CMD_CHANGE_MODE);
+    return mavlink_msg_cmd_change_mode_pack(system_id, component_id, msg, cmd_change_mode->cmd_change_mode);
 }
 
 /**
@@ -116,27 +116,27 @@ static inline uint16_t mavlink_msg_cmd_change_mode_encode(uint8_t system_id, uin
  */
 static inline uint16_t mavlink_msg_cmd_change_mode_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_cmd_change_mode_t* cmd_change_mode)
 {
-    return mavlink_msg_cmd_change_mode_pack_chan(system_id, component_id, chan, msg, cmd_change_mode->CMD_CHANGE_MODE);
+    return mavlink_msg_cmd_change_mode_pack_chan(system_id, component_id, chan, msg, cmd_change_mode->cmd_change_mode);
 }
 
 /**
  * @brief Send a cmd_change_mode message
  * @param chan MAVLink channel to send the message
  *
- * @param CMD_CHANGE_MODE  Mode
+ * @param cmd_change_mode  Mode
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_cmd_change_mode_send(mavlink_channel_t chan, uint8_t CMD_CHANGE_MODE)
+static inline void mavlink_msg_cmd_change_mode_send(mavlink_channel_t chan, uint8_t cmd_change_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN];
-    _mav_put_uint8_t(buf, 0, CMD_CHANGE_MODE);
+    _mav_put_uint8_t(buf, 0, cmd_change_mode);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CMD_CHANGE_MODE, buf, MAVLINK_MSG_ID_CMD_CHANGE_MODE_MIN_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_CRC);
 #else
     mavlink_cmd_change_mode_t packet;
-    packet.CMD_CHANGE_MODE = CMD_CHANGE_MODE;
+    packet.cmd_change_mode = cmd_change_mode;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CMD_CHANGE_MODE, (const char *)&packet, MAVLINK_MSG_ID_CMD_CHANGE_MODE_MIN_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_CRC);
 #endif
@@ -150,7 +150,7 @@ static inline void mavlink_msg_cmd_change_mode_send(mavlink_channel_t chan, uint
 static inline void mavlink_msg_cmd_change_mode_send_struct(mavlink_channel_t chan, const mavlink_cmd_change_mode_t* cmd_change_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_cmd_change_mode_send(chan, cmd_change_mode->CMD_CHANGE_MODE);
+    mavlink_msg_cmd_change_mode_send(chan, cmd_change_mode->cmd_change_mode);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CMD_CHANGE_MODE, (const char *)cmd_change_mode, MAVLINK_MSG_ID_CMD_CHANGE_MODE_MIN_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_CRC);
 #endif
@@ -164,16 +164,16 @@ static inline void mavlink_msg_cmd_change_mode_send_struct(mavlink_channel_t cha
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_cmd_change_mode_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t CMD_CHANGE_MODE)
+static inline void mavlink_msg_cmd_change_mode_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t cmd_change_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
-    _mav_put_uint8_t(buf, 0, CMD_CHANGE_MODE);
+    _mav_put_uint8_t(buf, 0, cmd_change_mode);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CMD_CHANGE_MODE, buf, MAVLINK_MSG_ID_CMD_CHANGE_MODE_MIN_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_CRC);
 #else
     mavlink_cmd_change_mode_t *packet = (mavlink_cmd_change_mode_t *)msgbuf;
-    packet->CMD_CHANGE_MODE = CMD_CHANGE_MODE;
+    packet->cmd_change_mode = cmd_change_mode;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_CMD_CHANGE_MODE, (const char *)packet, MAVLINK_MSG_ID_CMD_CHANGE_MODE_MIN_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN, MAVLINK_MSG_ID_CMD_CHANGE_MODE_CRC);
 #endif
@@ -186,11 +186,11 @@ static inline void mavlink_msg_cmd_change_mode_send_buf(mavlink_message_t *msgbu
 
 
 /**
- * @brief Get field CMD_CHANGE_MODE from cmd_change_mode message
+ * @brief Get field cmd_change_mode from cmd_change_mode message
  *
  * @return  Mode
  */
-static inline uint8_t mavlink_msg_cmd_change_mode_get_CMD_CHANGE_MODE(const mavlink_message_t* msg)
+static inline uint8_t mavlink_msg_cmd_change_mode_get_cmd_change_mode(const mavlink_message_t* msg)
 {
     return _MAV_RETURN_uint8_t(msg,  0);
 }
@@ -204,7 +204,7 @@ static inline uint8_t mavlink_msg_cmd_change_mode_get_CMD_CHANGE_MODE(const mavl
 static inline void mavlink_msg_cmd_change_mode_decode(const mavlink_message_t* msg, mavlink_cmd_change_mode_t* cmd_change_mode)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    cmd_change_mode->CMD_CHANGE_MODE = mavlink_msg_cmd_change_mode_get_CMD_CHANGE_MODE(msg);
+    cmd_change_mode->cmd_change_mode = mavlink_msg_cmd_change_mode_get_cmd_change_mode(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN? msg->len : MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN;
         memset(cmd_change_mode, 0, MAVLINK_MSG_ID_CMD_CHANGE_MODE_LEN);
