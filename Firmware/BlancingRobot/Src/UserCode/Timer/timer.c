@@ -26,7 +26,7 @@ timer_ID_t timer_register_callback(timer_callback_func_t timer_callback_func, ui
 	return -1;
 }
 
-void timer_unregister_callback(uint8_t id){
+void timer_unregister_callback(timer_ID_t id){
 	callbacks[id].timer_callback_func = 0;
 }
 
