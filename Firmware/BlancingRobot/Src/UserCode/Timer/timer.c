@@ -11,7 +11,7 @@
 
 static callback_t callbacks[MAX_CALLBACK_FUNC];
 
-timer_ID_t timer_register_callback(timer_callback_func_t timer_callback_func, uint16_t period_ms, uint8_t* context, timer_mode_t mode){
+timer_id_t timer_register_callback(timer_callback_func_t timer_callback_func, uint16_t period_ms, uint8_t* context, timer_mode_t mode){
 	for(uint8_t i = 0; i < MAX_CALLBACK_FUNC; i++){
 		if(callbacks[i].timer_callback_func == 0){
 			callbacks[i].timer_callback_func = timer_callback_func;
@@ -26,7 +26,7 @@ timer_ID_t timer_register_callback(timer_callback_func_t timer_callback_func, ui
 	return -1;
 }
 
-void timer_unregister_callback(timer_ID_t id){
+void timer_unregister_callback(timer_id_t id){
 	callbacks[id].timer_callback_func = 0;
 }
 

@@ -1,39 +1,42 @@
 #pragma once
 // MESSAGE EVT_RPY PACKING
 
-#define MAVLINK_MSG_ID_EVT_RPY 3
+#define MAVLINK_MSG_ID_EVT_RPY 4
 
 MAVPACKED(
 typedef struct __mavlink_evt_rpy_t {
  float roll; /*<  Roll*/
  float pitch; /*<  Pitch*/
+ float yaw; /*<  Yaw*/
 }) mavlink_evt_rpy_t;
 
-#define MAVLINK_MSG_ID_EVT_RPY_LEN 8
-#define MAVLINK_MSG_ID_EVT_RPY_MIN_LEN 8
-#define MAVLINK_MSG_ID_3_LEN 8
-#define MAVLINK_MSG_ID_3_MIN_LEN 8
+#define MAVLINK_MSG_ID_EVT_RPY_LEN 12
+#define MAVLINK_MSG_ID_EVT_RPY_MIN_LEN 12
+#define MAVLINK_MSG_ID_4_LEN 12
+#define MAVLINK_MSG_ID_4_MIN_LEN 12
 
-#define MAVLINK_MSG_ID_EVT_RPY_CRC 153
-#define MAVLINK_MSG_ID_3_CRC 153
+#define MAVLINK_MSG_ID_EVT_RPY_CRC 93
+#define MAVLINK_MSG_ID_4_CRC 93
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_EVT_RPY { \
-    3, \
+    4, \
     "EVT_RPY", \
-    2, \
+    3, \
     {  { "roll", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_evt_rpy_t, roll) }, \
          { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_evt_rpy_t, pitch) }, \
+         { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_evt_rpy_t, yaw) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_EVT_RPY { \
     "EVT_RPY", \
-    2, \
+    3, \
     {  { "roll", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_evt_rpy_t, roll) }, \
          { "pitch", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_evt_rpy_t, pitch) }, \
+         { "yaw", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_evt_rpy_t, yaw) }, \
          } \
 }
 #endif
@@ -46,21 +49,24 @@ typedef struct __mavlink_evt_rpy_t {
  *
  * @param roll  Roll
  * @param pitch  Pitch
+ * @param yaw  Yaw
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_evt_rpy_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               float roll, float pitch)
+                               float roll, float pitch, float yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_EVT_RPY_LEN];
     _mav_put_float(buf, 0, roll);
     _mav_put_float(buf, 4, pitch);
+    _mav_put_float(buf, 8, yaw);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EVT_RPY_LEN);
 #else
     mavlink_evt_rpy_t packet;
     packet.roll = roll;
     packet.pitch = pitch;
+    packet.yaw = yaw;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_EVT_RPY_LEN);
 #endif
@@ -77,22 +83,25 @@ static inline uint16_t mavlink_msg_evt_rpy_pack(uint8_t system_id, uint8_t compo
  * @param msg The MAVLink message to compress the data into
  * @param roll  Roll
  * @param pitch  Pitch
+ * @param yaw  Yaw
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_evt_rpy_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   float roll,float pitch)
+                                   float roll,float pitch,float yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_EVT_RPY_LEN];
     _mav_put_float(buf, 0, roll);
     _mav_put_float(buf, 4, pitch);
+    _mav_put_float(buf, 8, yaw);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_EVT_RPY_LEN);
 #else
     mavlink_evt_rpy_t packet;
     packet.roll = roll;
     packet.pitch = pitch;
+    packet.yaw = yaw;
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_EVT_RPY_LEN);
 #endif
@@ -111,7 +120,7 @@ static inline uint16_t mavlink_msg_evt_rpy_pack_chan(uint8_t system_id, uint8_t 
  */
 static inline uint16_t mavlink_msg_evt_rpy_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_evt_rpy_t* evt_rpy)
 {
-    return mavlink_msg_evt_rpy_pack(system_id, component_id, msg, evt_rpy->roll, evt_rpy->pitch);
+    return mavlink_msg_evt_rpy_pack(system_id, component_id, msg, evt_rpy->roll, evt_rpy->pitch, evt_rpy->yaw);
 }
 
 /**
@@ -125,7 +134,7 @@ static inline uint16_t mavlink_msg_evt_rpy_encode(uint8_t system_id, uint8_t com
  */
 static inline uint16_t mavlink_msg_evt_rpy_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_evt_rpy_t* evt_rpy)
 {
-    return mavlink_msg_evt_rpy_pack_chan(system_id, component_id, chan, msg, evt_rpy->roll, evt_rpy->pitch);
+    return mavlink_msg_evt_rpy_pack_chan(system_id, component_id, chan, msg, evt_rpy->roll, evt_rpy->pitch, evt_rpy->yaw);
 }
 
 /**
@@ -134,21 +143,24 @@ static inline uint16_t mavlink_msg_evt_rpy_encode_chan(uint8_t system_id, uint8_
  *
  * @param roll  Roll
  * @param pitch  Pitch
+ * @param yaw  Yaw
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_evt_rpy_send(mavlink_channel_t chan, float roll, float pitch)
+static inline void mavlink_msg_evt_rpy_send(mavlink_channel_t chan, float roll, float pitch, float yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_EVT_RPY_LEN];
     _mav_put_float(buf, 0, roll);
     _mav_put_float(buf, 4, pitch);
+    _mav_put_float(buf, 8, yaw);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EVT_RPY, buf, MAVLINK_MSG_ID_EVT_RPY_MIN_LEN, MAVLINK_MSG_ID_EVT_RPY_LEN, MAVLINK_MSG_ID_EVT_RPY_CRC);
 #else
     mavlink_evt_rpy_t packet;
     packet.roll = roll;
     packet.pitch = pitch;
+    packet.yaw = yaw;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EVT_RPY, (const char *)&packet, MAVLINK_MSG_ID_EVT_RPY_MIN_LEN, MAVLINK_MSG_ID_EVT_RPY_LEN, MAVLINK_MSG_ID_EVT_RPY_CRC);
 #endif
@@ -162,7 +174,7 @@ static inline void mavlink_msg_evt_rpy_send(mavlink_channel_t chan, float roll, 
 static inline void mavlink_msg_evt_rpy_send_struct(mavlink_channel_t chan, const mavlink_evt_rpy_t* evt_rpy)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
-    mavlink_msg_evt_rpy_send(chan, evt_rpy->roll, evt_rpy->pitch);
+    mavlink_msg_evt_rpy_send(chan, evt_rpy->roll, evt_rpy->pitch, evt_rpy->yaw);
 #else
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EVT_RPY, (const char *)evt_rpy, MAVLINK_MSG_ID_EVT_RPY_MIN_LEN, MAVLINK_MSG_ID_EVT_RPY_LEN, MAVLINK_MSG_ID_EVT_RPY_CRC);
 #endif
@@ -176,18 +188,20 @@ static inline void mavlink_msg_evt_rpy_send_struct(mavlink_channel_t chan, const
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_evt_rpy_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  float roll, float pitch)
+static inline void mavlink_msg_evt_rpy_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  float roll, float pitch, float yaw)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
     _mav_put_float(buf, 0, roll);
     _mav_put_float(buf, 4, pitch);
+    _mav_put_float(buf, 8, yaw);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EVT_RPY, buf, MAVLINK_MSG_ID_EVT_RPY_MIN_LEN, MAVLINK_MSG_ID_EVT_RPY_LEN, MAVLINK_MSG_ID_EVT_RPY_CRC);
 #else
     mavlink_evt_rpy_t *packet = (mavlink_evt_rpy_t *)msgbuf;
     packet->roll = roll;
     packet->pitch = pitch;
+    packet->yaw = yaw;
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_EVT_RPY, (const char *)packet, MAVLINK_MSG_ID_EVT_RPY_MIN_LEN, MAVLINK_MSG_ID_EVT_RPY_LEN, MAVLINK_MSG_ID_EVT_RPY_CRC);
 #endif
@@ -220,6 +234,16 @@ static inline float mavlink_msg_evt_rpy_get_pitch(const mavlink_message_t* msg)
 }
 
 /**
+ * @brief Get field yaw from evt_rpy message
+ *
+ * @return  Yaw
+ */
+static inline float mavlink_msg_evt_rpy_get_yaw(const mavlink_message_t* msg)
+{
+    return _MAV_RETURN_float(msg,  8);
+}
+
+/**
  * @brief Decode a evt_rpy message into a struct
  *
  * @param msg The message to decode
@@ -230,6 +254,7 @@ static inline void mavlink_msg_evt_rpy_decode(const mavlink_message_t* msg, mavl
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     evt_rpy->roll = mavlink_msg_evt_rpy_get_roll(msg);
     evt_rpy->pitch = mavlink_msg_evt_rpy_get_pitch(msg);
+    evt_rpy->yaw = mavlink_msg_evt_rpy_get_yaw(msg);
 #else
         uint8_t len = msg->len < MAVLINK_MSG_ID_EVT_RPY_LEN? msg->len : MAVLINK_MSG_ID_EVT_RPY_LEN;
         memset(evt_rpy, 0, MAVLINK_MSG_ID_EVT_RPY_LEN);

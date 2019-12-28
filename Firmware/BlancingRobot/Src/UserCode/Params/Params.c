@@ -7,14 +7,12 @@
 
 #include "Params.h"
 #include <stm32f1xx.h>
-
-#define PARAMS_PAGE_ADDRESS 0x0800FC00
-#define HAVE_SAVED_DATA		0x01
+#include "UserCode/user_define.h"
 
 params_t params = {
-		.pid_params = {
+		.pid_whe0 = {
 				.KP = 10,
-				.KI = 0.1,
+				.KI = 0,
 				.KD = 0,
 
 				.minIpart = -1000,
@@ -28,13 +26,60 @@ params_t params = {
 				.preError = 0,
 				.isFistCompute = true
 		},
-		.stand_point = 0,
+
+		.pid_whe1 = {
+				.KP = 10,
+				.KI = 0,
+				.KD = 0,
+
+				.minIpart = -1000,
+				.maxIPart = 1000,
+				.minDpart = -1000,
+				.maxDPart = 1000,
+				.minOut = -1000,
+				.maxOut = 1000,
+
+				.preIPart = 0,
+				.preError = 0,
+				.isFistCompute = true
+		},
+
+		.pid_sync = {
+				.KP = 10,
+				.KI = 0,
+				.KD = 0,
+
+				.minIpart = -1000,
+				.maxIPart = 1000,
+				.minDpart = -1000,
+				.maxDPart = 1000,
+				.minOut = -1000,
+				.maxOut = 1000,
+
+				.preIPart = 0,
+				.preError = 0,
+				.isFistCompute = true
+		},
+
+		.angle_ajusted = 0,
 		.believe_in_gyro = 0.99,
 
 		.gx_offset = 1,
 		.gy_offset = 2,
 		.gz_offset = 3
 };
+
+static uint32_t address = PARAMS_PAGE_ADDRESS;
+
+static void write(uint32_t* ptr){
+	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, *ptr);
+	address+=4;
+}
+
+static void read(uint32_t* ptr){
+	*ptr = *((__IO uint32_t*)address);
+	address+=4;
+}
 
 void params_save(){
 	HAL_FLASH_Unlock();
@@ -47,64 +92,75 @@ void params_save(){
 	uint32_t PageError = 0;
 	HAL_FLASHEx_Erase(&EraseInitStruct, &PageError);
 
-	uint32_t address = PARAMS_PAGE_ADDRESS;
-	uint32_t *ptr;
+	address = PARAMS_PAGE_ADDRESS;
 
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, HAVE_SAVED_DATA);
-	address+=4;
+	uint32_t saved = HAVE_SAVED_DATA;
+	write(&saved);
 
-	ptr = &params.pid_params.KP;
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, *ptr);
-	address+=4;
+	// wheels pid
+	write((uint32_t*)(&params.pid_whe0.KP));
+	write((uint32_t*)(&params.pid_whe0.KI));
+	write((uint32_t*)(&params.pid_whe0.KD));
 
-	ptr = &params.pid_params.KI;
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, *ptr);
-	address+=4;
+	write((uint32_t*)(&params.pid_whe1.KP));
+	write((uint32_t*)(&params.pid_whe1.KI));
+	write((uint32_t*)(&params.pid_whe1.KD));
 
-	ptr = &params.pid_params.KD;
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, *ptr);
-	address+=4;
+	// stability pid
+	write((uint32_t*)(&params.pid_sync.KP));
+	write((uint32_t*)(&params.pid_sync.KI));
+	write((uint32_t*)(&params.pid_sync.KD));
 
-	ptr = &params.stand_point;
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, *ptr);
-	address+=4;
+	// IMU
+	write((uint32_t*)(&params.angle_ajusted));
+	write((uint32_t*)(&params.believe_in_gyro));
+	write((uint32_t*)(&params.gx_offset));
+	write((uint32_t*)(&params.gy_offset));
+	write((uint32_t*)(&params.gz_offset));
 
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, params.gx_offset);
-	address+=4;
-
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, params.gy_offset);
-	address+=4;
-
-	HAL_FLASH_Program(FLASH_TYPEPROGRAM_WORD, address, params.gz_offset);
-	address+=4;
-
+	//HW
+	write((uint32_t*)(&params.motor0_invert));
+	write((uint32_t*)(&params.motor1_invert));
+	write((uint32_t*)(&params.encoder0_invert));
+	write((uint32_t*)(&params.encoder1_invert));
+	write((uint32_t*)(&params.encoder_exchange));
 	HAL_FLASH_Lock();
 }
 
 bool params_load(){
-	uint32_t address = PARAMS_PAGE_ADDRESS;
+	address = PARAMS_PAGE_ADDRESS;
 
 	if((*(__IO uint32_t*) address) != HAVE_SAVED_DATA) return false;
 	address+=4;
 
-	float *ptr;
-	ptr = (__IO uint32_t*) address;
-	params.pid_params.KP = *ptr;
-	address+=4;
-	ptr = (__IO uint32_t*) address;
-	params.pid_params.KI = *ptr;
-	address+=4;
-	ptr = (__IO uint32_t*) address;
-	params.pid_params.KD = *ptr;
-	address+=4;
-	ptr = (__IO uint32_t*) address;
-	params.stand_point = *ptr;
-	address+=4;
-	params.gx_offset = (*(__IO uint32_t*) address);
-	address+=4;
-	params.gy_offset = (*(__IO uint32_t*) address);
-	address+=4;
-	params.gz_offset = (*(__IO uint32_t*) address);
-	address+=4;
+	// wheels pid
+	read((uint32_t*)(&params.pid_whe0.KP));
+	read((uint32_t*)(&params.pid_whe0.KI));
+	read((uint32_t*)(&params.pid_whe0.KD));
+
+	read((uint32_t*)(&params.pid_whe1.KP));
+	read((uint32_t*)(&params.pid_whe1.KI));
+	read((uint32_t*)(&params.pid_whe1.KD));
+
+	// stability pid
+	read((uint32_t*)(&params.pid_sync.KP));
+	read((uint32_t*)(&params.pid_sync.KI));
+	read((uint32_t*)(&params.pid_sync.KD));
+
+
+	// IMU
+	read((uint32_t*)(&params.angle_ajusted));
+	read((uint32_t*)(&params.believe_in_gyro));
+	read((uint32_t*)(&params.gx_offset));
+	read((uint32_t*)(&params.gy_offset));
+	read((uint32_t*)(&params.gz_offset));
+
+	//HW
+	read((uint32_t*)(&params.motor0_invert));
+	read((uint32_t*)(&params.motor1_invert));
+	read((uint32_t*)(&params.encoder0_invert));
+	read((uint32_t*)(&params.encoder1_invert));
+	read((uint32_t*)(&params.encoder_exchange));
+
 	return true;
 }

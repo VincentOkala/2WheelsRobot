@@ -11,7 +11,7 @@
 #include "UserCode/IMU/IMU.h"
 #include "UserCode/Com/Com.h"
 
-static timer_ID_t gtimer_ID_IMU_Raw;
+static timer_id_t gtimer_ID_IMU_Raw;
 
 static void imu_raw_callback(uint8_t* ctx){
 	mavlink_message_t imu_raw_msg;

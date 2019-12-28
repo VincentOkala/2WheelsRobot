@@ -19,9 +19,9 @@ typedef struct{
 	uint8_t cnt;
 }cmd_velocity_t;
 
-static timer_ID_t gtimer_ID_controller;
-static timer_ID_t gtimer_ID_IMU_status_report;
-static timer_ID_t gtimer_ID_IMU_rpy;
+static timer_id_t gtimer_ID_controller;
+static timer_id_t gtimer_ID_IMU_status_report;
+static timer_id_t gtimer_ID_IMU_rpy;
 static cmd_velocity_t gcmd_velocity;
 
 static void controller_callback(uint8_t* ctx){
@@ -40,12 +40,12 @@ static void controller_callback(uint8_t* ctx){
 	}
 
 	float tilt = IMU_get_tilt();
-	float setpoint = params.stand_point - vx*VX_COEFF;
-	float speed = pid_compute(&params.pid_params,setpoint - tilt);
+	float setpoint = params.angle_ajusted - vx*VX_COEFF;
+	float speed = pid_compute(&params.pid_sync,setpoint,tilt);
 
 	if(tilt > 150 || tilt < -150) {
 		speed = 0;
-		pid_reset(&params.pid_params);
+		pid_reset(&params.pid_sync);
 	}
 
 	speed -= vx*THROTTLE_COEFF;
@@ -58,8 +58,8 @@ static void imu_status_report_callback(uint8_t* ctx){
 	mavlink_message_t msg;
 	uint8_t gmav_send_buf[256];
 	bool connection = IMU_test_connection();
-	if(connection == true) mavlink_msg_evt_sensor_status_pack(0,0,&msg,SENSOR_STATUS_IMU_OK);
-	else mavlink_msg_evt_sensor_status_pack(0,0,&msg,SENSOR_STATUS_IMU_ERROR);
+	if(connection == true) mavlink_msg_evt_sensor_pack(0,0,&msg,SENSOR_IMU_OK);
+	else mavlink_msg_evt_sensor_pack(0,0,&msg,SENSOR_IMU_ERROR);
 	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &msg);
 	com_send(gmav_send_buf, len);
 }
@@ -69,7 +69,8 @@ static void rqy_report_callback(uint8_t *ctx){
 	uint8_t gmav_send_buf[256];
 	float roll = IMU_get_roll();
 	float pitch = IMU_get_pitch();
-	mavlink_msg_evt_rpy_pack(0,0,&rpy_msg,roll-params.stand_point,pitch);
+	float yaw = IMU_get_yaw();
+	mavlink_msg_evt_rpy_pack(0,0,&rpy_msg,roll,pitch,yaw);
 	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &rpy_msg);
 	com_send(gmav_send_buf, len);
 }
@@ -102,8 +103,7 @@ void on_mode_basic_mavlink_recv(mavlink_message_t *msg){
 		{
 			mavlink_cmd_velocity_t cmd_velocity;
 			mavlink_msg_cmd_velocity_decode(msg, &cmd_velocity);
-			gcmd_velocity.vx = cmd_velocity.vx;
-			gcmd_velocity.vy = cmd_velocity.vy;
+			gcmd_velocity.vx = cmd_velocity.v;
 			gcmd_velocity.omega = cmd_velocity.omega;
 			gcmd_velocity.cnt = 50; // 1s timeout
 		}

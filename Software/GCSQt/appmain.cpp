@@ -6,22 +6,25 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
         uint8_t msg_received = mavlink_parse_char(MAVLINK_COMM_0, bytes[i], &msg, &status);
         if(msg_received == 1){
             qDebug() << "Recv msgid: " << msg.msgid;
-            if(msg.msgid == MAVLINK_MSG_ID_EVT_RESPOND && isChangeMode){
+            if(msg.msgid == MAVLINK_MSG_ID_RESPOND && isChangeMode){
                 isChangeMode = false;
-                mavlink_evt_respond_t evt_respond;
-                mavlink_msg_evt_respond_decode(&msg, &evt_respond);
-                if(evt_respond.EVT_RESPOND == RESPOND_OK){
+                mavlink_respond_t evt_respond;
+                mavlink_msg_respond_decode(&msg, &evt_respond);
+                if(evt_respond.respond == RESPOND_OK){
                     changeModeSuccess = true;
                     showStatus("Succeed to change mode",1000);
                     switch (changeToMode) {
-                    case MODE_BASIC:
-                        currentMode = MODE_BASIC;
+                    case MODE_RUN:
+                        currentMode = MODE_RUN;
                         break;
-                    case MODE_IMU_CALIBRATION:
-                        currentMode = MODE_IMU_CALIBRATION;
+                    case MODE_IMU:
+                        currentMode = MODE_IMU;
                         break;
-                    case MODE_PID_TUNNING:
-                        currentMode = MODE_PID_TUNNING;
+                    case MODE_PIDT:
+                        currentMode = MODE_PIDT;
+                        break;
+                    case MODE_HW:
+                        currentMode = MODE_HW;
                         break;
                     default:
                         break;
@@ -30,17 +33,20 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
                 qDebug() << "Mode: " << currentMode;
             }
             else{
-                controller_timer->stop();
+//                controller_timer->stop();
                 switch (currentMode) {
-                case MODE_BASIC:
+                case MODE_RUN:
                     on_mode_basic_mav_recv(&msg);
-                    controller_timer->start(100);
+//                    controller_timer->start(100);
                     break;
-                case MODE_IMU_CALIBRATION:
+                case MODE_IMU:
                     on_mode_imu_mav_recv(&msg);
                     break;
-                case MODE_PID_TUNNING:
+                case MODE_PIDT:
                     on_mode_pidt_mav_recv(&msg);
+                    break;
+                case MODE_HW:
+                    on_mode_hw_mav_recv(&msg);
                     break;
                 default:
                     break;
@@ -51,7 +57,7 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
 }
 
 void MainWindow::app_main_init(){
-    currentMode = MODE_BASIC;
+    currentMode = MODE_RUN;
 }
 
 void MainWindow::app_command_timeout(){
@@ -80,15 +86,20 @@ void MainWindow::app_command_change_mode(robot_mode_t mode){
 
 void MainWindow::on_btn_change_mode_basic_clicked()
 {
-    app_command_change_mode(MODE_BASIC);
+    app_command_change_mode(MODE_RUN);
 }
 
 void MainWindow::on_btn_change_mode_imu_calibration_clicked()
 {
-    app_command_change_mode(MODE_IMU_CALIBRATION);
+    app_command_change_mode(MODE_IMU);
 }
 
 void MainWindow::on_btn_change_mode_pid_tunning_clicked()
 {
-     app_command_change_mode(MODE_PID_TUNNING);
+     app_command_change_mode(MODE_PIDT);
+}
+
+void MainWindow::on_btn_change_mode_hw_clicked()
+{
+    app_command_change_mode(MODE_HW);
 }

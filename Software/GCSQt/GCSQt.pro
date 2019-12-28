@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui serialport network gamepad
+QT       += core gui serialport network gamepad printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,12 +28,28 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     appmain.cpp \
-    mode_basic.cpp \
     ledindicator.cpp \
+    mode_hw.cpp \
     mode_pidt.cpp \
-    modu_imu.cpp
+    mode_run.cpp \
+    modu_imu.cpp \
+    qcustomplot/qcustomplot.cpp
 
 HEADERS += \
+    MAV/protocol/mavlink_msg_cmd_encoder_invert.h \
+    MAV/protocol/mavlink_msg_cmd_hw.h \
+    MAV/protocol/mavlink_msg_cmd_motor_invert.h \
+    MAV/protocol/mavlink_msg_cmd_params.h \
+    MAV/protocol/mavlink_msg_evt_imu_raw.h \
+    MAV/protocol/mavlink_msg_evt_sensor.h \
+    MAV/protocol/mavlink_msg_evt_tilt.h \
+    MAV/protocol/mavlink_msg_hw_params.h \
+    MAV/protocol/mavlink_msg_imu_calibration_params.h \
+    MAV/protocol/mavlink_msg_imu_params.h \
+    MAV/protocol/mavlink_msg_motor_speed.h \
+    MAV/protocol/mavlink_msg_pid_params.h \
+    MAV/protocol/mavlink_msg_pid_report.h \
+    MAV/protocol/mavlink_msg_respond.h \
         mainwindow.h \
     MAV/protocol/mavlink.h \
     MAV/protocol/mavlink_msg_cmd_accel_offset.h \
@@ -60,7 +76,8 @@ HEADERS += \
     MAV/mavlink_types.h \
     MAV/protocol.h \
     mainwindow.h \
-    ledindicator.h
+    ledindicator.h \
+    qcustomplot/qcustomplot.h
 
 FORMS += \
     mainwindow.ui

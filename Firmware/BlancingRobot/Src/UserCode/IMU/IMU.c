@@ -16,7 +16,7 @@
 static connection_failed_cb_t gconnection_failed_cb = 0;
 static float roll;
 static float pitch;
-static timer_ID_t gtimer_ID_imu_callback;
+static timer_id_t gtimer_ID_imu_callback;
 static int16_t motion_6[6];
 
 static void imu_callback(uint8_t* ctx){
@@ -54,6 +54,10 @@ float IMU_get_roll(void){
 
 float IMU_get_pitch(void){
 	return pitch;
+}
+
+float IMU_get_yaw(void){
+	return 0;
 }
 
 float IMU_get_tilt(void){

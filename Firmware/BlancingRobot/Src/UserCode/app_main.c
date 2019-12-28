@@ -28,21 +28,20 @@ static void on_mavlink_recv(mavlink_message_t *msg){
 		gmode_deinit();
 		mavlink_cmd_change_mode_t cmd_change_mode;
 		mavlink_msg_cmd_change_mode_decode(msg, &cmd_change_mode);
-		if(cmd_change_mode.CMD_CHANGE_MODE == MODE_BASIC){
-			gmode = MODE_BASIC;
+		if(cmd_change_mode.cmd_change_mode == MODE_RUN){
+			gmode = MODE_RUN;
 			gmode_init = mode_basic_init;
 			gmode_deinit = mode_basic_deinit;
 			gon_mode_mav_recv = on_mode_basic_mavlink_recv;
 		}
-		else if(cmd_change_mode.CMD_CHANGE_MODE == MODE_IMU_CALIBRATION){
-			gmode = MODE_IMU_CALIBRATION;
+		else if(cmd_change_mode.cmd_change_mode == MODE_IMU){
+			gmode = MODE_IMU;
 			gmode_init = mode_imu_init;
 			gmode_deinit = mode_imu_deinit;
 			gon_mode_mav_recv = on_mode_imu_mavlink_recv;
-			gmode = MODE_IMU_CALIBRATION;
 		}
-		else if(cmd_change_mode.CMD_CHANGE_MODE == MODE_PID_TUNNING){
-			gmode = MODE_PID_TUNNING;
+		else if(cmd_change_mode.cmd_change_mode == MODE_PIDT){
+			gmode = MODE_PIDT;
 			gmode_init = mode_pidt_init;
 			gmode_deinit = mode_pidt_deinit;
 			gon_mode_mav_recv = on_mode_pidt_mavlink_recv;
@@ -67,7 +66,7 @@ void app_main(){
 	com_set_on_mav_recv(on_mavlink_recv);
 
 	// Run default mode
-	gmode = MODE_BASIC;
+	gmode = MODE_RUN;
 	gmode_init = mode_basic_init;
 	gmode_deinit = mode_basic_deinit;
 	gon_mode_mav_recv = on_mode_basic_mavlink_recv;

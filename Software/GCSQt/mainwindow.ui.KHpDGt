@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="modeRUN">
      <attribute name="title">
@@ -47,9 +47,9 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
+        <y>110</y>
         <width>621</width>
-        <height>71</height>
+        <height>61</height>
        </rect>
       </property>
       <property name="title">
@@ -73,21 +73,15 @@
         <rect>
          <x>40</x>
          <y>30</y>
-         <width>71</width>
+         <width>113</width>
          <height>20</height>
         </rect>
-       </property>
-       <property name="text">
-        <string>NR</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_48">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>230</x>
          <y>30</y>
          <width>31</width>
          <height>16</height>
@@ -100,23 +94,17 @@
       <widget class="QLineEdit" name="txtBoxPitch">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>270</x>
          <y>30</y>
-         <width>71</width>
+         <width>113</width>
          <height>20</height>
         </rect>
-       </property>
-       <property name="text">
-        <string>NR</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_54">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>450</x>
          <y>30</y>
          <width>31</width>
          <height>16</height>
@@ -129,46 +117,47 @@
       <widget class="QLineEdit" name="txtBoxYaw">
        <property name="geometry">
         <rect>
-         <x>320</x>
+         <x>490</x>
          <y>30</y>
-         <width>71</width>
+         <width>113</width>
          <height>20</height>
         </rect>
        </property>
-       <property name="text">
-        <string>NR</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
       </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_13">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>621</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Sensor Status</string>
+      </property>
       <widget class="QLabel" name="label_55">
        <property name="geometry">
         <rect>
-         <x>430</x>
+         <x>10</x>
          <y>30</y>
-         <width>31</width>
+         <width>51</width>
          <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>Tilt:</string>
+        <string>MPU6050:</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="txtBoxYaw_2">
+      <widget class="QLineEdit" name="txtBoxMPU">
        <property name="geometry">
         <rect>
-         <x>460</x>
+         <x>70</x>
          <y>30</y>
-         <width>71</width>
+         <width>541</width>
          <height>20</height>
         </rect>
-       </property>
-       <property name="text">
-        <string>NR</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
        </property>
       </widget>
      </widget>
@@ -176,7 +165,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>120</y>
+        <y>180</y>
         <width>621</width>
         <height>61</height>
        </rect>
@@ -202,21 +191,18 @@
         <rect>
          <x>40</x>
          <y>30</y>
-         <width>71</width>
+         <width>113</width>
          <height>20</height>
         </rect>
        </property>
        <property name="text">
         <string>0</string>
        </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
       </widget>
       <widget class="QLabel" name="label_62">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>230</x>
          <y>30</y>
          <width>31</width>
          <height>16</height>
@@ -229,72 +215,40 @@
       <widget class="QLineEdit" name="txtBoxVY">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>270</x>
          <y>30</y>
-         <width>71</width>
+         <width>113</width>
          <height>20</height>
         </rect>
        </property>
        <property name="text">
         <string>0</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_63">
        <property name="geometry">
         <rect>
-         <x>290</x>
+         <x>440</x>
          <y>30</y>
-         <width>21</width>
+         <width>41</width>
          <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>W:</string>
+        <string>OMEGA:</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="txtBoxOMEGA">
        <property name="geometry">
         <rect>
-         <x>320</x>
+         <x>490</x>
          <y>30</y>
-         <width>71</width>
+         <width>113</width>
          <height>20</height>
         </rect>
        </property>
        <property name="text">
         <string>0</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btn_control_enable_2">
-       <property name="geometry">
-        <rect>
-         <x>460</x>
-         <y>20</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Disabled</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_64">
-       <property name="geometry">
-        <rect>
-         <x>430</x>
-         <y>30</y>
-         <width>21</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>CE:</string>
        </property>
       </widget>
      </widget>
@@ -1529,9 +1483,6 @@
          <height>20</height>
         </rect>
        </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
       </widget>
       <widget class="QPushButton" name="btn_set_speed1">
        <property name="geometry">
@@ -1607,9 +1558,6 @@
          <height>20</height>
         </rect>
        </property>
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
       </widget>
       <widget class="QPushButton" name="btn_set_speed0">
        <property name="geometry">
@@ -1660,10 +1608,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>0</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
+        <string/>
        </property>
       </widget>
       <widget class="QLabel" name="label_35">
@@ -1689,10 +1634,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>0</string>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
+        <string/>
        </property>
       </widget>
       <widget class="QPushButton" name="btn_control_enable">

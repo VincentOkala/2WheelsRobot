@@ -39,7 +39,28 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(qjs,SIGNAL(axisChanged(const int, const int, const qreal)),this,SLOT(on_js_axis_change(const int, const int, const qreal)));
 
     controller_timer = new QTimer(this);
-    connect(controller_timer, SIGNAL(timeout()), this, SLOT(on_controller_cmd()));
+
+    for(int i=0;i<=3;i++){
+        ui->plot_w0->addGraph();
+        ui->plot_w0->graph(i)->setPen(QPen(QColor(0,50*i,50*i)));
+
+        ui->plot_w1->addGraph();
+        ui->plot_w1->graph(i)->setPen(QPen(QColor(50*i,0,50*i)));
+
+        ui->plot_sync->addGraph();
+        ui->plot_sync->graph(i)->setPen(QPen(QColor(50*i,50*i,0)));
+    }
+
+    for(int i=0;i<=1;i++){
+        ui->plot_w0_err->addGraph();
+        ui->plot_w0_err->graph(i)->setPen(QPen(QColor(0,50*i,50*i)));
+
+        ui->plot_w1_err->addGraph();
+        ui->plot_w1_err->graph(i)->setPen(QPen(QColor(50*i,0,50*i)));
+
+        ui->plot_sync_err->addGraph();
+        ui->plot_sync_err->graph(i)->setPen(QPen(QColor(50*i,50*i,0)));
+    }
 }
 
 MainWindow::~MainWindow()
@@ -188,7 +209,7 @@ void MainWindow::on_btn_respond_ok_clicked()
 {
     mavlink_message_t msg;
     uint8_t mav_send_buf[255];
-    mavlink_msg_evt_respond_pack(0,0,&msg,RESPOND_OK);
+    mavlink_msg_respond_pack(0,0,&msg,RESPOND_OK);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
         showStatus("Sending Respond OK",1000);

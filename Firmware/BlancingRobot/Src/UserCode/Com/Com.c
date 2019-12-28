@@ -46,7 +46,7 @@ void com_send(uint8_t *data, uint16_t len){
 void respond_ok(void){
 	mavlink_message_t msg;
 	uint8_t gmav_send_buf[255];
-	mavlink_msg_evt_respond_pack(0,0,&msg,RESPOND_OK);
+	mavlink_msg_respond_pack(0,0,&msg,RESPOND_OK);
 	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &msg);
 	com_send(gmav_send_buf, len);
 }

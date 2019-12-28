@@ -13,7 +13,7 @@
 #include "UserCode/Com/Com.h"
 #include "UserCode/Params/Params.h"
 
-static timer_ID_t gtimer_ID_controller;
+static timer_id_t gtimer_ID_controller;
 
 static void controller_callback(uint8_t* ctx){
 	float tilt = IMU_get_tilt();
