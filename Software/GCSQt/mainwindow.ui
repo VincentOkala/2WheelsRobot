@@ -77,6 +77,12 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="text">
+        <string>NR</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLabel" name="label_48">
        <property name="geometry">
@@ -99,6 +105,12 @@
          <width>91</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="text">
+        <string>NR</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_54">
@@ -123,6 +135,12 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="text">
+        <string>NR</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLabel" name="label_79">
        <property name="geometry">
@@ -137,7 +155,7 @@
         <string>Tilt:</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="txtBoxYaw_2">
+      <widget class="QLineEdit" name="txtb_tilt_1">
        <property name="geometry">
         <rect>
          <x>510</x>
@@ -145,6 +163,12 @@
          <width>91</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="text">
+        <string>NR</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>
@@ -185,6 +209,9 @@
        <property name="text">
         <string>0</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLabel" name="label_62">
        <property name="geometry">
@@ -211,6 +238,9 @@
        <property name="text">
         <string>0</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QLabel" name="label_63">
        <property name="geometry">
@@ -236,6 +266,9 @@
        </property>
        <property name="text">
         <string>0</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QPushButton" name="btn_control_enable_2">
@@ -1520,7 +1553,7 @@
         <string>Gx offset:</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="tb_tilt">
+      <widget class="QLineEdit" name="txtb_tilt_0">
        <property name="geometry">
         <rect>
          <x>70</x>

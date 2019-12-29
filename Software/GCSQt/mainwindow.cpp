@@ -147,7 +147,7 @@ void MainWindow::on_btnOpenCOM_clicked()
 void MainWindow::on_btnSend_clicked()
 {
     if(!send(ui->tbSend->text().toStdString().c_str())){
-        showStatus("Error to send",1000);
+        showStatus("Something went wrong",1000);
     }
 }
 
@@ -212,9 +212,9 @@ void MainWindow::on_btn_respond_ok_clicked()
     mavlink_msg_respond_pack(0,0,&msg,RESPOND_OK);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Sending Respond OK",1000);
+        showStatus("Respond OK",1000);
    }
    else{
-       showStatus("Cannot Send Respond OK",1000);
+       showStatus("Cannot send respond OK",1000);
    }
 }

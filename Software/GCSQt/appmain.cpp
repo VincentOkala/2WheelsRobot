@@ -103,6 +103,9 @@ void MainWindow::on_btn_change_mode_hw_clicked()
 }
 
 void MainWindow::on_tilt_recv(float tilt){
+    ui->txtb_tilt_0->setText(QString::number(tilt));
+    ui->txtb_tilt_1->setText(QString::number(tilt));
+
     static uint32_t cnt = 0;
     tilt_x.append(cnt);
     tilt_y.append(tilt);
