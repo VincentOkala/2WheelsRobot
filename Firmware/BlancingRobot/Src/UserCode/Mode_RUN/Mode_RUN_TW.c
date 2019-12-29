@@ -5,6 +5,10 @@
  *      Author: 16138
  */
 
+#include <UserCode/user_define.h>
+
+#ifdef ROBOT_MODEL_TWO_WHEELS
+
 #include <UserCode/IMU/IMU.h>
 #include <UserCode/Mode_RUN/Mode_RUN.h>
 #include "UserCode/Motors/Motors.h"
@@ -112,3 +116,5 @@ void on_mode_run_mavlink_recv(mavlink_message_t *msg){
 		break;
 	}
 }
+
+#endif

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="modeRUN">
      <attribute name="title">
@@ -1757,7 +1757,7 @@
         <rect>
          <x>450</x>
          <y>20</y>
-         <width>161</width>
+         <width>101</width>
          <height>22</height>
         </rect>
        </property>
@@ -1786,7 +1786,7 @@
         <rect>
          <x>450</x>
          <y>50</y>
-         <width>161</width>
+         <width>101</width>
          <height>22</height>
         </rect>
        </property>
@@ -1815,7 +1815,7 @@
         <rect>
          <x>450</x>
          <y>80</y>
-         <width>161</width>
+         <width>101</width>
          <height>22</height>
         </rect>
        </property>
@@ -1824,6 +1824,19 @@
        </property>
        <property name="value">
         <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_mode_pidt_write_params_4">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>20</y>
+         <width>51</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Write</string>
        </property>
       </widget>
      </widget>
@@ -1935,7 +1948,7 @@
         <rect>
          <x>450</x>
          <y>20</y>
-         <width>161</width>
+         <width>101</width>
          <height>22</height>
         </rect>
        </property>
@@ -1964,7 +1977,7 @@
         <rect>
          <x>450</x>
          <y>50</y>
-         <width>161</width>
+         <width>101</width>
          <height>22</height>
         </rect>
        </property>
@@ -1993,7 +2006,7 @@
         <rect>
          <x>450</x>
          <y>80</y>
-         <width>161</width>
+         <width>101</width>
          <height>22</height>
         </rect>
        </property>
@@ -2002,6 +2015,19 @@
        </property>
        <property name="value">
         <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_mode_pidt_write_params_2">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>20</y>
+         <width>51</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Write</string>
        </property>
       </widget>
      </widget>
@@ -2113,7 +2139,7 @@
         <rect>
          <x>450</x>
          <y>20</y>
-         <width>161</width>
+         <width>101</width>
          <height>22</height>
         </rect>
        </property>
@@ -2142,7 +2168,7 @@
         <rect>
          <x>450</x>
          <y>50</y>
-         <width>161</width>
+         <width>101</width>
          <height>22</height>
         </rect>
        </property>
@@ -2171,7 +2197,7 @@
         <rect>
          <x>450</x>
          <y>80</y>
-         <width>161</width>
+         <width>101</width>
          <height>22</height>
         </rect>
        </property>
@@ -2180,6 +2206,19 @@
        </property>
        <property name="value">
         <double>0.100000000000000</double>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_mode_pidt_write_params_3">
+       <property name="geometry">
+        <rect>
+         <x>560</x>
+         <y>20</y>
+         <width>51</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Write</string>
        </property>
       </widget>
      </widget>
@@ -2509,7 +2548,7 @@
       <x>10</x>
       <y>0</y>
       <width>651</width>
-      <height>80</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="title">
@@ -2650,7 +2689,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QCustomPlot" name="plot_w0" native="true">
+   <widget class="QCustomPlot" name="plot_0" native="true">
     <property name="geometry">
      <rect>
       <x>670</x>
@@ -2660,7 +2699,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCustomPlot" name="plot_w1" native="true">
+   <widget class="QCustomPlot" name="plot_2" native="true">
     <property name="geometry">
      <rect>
       <x>670</x>
@@ -2670,7 +2709,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCustomPlot" name="plot_sync" native="true">
+   <widget class="QCustomPlot" name="plot_4" native="true">
     <property name="geometry">
      <rect>
       <x>670</x>
@@ -2680,7 +2719,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCustomPlot" name="plot_w0_err" native="true">
+   <widget class="QCustomPlot" name="plot_1" native="true">
     <property name="geometry">
      <rect>
       <x>1040</x>
@@ -2690,7 +2729,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCustomPlot" name="plot_sync_err" native="true">
+   <widget class="QCustomPlot" name="plot_5" native="true">
     <property name="geometry">
      <rect>
       <x>1040</x>
@@ -2700,7 +2739,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCustomPlot" name="plot_w1_err" native="true">
+   <widget class="QCustomPlot" name="plot_3" native="true">
     <property name="geometry">
      <rect>
       <x>1040</x>

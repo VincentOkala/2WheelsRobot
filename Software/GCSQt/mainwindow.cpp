@@ -41,25 +41,25 @@ MainWindow::MainWindow(QWidget *parent) :
     controller_timer = new QTimer(this);
 
     for(int i=0;i<=3;i++){
-        ui->plot_w0->addGraph();
-        ui->plot_w0->graph(i)->setPen(QPen(QColor(0,50*i,50*i)));
+        ui->plot_0->addGraph();
+        ui->plot_0->graph(i)->setPen(QPen(QColor(0,50*i,50*i)));
 
-        ui->plot_w1->addGraph();
-        ui->plot_w1->graph(i)->setPen(QPen(QColor(50*i,0,50*i)));
+        ui->plot_2->addGraph();
+        ui->plot_2->graph(i)->setPen(QPen(QColor(50*i,0,50*i)));
 
-        ui->plot_sync->addGraph();
-        ui->plot_sync->graph(i)->setPen(QPen(QColor(50*i,50*i,0)));
+        ui->plot_4->addGraph();
+        ui->plot_4->graph(i)->setPen(QPen(QColor(50*i,50*i,0)));
     }
 
     for(int i=0;i<=1;i++){
-        ui->plot_w0_err->addGraph();
-        ui->plot_w0_err->graph(i)->setPen(QPen(QColor(0,50*i,50*i)));
+        ui->plot_1->addGraph();
+        ui->plot_1->graph(i)->setPen(QPen(QColor(0,50*i,50*i)));
 
-        ui->plot_w1_err->addGraph();
-        ui->plot_w1_err->graph(i)->setPen(QPen(QColor(50*i,0,50*i)));
+        ui->plot_3->addGraph();
+        ui->plot_3->graph(i)->setPen(QPen(QColor(50*i,0,50*i)));
 
-        ui->plot_sync_err->addGraph();
-        ui->plot_sync_err->graph(i)->setPen(QPen(QColor(50*i,50*i,0)));
+        ui->plot_5->addGraph();
+        ui->plot_5->graph(i)->setPen(QPen(QColor(50*i,50*i,0)));
     }
 }
 
