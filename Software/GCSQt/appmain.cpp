@@ -33,11 +33,9 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
                 qDebug() << "Mode: " << currentMode;
             }
             else{
-//                controller_timer->stop();
                 switch (currentMode) {
                 case MODE_RUN:
                     on_mode_basic_mav_recv(&msg);
-//                    controller_timer->start(100);
                     break;
                 case MODE_IMU:
                     on_mode_imu_mav_recv(&msg);
@@ -67,7 +65,7 @@ void MainWindow::app_command_timeout(){
     }
 }
 
-void MainWindow::app_command_change_mode(robot_mode_t mode){
+void MainWindow::app_command_change_mode(rmode_t mode){
     isChangeMode = true;
     changeToMode = mode;
     changeModeSuccess = false;

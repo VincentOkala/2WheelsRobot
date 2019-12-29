@@ -13,10 +13,10 @@ void MainWindow::on_mode_basic_mav_recv(mavlink_message_t *msg){
         mavlink_evt_sensor_t sensor_status;
         mavlink_msg_evt_sensor_decode(msg,&sensor_status);
         if(sensor_status.imu_status == SENSOR_IMU_OK){
-//            ui->txtBoxMPU->setText("GOOD");
+            ui->txtBoxMPU->setText("GOOD");
         }
         else{
-//            ui->txtBoxMPU->setText("BAD");
+            ui->txtBoxMPU->setText("BAD");
         }
         break;
     case MAVLINK_MSG_ID_EVT_TILT:
@@ -47,31 +47,4 @@ void MainWindow::on_controller_cmd(){
     mavlink_msg_cmd_velocity_pack(0,0,&msg,VX,OMEGA);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     send(QByteArray::fromRawData((char*)(mav_send_buf),len));
-}
-
-void MainWindow::on_btn_control_enable_2_clicked()
-{
-    if(control_enable == false){
-        // Change state variable
-        control_enable=true;
-
-        // Update UI
-        ui->btn_control_enable_2->setText("Enabled");
-        ui->btn_control_enable->setText("Enabled");
-
-        // Start timer
-        connect(controller_timer, SIGNAL(timeout()), this, SLOT(on_controller_pidt()));
-        controller_timer->start(100);
-    }
-    else{
-        // Change state variable
-        control_enable = false;
-
-        // Update UI
-        ui->btn_control_enable_2->setText("Disabled");
-        ui->btn_control_enable->setText("Disabled");
-
-        // Stop timer
-        controller_timer->stop();
-    }
 }

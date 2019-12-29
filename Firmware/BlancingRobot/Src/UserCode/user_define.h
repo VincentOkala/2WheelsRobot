@@ -10,44 +10,64 @@
 
 #include "tim.h"
 
-#define TILT				0 // 0: pitch, 1: roll
-
+// Timer callback define
 #define MAX_CALLBACK_FUNC	15
-#define IMU_PERIOD			5
 
+#define IMU_MPU6050
+
+#define ROBOT_MODEL_TWO_WHEELS
+//#define ROBOT_MODEL_TANK
+//#define ROBOT_MODEL_OMNI
+
+// Motor 0 define
 #define MOTOR0_TIMER 	htim1
-#define MOTOR1_TIMER 	htim1
 #define MOTOR0_CHANNEL 	TIM_CHANNEL_4
+#define MOTOR0_ENCODER	htim2
+#define MOTOR0_INVERT	// define if you want to change motor direction
+
+// Motor 1 define
+#define MOTOR1_TIMER 	htim1
 #define MOTOR1_CHANNEL 	TIM_CHANNEL_3
+#define MOTOR1_ENCODER	htim3
+#define MOTOR1_INVERT	// define if you want to change motor direction
 
-// define if you want to change motor direction
-#define MOTOR0_INVERT
-#define MOTOR1_INVERT
+// Motor common define
+#define ENC_PERIOD		50
+#define ENC_RP_PERIOD	100
 
+// IMU define
 #define MPU6050_I2C			hi2c1
 #define MPU6050_ADDRESS 	(MPU6050_DEFAULT_ADDRESS << 1)
+#define IMU_PERIOD			5
+#define TILT				0 // 0: pitch, 1: roll
+#define IMU_RAW_RP_PERIOD	50
 
+// COM define
 #define COM_USART			huart3
 #define TX_DMA_BUF_SIZE 	512
 #define RX_DMA_BUF_SIZE		512
 #define TX_CIR_BUF_SIZE 	512
 #define RX_CIR_BUF_SIZE 	512
-#define SERIAL_PERIOD		50
+#define SERIAL_PERIOD		50	// UART transmission
+#define MAV_BUFF_SIZE 		256
+#define MAVLINK_CB_PERIOD	10	// Mavlink read message callback
 
-#define MAV_BUFF_SIZE 				256
-#define MAVLINK_CALLBACK_PERIOD		10
+// Parameters define
+#define PARAMS_PAGE_ADDRESS 0x0800FC00
+#define HAVE_SAVED_DATA		0x01
 
+// ROBOT_MODEL_TWO_WHEELS mode RUN
 #define CONTROLLER_PERIOD			20
+
 #define IMU_STATUS_REPORT_PERIOD	100
 #define RPY_REPORT_PERIOD			100
-
-#define IMU_RAW_PERIOD				50
-#define ROLL_OFFSET					-6.7974
-
 #define VX_COEFF		0.04
 #define VY_COEFF		0.04
 #define OMEGA_COEFF		3.0
 #define THROTTLE_COEFF	5
 #define WHEEL_DISTANCE	10.0
+#define WHEEL_PERIOD				50
+#define SYNC_PERIOD					100
+
 
 #endif /* USERCODE_USER_DEFINE_H_ */

@@ -40,7 +40,10 @@ HEADERS += \
     MAV/protocol/mavlink_msg_cmd_hw.h \
     MAV/protocol/mavlink_msg_cmd_motor_invert.h \
     MAV/protocol/mavlink_msg_cmd_params.h \
+    MAV/protocol/mavlink_msg_evt_accel_raw.h \
+    MAV/protocol/mavlink_msg_evt_gyro_raw.h \
     MAV/protocol/mavlink_msg_evt_imu_raw.h \
+    MAV/protocol/mavlink_msg_evt_mag_raw.h \
     MAV/protocol/mavlink_msg_evt_sensor.h \
     MAV/protocol/mavlink_msg_evt_tilt.h \
     MAV/protocol/mavlink_msg_hw_params.h \

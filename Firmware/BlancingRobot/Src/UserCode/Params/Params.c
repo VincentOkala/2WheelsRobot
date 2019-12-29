@@ -61,7 +61,7 @@ params_t params = {
 				.isFistCompute = true
 		},
 
-		.angle_ajusted = 0,
+		.angle_adjusted = 0,
 		.believe_in_gyro = 0.99,
 
 		.gx_offset = 1,
@@ -106,17 +106,27 @@ void params_save(){
 	write((uint32_t*)(&params.pid_whe1.KI));
 	write((uint32_t*)(&params.pid_whe1.KD));
 
-	// stability pid
+	// stability or sync pid
 	write((uint32_t*)(&params.pid_sync.KP));
 	write((uint32_t*)(&params.pid_sync.KI));
 	write((uint32_t*)(&params.pid_sync.KD));
 
 	// IMU
-	write((uint32_t*)(&params.angle_ajusted));
+	write((uint32_t*)(&params.angle_adjusted));
 	write((uint32_t*)(&params.believe_in_gyro));
+
 	write((uint32_t*)(&params.gx_offset));
 	write((uint32_t*)(&params.gy_offset));
 	write((uint32_t*)(&params.gz_offset));
+
+	write((uint32_t*)(&params.mx_offset));
+	write((uint32_t*)(&params.my_offset));
+	write((uint32_t*)(&params.mz_offset));
+
+	write((uint32_t*)(&params.mx_scale));
+	write((uint32_t*)(&params.my_scale));
+	write((uint32_t*)(&params.mz_scale));
+
 
 	//HW
 	write((uint32_t*)(&params.motor0_invert));
@@ -142,18 +152,27 @@ bool params_load(){
 	read((uint32_t*)(&params.pid_whe1.KI));
 	read((uint32_t*)(&params.pid_whe1.KD));
 
-	// stability pid
+	// stability or sync pid
 	read((uint32_t*)(&params.pid_sync.KP));
 	read((uint32_t*)(&params.pid_sync.KI));
 	read((uint32_t*)(&params.pid_sync.KD));
 
 
 	// IMU
-	read((uint32_t*)(&params.angle_ajusted));
+	read((uint32_t*)(&params.angle_adjusted));
 	read((uint32_t*)(&params.believe_in_gyro));
+
 	read((uint32_t*)(&params.gx_offset));
 	read((uint32_t*)(&params.gy_offset));
 	read((uint32_t*)(&params.gz_offset));
+
+	read((uint32_t*)(&params.mx_offset));
+	read((uint32_t*)(&params.my_offset));
+	read((uint32_t*)(&params.mz_offset));
+
+	read((uint32_t*)(&params.mx_scale));
+	read((uint32_t*)(&params.my_scale));
+	read((uint32_t*)(&params.mz_scale));
 
 	//HW
 	read((uint32_t*)(&params.motor0_invert));

@@ -25,13 +25,12 @@ typedef struct{
 	float maxOut;
 
 	// Private variables
-	float preIPart;
-	float preError;
 	bool isFistCompute;
-
 	float sp;
 	float fb;
 	float err;
+	float preIPart;
+	float preError;
 	float P_Part;
 	float I_Part;
 	float D_Part;

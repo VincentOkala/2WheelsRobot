@@ -8,7 +8,7 @@
 			<entry name="RESPOND_ERROR"></entry>
 		</enum>
 
-		<enum name="robot_mode_t">
+		<enum name="rmode_t">
 			<entry name="MODE_RUN"></entry>
 			<entry name="MODE_HW">Motor configuration mode</entry>
 			<entry name="MODE_IMU">IMU calibration mode</entry>
@@ -44,39 +44,44 @@
 
 		<message id="1" name="CMD_CHANGE_MODE">
 			<description>Command Change Mode. Need a respond message for confimation</description>
-			<field type="uint8_t" name="cmd_change_mode" enum="mode_t">Mode</field>
+			<field type="uint8_t" name="cmd_change_mode" enum="rmode_t">Mode</field>
 		</message>
 
-		<message id="2" name="CMD_VELOCITY">
+		<message id="2" name="CMD_PARAMS">
+			<description>Save Or Load Params</description>
+			<field type="int8_t" name="cmd_params" enum="cmd_params_t">save or load params</field>
+		</message>
+
+		<message id="3" name="CMD_VELOCITY">
 			<description>Velocity command. No need a respond message for confimation</description>
 			<field type="int16_t" name="v">Velocity</field>
 			<field type="int16_t" name="omega">Omega</field>
 		</message>
 
-		<message id="3" name="EVT_TILT">
+		<message id="4" name="EVT_TILT">
 			<description>Tilt angle of robot in the calibrated vertical axis. No need a respond message for confimation</description>
 			<field type="float" name="tilt">Tilt</field>
 		</message>
 
-		<message id="4" name="EVT_RPY">
+		<message id="5" name="EVT_RPY">
 			<description>Roll pitch and yaw angle of robot in the earth frame. No need a respond message for confimation</description>
 			<field type="float" name="roll">Roll</field>
 			<field type="float" name="pitch">Pitch</field>
 			<field type="float" name="yaw">Yaw</field>
 		</message>
 
-		<message id="5" name="EVT_SENSOR">
+		<message id="6" name="EVT_SENSOR">
 			<description>Report sensor status. No need a respond message for confimation</description>
 			<field type="int8_t" name="imu_status" enum="sensor_t">IMU status</field>
 		</message>
 
-		<message id="6" name="MOTOR_SPEED">
+		<message id="7" name="MOTOR_SPEED">
 			<description>Set or info speed for motors. To test the hardware and motor rotaion direction. No need a respond message for confimation</description>
-			<field type="int32_t" name="motor_speed_0">Motor 0 speed</field>
-			<field type="int32_t" name="motor_speed_1">Motor 1 Speed</field>
+			<field type="int16_t" name="motor_speed_0">Motor 0 speed</field>
+			<field type="int16_t" name="motor_speed_1">Motor 1 Speed</field>
 		</message>
 
-		<message id="7" name="HW_PARAMS">
+		<message id="8" name="HW_PARAMS">
 			<description>Switch to invert motor rotation direction. Need a respond message for confimation</description>
 			<field type="int8_t" name="motor0_invert" enum="bool_t">Motor 0 Invert</field>
 			<field type="int8_t" name="motor1_invert" enum="bool_t">Motor 1 Invert</field>
@@ -87,40 +92,52 @@
 
 		<message id="9" name="IMU_PARAMS">
 			<description>IMU calibration parameters. No need a respond message for confimation</description>
-			<field type="int16_t" name="gyro_offet_x">Gyro Offset X</field>
-			<field type="int16_t" name="gyro_offet_y">Gyro Offset Y</field>
-			<field type="int16_t" name="gyro_offet_z">Gyro Offset Z</field>
-			<field type="float"  name="angle_ajusted">Angle ajusted</field>
+			<field type="int16_t" name="gyro_offset_x">Gyro Offset X</field>
+			<field type="int16_t" name="gyro_offset_y">Gyro Offset Y</field>
+			<field type="int16_t" name="gyro_offset_z">Gyro Offset Z</field>
+
+			<field type="int16_t" name="mag_offset_x">Mag Offset X</field>
+			<field type="int16_t" name="mag_offset_y">Mag Offset Y</field>
+			<field type="int16_t" name="mag_offset_z">Mag Offset Z</field>
+			
+			<field type="int16_t" name="mag_scale_x">Mag Scale X</field>
+			<field type="int16_t" name="mag_scale_y">Mag Scale Y</field>
+			<field type="int16_t" name="mag_scale_z">Mag Scale Z</field>
+			
+			<field type="float"  name="angle_adjusted">Angle adjusted</field>
 			<field type="float"  name="believe_in_gyro">Believe in gyro</field>
 		</message>
 		
-		<message id="10" name="EVT_IMU_RAW">
+		<message id="10" name="EVT_GYRO_RAW">
 			<description>IMU raw value. No need a respond message for confimation</description>
 			<field type="int16_t" name="gyro_x">Gyro X</field>
 			<field type="int16_t" name="gyro_y">Gyro Y</field>
 			<field type="int16_t" name="gyro_z">Gyro Z</field>
-			<field type="float"   name="roll">roll</field>
 		</message>
 
-		<message id="11" name="PID_PARAMS">
+		<message id="11" name="EVT_MAG_RAW">
+			<description>IMU raw value. No need a respond message for confimation</description>
+			<field type="int16_t" name="mag_x">Mag X</field>
+			<field type="int16_t" name="mag_y">Mag Y</field>
+			<field type="int16_t" name="mag_z">Mag Z</field>
+		</message>
+
+		<message id="12" name="EVT_ACCEL_RAW">
+			<description>IMU raw value. No need a respond message for confimation</description>
+			<field type="int16_t" name="acc_x">Accel X</field>
+			<field type="int16_t" name="acc_y">Accel Y</field>
+			<field type="int16_t" name="acc_z">Accel Z</field>
+		</message>
+
+		<message id="13" name="PID_PARAMS">
 			<description>PID Coefficent. No need a respond message for confimation</description>
-			<field type="float" name="whe0_KP">Wheel 0 velocity control KP</field>
-			<field type="float" name="whe0_KI">Wheel 0 velocity control KI</field>
-			<field type="float" name="whe0_KD">Wheel 0 velocity control KD</field>
-			<field type="float" name="whe1_KP">Wheel 1 velocity control KP</field>
-			<field type="float" name="whe1_KI">Wheel 1 velocity control KI</field>
-			<field type="float" name="whe1_KD">Wheel 1 velocity control KD</field>
-			<field type="float" name="sync_KP">Synchronous control KP</field>
-			<field type="float" name="sync_KI">Synchronous control KI</field>
-			<field type="float" name="sync_KD">Synchronous control KD</field>
+			<field type="uint8_t" name="pid_control" enum="pidc_t">Object that PID control</field>
+			<field type="float" name="KP">KP</field>
+			<field type="float" name="KI">KI</field>
+			<field type="float" name="KD">KD</field>
 		</message>
 
-		<message id="12" name="CMD_PARAMS">
-			<description>Save Or Load Params</description>
-			<field type="int8_t" name="cmd_params" enum="cmd_params_t">save or load params</field>
-		</message>
-
-		<message id="13" name="PID_REPORT">
+		<message id="14" name="PID_REPORT">
 			<description>Report pid internal parameter</description>
 			<field type="uint8_t" name="pid_control" enum="pidc_t">Object that PID control</field>
 			<field type="float" name="sp">Set point</field>

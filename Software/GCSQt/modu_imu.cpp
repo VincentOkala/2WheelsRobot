@@ -3,22 +3,19 @@
 
 void MainWindow::on_mode_imu_mav_recv(mavlink_message_t *msg){
     switch(msg->msgid) {
-    case MAVLINK_MSG_ID_EVT_IMU_RAW:
-        mavlink_evt_imu_raw_t gyro_raw;
-        mavlink_msg_evt_imu_raw_decode(msg, &gyro_raw);
-        ui->tb_gx->setText(QString::number(gyro_raw.gyro_x));
-        ui->tb_gy->setText(QString::number(gyro_raw.gyro_y));
-        ui->tb_gz->setText(QString::number(gyro_raw.gyro_z));
-        ui->tb_stand_point_current->setText(QString::number(gyro_raw.roll));
+    case MAVLINK_MSG_ID_EVT_GYRO_RAW:
+        mavlink_evt_gyro_raw_t gyro_raw_msg;
+        mavlink_msg_evt_gyro_raw_decode(msg, &gyro_raw_msg);
+        ui->tb_gx->setText(QString::number(gyro_raw_msg.gyro_x));
+        ui->tb_gy->setText(QString::number(gyro_raw_msg.gyro_y));
+        ui->tb_gz->setText(QString::number(gyro_raw_msg.gyro_z));
         if(is_imu_calibrating){
-            gx_offset = (gx_offset + gyro_raw.gyro_x)/2;
-            gy_offset = (gy_offset + gyro_raw.gyro_y)/2;
-            gz_offset = (gz_offset + gyro_raw.gyro_z)/2;
-            stand_point = (stand_point + gyro_raw.roll)/2;
+            gx_offset = (gx_offset + gyro_raw_msg.gyro_x)/2;
+            gy_offset = (gy_offset + gyro_raw_msg.gyro_y)/2;
+            gz_offset = (gz_offset + gyro_raw_msg.gyro_z)/2;
             ui->tb_gx_offset->setText(QString::number(gx_offset));
             ui->tb_gy_offset->setText(QString::number(gy_offset));
             ui->tb_gz_offset->setText(QString::number(gz_offset));
-            ui->tb_stand_point->setText(QString::number(stand_point));
         }
         break;
     case MAVLINK_MSG_ID_RESPOND:
@@ -33,18 +30,29 @@ void MainWindow::on_mode_imu_mav_recv(mavlink_message_t *msg){
         break;
     case MAVLINK_MSG_ID_IMU_PARAMS:
         {
-            mavlink_imu_params_t gyro_offet;
-            mavlink_msg_imu_params_decode(msg,&gyro_offet);
-            gx_offset = gyro_offet.gyro_offet_x;
-            gy_offset = gyro_offet.gyro_offet_y;
-            gz_offset = gyro_offet.gyro_offet_z;
-            stand_point = gyro_offet.angle_ajusted;
-            gbelive = gyro_offet.believe_in_gyro;
+            mavlink_imu_params_t imu_params_msg;
+            mavlink_msg_imu_params_decode(msg,&imu_params_msg);
+            gx_offset = imu_params_msg.gyro_offset_x;
+            gy_offset = imu_params_msg.gyro_offset_y;
+            gz_offset = imu_params_msg.gyro_offset_z;
+            angle_adjust = imu_params_msg.angle_adjusted;
+            gbelive = imu_params_msg.believe_in_gyro;
             ui->tb_gx_offset->setText(QString::number(gx_offset));
             ui->tb_gy_offset->setText(QString::number(gy_offset));
             ui->tb_gz_offset->setText(QString::number(gz_offset));
-            ui->tb_stand_point->setText(QString::number(stand_point));
             ui->tb_gbelieve->setText(QString::number(gbelive));
+            ui->tb_angle_adjust->setText(QString::number(angle_adjust));
+        }
+        break;
+    case MAVLINK_MSG_ID_EVT_TILT:
+        {
+            mavlink_evt_tilt_t tilt_msg;
+            mavlink_msg_evt_tilt_decode(msg, &tilt_msg);
+            ui->tb_tilt->setText(QString::number(tilt_msg.tilt));
+            if(is_imu_calibrating){
+                angle_adjust = (angle_adjust + tilt_msg.tilt)/2;
+                ui->tb_angle_adjust->setText(QString::number(angle_adjust));
+            }
         }
         break;
     default:
@@ -82,7 +90,7 @@ void MainWindow::on_btn_mode_imu_load_params_clicked()
     ui->tb_gx_offset->setText("");
     ui->tb_gy_offset->setText("");
     ui->tb_gz_offset->setText("");
-    ui->tb_stand_point->setText("");
+    ui->tb_angle_adjust->setText("");
     ui->tb_gbelieve->setText("");
     mavlink_message_t msg;
     uint8_t mav_send_buf[255];
@@ -109,9 +117,13 @@ void MainWindow::on_btn_mode_imu_write_params_clicked()
     int16_t tbgx_offset = ui->tb_gx_offset->text().toInt();
     int16_t tbgy_offset = ui->tb_gy_offset->text().toInt();
     int16_t tbgz_offset = ui->tb_gz_offset->text().toInt();
-    float tbstand_point = ui->tb_stand_point->text().toFloat();
+    float tbstand_point = ui->tb_angle_adjust->text().toFloat();
     float gbelieve = ui->tb_gbelieve->text().toFloat();
-    mavlink_msg_imu_params_pack(0,0,&msg,tbgx_offset,tbgy_offset,tbgz_offset,tbstand_point,gbelieve);
+    mavlink_msg_imu_params_pack(0,0,&msg,tbgx_offset,
+                                tbgy_offset,tbgz_offset,
+                                0,0,0,
+                                0,0,0,
+                                tbstand_point,gbelieve);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
         showStatus("Writing gyro offset params",1000);
@@ -151,6 +163,7 @@ void MainWindow::on_btn_gyro_calib_clicked()
         gx_offset = 0;
         gy_offset = 0;
         gz_offset = 0;
+        angle_adjust = 0;
         ui->tb_gx_offset->setText(QString::number(gx_offset));
         ui->tb_gy_offset->setText(QString::number(gy_offset));
         ui->tb_gz_offset->setText(QString::number(gz_offset));

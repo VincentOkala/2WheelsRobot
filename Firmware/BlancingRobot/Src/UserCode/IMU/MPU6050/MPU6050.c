@@ -1,8 +1,7 @@
 #include <stdbool.h>
-
+#include <UserCode/IMU/MPU6050/MPU6050.h>
+#include <UserCode/IMU/MPU6050/MPU6050_register.h>
 #include "i2c.h"
-#include "MPU6050.h"
-#include "MPU6050_register.h"
 
 void mpu6050_set_clock_source(mpu6050_clock_source_t source);
 void mpu6050_set_full_scale_gyro_range(mpu6050_fs_sel_t fs_sel);

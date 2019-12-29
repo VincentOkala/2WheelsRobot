@@ -32,7 +32,7 @@ void mavlink_callback(uint8_t* cntx){
 
 void com_init(){
 	uart_init(&uart_drv);
-	timer_register_callback(mavlink_callback, MAVLINK_CALLBACK_PERIOD, 0, TIMER_MODE_REPEAT);
+	timer_register_callback(mavlink_callback, MAVLINK_CB_PERIOD, 0, TIMER_MODE_REPEAT);
 }
 
 void com_set_on_mav_recv(on_mav_recv_t on_mav_recv){

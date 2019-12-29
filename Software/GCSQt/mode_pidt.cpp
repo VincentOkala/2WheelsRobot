@@ -9,17 +9,24 @@ void MainWindow::on_mode_pidt_mav_recv(mavlink_message_t *msg){
             mavlink_pid_params_t pid;
             mavlink_msg_pid_params_decode(msg, &pid);
             showStatus("Succeed to load PID params",2000);
-            ui->sb_w0_kp->setValue(pid.whe0_KP);
-            ui->sb_w0_ki->setValue(pid.whe0_KI);
-            ui->sb_w0_kd->setValue(pid.whe0_KD);
 
-            ui->sb_w1_kp->setValue(pid.whe1_KP);
-            ui->sb_w1_ki->setValue(pid.whe1_KI);
-            ui->sb_w1_kd->setValue(pid.whe1_KD);
-
-            ui->sb_sta_kp->setValue(pid.sync_KP);
-            ui->sb_sta_ki->setValue(pid.sync_KI);
-            ui->sb_sta_kd->setValue(pid.sync_KD);
+            switch (pid.pid_control) {
+                case PID_WHE0:
+                    ui->sb_w0_kp->setValue(pid.KP);
+                    ui->sb_w0_ki->setValue(pid.KI);
+                    ui->sb_w0_kd->setValue(pid.KD);
+                break;
+                case PID_WHE1:
+                    ui->sb_w1_kp->setValue(pid.KP);
+                    ui->sb_w1_ki->setValue(pid.KI);
+                    ui->sb_w1_kd->setValue(pid.KD);
+                break;
+                case PID_SYNC:
+                    ui->sb_sta_kp->setValue(pid.KP);
+                    ui->sb_sta_ki->setValue(pid.KI);
+                    ui->sb_sta_kd->setValue(pid.KD);
+                break;
+            }
         }
         break;
     case MAVLINK_MSG_ID_RESPOND:
@@ -101,10 +108,8 @@ void MainWindow::write_pid_params(){
     double sync_KI = ui->sb_sta_ki->value();
     double sync_KD = ui->sb_sta_kd->value();
 
-    mavlink_msg_pid_params_pack(0,0,&msg,
-                                w0_KP,w0_KI,w0_KD,
-                                w1_KP,w1_KI,w1_KD,
-                                sync_KP,sync_KI,sync_KD);
+    mavlink_msg_pid_params_pack(0,0,&msg,PID_SYNC,sync_KP,sync_KI,sync_KD);
+
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
         showStatus("Writing PID params",2000);
@@ -302,7 +307,7 @@ void MainWindow::pid_sync_plot(uint32_t len){
     max_y = std::max(max_y, *std::max_element(pid_s_u_y.constBegin(), pid_s_u_y.constEnd()));
     ui->plot_sync->xAxis->setRange(len-PID_VECTOR_LEN, len);
     ui->plot_sync->yAxis->setRange(min_y-1,max_y+1);
-    ui->plot_sync->graph(0)->setData(pid_s_x,pid_s_p_y);
+    ui->plot_sync->graph(0)->setData(pid_s_x,pid_s_p_y);    
     ui->plot_sync->graph(1)->setData(pid_s_x,pid_s_i_y);
     ui->plot_sync->graph(2)->setData(pid_s_x,pid_s_d_y);
     ui->plot_sync->graph(3)->setData(pid_s_x,pid_s_u_y);
@@ -391,26 +396,14 @@ void MainWindow::on_pid_report_recv(mavlink_message_t *msg){
 void MainWindow::on_btn_control_enable_clicked()
 {
     if(control_enable == false){
-        // Change state variable
         control_enable=true;
-
-        // Update UI
-        ui->btn_control_enable_2->setText("Enabled");
         ui->btn_control_enable->setText("Enabled");
-
-        // Start timer
         connect(controller_timer, SIGNAL(timeout()), this, SLOT(on_controller_pidt()));
         controller_timer->start(100);
     }
     else{
-        // Change state variable
         control_enable = false;
-
-        // Update UI
-        ui->btn_control_enable_2->setText("Disabled");
         ui->btn_control_enable->setText("Disabled");
-
-        // Stop timer
         controller_timer->stop();
     }
 }
@@ -420,6 +413,7 @@ void MainWindow::on_controller_pidt(){
     uint8_t mav_send_buf[255];
     int16_t VX = ui->txtb_pidt_vx->text().toDouble()*100;
     int16_t OMEGA = ui->txtb_pidt_w->text().toDouble()*100;
+    qDebug() << VX << " " << OMEGA;
     mavlink_msg_cmd_velocity_pack(0,0,&msg,VX,OMEGA);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     send(QByteArray::fromRawData((char*)(mav_send_buf),len));

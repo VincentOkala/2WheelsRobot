@@ -98,8 +98,6 @@ private slots:
 
     void on_btn_control_enable_clicked();
 
-    void on_btn_control_enable_2_clicked();
-
 private:
     Ui::MainWindow *ui;
     QSerialPort *m_serial;
@@ -119,13 +117,13 @@ private:
     mavlink_status_t  status;
     bool isChangeMode = false;
     bool changeModeSuccess = false;
-    robot_mode_t changeToMode = MODE_RUN;
-    robot_mode_t currentMode = MODE_RUN;
+    rmode_t changeToMode = MODE_RUN;
+    rmode_t currentMode = MODE_RUN;
     bool isDoStSuccessfull = false;
     int16_t gx_offset;
     int16_t gy_offset;
     int16_t gz_offset;
-    float stand_point,gbelive;
+    float angle_adjust,gbelive;
     bool is_imu_calibrating = false;
     bool control_enable = false;
 
@@ -136,7 +134,7 @@ private:
 
     void app_main_init();
     void app_main_on_data_recv(QByteArray bytes);
-    void app_command_change_mode(robot_mode_t mode);
+    void app_command_change_mode(rmode_t mode);
     void on_mode_basic_mav_recv(mavlink_message_t *msg);
 
     void load_pid_params();
