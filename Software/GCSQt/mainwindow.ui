@@ -20,11 +20,11 @@
       <x>10</x>
       <y>80</y>
       <width>651</width>
-      <height>551</height>
+      <height>541</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="modeRUN">
      <attribute name="title">
@@ -47,7 +47,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>110</y>
+        <y>50</y>
         <width>621</width>
         <height>61</height>
        </rect>
@@ -73,7 +73,7 @@
         <rect>
          <x>40</x>
          <y>30</y>
-         <width>113</width>
+         <width>91</width>
          <height>20</height>
         </rect>
        </property>
@@ -81,7 +81,7 @@
       <widget class="QLabel" name="label_48">
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>160</x>
          <y>30</y>
          <width>31</width>
          <height>16</height>
@@ -94,9 +94,9 @@
       <widget class="QLineEdit" name="txtBoxPitch">
        <property name="geometry">
         <rect>
-         <x>270</x>
+         <x>190</x>
          <y>30</y>
-         <width>113</width>
+         <width>91</width>
          <height>20</height>
         </rect>
        </property>
@@ -104,7 +104,7 @@
       <widget class="QLabel" name="label_54">
        <property name="geometry">
         <rect>
-         <x>450</x>
+         <x>310</x>
          <y>30</y>
          <width>31</width>
          <height>16</height>
@@ -117,45 +117,32 @@
       <widget class="QLineEdit" name="txtBoxYaw">
        <property name="geometry">
         <rect>
-         <x>490</x>
+         <x>350</x>
          <y>30</y>
-         <width>113</width>
+         <width>91</width>
          <height>20</height>
         </rect>
        </property>
       </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_13">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>621</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Sensor Status</string>
-      </property>
-      <widget class="QLabel" name="label_55">
+      <widget class="QLabel" name="label_79">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>470</x>
          <y>30</y>
-         <width>51</width>
+         <width>31</width>
          <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>MPU6050:</string>
+        <string>Tilt:</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="txtBoxMPU">
+      <widget class="QLineEdit" name="txtBoxYaw_2">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>510</x>
          <y>30</y>
-         <width>541</width>
+         <width>91</width>
          <height>20</height>
         </rect>
        </property>
@@ -165,7 +152,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>180</y>
+        <y>120</y>
         <width>621</width>
         <height>61</height>
        </rect>
@@ -202,7 +189,7 @@
       <widget class="QLabel" name="label_62">
        <property name="geometry">
         <rect>
-         <x>230</x>
+         <x>170</x>
          <y>30</y>
          <width>31</width>
          <height>16</height>
@@ -215,7 +202,7 @@
       <widget class="QLineEdit" name="txtBoxVY">
        <property name="geometry">
         <rect>
-         <x>270</x>
+         <x>210</x>
          <y>30</y>
          <width>113</width>
          <height>20</height>
@@ -228,7 +215,7 @@
       <widget class="QLabel" name="label_63">
        <property name="geometry">
         <rect>
-         <x>440</x>
+         <x>340</x>
          <y>30</y>
          <width>41</width>
          <height>16</height>
@@ -241,7 +228,7 @@
       <widget class="QLineEdit" name="txtBoxOMEGA">
        <property name="geometry">
         <rect>
-         <x>490</x>
+         <x>390</x>
          <y>30</y>
          <width>113</width>
          <height>20</height>
@@ -249,6 +236,19 @@
        </property>
        <property name="text">
         <string>0</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_control_enable_2">
+       <property name="geometry">
+        <rect>
+         <x>520</x>
+         <y>30</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Disabled</string>
        </property>
       </widget>
      </widget>
@@ -1826,7 +1826,7 @@
         <double>0.100000000000000</double>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_mode_pidt_write_params_4">
+      <widget class="QPushButton" name="btn_mode_pidt_write_params_pid_sync">
        <property name="geometry">
         <rect>
          <x>560</x>
@@ -2017,7 +2017,7 @@
         <double>0.100000000000000</double>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_mode_pidt_write_params_2">
+      <widget class="QPushButton" name="btn_mode_pidt_write_params_pid_whe0">
        <property name="geometry">
         <rect>
          <x>560</x>
@@ -2208,7 +2208,7 @@
         <double>0.100000000000000</double>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_mode_pidt_write_params_3">
+      <widget class="QPushButton" name="btn_mode_pidt_write_params_pid_whe1">
        <property name="geometry">
         <rect>
          <x>560</x>

@@ -23,9 +23,10 @@ typedef struct{
 	uint8_t cnt;
 }cmd_velocity_t;
 
-static timer_id_t gtimer_ID_controller;
-static timer_id_t gtimer_ID_IMU_status_report;
-static timer_id_t gtimer_ID_IMU_rpy;
+static timer_id_t gtimerid_controller;
+static timer_id_t gtimerid_imu_status_report;
+static timer_id_t gtimerid_imu_tilt;
+
 static cmd_velocity_t gcmd_velocity;
 
 static void controller_callback(uint8_t* ctx){
@@ -33,18 +34,16 @@ static void controller_callback(uint8_t* ctx){
 
 	if(gcmd_velocity.cnt == 0){
 		gcmd_velocity.vx = 0;
-//		gcmd_velocity.vy = 0;
 		gcmd_velocity.omega = 0;
 	}
 	else{
 		gcmd_velocity.cnt--;
 		vx = (float)gcmd_velocity.vx;
-//		vy = gcmd_velocity.vy*VY_MAX/100.0;
 		omega = (float)gcmd_velocity.omega;
 	}
 
-	float tilt = imu_get_tilt();
-	float setpoint = params.angle_adjusted - vx*VX_COEFF;
+	float tilt = imu_get_tilt() - params.angle_adjusted;
+	float setpoint =  params.angle_adjusted + vx*VX_TO_TILT;
 	float speed = pid_compute(&params.pid_sync,setpoint,tilt);
 
 	if(tilt > 150 || tilt < -150) {
@@ -52,7 +51,7 @@ static void controller_callback(uint8_t* ctx){
 		pid_reset(&params.pid_sync);
 	}
 
-	speed -= vx*THROTTLE_COEFF;
+	speed += vx*THROTTLE_COEFF*tilt;
 
 	motors_setspeed(MOTOR_0, speed - omega*OMEGA_COEFF);
 	motors_setspeed(MOTOR_1, speed + omega*OMEGA_COEFF);
@@ -68,16 +67,15 @@ static void imu_status_report_callback(uint8_t* ctx){
 	com_send(gmav_send_buf, len);
 }
 
-static void rqy_report_callback(uint8_t *ctx){
-	mavlink_message_t rpy_msg;
-	uint8_t gmav_send_buf[256];
-	float roll = imu_get_roll();
-	float pitch = imu_get_pitch();
-	float yaw = imu_get_yaw();
-	mavlink_msg_evt_rpy_pack(0,0,&rpy_msg,roll,pitch,yaw);
-	uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &rpy_msg);
-	com_send(gmav_send_buf, len);
+static void tilt_report_callback(uint8_t *ctx){
+	mavlink_message_t mav_msg;
+	uint8_t mav_send_buf[256];
+	float tilt = imu_get_tilt() - params.angle_adjusted;
+	mavlink_msg_evt_tilt_pack(0,0,&mav_msg,tilt);
+	uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &mav_msg);
+	com_send(mav_send_buf, len);
 }
+
 
 void mode_run_init(){
 	// Hardware initialization
@@ -85,9 +83,9 @@ void mode_run_init(){
 	imu_init();
 
 	// Periodic task initialization
-	gtimer_ID_controller = timer_register_callback(controller_callback, CONTROLLER_PERIOD, 0, TIMER_MODE_REPEAT);
-	gtimer_ID_IMU_status_report = timer_register_callback(imu_status_report_callback, IMU_STATUS_REPORT_PERIOD, 0, TIMER_MODE_REPEAT);
-	gtimer_ID_IMU_rpy = timer_register_callback(rqy_report_callback, RPY_REPORT_PERIOD, 0, TIMER_MODE_REPEAT);
+	gtimerid_controller = timer_register_callback(controller_callback, CONTROLLER_PERIOD, 0, TIMER_MODE_REPEAT);
+	gtimerid_imu_status_report = timer_register_callback(imu_status_report_callback, IMU_STATUS_REPORT_PERIOD, 0, TIMER_MODE_REPEAT);
+	gtimerid_imu_tilt = timer_register_callback(tilt_report_callback, TILT_REPORT_PERIOD, 0, TIMER_MODE_REPEAT);
 }
 
 void mode_run_deinit(){
@@ -96,9 +94,9 @@ void mode_run_deinit(){
 	imu_deinit();
 
 	// Background task de-initialization
-	timer_unregister_callback(gtimer_ID_controller);
-	timer_unregister_callback(gtimer_ID_IMU_status_report);
-	timer_unregister_callback(gtimer_ID_IMU_rpy);
+	timer_unregister_callback(gtimerid_controller);
+	timer_unregister_callback(gtimerid_imu_status_report);
+	timer_unregister_callback(gtimerid_imu_tilt);
 }
 
 void on_mode_run_mavlink_recv(mavlink_message_t *msg){
@@ -109,7 +107,7 @@ void on_mode_run_mavlink_recv(mavlink_message_t *msg){
 			mavlink_msg_cmd_velocity_decode(msg, &cmd_velocity);
 			gcmd_velocity.vx = cmd_velocity.v;
 			gcmd_velocity.omega = cmd_velocity.omega;
-			gcmd_velocity.cnt = 50; // 1s timeout
+			gcmd_velocity.cnt = (CONTROL_TIMEOUT_MS/CONTROLLER_PERIOD);
 		}
 		break;
 	default:

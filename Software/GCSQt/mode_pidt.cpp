@@ -96,27 +96,44 @@ void MainWindow::mode_pidt_save_timeout(){
 void MainWindow::write_pid_params(){
     mavlink_message_t msg;
     uint8_t mav_send_buf[255];
-    double w0_KP = ui->sb_w0_kp->value();
-    double w0_KI = ui->sb_w0_ki->value();
-    double w0_KD = ui->sb_w0_kd->value();
-
-    double w1_KP = ui->sb_w1_kp->value();
-    double w1_KI = ui->sb_w1_ki->value();
-    double w1_KD = ui->sb_w1_kd->value();
+    uint16_t len;
 
     double sync_KP = ui->sb_sta_kp->value();
     double sync_KI = ui->sb_sta_ki->value();
     double sync_KD = ui->sb_sta_kd->value();
-
     mavlink_msg_pid_params_pack(0,0,&msg,PID_SYNC,sync_KP,sync_KI,sync_KD);
-
-    uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
+    len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
         showStatus("Writing PID params",2000);
-   }
-   else{
+    }
+    else{
        showStatus("Cannot write PID params",2000);
-   }
+    }
+
+    double w0_KP = ui->sb_w0_kp->value();
+    double w0_KI = ui->sb_w0_ki->value();
+    double w0_KD = ui->sb_w0_kd->value();
+    mavlink_msg_pid_params_pack(0,0,&msg,PID_WHE0,w0_KP,w0_KI,w0_KD);
+    len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
+    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+        showStatus("Writing PID params",2000);
+    }
+    else{
+       showStatus("Cannot write PID params",2000);
+    }
+
+    double w1_KP = ui->sb_w1_kp->value();
+    double w1_KI = ui->sb_w1_ki->value();
+    double w1_KD = ui->sb_w1_kd->value();
+    mavlink_msg_pid_params_pack(0,0,&msg,PID_WHE1,w1_KP,w1_KI,w1_KD);
+    len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
+    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+        showStatus("Writing PID params",2000);
+    }
+    else{
+       showStatus("Cannot write PID params",2000);
+    }
+
    isDoStSuccessfull = false;
    QTimer::singleShot(3000, this, SLOT(mode_pidt_write_timeout()));
 }
@@ -179,25 +196,6 @@ void MainWindow::on_sb_step_KI_valueChanged(const QString &arg1)
 void MainWindow::on_sb_KD_valueChanged(const QString &arg1)
 {
     ui->sb_sta_kd->setSingleStep(ui->sb_step_sta_kd->value());
-}
-
-void MainWindow::on_tilt_recv(float tilt){
-    static uint32_t cnt = 0;
-    qv_x.append(cnt);
-    qv_y.append(tilt);
-
-    truncate_vector(qv_x);
-    truncate_vector(qv_y);
-
-//    ui->plot->xAxis->setRange(cnt-40, cnt);
-//    float min = *std::min_element(qv_y.constBegin(), qv_y.constEnd());
-//    float max = *std::max_element(qv_y.constBegin(), qv_y.constEnd());
-//    if (min > -10) min = -10;
-//    if(max < 10) max = 10;
-//    ui->plot->yAxis->setRange(min,max);
-//    ui->plot->graph(0)->setData(qv_x,qv_y);
-//    cnt++;
-//    ui->plot->replot();
 }
 
 void MainWindow::truncate_vector(QVector<double> &v){
@@ -398,12 +396,14 @@ void MainWindow::on_btn_control_enable_clicked()
     if(control_enable == false){
         control_enable=true;
         ui->btn_control_enable->setText("Enabled");
+        ui->btn_control_enable_2->setText("Enabled");
         connect(controller_timer, SIGNAL(timeout()), this, SLOT(on_controller_pidt()));
         controller_timer->start(100);
     }
     else{
         control_enable = false;
         ui->btn_control_enable->setText("Disabled");
+        ui->btn_control_enable_2->setText("Disabled");
         controller_timer->stop();
     }
 }
@@ -417,6 +417,73 @@ void MainWindow::on_controller_pidt(){
     mavlink_msg_cmd_velocity_pack(0,0,&msg,VX,OMEGA);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     send(QByteArray::fromRawData((char*)(mav_send_buf),len));
+}
+
+void MainWindow::on_btn_mode_pidt_write_params_pid_whe0_clicked()
+{
+    mavlink_message_t msg;
+    uint8_t mav_send_buf[255];
+    uint16_t len;
+
+    double w0_KP = ui->sb_w0_kp->value();
+    double w0_KI = ui->sb_w0_ki->value();
+    double w0_KD = ui->sb_w0_kd->value();
+    mavlink_msg_pid_params_pack(0,0,&msg,PID_WHE0,w0_KP,w0_KI,w0_KD);
+    len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
+    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+        showStatus("Writing PID params",2000);
+    }
+    else{
+       showStatus("Cannot write PID params",2000);
+    }
+
+    isDoStSuccessfull = false;
+    QTimer::singleShot(3000, this, SLOT(mode_pidt_write_timeout()));
+}
+
+
+void MainWindow::on_btn_mode_pidt_write_params_pid_whe1_clicked()
+{
+    mavlink_message_t msg;
+    uint8_t mav_send_buf[255];
+    uint16_t len;
+
+    double w1_KP = ui->sb_w1_kp->value();
+    double w1_KI = ui->sb_w1_ki->value();
+    double w1_KD = ui->sb_w1_kd->value();
+    mavlink_msg_pid_params_pack(0,0,&msg,PID_WHE1,w1_KP,w1_KI,w1_KD);
+    len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
+    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+        showStatus("Writing PID params",2000);
+    }
+    else{
+       showStatus("Cannot write PID params",2000);
+    }
+
+    isDoStSuccessfull = false;
+    QTimer::singleShot(3000, this, SLOT(mode_pidt_write_timeout()));
+}
+
+void MainWindow::on_btn_mode_pidt_write_params_pid_sync_clicked()
+{
+    mavlink_message_t msg;
+    uint8_t mav_send_buf[255];
+    uint16_t len;
+
+    double sync_KP = ui->sb_sta_kp->value();
+    double sync_KI = ui->sb_sta_ki->value();
+    double sync_KD = ui->sb_sta_kd->value();
+    mavlink_msg_pid_params_pack(0,0,&msg,PID_SYNC,sync_KP,sync_KI,sync_KD);
+    len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
+    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+        showStatus("Writing PID params",2000);
+    }
+    else{
+       showStatus("Cannot write PID params",2000);
+    }
+
+    isDoStSuccessfull = false;
+    QTimer::singleShot(3000, this, SLOT(mode_pidt_write_timeout()));
 }
 
 

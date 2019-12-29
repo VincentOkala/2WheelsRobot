@@ -101,3 +101,23 @@ void MainWindow::on_btn_change_mode_hw_clicked()
 {
     app_command_change_mode(MODE_HW);
 }
+
+void MainWindow::on_tilt_recv(float tilt){
+    static uint32_t cnt = 0;
+    tilt_x.append(cnt);
+    tilt_y.append(tilt);
+
+    truncate_vector(tilt_x);
+    truncate_vector(tilt_y);
+
+    ui->plot_0->xAxis->setRange(cnt-40, cnt);
+    float min = *std::min_element(tilt_y.constBegin(), tilt_y.constEnd());
+    float max = *std::max_element(tilt_y.constBegin(), tilt_y.constEnd());
+    if (min > -10) min = -10;
+    if(max < 10) max = 10;
+    ui->plot_0->yAxis->setRange(min,max);
+    ui->plot_0->graph(0)->setData(tilt_x,tilt_y);
+    cnt++;
+    ui->plot_0->replot();
+}
+

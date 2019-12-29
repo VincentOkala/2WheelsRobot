@@ -13,10 +13,10 @@ void MainWindow::on_mode_basic_mav_recv(mavlink_message_t *msg){
         mavlink_evt_sensor_t sensor_status;
         mavlink_msg_evt_sensor_decode(msg,&sensor_status);
         if(sensor_status.imu_status == SENSOR_IMU_OK){
-            ui->txtBoxMPU->setText("GOOD");
+            ui->statusBar->showMessage("IMU OK", 1000);
         }
         else{
-            ui->txtBoxMPU->setText("BAD");
+           ui->statusBar->showMessage("IMU ERROR", 1000);
         }
         break;
     case MAVLINK_MSG_ID_EVT_TILT:
@@ -48,3 +48,21 @@ void MainWindow::on_controller_cmd(){
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     send(QByteArray::fromRawData((char*)(mav_send_buf),len));
 }
+
+void MainWindow::on_btn_control_enable_2_clicked()
+{
+    if(control_enable == false){
+        control_enable=true;
+        ui->btn_control_enable->setText("Enabled");
+        ui->btn_control_enable_2->setText("Enabled");
+        connect(controller_timer, SIGNAL(timeout()), this, SLOT(on_controller_pidt()));
+        controller_timer->start(100);
+    }
+    else{
+        control_enable = false;
+        ui->btn_control_enable->setText("Disabled");
+        ui->btn_control_enable_2->setText("Disabled");
+        controller_timer->stop();
+    }
+}
+

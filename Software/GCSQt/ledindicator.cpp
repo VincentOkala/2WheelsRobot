@@ -4,13 +4,13 @@
 LedIndicator::LedIndicator(QWidget *parent) :
     QWidget(parent)
 {
-    setFixedSize(28, 28);
+    setFixedSize(20, 20);
     lit = false;
     ledOnColor=Qt::green;
     ledOffColor=Qt::red;
     ledOnPattern = Qt::SolidPattern;
     ledOffPattern = Qt::SolidPattern;
-    ledSize=20;
+    ledSize=10;
 }
 
 void LedIndicator::paintEvent(QPaintEvent *) {

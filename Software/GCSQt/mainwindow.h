@@ -98,6 +98,14 @@ private slots:
 
     void on_btn_control_enable_clicked();
 
+    void on_btn_mode_pidt_write_params_pid_whe0_clicked();
+
+    void on_btn_mode_pidt_write_params_pid_whe1_clicked();
+
+    void on_btn_mode_pidt_write_params_pid_sync_clicked();
+
+    void on_btn_control_enable_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSerialPort *m_serial;
@@ -106,7 +114,7 @@ private:
     LedIndicator *ledIndicator;
     QJoysticks* qjs;
     QTimer *controller_timer;
-    QVector<double> qv_x, qv_y;
+    QVector<double> tilt_x, tilt_y;
 
     QVector<double> pid_w0_x, pid_w0_sp_y, pid_w0_fb_y, pid_w0_p_y, pid_w0_i_y, pid_w0_d_y, pid_w0_u_y;
     QVector<double> pid_w1_x, pid_w1_sp_y, pid_w1_fb_y, pid_w1_p_y, pid_w1_i_y, pid_w1_d_y, pid_w1_u_y;
