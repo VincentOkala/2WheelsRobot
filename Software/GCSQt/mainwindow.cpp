@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->statusBar->addPermanentWidget(ledIndicator);
 
     // Com
-    connect(ui->wg_com,SIGNAL(on_ba_recv(QByteArray)),this,SLOT(receive(QByteArray)));
-    connect(ui->wg_com,SIGNAL(on_connection_evt(Com::com_evt_t)),this,SLOT(com_connection_evt(Com::com_evt_t)));
+    connect(ui->wg_com,SIGNAL(ba_recv(QByteArray)),this,SLOT(receive(QByteArray)));
+    connect(ui->wg_com,SIGNAL(connection_evt(Com::com_evt_t)),this,SLOT(com_connection_evt(Com::com_evt_t)));
 
     // Joystick
     qjs = QJoysticks::getInstance();

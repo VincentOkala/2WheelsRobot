@@ -46,18 +46,18 @@ public:
     com_send_t send(QByteArray bytes);
 
 signals:
-    void on_ba_recv(QByteArray ba);
-    void on_connection_evt(Com::com_evt_t evt);
+    void ba_recv(QByteArray ba);
+    void connection_evt(Com::com_evt_t evt);
 
 private slots:
 
     // Serial slot
-    void on_serial_data_ready();
+    void serial_data_ready();
 
     // Socker slot
-    void on_new_connection();
-    void on_socket_data_ready();
-    void on_socket_state_changed(QAbstractSocket::SocketState socketState);
+    void new_connection();
+    void socket_data_ready();
+    void socket_state_changed(QAbstractSocket::SocketState socketState);
 
     void on_btn_open_com_clicked();
     void on_btn_open_server_clicked();
@@ -67,8 +67,6 @@ private:
     QSerialPort *g_serial;
     QTcpServer *g_tcp_server;
     QTcpSocket *g_socket;
-
-
 };
 
 #endif // COM_H
