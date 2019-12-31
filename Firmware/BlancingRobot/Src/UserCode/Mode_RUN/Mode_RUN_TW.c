@@ -42,8 +42,12 @@ static void controller_callback(uint8_t* ctx){
 		omega = (float)gcmd_velocity.omega;
 	}
 
-	float tilt = imu_get_tilt() - params.angle_adjusted;
-	float setpoint =  params.angle_adjusted + vx*VX_TO_TILT;
+	int16_t motor0_speed = enc_read(MOTOR_0);
+	int16_t motor1_speed = enc_read(MOTOR_1);
+	float direction = (motor0_speed + motor1_speed)/2;
+
+	float tilt = imu_get_tilt() - (params.angle_adjusted+direction*0.03);
+	float setpoint =  (params.angle_adjusted+direction*0.03) + vx*VX_TO_TILT;
 	float speed = pid_compute(&params.pid_sync,setpoint,tilt);
 
 	if(tilt > 150 || tilt < -150) {
@@ -51,10 +55,10 @@ static void controller_callback(uint8_t* ctx){
 		pid_reset(&params.pid_sync);
 	}
 
-	speed += vx*THROTTLE_COEFF*tilt;
+//	speed += vx*THROTTLE_COEFF*tilt;
 
-	motors_setspeed(MOTOR_0, speed - omega*OMEGA_COEFF);
-	motors_setspeed(MOTOR_1, speed + omega*OMEGA_COEFF);
+	motors_setspeed(MOTOR_0, speed + omega*OMEGA_COEFF);
+	motors_setspeed(MOTOR_1, speed - omega*OMEGA_COEFF);
 }
 
 static void imu_status_report_callback(uint8_t* ctx){

@@ -66,11 +66,12 @@
 #define OMEGA_COEFF					3.0
 #define THROTTLE_COEFF				5
 
+// ROBOT_MODEL_TANK general define
+#define WHEEL_PERIOD				50
+#define SYNC_PERIOD					100
+
 // ROBOT_MODEL_TANK	mode PIDT
 #define PID_REPORT_PERIOD			100
 #define SPEED_REPORT_PERIOD			100
-
-#define WHEEL_PERIOD				50
-#define SYNC_PERIOD					100
 
 #endif /* USERCODE_USER_DEFINE_H_ */

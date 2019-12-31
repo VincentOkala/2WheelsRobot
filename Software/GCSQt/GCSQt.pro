@@ -31,7 +31,7 @@ SOURCES += \
     ledindicator.cpp \
     mode_hw.cpp \
     mode_pidt.cpp \
-    mode_run.cpp \
+    mode_run_temp.cpp \
     modu_imu.cpp \
     qcustomplot/qcustomplot.cpp
 

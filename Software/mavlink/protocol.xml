@@ -9,7 +9,7 @@
 		</enum>
 
 		<enum name="rmode_t">
-			<entry name="MODE_RUN"></entry>
+			<entry name="MODE_RUN">Default mode</entry>
 			<entry name="MODE_HW">Motor configuration mode</entry>
 			<entry name="MODE_IMU">IMU calibration mode</entry>
 			<entry name="MODE_PIDT">PID calibration mode</entry>
@@ -30,9 +30,20 @@
 		</enum>
 
 		<enum name="pidc_t">
-			<entry name="PID_WHE0"></entry>
-			<entry name="PID_WHE1"></entry>
-			<entry name="PID_SYNC"></entry>
+			<entry name="PID_TILT">Two wheels robot</entry>
+			<entry name="PID_VELO">Two wheels robot</entry>
+			<entry name="PID_POSE">Two wheels robot</entry>
+
+			<entry name="PID_WHE0">Tank PID</entry>
+			<entry name="PID_WHE1">Tank PID</entry>
+			<entry name="PID_WHE2">Tank PID</entry>
+			<entry name="PID_WHE3">Tank PID</entry>
+			<entry name="PID_SYNC">Tank PID</entry>
+		</enum>
+
+		<enum name="tilt_t">
+			<entry name="ROLL">Tilt angle is roll angle</entry>
+			<entry name="PITCH">Pitch angle is roll angle</entry>
 		</enum>
 	</enums>
 

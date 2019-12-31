@@ -12,15 +12,24 @@
 #include <UserCode/IMU/IMU.h>
 #include <UserCode/Mode_PIDT/Mode_PIDT.h>
 #include "UserCode/Motors/Motors.h"
+#include <UserCode/Encoder/Encoder.h>
 #include "UserCode/PID/PID.h"
 #include "UserCode/Com/Com.h"
 #include "UserCode/Params/Params.h"
 
 static timer_id_t gtimer_ID_controller;
+static timer_id_t gtimerid_imu_tilt;
 
 static void controller_callback(uint8_t* ctx){
 	float tilt = imu_get_tilt();
-	float speed = pid_compute(&params.pid_sync,params.angle_adjusted, tilt);
+
+	int16_t motor0_speed = enc_read(MOTOR_0);
+	int16_t motor1_speed = enc_read(MOTOR_1);
+	float direction = (motor0_speed + motor1_speed)/2;
+
+	float setpoint = (params.angle_adjusted+direction*0.05);
+
+	float speed = pid_compute(&params.pid_sync,setpoint, tilt);
 	if(tilt > 60 || tilt < -60) {
 		speed = 0;
 		pid_reset(&params.pid_sync);
@@ -67,6 +76,16 @@ static void write_param(mavlink_message_t *msg){
 	}
 }
 
+static void tilt_report_callback(uint8_t *ctx){
+	mavlink_message_t mav_msg;
+	uint8_t mav_send_buf[256];
+	float tilt = imu_get_tilt() - params.angle_adjusted;
+	mavlink_msg_evt_tilt_pack(0,0,&mav_msg,tilt);
+	uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &mav_msg);
+	com_send(mav_send_buf, len);
+}
+
+
 void mode_pidt_init(){
 	// Hardware initialization
 	motors_init();
@@ -76,6 +95,7 @@ void mode_pidt_init(){
 
 	// Periodic task initialization
 	gtimer_ID_controller = timer_register_callback(controller_callback, CONTROLLER_PERIOD, 0, TIMER_MODE_REPEAT);
+	gtimerid_imu_tilt = timer_register_callback(tilt_report_callback, TILT_REPORT_PERIOD, 0, TIMER_MODE_REPEAT);
 }
 
 void mode_pidt_deinit(){
@@ -85,6 +105,7 @@ void mode_pidt_deinit(){
 
 	// Periodic task de-initialization
 	timer_unregister_callback(gtimer_ID_controller);
+	timer_unregister_callback(gtimerid_imu_tilt);
 }
 
 void on_mode_pidt_mavlink_recv(mavlink_message_t *msg){
