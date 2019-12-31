@@ -3,12 +3,6 @@
 
 #include <QMainWindow>
 
-#include <QSerialPortInfo>
-#include <QSerialPort>
-#include <QHostAddress>
-#include <QNetworkInterface>
-#include <QTcpServer>
-#include <QTcpSocket>
 #include <QTimer>
 #include <QtGamepad/QGamepad>
 
@@ -16,6 +10,8 @@
 #include "ledindicator.h"
 #include <QJoysticks.h>
 #include <qcustomplot/qcustomplot.h>
+
+#include <com.h>
 
 #define MAV_BUFF_SIZE   256
 #define PID_VECTOR_LEN  40
@@ -36,13 +32,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_btnOpenCOM_clicked();
-    void on_btnSend_clicked();
-    void on_COMData_ready();
-    void on_btnOpenServer_clicked();
-    void on_newConnection();
-    void on_ReadyRead();
-    void on_SocketStateChanged(QAbstractSocket::SocketState socketState);
 
     void on_btn_change_mode_basic_clicked();
     void on_btn_change_mode_imu_calibration_clicked();
@@ -106,11 +95,16 @@ private slots:
 
     void on_btn_control_enable_2_clicked();
 
+    void on_btnSend_clicked();
+
+    // Com
+    void receive(QByteArray ba);
+    void com_connection_evt(Com::com_evt_t evt);
+
 private:
     Ui::MainWindow *ui;
-    QSerialPort *m_serial;
-    QTcpServer *tcpServer;
-    QTcpSocket *socket;
+
+
     LedIndicator *ledIndicator;
     QJoysticks* qjs;
     QTimer *controller_timer;
@@ -135,8 +129,10 @@ private:
     bool is_imu_calibrating = false;
     bool control_enable = false;
 
+    // Com
     bool send(QByteArray bytes);
-    void receive(QByteArray bytes);
+    bool send(uint8_t* arr, uint16_t len);
+
     QString ByteArrayToString(QByteArray ba);
     void showStatus(QString qstr, int timeout);
 
@@ -166,6 +162,7 @@ private:
     void pid_w0_plot(uint32_t len);
     void pid_w1_plot(uint32_t len);
     void pid_sync_plot(uint32_t len);
+
 
 
 };

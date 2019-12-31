@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    com.cpp \
     main.cpp \
     mainwindow.cpp \
     appmain.cpp \
@@ -53,6 +54,7 @@ HEADERS += \
     MAV/protocol/mavlink_msg_pid_params.h \
     MAV/protocol/mavlink_msg_pid_report.h \
     MAV/protocol/mavlink_msg_respond.h \
+    com.h \
         mainwindow.h \
     MAV/protocol/mavlink.h \
     MAV/protocol/mavlink_msg_cmd_accel_offset.h \
@@ -83,6 +85,7 @@ HEADERS += \
     qcustomplot/qcustomplot.h
 
 FORMS += \
+    com.ui \
     mainwindow.ui
 
 # Default rules for deployment.
