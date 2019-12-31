@@ -32,6 +32,7 @@ SOURCES += \
     ledindicator.cpp \
     mode_hw.cpp \
     mode_pidt.cpp \
+    mode_run.cpp \
     mode_run_temp.cpp \
     modu_imu.cpp \
     qcustomplot/qcustomplot.cpp
@@ -82,11 +83,13 @@ HEADERS += \
     MAV/protocol.h \
     mainwindow.h \
     ledindicator.h \
+    mode_run.h \
     qcustomplot/qcustomplot.h
 
 FORMS += \
     com.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    mode_run.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

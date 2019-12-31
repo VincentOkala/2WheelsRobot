@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     qjs->setVirtualJoystickRange(1);
     connect(qjs,SIGNAL(axisChanged(const int, const int, const qreal)),this,SLOT(js_axis_change(const int, const int, const qreal)));
 
+    mode_run = new Mode_run();
+    ui->Maintab->addTab(mode_run,"Mode Run");
+
     controller_timer = new QTimer(this);
 
     for(int i=0;i<=3;i++){

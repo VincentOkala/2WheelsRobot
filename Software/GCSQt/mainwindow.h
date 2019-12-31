@@ -12,6 +12,7 @@
 #include <qcustomplot/qcustomplot.h>
 
 #include <com.h>
+#include <mode_run.h>
 
 #define MAV_BUFF_SIZE   256
 #define PID_VECTOR_LEN  40
@@ -107,9 +108,11 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    QJoysticks *qjs;
+    Mode_run *mode_run;
 
     LedIndicator *ledIndicator;
-    QJoysticks* qjs;
+
     QTimer *controller_timer;
     QVector<double> tilt_x, tilt_y;
 
