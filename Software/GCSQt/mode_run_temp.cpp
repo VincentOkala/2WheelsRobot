@@ -27,17 +27,6 @@ void MainWindow::on_mode_basic_mav_recv(mavlink_message_t *msg){
     }
 }
 
-void MainWindow::on_js_axis_change(const int js, const int axis, const qreal value){
-    if(axis == 0){
-            ui->txtBoxOMEGA->setText((QString::number(-value)));
-            ui->txtb_pidt_w->setText((QString::number(-value)));
-    }
-    else if(axis == 1){
-            ui->txtBoxVX->setText(QString::number((-value)));
-            ui->txtb_pidt_vx->setText((QString::number(-value)));
-    }
-}
-
 void MainWindow::on_controller_cmd(){
     mavlink_message_t msg;
     uint8_t mav_send_buf[255];

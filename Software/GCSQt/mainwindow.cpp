@@ -12,11 +12,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ledIndicator = new LedIndicator();
     ui->statusBar->addPermanentWidget(ledIndicator);
 
-    app_main_init();
+    // Com
+    connect(ui->wg_com,SIGNAL(on_ba_recv(QByteArray)),this,SLOT(receive(QByteArray)));
+    connect(ui->wg_com,SIGNAL(on_connection_evt(Com::com_evt_t)),this,SLOT(com_connection_evt(Com::com_evt_t)));
 
+    // Joystick
     qjs = QJoysticks::getInstance();
     qjs->setVirtualJoystickRange(1);
-    connect(qjs,SIGNAL(axisChanged(const int, const int, const qreal)),this,SLOT(on_js_axis_change(const int, const int, const qreal)));
+    connect(qjs,SIGNAL(axisChanged(const int, const int, const qreal)),this,SLOT(js_axis_change(const int, const int, const qreal)));
 
     controller_timer = new QTimer(this);
 
@@ -42,9 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->plot_5->graph(i)->setPen(QPen(QColor(50*i,50*i,0)));
     }
 
-    // Com
-    connect(ui->wg_com,SIGNAL(on_ba_recv(QByteArray)),this,SLOT(receive(QByteArray)));
-    connect(ui->wg_com,SIGNAL(on_connection_evt(Com::com_evt_t)),this,SLOT(com_connection_evt(Com::com_evt_t)));
+    app_main_init();
 }
 
 MainWindow::~MainWindow()
@@ -60,8 +61,8 @@ QString MainWindow::ByteArrayToString(QByteArray ba)
 {
     QString qstr;
     char tmp[20];
-    for (uint8_t byte : ba) {
-        sprintf(tmp, "{%02x}", byte);
+    for (char byte : ba) {
+        sprintf(tmp, "{%02x}", static_cast<uint8_t>(byte));
         qstr.append(QString(tmp));
     }
     return qstr;
@@ -141,5 +142,17 @@ void MainWindow::on_btnSend_clicked()
 {
     if(!send(ui->tbSend->text().toStdString().c_str())){
         showStatus("Unable to send",1000);
+    }
+}
+
+void MainWindow::js_axis_change(const int js, const int axis, const qreal value){
+    Q_UNUSED(js)
+    if(axis == 0){
+            ui->txtBoxOMEGA->setText((QString::number(-value)));
+            ui->txtb_pidt_w->setText((QString::number(-value)));
+    }
+    else if(axis == 1){
+            ui->txtBoxVX->setText(QString::number((-value)));
+            ui->txtb_pidt_vx->setText((QString::number(-value)));
     }
 }

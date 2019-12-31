@@ -64,7 +64,7 @@ private slots:
     void on_btn_mode_imu_save_params_clicked();
     void on_btn_gyro_calib_clicked();
 
-    void on_js_axis_change(const int js, const int axis, const qreal value);
+
     void on_controller_cmd();
     void on_controller_pidt();
 
@@ -100,6 +100,9 @@ private slots:
     // Com
     void receive(QByteArray ba);
     void com_connection_evt(Com::com_evt_t evt);
+
+    // Joystick
+    void js_axis_change(const int js, const int axis, const qreal value);
 
 private:
     Ui::MainWindow *ui;
