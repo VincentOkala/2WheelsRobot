@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Hardware mode
     g_mode_hw_tw = new Mode_hw_tw();
-    g_mode_hw_tw->set_status_bar(ui->statusBar);
+//    g_mode_hw_tw->set_status_bar(ui->statusBar);
 
     // Add mode tab
     ui->Maintab->addTab(g_mode_run,"Mode Run");

@@ -11,14 +11,15 @@ namespace Ui {
 class Mode_hw_tw;
 }
 
-class Mode_hw_tw : public Mode_common
+class Mode_hw_tw : public QWidget
 {
+    Q_OBJECT
 
 public:
     explicit Mode_hw_tw(QWidget *parent = nullptr);
-    ~Mode_hw_tw() override;
+    ~Mode_hw_tw();
 
-    void mav_recv(mavlink_message_t *msg) override;
+    void mav_recv(mavlink_message_t *msg);
 
 private slots:
 
@@ -26,8 +27,6 @@ private slots:
     void on_btn_mode_hw_load_params_clicked();
     void on_btn_mode_hw_write_params_clicked();
     void on_btn_mode_hw_save_params_clicked();
-
-    void on_tbn_clicked();
 
 private:
     Ui::Mode_hw_tw *ui;
