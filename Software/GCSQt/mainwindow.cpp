@@ -9,26 +9,52 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setFixedSize(this->width(),this->height());
     this->setWindowTitle("GCS");
 
+    // Prepare status bar and led indicator
     g_led_indicator = new Led_indicator();
     ui->statusBar->addPermanentWidget(g_led_indicator);
 
-    g_mode_run = new Mode_run();
-    ui->Maintab->addTab(g_mode_run,"Mode Run");
-
-    g_com_gui = new Com_gui();
-    ui->Maintab->addTab(g_com_gui,"Com");
-
-    // Com
-    connect(ui->wg_com,SIGNAL(ba_recv(QByteArray)),this,SLOT(app_main_on_data_recv(QByteArray)));
-    connect(ui->wg_com,SIGNAL(connection_evt(Com::com_evt_t)),this,SLOT(com_connection_evt(Com::com_evt_t)));
-
-    ui->wg_com->set_com_gui(g_com_gui);
-    ui->wg_com->set_led_indicator(g_led_indicator);
-
-    // Joystick
+    // Prepare joystick
     g_qjs = QJoysticks::getInstance();
     g_qjs->setVirtualJoystickRange(1);
     connect(g_qjs,SIGNAL(axisChanged(const int, const int, const qreal)),this,SLOT(js_axis_change(const int, const int, const qreal)));
+
+    // Com
+    g_com_gui = new Com_gui();
+    // Message forwarding: com -> main -> mode
+    connect(ui->wg_com,SIGNAL(ba_recv(QByteArray)),this,SLOT(app_main_on_data_recv(QByteArray)));
+    connect(ui->wg_com,SIGNAL(connection_evt(Com::com_evt_t)),this,SLOT(com_connection_evt(Com::com_evt_t)));
+    ui->wg_com->set_com_gui(g_com_gui);
+    ui->wg_com->set_led_indicator(g_led_indicator);
+
+    // Run mode
+    g_mode_run = new Mode_run();
+    g_mode_run->set_status_bar(ui->statusBar);
+
+    // Imu mode
+    g_mode_imu = new Mode_imu();
+    g_mode_imu->set_status_bar(ui->statusBar);
+
+    // PID mode of tw robot
+    g_mode_pidt_tw = new Mode_pidt_tw();
+    g_mode_pidt_tw->set_status_bar(ui->statusBar);
+
+    // Add mode tab
+    ui->Maintab->addTab(g_mode_run,"Mode Run");
+    ui->Maintab->addTab(g_mode_imu,"Mode IMU");
+    ui->Maintab->addTab(g_mode_pidt_tw,"Mode PIDT TW");
+    ui->Maintab->addTab(g_com_gui,"Com");
+
+    // Mode change
+    connect(g_mode_run,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
+    connect(g_mode_imu,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
+    connect(g_mode_pidt_tw,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
+
+    // Message forwarding: mode -> main -> com
+    connect(g_mode_run,SIGNAL(mode_run_mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
+    connect(g_mode_imu,SIGNAL(mode_imu_mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
+    connect(g_mode_pidt_tw,SIGNAL(mode_pidt_mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
+
+
 
     controller_timer = new QTimer(this);
 
@@ -62,35 +88,35 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::showStatus(QString qstr, int timeout){
+void MainWindow::show_status(QString qstr, int timeout){
     ui->statusBar->showMessage(qstr,timeout);
 }
 
 void MainWindow::com_connection_evt(Com::com_evt_t evt){
     switch (evt) {
     case Com::SERIAL_OPEN_SUCCESS:
-        showStatus("Serial port opened",1000);
+        show_status("Serial port opened",1000);
         break;
     case Com::SERIAL_OPEN_FAIL:
-        showStatus("Unable to open serial port",1000);
+        show_status("Unable to open serial port",1000);
         break;
     case Com::SERIAL_CLOSED:
-        showStatus("Serial port closed",1000);
+        show_status("Serial port closed",1000);
         break;
     case Com::TCP_SERVER_OPEN_SUCCESS:
-        showStatus("TCP server opened",1000);
+        show_status("TCP server opened",1000);
         break;
     case Com::TCP_SERVER_OPEN_FAIL:
-        showStatus("Unable to open TCP server",1000);
+        show_status("Unable to open TCP server",1000);
         break;
     case Com::TCP_SERVER_CLOSED:
-        showStatus("TCP server closed",1000);
+        show_status("TCP server closed",1000);
         break;
     case Com::SOCKET_CONNECTION_OPEN:
-        showStatus("Socket opened",1000);
+        show_status("Socket opened",1000);
         break;
     case Com::SOCKET_CONNECTION_CLOSE:
-        showStatus("Socket closed",1000);
+        show_status("Socket closed",1000);
         break;
     }
 }
@@ -98,11 +124,11 @@ void MainWindow::com_connection_evt(Com::com_evt_t evt){
 void MainWindow::js_axis_change(const int js, const int axis, const qreal value){
     Q_UNUSED(js)
     if(axis == 0){
-            ui->txtBoxOMEGA->setText((QString::number(-value)));
+//            ui->txtBoxOMEGA->setText((QString::number(-value)));
             ui->txtb_pidt_w->setText((QString::number(-value)));
     }
     else if(axis == 1){
-            ui->txtBoxVX->setText(QString::number((-value)));
+//            ui->txtBoxVX->setText(QString::number((-value)));
             ui->txtb_pidt_vx->setText((QString::number(-value)));
     }
 }

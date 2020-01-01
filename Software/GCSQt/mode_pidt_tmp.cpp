@@ -8,7 +8,7 @@ void MainWindow::on_mode_pidt_mav_recv(mavlink_message_t *msg){
             isDoStSuccessfull = true;
             mavlink_pid_params_t pid;
             mavlink_msg_pid_params_decode(msg, &pid);
-            showStatus("Succeed to load PID params",2000);
+            show_status("Succeed to load PID params",2000);
 
             switch (pid.pid_control) {
                 case PID_WHE0:
@@ -35,14 +35,14 @@ void MainWindow::on_mode_pidt_mav_recv(mavlink_message_t *msg){
             mavlink_msg_respond_decode(msg,&evt_respond);
             if(evt_respond.respond == RESPOND_OK){
                 isDoStSuccessfull = true;
-                showStatus("Succeed to write or save params",2000);
+                show_status("Succeed to write or save params",2000);
             }
         }
         break;
     case MAVLINK_MSG_ID_EVT_TILT:
         mavlink_evt_tilt_t tilt_msg;
         mavlink_msg_evt_tilt_decode(msg,&tilt_msg);
-        on_tilt_recv(tilt_msg.tilt);
+//        on_tilt_recv(tilt_msg.tilt);
         break;
     case MAVLINK_MSG_ID_PID_REPORT:
         on_pid_report_recv(msg);
@@ -75,21 +75,21 @@ void MainWindow::load_pid_params(){
 void MainWindow::mode_pidt_load_timeout(){
     if(!isDoStSuccessfull){
         isDoStSuccessfull = true;
-        showStatus("Unable to load PID params",2000);
+        show_status("Unable to load PID params",2000);
     }
 }
 
 void MainWindow::mode_pidt_write_timeout(){
     if(!isDoStSuccessfull){
         isDoStSuccessfull = true;
-        showStatus("Unable to write PID params",2000);
+        show_status("Unable to write PID params",2000);
     }
 }
 
 void MainWindow::mode_pidt_save_timeout(){
     if(!isDoStSuccessfull){
         isDoStSuccessfull = true;
-        showStatus("Unable to save PID params",2000);
+        show_status("Unable to save PID params",2000);
     }
 }
 
@@ -151,36 +151,6 @@ void MainWindow::save_pid_params(){
 //   }
    isDoStSuccessfull = false;
    QTimer::singleShot(3000, this, SLOT(mode_pidt_save_timeout()));
-}
-
-void MainWindow::on_btn_mode_pidt_load_params_clicked()
-{
-    if(currentMode == MODE_PIDT){
-        load_pid_params();
-    }
-    else{
-        showStatus("Change mode to pid tunning first",2000);
-    }
-}
-
-void MainWindow::on_btn_mode_pidt_write_params_clicked()
-{
-    if(currentMode == MODE_PIDT){
-        write_pid_params();
-    }
-    else{
-        showStatus("Change mode to pid tunning first",2000);
-    }
-}
-
-void MainWindow::on_btn_mode_pidt_save_params_clicked()
-{
-    if(currentMode == MODE_PIDT){
-        save_pid_params();
-    }
-    else{
-        showStatus("Change mode to pid tunning first",2000);
-    }
 }
 
 void MainWindow::on_sb_step_KP_valueChanged(const QString &arg1)
@@ -391,22 +361,22 @@ void MainWindow::on_pid_report_recv(mavlink_message_t *msg){
     }
 }
 
-void MainWindow::on_btn_control_enable_clicked()
-{
-    if(control_enable == false){
-        control_enable=true;
-        ui->btn_control_enable->setText("Enabled");
-        ui->btn_control_enable_2->setText("Enabled");
-        connect(controller_timer, SIGNAL(timeout()), this, SLOT(on_controller_pidt()));
-        controller_timer->start(100);
-    }
-    else{
-        control_enable = false;
-        ui->btn_control_enable->setText("Disabled");
-        ui->btn_control_enable_2->setText("Disabled");
-        controller_timer->stop();
-    }
-}
+//void MainWindow::on_btn_control_enable_clicked()
+//{
+//    if(control_enable == false){
+//        control_enable=true;
+//        ui->btn_control_enable->setText("Enabled");
+//        ui->btn_control_enable_2->setText("Enabled");
+//        connect(controller_timer, SIGNAL(timeout()), this, SLOT(on_controller_pidt()));
+//        controller_timer->start(100);
+//    }
+//    else{
+//        control_enable = false;
+//        ui->btn_control_enable->setText("Disabled");
+//        ui->btn_control_enable_2->setText("Disabled");
+//        controller_timer->stop();
+//    }
+//}
 
 void MainWindow::on_controller_pidt(){
     mavlink_message_t msg;

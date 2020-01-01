@@ -15,7 +15,7 @@ void MainWindow::on_mode_hw_mav_recv(mavlink_message_t *msg){
             mavlink_msg_respond_decode(msg,&evt_respond);
             if(evt_respond.respond == RESPOND_OK){
                 isDoStSuccessfull = true;
-                showStatus("Succeed to write or save params",2000);
+                show_status("Succeed to write or save params",2000);
             }
         }
         break;
@@ -48,21 +48,21 @@ void MainWindow::on_btn_set_duty(){
 void MainWindow::mode_hw_load_timeout(){
     if(!isDoStSuccessfull){
         isDoStSuccessfull = true;
-        showStatus("Unable to load PID params",2000);
+        show_status("Unable to load PID params",2000);
     }
 }
 
 void MainWindow::mode_hw_write_timeout(){
     if(!isDoStSuccessfull){
         isDoStSuccessfull = true;
-        showStatus("Unable to write PID params",2000);
+        show_status("Unable to write PID params",2000);
     }
 }
 
 void MainWindow::mode_hw_save_timeout(){
     if(!isDoStSuccessfull){
         isDoStSuccessfull = true;
-        showStatus("Unable to save PID params",2000);
+        show_status("Unable to save PID params",2000);
     }
 }
 
@@ -127,34 +127,4 @@ void MainWindow::save_hw_params(){
 //   }
    isDoStSuccessfull = false;
    QTimer::singleShot(1000, this, SLOT(mode_hw_save_timeout()));
-}
-
-void MainWindow::on_btn_mode_hw_load_params_clicked()
-{
-    if(currentMode == MODE_HW){
-        load_hw_params();
-    }
-    else{
-        showStatus("Change mode to hardware first",2000);
-    }
-}
-
-void MainWindow::on_btn_mode_hw_write_params_clicked()
-{
-    if(currentMode == MODE_HW){
-        write_hw_params();
-    }
-    else{
-        showStatus("Change mode to hardware first",2000);
-    }
-}
-
-void MainWindow::on_btn_mode_hw_save_params_clicked()
-{
-    if(currentMode == MODE_HW){
-        save_hw_params();
-    }
-    else{
-        showStatus("Change mode to hardware first",2000);
-    }
 }

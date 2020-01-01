@@ -24,6 +24,7 @@ public:
 
 signals:
     void mode_imu_mav_send(QByteArray ba);
+    void mode_change(rmode_t mode);
 
 private slots:
     void mode_imu_load_timeout();
@@ -31,17 +32,15 @@ private slots:
     void mode_imu_save_timeout();
 
     void on_btn_mode_imu_load_params_clicked();
-
     void on_btn_mode_imu_write_params_clicked();
-
     void on_btn_mode_imu_save_params_clicked();
 
     void on_btn_gyro_calib_clicked();
+    void on_btn_change_mode_imu_clicked();
 
 private:
     Ui::Mode_imu *ui;
-
-    QStatusBar *g_q_status_bar;
+    QStatusBar *g_q_status_bar = nullptr;
 
     int16_t g_gx_offset;
     int16_t g_gy_offset;

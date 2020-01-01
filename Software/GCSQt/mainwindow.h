@@ -13,6 +13,8 @@
 
 #include <com.h>
 #include <mode_run.h>
+#include <mode_imu.h>
+#include <mode_pidt_tw.h>
 
 #define MAV_BUFF_SIZE   256
 #define PID_VECTOR_LEN  40
@@ -34,11 +36,6 @@ public:
 
 private slots:
 
-    void on_btn_change_mode_basic_clicked();
-    void on_btn_change_mode_imu_calibration_clicked();
-    void on_btn_change_mode_pid_tunning_clicked();
-    void app_command_timeout();
-
     void mode_pidt_load_timeout();
     void mode_pidt_write_timeout();
     void mode_pidt_save_timeout();
@@ -47,25 +44,14 @@ private slots:
     void mode_hw_write_timeout();
     void mode_hw_save_timeout();
 
-    void on_btn_mode_pidt_load_params_clicked();
-    void on_btn_mode_pidt_write_params_clicked();
     void on_sb_step_KP_valueChanged(const QString &arg1);
     void on_sb_step_KI_valueChanged(const QString &arg1);
     void on_sb_KD_valueChanged(const QString &arg1);
-    void on_btn_mode_pidt_save_params_clicked();
 
 
     void on_controller_cmd();
     void on_controller_pidt();
 
-    void on_btn_change_mode_hw_clicked();
-
-
-    void on_btn_mode_hw_load_params_clicked();
-
-    void on_btn_mode_hw_write_params_clicked();
-
-    void on_btn_mode_hw_save_params_clicked();
 
     void on_btn_set_duty0_clicked();
 
@@ -75,15 +61,12 @@ private slots:
 
     void on_btn_set_speed1_clicked();
 
-    void on_btn_control_enable_clicked();
-
     void on_btn_mode_pidt_write_params_pid_whe0_clicked();
 
     void on_btn_mode_pidt_write_params_pid_whe1_clicked();
 
     void on_btn_mode_pidt_write_params_pid_sync_clicked();
 
-    void on_btn_control_enable_2_clicked();
 
     // Com
     void app_main_on_data_recv(QByteArray bytes);
@@ -92,13 +75,28 @@ private slots:
     // Joystick
     void js_axis_change(const int js, const int axis, const qreal value);
 
+    // Mode
+    void app_command_change_mode(rmode_t mode);
+    void app_command_change_mode_timeout();
+
+    // Mode messgage forward
+    void app_main_message_forward(QByteArray bytes);
+
 private:
     Ui::MainWindow *ui;
 
     QJoysticks *g_qjs;
-    Mode_run *g_mode_run;
     Com_gui *g_com_gui;
     Led_indicator *g_led_indicator;
+
+    Mode_run *g_mode_run;
+    Mode_imu *g_mode_imu;
+    Mode_pidt_tw *g_mode_pidt_tw;
+
+    bool g_is_changing_mode = false;
+    rmode_t g_change_to_mode = MODE_RUN;
+    rmode_t g_current_mode = MODE_RUN;
+    bool g_change_mode_success = false;
 
     QTimer *controller_timer;
     QVector<double> tilt_x, tilt_y;
@@ -110,19 +108,15 @@ private:
     uint8_t mavbuf[MAV_BUFF_SIZE];
     mavlink_message_t msg;
     mavlink_status_t  status;
-    bool isChangeMode = false;
-    bool changeModeSuccess = false;
-    rmode_t changeToMode = MODE_RUN;
-    rmode_t currentMode = MODE_RUN;
+
     bool isDoStSuccessfull = false;
 
-    bool control_enable = false;
 
-    void showStatus(QString qstr, int timeout);
+    void show_status(QString qstr, int timeout);
 
     void app_main_init();
 
-    void app_command_change_mode(rmode_t mode);
+
     void on_mode_basic_mav_recv(mavlink_message_t *msg);
 
     void load_pid_params();

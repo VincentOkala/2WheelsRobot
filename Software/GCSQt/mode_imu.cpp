@@ -182,3 +182,8 @@ void Mode_imu::on_btn_gyro_calib_clicked()
         ui->btn_gyro_calib->setText("Calibrate");
     }
 }
+
+void Mode_imu::on_btn_change_mode_imu_clicked()
+{
+    emit mode_change(MODE_IMU);
+}

@@ -142,7 +142,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="btn_change_mode_basic">
+  <widget class="QPushButton" name="btn_change_mode_run">
    <property name="geometry">
     <rect>
      <x>10</x>
