@@ -38,22 +38,28 @@ MainWindow::MainWindow(QWidget *parent) :
     g_mode_pidt_tw = new Mode_pidt_tw();
     g_mode_pidt_tw->set_status_bar(ui->statusBar);
 
+    // Hardware mode
+    g_mode_hw_tw = new Mode_hw_tw();
+    g_mode_hw_tw->set_status_bar(ui->statusBar);
+
     // Add mode tab
     ui->Maintab->addTab(g_mode_run,"Mode Run");
+    ui->Maintab->addTab(g_mode_hw_tw,"Mode HW");
     ui->Maintab->addTab(g_mode_imu,"Mode IMU");
     ui->Maintab->addTab(g_mode_pidt_tw,"Mode PIDT TW");
     ui->Maintab->addTab(g_com_gui,"Com");
 
     // Mode change
     connect(g_mode_run,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
+    connect(g_mode_hw_tw,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
     connect(g_mode_imu,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
     connect(g_mode_pidt_tw,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
 
     // Message forwarding: mode -> main -> com
     connect(g_mode_run,SIGNAL(mode_run_mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
+    connect(g_mode_hw_tw,SIGNAL(mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
     connect(g_mode_imu,SIGNAL(mode_imu_mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
     connect(g_mode_pidt_tw,SIGNAL(mode_pidt_mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
-
 
 
     controller_timer = new QTimer(this);

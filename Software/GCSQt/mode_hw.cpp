@@ -37,11 +37,13 @@ void MainWindow::on_mode_hw_mav_recv(mavlink_message_t *msg){
 void MainWindow::on_btn_set_duty(){
     mavlink_message_t msg;
     uint8_t mav_send_buf[255];
-    int32_t motor0_duty = ui->txtb_motor0_duty->text().toInt();
-    int32_t motor1_duty = ui->txtb_motor1_duty->text().toInt();
+    int16_t motor0_duty = static_cast<int16_t>(ui->txtb_motor0_duty->text().toInt());
+    int16_t motor1_duty = static_cast<int16_t>(ui->txtb_motor1_duty->text().toInt());
 
     mavlink_msg_motor_speed_pack(0,0,&msg,motor0_duty,motor1_duty);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
+
+//    emit mav_send_buf
 //    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
 }
 

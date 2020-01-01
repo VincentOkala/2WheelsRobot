@@ -2,21 +2,35 @@
 #define MODE_HW_TW_H
 
 #include <QWidget>
+#include <QtWidgets/QStatusBar>
+
+#include <MAV/protocol/mavlink.h>
+#include <mode_common.h>
 
 namespace Ui {
-class mode_hw_tw;
+class Mode_hw_tw;
 }
 
-class mode_hw_tw : public QWidget
+class Mode_hw_tw : public Mode_common
 {
-    Q_OBJECT
 
 public:
-    explicit mode_hw_tw(QWidget *parent = nullptr);
-    ~mode_hw_tw();
+    explicit Mode_hw_tw(QWidget *parent = nullptr);
+    ~Mode_hw_tw() override;
+
+    void mav_recv(mavlink_message_t *msg) override;
+
+private slots:
+
+    void on_btn_change_mode_hw_clicked();
+    void on_btn_mode_hw_load_params_clicked();
+    void on_btn_mode_hw_write_params_clicked();
+    void on_btn_mode_hw_save_params_clicked();
+
+    void on_tbn_clicked();
 
 private:
-    Ui::mode_hw_tw *ui;
+    Ui::Mode_hw_tw *ui;
 };
 
 #endif // MODE_HW_TW_H

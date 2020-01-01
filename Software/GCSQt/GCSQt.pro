@@ -31,6 +31,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     appmain.cpp \
+    mode_common.cpp \
     mode_hw.cpp \
     mode_hw_tw.cpp \
     mode_imu.cpp \
@@ -88,6 +89,7 @@ HEADERS += \
     MAV/mavlink_types.h \
     MAV/protocol.h \
     mainwindow.h \
+    mode_common.h \
     mode_hw_tw.h \
     mode_imu.h \
     mode_pidt._tmpcpp \

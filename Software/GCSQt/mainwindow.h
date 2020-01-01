@@ -15,6 +15,7 @@
 #include <mode_run.h>
 #include <mode_imu.h>
 #include <mode_pidt_tw.h>
+#include <mode_hw_tw.h>
 
 #define MAV_BUFF_SIZE   256
 #define PID_VECTOR_LEN  40
@@ -26,9 +27,6 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
-//    typedef void (*func_t)(void);
-//    typedef void (*on_mav_recv_t)(mavlink_message_t*);
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
@@ -92,6 +90,7 @@ private:
     Mode_run *g_mode_run;
     Mode_imu *g_mode_imu;
     Mode_pidt_tw *g_mode_pidt_tw;
+    Mode_hw_tw *g_mode_hw_tw;
 
     bool g_is_changing_mode = false;
     rmode_t g_change_to_mode = MODE_RUN;
