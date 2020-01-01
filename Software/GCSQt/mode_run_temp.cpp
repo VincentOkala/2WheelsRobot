@@ -35,7 +35,7 @@ void MainWindow::on_controller_cmd(){
     qDebug() << VX << " " << OMEGA;
     mavlink_msg_cmd_velocity_pack(0,0,&msg,VX,OMEGA);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
+//    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
 }
 
 void MainWindow::on_btn_control_enable_2_clicked()

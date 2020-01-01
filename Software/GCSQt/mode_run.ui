@@ -254,7 +254,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_control_enable_2">
+   <widget class="QPushButton" name="btn_control_enable">
     <property name="geometry">
      <rect>
       <x>520</x>

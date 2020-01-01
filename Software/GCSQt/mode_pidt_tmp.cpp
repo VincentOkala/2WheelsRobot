@@ -61,12 +61,12 @@ void MainWindow::load_pid_params(){
     uint8_t mav_send_buf[255];
     mavlink_msg_cmd_params_pack(0,0,&msg,CMD_LOAD);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Loading PID params",1000);
-   }
-   else{
-       showStatus("Cannot load PID params",1000);
-   }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Loading PID params",1000);
+//   }
+//   else{
+//       showStatus("Cannot load PID params",1000);
+//   }
    isDoStSuccessfull = false;
    QTimer::singleShot(3000, this, SLOT(mode_pidt_load_timeout()));
 }
@@ -103,36 +103,36 @@ void MainWindow::write_pid_params(){
     double sync_KD = ui->sb_sta_kd->value();
     mavlink_msg_pid_params_pack(0,0,&msg,PID_SYNC,sync_KP,sync_KI,sync_KD);
     len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Writing PID params",2000);
-    }
-    else{
-       showStatus("Cannot write PID params",2000);
-    }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Writing PID params",2000);
+//    }
+//    else{
+//       showStatus("Cannot write PID params",2000);
+//    }
 
     double w0_KP = ui->sb_w0_kp->value();
     double w0_KI = ui->sb_w0_ki->value();
     double w0_KD = ui->sb_w0_kd->value();
     mavlink_msg_pid_params_pack(0,0,&msg,PID_WHE0,w0_KP,w0_KI,w0_KD);
     len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Writing PID params",2000);
-    }
-    else{
-       showStatus("Cannot write PID params",2000);
-    }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Writing PID params",2000);
+//    }
+//    else{
+//       showStatus("Cannot write PID params",2000);
+//    }
 
     double w1_KP = ui->sb_w1_kp->value();
     double w1_KI = ui->sb_w1_ki->value();
     double w1_KD = ui->sb_w1_kd->value();
     mavlink_msg_pid_params_pack(0,0,&msg,PID_WHE1,w1_KP,w1_KI,w1_KD);
     len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Writing PID params",2000);
-    }
-    else{
-       showStatus("Cannot write PID params",2000);
-    }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Writing PID params",2000);
+//    }
+//    else{
+//       showStatus("Cannot write PID params",2000);
+//    }
 
    isDoStSuccessfull = false;
    QTimer::singleShot(3000, this, SLOT(mode_pidt_write_timeout()));
@@ -143,12 +143,12 @@ void MainWindow::save_pid_params(){
     uint8_t mav_send_buf[255];
     mavlink_msg_cmd_params_pack(0,0,&msg,CMD_SAVE);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Saving PID params",1000);
-   }
-   else{
-       showStatus("Cannot save PID params",1000);
-   }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Saving PID params",1000);
+//   }
+//   else{
+//       showStatus("Cannot save PID params",1000);
+//   }
    isDoStSuccessfull = false;
    QTimer::singleShot(3000, this, SLOT(mode_pidt_save_timeout()));
 }
@@ -213,7 +213,7 @@ void MainWindow::on_btn_set_speed0_clicked()
 
     mavlink_msg_motor_speed_pack(0,0,&msg,motor0_duty,motor1_duty);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
+//    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
 }
 
 void MainWindow::on_btn_set_speed1_clicked()
@@ -225,7 +225,7 @@ void MainWindow::on_btn_set_speed1_clicked()
 
     mavlink_msg_motor_speed_pack(0,0,&msg,motor0_duty,motor1_duty);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
+//    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
 }
 
 void MainWindow::pid_w0_plot(uint32_t len){
@@ -416,7 +416,7 @@ void MainWindow::on_controller_pidt(){
     qDebug() << VX << " " << OMEGA;
     mavlink_msg_cmd_velocity_pack(0,0,&msg,VX,OMEGA);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
+//    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
 }
 
 void MainWindow::on_btn_mode_pidt_write_params_pid_whe0_clicked()
@@ -430,12 +430,12 @@ void MainWindow::on_btn_mode_pidt_write_params_pid_whe0_clicked()
     double w0_KD = ui->sb_w0_kd->value();
     mavlink_msg_pid_params_pack(0,0,&msg,PID_WHE0,w0_KP,w0_KI,w0_KD);
     len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Writing PID params",2000);
-    }
-    else{
-       showStatus("Cannot write PID params",2000);
-    }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Writing PID params",2000);
+//    }
+//    else{
+//       showStatus("Cannot write PID params",2000);
+//    }
 
     isDoStSuccessfull = false;
     QTimer::singleShot(3000, this, SLOT(mode_pidt_write_timeout()));
@@ -453,12 +453,12 @@ void MainWindow::on_btn_mode_pidt_write_params_pid_whe1_clicked()
     double w1_KD = ui->sb_w1_kd->value();
     mavlink_msg_pid_params_pack(0,0,&msg,PID_WHE1,w1_KP,w1_KI,w1_KD);
     len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Writing PID params",2000);
-    }
-    else{
-       showStatus("Cannot write PID params",2000);
-    }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Writing PID params",2000);
+//    }
+//    else{
+//       showStatus("Cannot write PID params",2000);
+//    }
 
     isDoStSuccessfull = false;
     QTimer::singleShot(3000, this, SLOT(mode_pidt_write_timeout()));
@@ -475,12 +475,12 @@ void MainWindow::on_btn_mode_pidt_write_params_pid_sync_clicked()
     double sync_KD = ui->sb_sta_kd->value();
     mavlink_msg_pid_params_pack(0,0,&msg,PID_SYNC,sync_KP,sync_KI,sync_KD);
     len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Writing PID params",2000);
-    }
-    else{
-       showStatus("Cannot write PID params",2000);
-    }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Writing PID params",2000);
+//    }
+//    else{
+//       showStatus("Cannot write PID params",2000);
+//    }
 
     isDoStSuccessfull = false;
     QTimer::singleShot(3000, this, SLOT(mode_pidt_write_timeout()));

@@ -9,6 +9,10 @@
 #include <QNetworkInterface>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <QTimer>
+
+#include <com_gui.h>
+#include <led_indicator.h>
 
 namespace Ui {
 class Com;
@@ -44,6 +48,10 @@ public:
     }com_send_t;
 
     com_send_t send(QByteArray bytes);
+    com_send_t send(uint8_t* arr, uint16_t len);
+
+    void set_com_gui(Com_gui* cg);
+    void set_led_indicator(Led_indicator *led_indicator);
 
 signals:
     void ba_recv(QByteArray ba);
@@ -59,6 +67,12 @@ private slots:
     void socket_data_ready();
     void socket_state_changed(QAbstractSocket::SocketState socketState);
 
+    // Led indicator
+    void led_indicator_off();
+
+    // Gui send slot
+    void gui_send(QByteArray ba);
+
     void on_btn_open_com_clicked();
     void on_btn_open_server_clicked();
 
@@ -67,6 +81,10 @@ private:
     QSerialPort *g_serial;
     QTcpServer *g_tcp_server;
     QTcpSocket *g_socket;
+    Com_gui *g_com_gui;
+    Led_indicator *g_led_indicator;
+
+    QString ByteArrayToString(QByteArray ba);
 };
 
 #endif // COM_H

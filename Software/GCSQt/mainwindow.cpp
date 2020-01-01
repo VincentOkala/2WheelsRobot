@@ -9,20 +9,26 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setFixedSize(this->width(),this->height());
     this->setWindowTitle("GCS");
 
-    ledIndicator = new LedIndicator();
-    ui->statusBar->addPermanentWidget(ledIndicator);
+    g_led_indicator = new Led_indicator();
+    ui->statusBar->addPermanentWidget(g_led_indicator);
+
+    g_mode_run = new Mode_run();
+    ui->Maintab->addTab(g_mode_run,"Mode Run");
+
+    g_com_gui = new Com_gui();
+    ui->Maintab->addTab(g_com_gui,"Com");
 
     // Com
-    connect(ui->wg_com,SIGNAL(ba_recv(QByteArray)),this,SLOT(receive(QByteArray)));
+    connect(ui->wg_com,SIGNAL(ba_recv(QByteArray)),this,SLOT(app_main_on_data_recv(QByteArray)));
     connect(ui->wg_com,SIGNAL(connection_evt(Com::com_evt_t)),this,SLOT(com_connection_evt(Com::com_evt_t)));
 
-    // Joystick
-    qjs = QJoysticks::getInstance();
-    qjs->setVirtualJoystickRange(1);
-    connect(qjs,SIGNAL(axisChanged(const int, const int, const qreal)),this,SLOT(js_axis_change(const int, const int, const qreal)));
+    ui->wg_com->set_com_gui(g_com_gui);
+    ui->wg_com->set_led_indicator(g_led_indicator);
 
-    mode_run = new Mode_run();
-    ui->Maintab->addTab(mode_run,"Mode Run");
+    // Joystick
+    g_qjs = QJoysticks::getInstance();
+    g_qjs->setVirtualJoystickRange(1);
+    connect(g_qjs,SIGNAL(axisChanged(const int, const int, const qreal)),this,SLOT(js_axis_change(const int, const int, const qreal)));
 
     controller_timer = new QTimer(this);
 
@@ -60,44 +66,6 @@ void MainWindow::showStatus(QString qstr, int timeout){
     ui->statusBar->showMessage(qstr,timeout);
 }
 
-QString MainWindow::ByteArrayToString(QByteArray ba)
-{
-    QString qstr;
-    char tmp[20];
-    for (char byte : ba) {
-        sprintf(tmp, "{%02x}", static_cast<uint8_t>(byte));
-        qstr.append(QString(tmp));
-    }
-    return qstr;
-}
-
-void MainWindow::ledIndicatorOff(){
-    ledIndicator->setState(false);
-}
-
-void MainWindow::receive(QByteArray ba){
-    ledIndicator->setState(true);
-    QTimer::singleShot(100, this, SLOT(ledIndicatorOff()));
-    QString qstr = ByteArrayToString(ba);
-    ui->tbReceive->appendHtml("<font color=\"blue\">"+qstr+"</font>");
-    app_main_on_data_recv(ba);
-}
-
-bool MainWindow::send(QByteArray ba){
-    if(ui->wg_com->send(ba) == Com::COM_SEND_SUCCESS){
-        ledIndicator->setState(true);
-        QTimer::singleShot(100, this, SLOT(ledIndicatorOff()));
-        QString qstr = ByteArrayToString(ba);
-        ui->tbReceive->appendHtml("<font color=\"green\">"+qstr+"</font>");
-        return true;
-    }
-    return false;
-}
-
-bool MainWindow::send(uint8_t* arr, uint16_t len){
-    return send(QByteArray::fromRawData(reinterpret_cast<char*>(arr),len));
-}
-
 void MainWindow::com_connection_evt(Com::com_evt_t evt){
     switch (evt) {
     case Com::SERIAL_OPEN_SUCCESS:
@@ -124,27 +92,6 @@ void MainWindow::com_connection_evt(Com::com_evt_t evt){
     case Com::SOCKET_CONNECTION_CLOSE:
         showStatus("Socket closed",1000);
         break;
-    }
-}
-
-void MainWindow::on_btn_respond_ok_clicked()
-{
-    mavlink_message_t msg;
-    uint8_t mav_send_buf[255];
-    mavlink_msg_respond_pack(0,0,&msg,RESPOND_OK);
-    uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(mav_send_buf, len)){
-        showStatus("Respond OK",1000);
-   }
-   else{
-       showStatus("Cannot send respond OK",1000);
-   }
-}
-
-void MainWindow::on_btnSend_clicked()
-{
-    if(!send(ui->tbSend->text().toStdString().c_str())){
-        showStatus("Unable to send",1000);
     }
 }
 

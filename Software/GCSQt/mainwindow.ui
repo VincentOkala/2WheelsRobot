@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="modeRUN">
      <attribute name="title">
@@ -3171,57 +3171,6 @@
         <string>Disabled</string>
        </property>
       </widget>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="com">
-     <attribute name="title">
-      <string>COM</string>
-     </attribute>
-     <widget class="QLineEdit" name="tbSend">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>451</width>
-        <height>20</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btnSend">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>10</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Send</string>
-      </property>
-     </widget>
-     <widget class="QPlainTextEdit" name="tbReceive">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>631</width>
-        <height>471</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn_respond_ok">
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>10</y>
-        <width>81</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Respond OK</string>
-      </property>
      </widget>
     </widget>
    </widget>

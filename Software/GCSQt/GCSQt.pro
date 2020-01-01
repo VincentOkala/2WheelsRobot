@@ -26,15 +26,19 @@ CONFIG += c++11
 
 SOURCES += \
     com.cpp \
+    com_gui.cpp \
+    led_indicator.cpp \
     main.cpp \
     mainwindow.cpp \
     appmain.cpp \
-    ledindicator.cpp \
     mode_hw.cpp \
-    mode_pidt.cpp \
+    mode_hw_tw.cpp \
+    mode_imu.cpp \
+    mode_pidt_ta.cpp \
+    mode_pidt_tmp.cpp \
+    mode_pidt_tw.cpp \
     mode_run.cpp \
     mode_run_temp.cpp \
-    modu_imu.cpp \
     qcustomplot/qcustomplot.cpp
 
 HEADERS += \
@@ -56,6 +60,8 @@ HEADERS += \
     MAV/protocol/mavlink_msg_pid_report.h \
     MAV/protocol/mavlink_msg_respond.h \
     com.h \
+    com_gui.h \
+    led_indicator.h \
         mainwindow.h \
     MAV/protocol/mavlink.h \
     MAV/protocol/mavlink_msg_cmd_accel_offset.h \
@@ -82,13 +88,22 @@ HEADERS += \
     MAV/mavlink_types.h \
     MAV/protocol.h \
     mainwindow.h \
-    ledindicator.h \
+    mode_hw_tw.h \
+    mode_imu.h \
+    mode_pidt._tmpcpp \
+    mode_pidt_ta.h \
+    mode_pidt_tw.h \
     mode_run.h \
     qcustomplot/qcustomplot.h
 
 FORMS += \
     com.ui \
+    com_gui.ui \
     mainwindow.ui \
+    mode_hw_tw.ui \
+    mode_imu.ui \
+    mode_pidt_ta.ui \
+    mode_pidt_tw.ui \
     mode_run.ui
 
 # Default rules for deployment.

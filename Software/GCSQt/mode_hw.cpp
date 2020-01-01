@@ -42,7 +42,7 @@ void MainWindow::on_btn_set_duty(){
 
     mavlink_msg_motor_speed_pack(0,0,&msg,motor0_duty,motor1_duty);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
+//    send(QByteArray::fromRawData((char*)(mav_send_buf),len));
 }
 
 void MainWindow::mode_hw_load_timeout(){
@@ -81,12 +81,12 @@ void MainWindow::load_hw_params(){
     uint8_t mav_send_buf[255];
     mavlink_msg_cmd_params_pack(0,0,&msg,CMD_LOAD);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Loading hardware params",1000);
-   }
-   else{
-       showStatus("Cannot load hardware params",1000);
-   }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Loading hardware params",1000);
+//   }
+//   else{
+//       showStatus("Cannot load hardware params",1000);
+//   }
    isDoStSuccessfull = false;
    QTimer::singleShot(1000, this, SLOT(mode_hw_load_timeout()));
 }
@@ -104,12 +104,12 @@ void MainWindow::write_hw_params(){
 
     mavlink_msg_hw_params_pack(0,0,&msg,motor0_invert,motor1_invert,encoder0_invert,encoder1_invert, encoder_ex);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Writing hardware params",1000);
-   }
-   else{
-       showStatus("Cannot hardware params",1000);
-   }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Writing hardware params",1000);
+//   }
+//   else{
+//       showStatus("Cannot hardware params",1000);
+//   }
    isDoStSuccessfull = false;
    QTimer::singleShot(1000, this, SLOT(mode_hw_write_timeout()));
 }
@@ -119,12 +119,12 @@ void MainWindow::save_hw_params(){
     uint8_t mav_send_buf[255];
     mavlink_msg_cmd_params_pack(0,0,&msg,CMD_SAVE);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Saving gyro offset params",1000);
-   }
-   else{
-       showStatus("Cannot save gyro offset params",1000);
-   }
+//    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
+//        showStatus("Saving gyro offset params",1000);
+//   }
+//   else{
+//       showStatus("Cannot save gyro offset params",1000);
+//   }
    isDoStSuccessfull = false;
    QTimer::singleShot(1000, this, SLOT(mode_hw_save_timeout()));
 }

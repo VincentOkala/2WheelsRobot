@@ -38,7 +38,7 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
                     on_mode_basic_mav_recv(&msg);
                     break;
                 case MODE_IMU:
-                    on_mode_imu_mav_recv(&msg);
+//                    on_mode_imu_mav_recv(&msg);
                     break;
                 case MODE_PIDT:
                     on_mode_pidt_mav_recv(&msg);
@@ -73,13 +73,13 @@ void MainWindow::app_command_change_mode(rmode_t mode){
     uint8_t gmav_send_buf[255];
     mavlink_msg_cmd_change_mode_pack(0,0,&msg, mode);
     uint16_t len = mavlink_msg_to_send_buffer(gmav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(gmav_send_buf),len))){
-         showStatus("Requesting to change mode",500);
-         QTimer::singleShot(1000, this, SLOT(app_command_timeout()));
-    }
-    else{
-        showStatus("Cannot request to change mode",1000);
-    }
+//    if(send(QByteArray::fromRawData((char*)(gmav_send_buf),len))){
+//         showStatus("Requesting to change mode",500);
+//         QTimer::singleShot(1000, this, SLOT(app_command_timeout()));
+//    }
+//    else{
+//        showStatus("Cannot request to change mode",1000);
+//    }
 }
 
 void MainWindow::on_btn_change_mode_basic_clicked()

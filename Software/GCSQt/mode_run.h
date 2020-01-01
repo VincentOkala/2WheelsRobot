@@ -18,10 +18,19 @@ public:
     ~Mode_run();
 
 signals:
-    void send()
+    void send();
+
+private slots:
+    void mav_recv(mavlink_message_t *msg);
+
+    void on_btn_control_enable_clicked();
 
 private:
     Ui::Mode_run *ui;
+
+    bool control_enable;
+
+    void controller_cmd();
 };
 
 #endif // MODE_RUN_H

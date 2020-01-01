@@ -1,7 +1,7 @@
-#include "ledindicator.h"
+#include "led_indicator.h"
 #include <QPainter>
 
-LedIndicator::LedIndicator(QWidget *parent) :
+Led_indicator::Led_indicator(QWidget *parent) :
     QWidget(parent)
 {
     setFixedSize(20, 20);
@@ -13,48 +13,48 @@ LedIndicator::LedIndicator(QWidget *parent) :
     ledSize=10;
 }
 
-void LedIndicator::paintEvent(QPaintEvent *) {
+void Led_indicator::paintEvent(QPaintEvent *) {
   QPainter p(this);
   lit ?  p.setBrush(QBrush(ledOnColor, ledOnPattern)) : p.setBrush(QBrush(ledOffColor, ledOffPattern));
   p.drawEllipse(0,0,ledSize,ledSize);
 }
 
-void LedIndicator::switchLedIndicator() {
+void Led_indicator::switchLed_indicator() {
   lit = ! lit;
   repaint();
 }
-void LedIndicator::setState(bool state)
+void Led_indicator::setState(bool state)
 {
     lit = state;
     repaint();
 }
-void LedIndicator::toggle()
+void Led_indicator::toggle()
 {
     lit = ! lit;
     repaint();
 }
 
-void LedIndicator::setOnColor(QColor onColor)
+void Led_indicator::setOnColor(QColor onColor)
 {
     ledOnColor=onColor;
     repaint();
 }
-void LedIndicator::setOffColor(QColor offColor)
+void Led_indicator::setOffColor(QColor offColor)
 {
     ledOffColor=offColor;
     repaint();
 }
-void LedIndicator::setOnPattern(Qt::BrushStyle onPattern)
+void Led_indicator::setOnPattern(Qt::BrushStyle onPattern)
 {
     ledOnPattern=onPattern;
     repaint();
 }
-void LedIndicator::setOffPattern(Qt::BrushStyle offPattern)
+void Led_indicator::setOffPattern(Qt::BrushStyle offPattern)
 {
     ledOffPattern=offPattern;
     repaint();
 }
-void LedIndicator::setLedSize(int size)
+void Led_indicator::setLedSize(int size)
 {
     ledSize=size;
     setFixedSize(size+10, size+10);

@@ -1,12 +1,12 @@
-#ifndef LEDINDICATOR_H
-#define LEDINDICATOR_H
+#ifndef Led_indicator_H
+#define Led_indicator_H
 
 #include <QWidget>
 
-class LedIndicator: public QWidget {
+class Led_indicator: public QWidget {
     Q_OBJECT
   public:
-    LedIndicator(QWidget *parent = 0);
+    Led_indicator(QWidget *parent = 0);
     void setState(bool state);
     void toggle();
     void setOnColor(QColor onColor);
@@ -16,7 +16,7 @@ class LedIndicator: public QWidget {
     void setLedSize(int size);
 
   public slots:
-    void switchLedIndicator();
+    void switchLed_indicator();
   protected:
     void paintEvent(QPaintEvent *);
   private:
@@ -28,5 +28,5 @@ class LedIndicator: public QWidget {
     int ledSize;
 };
 
-#endif // LEDINDICATOR_H
+#endif // Led_indicator_H
 
