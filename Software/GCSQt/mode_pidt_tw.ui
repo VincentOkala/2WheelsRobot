@@ -686,9 +686,9 @@
    <widget class="QLineEdit" name="txtb_pidt_vx">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>20</y>
-      <width>501</width>
+      <width>511</width>
       <height>20</height>
      </rect>
     </property>
@@ -712,9 +712,9 @@
    <widget class="QLineEdit" name="txtb_pidt_w">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>30</x>
       <y>50</y>
-      <width>501</width>
+      <width>511</width>
       <height>20</height>
      </rect>
     </property>

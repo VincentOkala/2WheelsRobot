@@ -32,14 +32,12 @@ SOURCES += \
     mainwindow.cpp \
     appmain.cpp \
     mode_common.cpp \
-    mode_hw.cpp \
     mode_hw_tw.cpp \
     mode_imu.cpp \
     mode_pidt_ta.cpp \
     mode_pidt_tmp.cpp \
     mode_pidt_tw.cpp \
     mode_run.cpp \
-    mode_run_temp.cpp \
     qcustomplot/qcustomplot.cpp
 
 HEADERS += \
@@ -90,20 +88,19 @@ HEADERS += \
     MAV/protocol.h \
     mainwindow.h \
     mode_common.h \
-    mode_hw_tw.h \
     mode_imu.h \
-    mode_pidt._tmpcpp \
     mode_pidt_ta.h \
     mode_pidt_tw.h \
     mode_run.h \
+    mode_hw_tw.h \
     qcustomplot/qcustomplot.h
 
 FORMS += \
     com.ui \
     com_gui.ui \
     mainwindow.ui \
-    mode_hw_tw.ui \
     mode_imu.ui \
+    mode_hw_tw.ui \
     mode_pidt_ta.ui \
     mode_pidt_tw.ui \
     mode_run.ui

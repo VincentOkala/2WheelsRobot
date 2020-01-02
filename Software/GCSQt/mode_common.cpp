@@ -28,21 +28,21 @@ void Mode_common::show_status(QString q_str, int timeout){
 void Mode_common::load_timeout(){
     if(!g_does_st_successfullly){
         g_does_st_successfullly = true;
-        show_status("Unable to load imu params",2000);
+        show_status("Unable to load " + g_mode_name +" params",2000);
     }
 }
 
 void Mode_common::write_timeout(){
     if(!g_does_st_successfullly){
         g_does_st_successfullly = true;
-        show_status("Unable to write imu params",2000);
+        show_status("Unable to write " + g_mode_name + " params",2000);
     }
 }
 
 void Mode_common::save_timeout(){
     if(!g_does_st_successfullly){
         g_does_st_successfullly = true;
-        show_status("Unable to save imu params",2000);
+        show_status("Unable to save " + g_mode_name + " params",2000);
     }
 }
 
@@ -53,9 +53,9 @@ void Mode_common::load_params(){
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
 
     emit mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
-    show_status("Loading hardware params",1000);
-    g_does_st_successfullly = false;
-    QTimer::singleShot(1000, this, SLOT(load_timeout()));
+    show_status("Loading " + g_mode_name + " params",1000);
+
+    set_timeout(LOAD_TIMEOUT);
 }
 
 void Mode_common::save_params(){
@@ -65,7 +65,28 @@ void Mode_common::save_params(){
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
 
     emit mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
+    show_status("Saving " + g_mode_name + " params",1000);
+
+    set_timeout(SAVE_TIMEOUT);
+}
+
+void Mode_common::set_timeout(timeout_t timeout){
     g_does_st_successfullly = false;
-    QTimer::singleShot(1000, this, SLOT(mode_hw_save_timeout()));
+    switch(timeout){
+    case SAVE_TIMEOUT:
+        QTimer::singleShot(1000, this, SLOT(save_timeout()));
+        break;
+    case WRITE_TIMEOUT:
+        QTimer::singleShot(1000, this, SLOT(write_timeout()));
+        break;
+    case LOAD_TIMEOUT:
+        QTimer::singleShot(1000, this, SLOT(load_timeout()));
+        break;
+    }
+
+}
+
+void Mode_common::reset_timeout(){
+    g_does_st_successfullly = true;
 }
 

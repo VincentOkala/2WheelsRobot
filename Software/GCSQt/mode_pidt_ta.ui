@@ -217,7 +217,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="btn_change_mode_pid_tunning">
+  <widget class="QPushButton" name="btn_change_mode_pidt">
    <property name="geometry">
     <rect>
      <x>10</x>
