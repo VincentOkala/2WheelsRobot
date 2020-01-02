@@ -6,25 +6,22 @@
 #include <QtWidgets/QStatusBar>
 
 #include <MAV/protocol/mavlink.h>
+#include <mode_common.h>
 
 namespace Ui {
 class Mode_run;
 }
 
-class Mode_run : public QWidget
+class Mode_run : public Mode_common
 {
     Q_OBJECT
 
 public:
     explicit Mode_run(QWidget *parent = nullptr);
-    ~Mode_run();
+    ~Mode_run() override;
 
-    void mode_run_mav_recv(mavlink_message_t *msg);
-    void set_status_bar(QStatusBar *q_status_bar);
-
-signals:
-    void mode_run_mav_send(QByteArray ba);
-    void mode_change(rmode_t mode);
+    void mav_recv(mavlink_message_t *msg) override;
+    void update_joystick(axis_t axis, double value) override;
 
 private slots:
     void remote_controll_cmd();
@@ -34,12 +31,8 @@ private slots:
 
 private:
     Ui::Mode_run *ui;
-    QStatusBar *g_q_status_bar = nullptr;
     QTimer *g_controller_timer;
-
     bool g_control_enable;
-
-    void show_status(QString q_str, int timeout);
 };
 
 #endif // MODE_RUN_H

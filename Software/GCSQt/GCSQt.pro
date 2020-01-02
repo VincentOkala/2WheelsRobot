@@ -35,7 +35,6 @@ SOURCES += \
     mode_hw_tw.cpp \
     mode_imu.cpp \
     mode_pidt_ta.cpp \
-    mode_pidt_tmp.cpp \
     mode_pidt_tw.cpp \
     mode_run.cpp \
     qcustomplot/qcustomplot.cpp

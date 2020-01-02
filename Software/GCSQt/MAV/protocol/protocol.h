@@ -96,11 +96,27 @@ typedef enum bool_t
 #define HAVE_ENUM_pidc_t
 typedef enum pidc_t
 {
-   PID_WHE0=1, /*  | */
-   PID_WHE1=2, /*  | */
-   PID_SYNC=3, /*  | */
-   pidc_t_ENUM_END=4, /*  | */
+   PID_TILT=1, /*  | */
+   PID_VEL=2, /*  | */
+   PID_POS=3, /*  | */
+   PID_WHE0=4, /*  | */
+   PID_WHE1=5, /*  | */
+   PID_WHE2=6, /*  | */
+   PID_WHE3=7, /*  | */
+   PID_SYNC=8, /*  | */
+   pidc_t_ENUM_END=9, /*  | */
 } pidc_t;
+#endif
+
+/** @brief  */
+#ifndef HAVE_ENUM_tilt_t
+#define HAVE_ENUM_tilt_t
+typedef enum tilt_t
+{
+   ROLL=1, /*  | */
+   PITCH=2, /*  | */
+   tilt_t_ENUM_END=3, /*  | */
+} tilt_t;
 #endif
 
 // MAVLINK VERSION

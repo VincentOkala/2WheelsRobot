@@ -47,6 +47,15 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="decimals">
+     <number>5</number>
+    </property>
+    <property name="minimum">
+     <double>-100.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>100.000000000000000</double>
+    </property>
     <property name="singleStep">
      <double>0.100000000000000</double>
     </property>
@@ -86,6 +95,15 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="decimals">
+     <number>5</number>
+    </property>
+    <property name="minimum">
+     <double>-100.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>100.000000000000000</double>
+    </property>
     <property name="singleStep">
      <double>0.100000000000000</double>
     </property>
@@ -111,6 +129,15 @@
       <width>371</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="decimals">
+     <number>5</number>
+    </property>
+    <property name="minimum">
+     <double>-100.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>100.000000000000000</double>
     </property>
     <property name="singleStep">
      <double>0.100000000000000</double>
@@ -238,8 +265,17 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="minimum">
+     <double>-1000.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
+    </property>
     <property name="singleStep">
      <double>0.100000000000000</double>
+    </property>
+    <property name="value">
+     <double>0.000000000000000</double>
     </property>
    </widget>
    <widget class="QLabel" name="label_85">
@@ -277,8 +313,14 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="minimum">
+     <double>-1000.000000000000000</double>
+    </property>
     <property name="singleStep">
      <double>0.100000000000000</double>
+    </property>
+    <property name="value">
+     <double>0.000000000000000</double>
     </property>
    </widget>
    <widget class="QLabel" name="label_87">
@@ -302,6 +344,12 @@
       <width>371</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="minimum">
+     <double>-1000.000000000000000</double>
+    </property>
+    <property name="maximum">
+     <double>1000.000000000000000</double>
     </property>
     <property name="singleStep">
      <double>0.100000000000000</double>

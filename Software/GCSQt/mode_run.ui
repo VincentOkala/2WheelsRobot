@@ -180,7 +180,7 @@
      <string>VX:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txtBoxVX">
+   <widget class="QLineEdit" name="txtb_pidt_vx">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -238,7 +238,7 @@
      <string>OMEGA:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txtBoxOMEGA">
+   <widget class="QLineEdit" name="txtb_pidt_w">
     <property name="geometry">
      <rect>
       <x>390</x>

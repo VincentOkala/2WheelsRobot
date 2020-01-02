@@ -19,7 +19,6 @@
 #include <mode_pidt_ta.h>
 
 #define MAV_BUFF_SIZE   256
-#define PID_VECTOR_LEN  40
 
 namespace Ui {
 class MainWindow;
@@ -55,6 +54,7 @@ private:
     QJoysticks *g_qjs;
     Com_gui *g_com_gui;
     Led_indicator *g_led_indicator;
+    QVector<QCustomPlot*> g_q_custom_plot;
 
     Mode_run *g_mode_run;
     Mode_imu *g_mode_imu;
@@ -73,11 +73,6 @@ private:
 
     void show_status(QString qstr, int timeout);
     void app_main_init();
-
-    //    QVector<double> tilt_x, tilt_y;
-    //    QVector<double> pid_w0_x, pid_w0_sp_y, pid_w0_fb_y, pid_w0_p_y, pid_w0_i_y, pid_w0_d_y, pid_w0_u_y;
-    //    QVector<double> pid_w1_x, pid_w1_sp_y, pid_w1_fb_y, pid_w1_p_y, pid_w1_i_y, pid_w1_d_y, pid_w1_u_y;
-    //    QVector<double> pid_s_x, pid_s_sp_y, pid_s_fb_y, pid_s_p_y, pid_s_i_y, pid_s_d_y, pid_s_u_y;
 };
 
 #endif // MAINWINDOW_H

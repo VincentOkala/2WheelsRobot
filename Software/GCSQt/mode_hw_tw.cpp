@@ -18,7 +18,7 @@ Mode_hw_tw::~Mode_hw_tw()
 void Mode_hw_tw::mav_recv(mavlink_message_t *msg){
     switch(msg->msgid) {
     case MAVLINK_MSG_ID_RESPOND:
-        if(g_does_st_successfullly == false){
+        if(is_timing()){
             mavlink_respond_t evt_respond;
             mavlink_msg_respond_decode(msg,&evt_respond);
             if(evt_respond.respond == RESPOND_OK){
@@ -36,8 +36,15 @@ void Mode_hw_tw::mav_recv(mavlink_message_t *msg){
             ui->cb_enc0_invert->setCheckState(hw_params_msg.encoder0_invert == MAV_TRUE  ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
             ui->cb_enc1_invert->setCheckState(hw_params_msg.encoder1_invert == MAV_TRUE  ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
             ui->cb_enc_exchange->setCheckState(hw_params_msg.encoder_exchange == MAV_TRUE  ? Qt::CheckState::Checked : Qt::CheckState::Unchecked);
+            show_status("Succeed to load hardware params",2000);
             reset_timeout();
         }
+        break;
+    case MAVLINK_MSG_ID_MOTOR_SPEED:
+        mavlink_motor_speed_t motor_speed_msg;
+        mavlink_msg_motor_speed_decode(msg, &motor_speed_msg);
+        ui->txtb_enc0_speed->setText(QString::number(motor_speed_msg.motor_speed_0));
+        ui->txtb_enc1_speed->setText(QString::number(motor_speed_msg.motor_speed_1));
         break;
     }
 }

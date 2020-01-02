@@ -90,3 +90,36 @@ void Mode_common::reset_timeout(){
     g_does_st_successfullly = true;
 }
 
+bool Mode_common::is_timing(){
+    return !g_does_st_successfullly;
+}
+
+void Mode_common::set_plotter(QVector<QCustomPlot*> q_custom_plot){
+    g_q_custom_plot = q_custom_plot;
+}
+
+void Mode_common::update_joystick(axis_t axis, double value){
+    Q_UNUSED(axis)
+    Q_UNUSED(value)
+}
+
+void Mode_common::truncate_vector(QVector<double> *v){
+    while(v->size() > PID_VECTOR_LEN){
+        v->pop_front();
+    }
+}
+
+void Mode_common::truncate_matrix(QVector<QVector<double>> &m){
+    for (QVector<QVector<double>>::iterator it = m.begin(); it != m.end(); ++it) {
+        truncate_vector(it);
+    }
+}
+
+double Mode_common::vector_min(QVector<double> q_vector){
+    return *std::min_element(q_vector.constBegin(), q_vector.constEnd());
+}
+
+double Mode_common::vector_max(QVector<double> q_vector){
+    return *std::max_element(q_vector.constBegin(), q_vector.constEnd());
+}
+

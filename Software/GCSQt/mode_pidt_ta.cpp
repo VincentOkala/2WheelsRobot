@@ -17,7 +17,7 @@ Mode_pidt_ta::~Mode_pidt_ta()
 void Mode_pidt_ta::mav_recv(mavlink_message_t *msg){
     switch(msg->msgid) {
     case MAVLINK_MSG_ID_PID_PARAMS:
-        if(g_does_st_successfullly == false){
+        if(is_timing()){
             reset_timeout();
 
             mavlink_pid_params_t pid;
@@ -192,5 +192,14 @@ void Mode_pidt_ta::on_btn_set_speed1_clicked()
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     emit mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
     show_status("Set wheel speed",1000);
+}
 
+void Mode_pidt_ta::update_joystick(axis_t axis, double value){
+    switch (axis){
+    case AXIS_0:
+        ui->txtb_pidt_w->setText(QString::number(value));
+        break;
+    case AXIS_1:
+        ui->txtb_pidt_vx->setText(QString::number(value));
+    }
 }

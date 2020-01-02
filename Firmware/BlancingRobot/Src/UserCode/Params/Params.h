@@ -12,9 +12,7 @@
 #include "UserCode/PID/PID.h"
 
 typedef struct{
-	pid_params_t pid_whe0;
-	pid_params_t pid_whe1;
-	pid_params_t pid_sync;
+	pid_params_t pid[3];
 
 	float believe_in_gyro;
 	float angle_adjusted; // Calibrated vertical angle in earth frame

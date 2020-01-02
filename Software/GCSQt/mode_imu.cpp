@@ -2,7 +2,7 @@
 #include "ui_mode_imu.h"
 
 Mode_imu::Mode_imu(QWidget *parent) :
-    QWidget(parent),
+    Mode_common(parent),
     ui(new Ui::Mode_imu)
 {
     ui->setupUi(this);
@@ -13,17 +13,7 @@ Mode_imu::~Mode_imu()
     delete ui;
 }
 
-void Mode_imu::set_status_bar(QStatusBar *q_status_bar){
-    g_q_status_bar = q_status_bar;
-}
-
-void Mode_imu::show_status(QString q_str, int timeout){
-    if(g_q_status_bar != nullptr){
-        g_q_status_bar->showMessage(q_str,timeout);
-    }
-}
-
-void Mode_imu::mode_imu_mav_recv(mavlink_message_t *msg){
+void Mode_imu::mav_recv(mavlink_message_t *msg){
     switch(msg->msgid) {
     case MAVLINK_MSG_ID_EVT_GYRO_RAW:
         mavlink_evt_gyro_raw_t gyro_raw_msg;
@@ -41,11 +31,11 @@ void Mode_imu::mode_imu_mav_recv(mavlink_message_t *msg){
         }
         break;
     case MAVLINK_MSG_ID_RESPOND:
-        if(g_does_st_successfullly == false){
+        if(is_timing()){
             mavlink_respond_t evt_respond;
             mavlink_msg_respond_decode(msg,&evt_respond);
             if(evt_respond.respond == RESPOND_OK){
-                g_does_st_successfullly = true;
+                reset_timeout();
                 show_status("Succeed",2000);
             }
         }
@@ -66,9 +56,7 @@ void Mode_imu::mode_imu_mav_recv(mavlink_message_t *msg){
             ui->tb_gbelieve->setText(QString::number(static_cast<double>(g_gbelive)));
 
         }
-        if(g_does_st_successfullly == false){
-            g_does_st_successfullly = true;
-        }
+        reset_timeout();
         break;
     case MAVLINK_MSG_ID_EVT_TILT:
         {
@@ -85,27 +73,6 @@ void Mode_imu::mode_imu_mav_recv(mavlink_message_t *msg){
     }
 }
 
-void Mode_imu::mode_imu_load_timeout(){
-    if(!g_does_st_successfullly){
-        g_does_st_successfullly = true;
-        show_status("Unable to load imu params",2000);
-    }
-}
-
-void Mode_imu::mode_imu_write_timeout(){
-    if(!g_does_st_successfullly){
-        g_does_st_successfullly = true;
-        show_status("Unable to write imu params",2000);
-    }
-}
-
-void Mode_imu::mode_imu_save_timeout(){
-    if(!g_does_st_successfullly){
-        g_does_st_successfullly = true;
-        show_status("Unable to save imu params",2000);
-    }
-}
-
 void Mode_imu::on_btn_mode_imu_load_params_clicked()
 {
 
@@ -119,11 +86,10 @@ void Mode_imu::on_btn_mode_imu_load_params_clicked()
     mavlink_msg_cmd_params_pack(0,0,&msg,CMD_LOAD);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
 
-    emit mode_imu_mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
+    emit mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
     show_status("Loading imu params",1000);
 
-    g_does_st_successfullly = false;
-    QTimer::singleShot(1000, this, SLOT(mode_imu_load_timeout()));
+    set_timeout(LOAD_TIMEOUT);
 }
 
 void Mode_imu::on_btn_mode_imu_write_params_clicked()
@@ -142,11 +108,10 @@ void Mode_imu::on_btn_mode_imu_write_params_clicked()
                                 tbstand_point,gbelieve);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
 
-    emit mode_imu_mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
+    emit mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
     show_status("Writing imu params",1000);
 
-    g_does_st_successfullly = false;
-    QTimer::singleShot(1000, this, SLOT(mode_imu_write_timeout()));
+    set_timeout(WRITE_TIMEOUT);
 }
 
 void Mode_imu::on_btn_mode_imu_save_params_clicked()
@@ -157,11 +122,10 @@ void Mode_imu::on_btn_mode_imu_save_params_clicked()
     mavlink_msg_cmd_params_pack(0,0,&msg,CMD_SAVE);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
 
-    emit mode_imu_mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
+    emit mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
     show_status("Saving gyro offset params",1000);
 
-    g_does_st_successfullly = false;
-    QTimer::singleShot(1000, this, SLOT(mode_imu_save_timeout()));
+    set_timeout(SAVE_TIMEOUT);
 }
 
 void Mode_imu::on_btn_gyro_calib_clicked()

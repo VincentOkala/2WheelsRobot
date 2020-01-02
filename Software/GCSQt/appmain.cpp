@@ -34,13 +34,13 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
             else{
                 switch (g_current_mode) {
                 case MODE_RUN:
-                    g_mode_run->mode_run_mav_recv(&msg);
+                    g_mode_run->mav_recv(&msg);
                     break;
                 case MODE_IMU:
-                    g_mode_imu->mode_imu_mav_recv(&msg);
+                    g_mode_imu->mav_recv(&msg);
                     break;
                 case MODE_PIDT:
-                    g_mode_pidt_tw->mode_pidt_mav_recv(&msg);
+                    g_mode_pidt_tw->mav_recv(&msg);
                     break;
                 case MODE_HW:
                     g_mode_hw_tw->mav_recv(&msg);

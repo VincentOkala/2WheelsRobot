@@ -31,8 +31,8 @@
 
 		<enum name="pidc_t">
 			<entry name="PID_TILT">Two wheels robot</entry>
-			<entry name="PID_VELO">Two wheels robot</entry>
-			<entry name="PID_POSE">Two wheels robot</entry>
+			<entry name="PID_VEL">Two wheels robot</entry>
+			<entry name="PID_POS">Two wheels robot</entry>
 
 			<entry name="PID_WHE0">Tank PID</entry>
 			<entry name="PID_WHE1">Tank PID</entry>

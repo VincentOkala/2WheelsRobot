@@ -2,7 +2,7 @@
 #include "ui_mode_run.h"
 
 Mode_run::Mode_run(QWidget *parent) :
-    QWidget(parent),
+    Mode_common(parent),
     ui(new Ui::Mode_run)
 {
     ui->setupUi(this);
@@ -15,17 +15,7 @@ Mode_run::~Mode_run()
     delete ui;
 }
 
-void Mode_run::set_status_bar(QStatusBar *q_status_bar){
-    g_q_status_bar = q_status_bar;
-}
-
-void Mode_run::show_status(QString q_str, int timeout){
-    if(g_q_status_bar != nullptr){
-        g_q_status_bar->showMessage(q_str,timeout);
-    }
-}
-
-void Mode_run::mode_run_mav_recv(mavlink_message_t *msg){
+void Mode_run::mav_recv(mavlink_message_t *msg){
     switch(msg->msgid) {
     case MAVLINK_MSG_ID_EVT_RPY:
         mavlink_evt_rpy_t evt_rpy;
@@ -54,13 +44,13 @@ void Mode_run::mode_run_mav_recv(mavlink_message_t *msg){
 void Mode_run::remote_controll_cmd(){
     mavlink_message_t msg;
     uint8_t mav_send_buf[255];
-    int16_t VX = static_cast<int16_t>(ui->txtBoxVX->text().toDouble()*100);
-    int16_t OMEGA = static_cast<int16_t>(ui->txtBoxOMEGA->text().toDouble()*100);
+    int16_t VX = static_cast<int16_t>(ui->txtb_pidt_vx->text().toDouble()*100);
+    int16_t OMEGA = static_cast<int16_t>(ui->txtb_pidt_w->text().toDouble()*100);
 
     mavlink_msg_cmd_velocity_pack(0,0,&msg,VX,OMEGA);
     uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
 
-    emit mode_run_mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
+    emit mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
 }
 
 void Mode_run::on_btn_control_enable_clicked()
@@ -80,4 +70,14 @@ void Mode_run::on_btn_control_enable_clicked()
 void Mode_run::on_btn_change_mode_run_clicked()
 {
     emit mode_change(MODE_RUN);
+}
+
+void Mode_run::update_joystick(axis_t axis, double value){
+    switch (axis){
+    case AXIS_0:
+        ui->txtb_pidt_w->setText(QString::number(value));
+        break;
+    case AXIS_1:
+        ui->txtb_pidt_vx->setText(QString::number(value));
+    }
 }

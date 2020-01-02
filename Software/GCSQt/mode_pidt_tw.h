@@ -6,24 +6,22 @@
 #include <QtWidgets/QStatusBar>
 
 #include <MAV/protocol/mavlink.h>
+#include <mode_common.h>
 
 namespace Ui {
 class Mode_pidt_tw;
 }
 
-class Mode_pidt_tw : public QWidget
+class Mode_pidt_tw : public Mode_common
 {
     Q_OBJECT
 
 public:
     explicit Mode_pidt_tw(QWidget *parent = nullptr);
     ~Mode_pidt_tw();
-    void mode_pidt_mav_recv(mavlink_message_t *msg);
-    void set_status_bar(QStatusBar *q_status_bar);
 
-signals:
-    void mode_pidt_mav_send(QByteArray ba);
-    void mode_change(rmode_t mode);
+    void mav_recv(mavlink_message_t *msg) override;
+    void update_joystick(axis_t axis, double value) override;
 
 private slots:
     void mode_pidt_load_timeout();
@@ -57,13 +55,16 @@ private slots:
 
 private:
     Ui::Mode_pidt_tw *ui;
-    QStatusBar *g_q_status_bar = nullptr;
     QTimer *g_controller_timer;
 
-    bool g_does_st_successfullly = false;
     bool g_control_enable = false;
 
-    void show_status(QString q_str, int timeout);
+    void pid_plot(uint32_t len, QVector<QVector<double>> q, QCustomPlot *q_custom_plot);
+    void pid_report_recv(mavlink_message_t *msg);
+
+    QVector<QVector<double>> pid_tilt, pid_tilt_sp_fb;
+    QVector<QVector<double>> pid_vel, pid_vel_sp_fb;
+    QVector<QVector<double>> pid_pos, pid_pos_sp_fb;
 };
 
 #endif // MODE_PIDT_TW_H

@@ -10,8 +10,8 @@
 #include "UserCode/user_define.h"
 
 params_t params = {
-		.pid_whe0 = {
-				.KP = 10,
+		.pid[0] = {
+				.KP = 0,
 				.KI = 0,
 				.KD = 0,
 
@@ -27,8 +27,8 @@ params_t params = {
 				.isFistCompute = true
 		},
 
-		.pid_whe1 = {
-				.KP = 10,
+		.pid[1] = {
+				.KP = 0,
 				.KI = 0,
 				.KD = 0,
 
@@ -44,8 +44,8 @@ params_t params = {
 				.isFistCompute = true
 		},
 
-		.pid_sync = {
-				.KP = 10,
+		.pid[2] = {
+				.KP = 0,
 				.KI = 0,
 				.KD = 0,
 
@@ -98,18 +98,18 @@ void params_save(){
 	write(&saved);
 
 	// wheels pid
-	write((uint32_t*)(&params.pid_whe0.KP));
-	write((uint32_t*)(&params.pid_whe0.KI));
-	write((uint32_t*)(&params.pid_whe0.KD));
+	write((uint32_t*)(&params.pid[0].KP));
+	write((uint32_t*)(&params.pid[0].KI));
+	write((uint32_t*)(&params.pid[0].KD));
 
-	write((uint32_t*)(&params.pid_whe1.KP));
-	write((uint32_t*)(&params.pid_whe1.KI));
-	write((uint32_t*)(&params.pid_whe1.KD));
+	write((uint32_t*)(&params.pid[1].KP));
+	write((uint32_t*)(&params.pid[1].KI));
+	write((uint32_t*)(&params.pid[1].KD));
 
 	// stability or sync pid
-	write((uint32_t*)(&params.pid_sync.KP));
-	write((uint32_t*)(&params.pid_sync.KI));
-	write((uint32_t*)(&params.pid_sync.KD));
+	write((uint32_t*)(&params.pid[2].KP));
+	write((uint32_t*)(&params.pid[2].KI));
+	write((uint32_t*)(&params.pid[2].KD));
 
 	// IMU
 	write((uint32_t*)(&params.angle_adjusted));
@@ -144,18 +144,18 @@ bool params_load(){
 	address+=4;
 
 	// wheels pid
-	read((uint32_t*)(&params.pid_whe0.KP));
-	read((uint32_t*)(&params.pid_whe0.KI));
-	read((uint32_t*)(&params.pid_whe0.KD));
+	read((uint32_t*)(&params.pid[0].KP));
+	read((uint32_t*)(&params.pid[0].KI));
+	read((uint32_t*)(&params.pid[0].KD));
 
-	read((uint32_t*)(&params.pid_whe1.KP));
-	read((uint32_t*)(&params.pid_whe1.KI));
-	read((uint32_t*)(&params.pid_whe1.KD));
+	read((uint32_t*)(&params.pid[1].KP));
+	read((uint32_t*)(&params.pid[1].KI));
+	read((uint32_t*)(&params.pid[1].KD));
 
 	// stability or sync pid
-	read((uint32_t*)(&params.pid_sync.KP));
-	read((uint32_t*)(&params.pid_sync.KI));
-	read((uint32_t*)(&params.pid_sync.KD));
+	read((uint32_t*)(&params.pid[2].KP));
+	read((uint32_t*)(&params.pid[2].KI));
+	read((uint32_t*)(&params.pid[2].KD));
 
 
 	// IMU
