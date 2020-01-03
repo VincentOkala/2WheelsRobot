@@ -10,8 +10,8 @@
 #include "UserCode/user_define.h"
 
 params_t params = {
-		.pid_whe0 = {
-				.KP = 10,
+		.pid[0] = {
+				.KP = 0,
 				.KI = 0,
 				.KD = 0,
 
@@ -27,8 +27,8 @@ params_t params = {
 				.isFistCompute = true
 		},
 
-		.pid_whe1 = {
-				.KP = 10,
+		.pid[1] = {
+				.KP = 0,
 				.KI = 0,
 				.KD = 0,
 
@@ -44,8 +44,8 @@ params_t params = {
 				.isFistCompute = true
 		},
 
-		.pid_sta = {
-				.KP = 10,
+		.pid[2] = {
+				.KP = 0,
 				.KI = 0,
 				.KD = 0,
 
@@ -61,24 +61,7 @@ params_t params = {
 				.isFistCompute = true
 		},
 
-		.pid_rob = {
-				.KP = 10,
-				.KI = 0,
-				.KD = 0,
-
-				.minIpart = -1000,
-				.maxIPart = 1000,
-				.minDpart = -1000,
-				.maxDPart = 1000,
-				.minOut = -1000,
-				.maxOut = 1000,
-
-				.preIPart = 0,
-				.preError = 0,
-				.isFistCompute = true
-		},
-
-		.angle_ajusted = 0,
+		.angle_adjusted = 0,
 		.believe_in_gyro = 0.99,
 
 		.gx_offset = 1,
@@ -115,30 +98,42 @@ void params_save(){
 	write(&saved);
 
 	// wheels pid
-	write((uint32_t*)(&params.pid_whe0.KP));
-	write((uint32_t*)(&params.pid_whe0.KI));
-	write((uint32_t*)(&params.pid_whe0.KD));
+	write((uint32_t*)(&params.pid[0].KP));
+	write((uint32_t*)(&params.pid[0].KI));
+	write((uint32_t*)(&params.pid[0].KD));
 
-	write((uint32_t*)(&params.pid_whe1.KP));
-	write((uint32_t*)(&params.pid_whe1.KI));
-	write((uint32_t*)(&params.pid_whe1.KD));
+	write((uint32_t*)(&params.pid[1].KP));
+	write((uint32_t*)(&params.pid[1].KI));
+	write((uint32_t*)(&params.pid[1].KD));
 
-	// stability pid
-	write((uint32_t*)(&params.pid_sta.KP));
-	write((uint32_t*)(&params.pid_sta.KI));
-	write((uint32_t*)(&params.pid_sta.KD));
-
-	// robot pid
-	write((uint32_t*)(&params.pid_rob.KP));
-	write((uint32_t*)(&params.pid_rob.KI));
-	write((uint32_t*)(&params.pid_rob.KD));
+	// stability or sync pid
+	write((uint32_t*)(&params.pid[2].KP));
+	write((uint32_t*)(&params.pid[2].KI));
+	write((uint32_t*)(&params.pid[2].KD));
 
 	// IMU
-	write((uint32_t*)(&params.angle_ajusted));
+	write((uint32_t*)(&params.angle_adjusted));
 	write((uint32_t*)(&params.believe_in_gyro));
+
 	write((uint32_t*)(&params.gx_offset));
 	write((uint32_t*)(&params.gy_offset));
 	write((uint32_t*)(&params.gz_offset));
+
+	write((uint32_t*)(&params.mx_offset));
+	write((uint32_t*)(&params.my_offset));
+	write((uint32_t*)(&params.mz_offset));
+
+	write((uint32_t*)(&params.mx_scale));
+	write((uint32_t*)(&params.my_scale));
+	write((uint32_t*)(&params.mz_scale));
+
+
+	//HW
+	write((uint32_t*)(&params.motor0_invert));
+	write((uint32_t*)(&params.motor1_invert));
+	write((uint32_t*)(&params.encoder0_invert));
+	write((uint32_t*)(&params.encoder1_invert));
+	write((uint32_t*)(&params.encoder_exchange));
 	HAL_FLASH_Lock();
 }
 
@@ -149,30 +144,42 @@ bool params_load(){
 	address+=4;
 
 	// wheels pid
-	read((uint32_t*)(&params.pid_whe0.KP));
-	read((uint32_t*)(&params.pid_whe0.KI));
-	read((uint32_t*)(&params.pid_whe0.KD));
+	read((uint32_t*)(&params.pid[0].KP));
+	read((uint32_t*)(&params.pid[0].KI));
+	read((uint32_t*)(&params.pid[0].KD));
 
-	read((uint32_t*)(&params.pid_whe1.KP));
-	read((uint32_t*)(&params.pid_whe1.KI));
-	read((uint32_t*)(&params.pid_whe1.KD));
+	read((uint32_t*)(&params.pid[1].KP));
+	read((uint32_t*)(&params.pid[1].KI));
+	read((uint32_t*)(&params.pid[1].KD));
 
-	// stability pid
-	read((uint32_t*)(&params.pid_sta.KP));
-	read((uint32_t*)(&params.pid_sta.KI));
-	read((uint32_t*)(&params.pid_sta.KD));
+	// stability or sync pid
+	read((uint32_t*)(&params.pid[2].KP));
+	read((uint32_t*)(&params.pid[2].KI));
+	read((uint32_t*)(&params.pid[2].KD));
 
-	// robot pid
-	read((uint32_t*)(&params.pid_rob.KP));
-	read((uint32_t*)(&params.pid_rob.KI));
-	read((uint32_t*)(&params.pid_rob.KD));
 
 	// IMU
-	read((uint32_t*)(&params.angle_ajusted));
+	read((uint32_t*)(&params.angle_adjusted));
 	read((uint32_t*)(&params.believe_in_gyro));
+
 	read((uint32_t*)(&params.gx_offset));
 	read((uint32_t*)(&params.gy_offset));
 	read((uint32_t*)(&params.gz_offset));
+
+	read((uint32_t*)(&params.mx_offset));
+	read((uint32_t*)(&params.my_offset));
+	read((uint32_t*)(&params.mz_offset));
+
+	read((uint32_t*)(&params.mx_scale));
+	read((uint32_t*)(&params.my_scale));
+	read((uint32_t*)(&params.mz_scale));
+
+	//HW
+	read((uint32_t*)(&params.motor0_invert));
+	read((uint32_t*)(&params.motor1_invert));
+	read((uint32_t*)(&params.encoder0_invert));
+	read((uint32_t*)(&params.encoder1_invert));
+	read((uint32_t*)(&params.encoder_exchange));
 
 	return true;
 }

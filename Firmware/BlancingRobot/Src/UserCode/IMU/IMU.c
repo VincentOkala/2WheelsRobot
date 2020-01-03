@@ -9,14 +9,14 @@
 #define USERCODE_IMU_IMU_C_
 
 #include <math.h>
-#include "IMU.h"
+#include <UserCode/IMU/IMU.h>
 #include "UserCode/Params/Params.h"
 #include "UserCode/user_define.h"
 
 static connection_failed_cb_t gconnection_failed_cb = 0;
 static float roll;
 static float pitch;
-static timer_ID_t gtimer_ID_imu_callback;
+static timer_id_t gtimer_ID_imu_callback;
 static int16_t motion_6[6];
 
 static void imu_callback(uint8_t* ctx){
@@ -31,7 +31,7 @@ static void imu_callback(uint8_t* ctx){
 	if(isnan(pitch)) pitch = 0;
 }
 
-bool IMU_init(void){
+bool imu_init(void){
 	MPU6050_init();
 	mpu6050_set_full_scale_gyro_range(MPU6050_FS_SEL_250);
 	mpu6050_set_full_scale_accel_range(MPU6050_AFS_SEL_2G);
@@ -43,20 +43,28 @@ bool IMU_init(void){
 	return true;
 }
 
-bool  IMU_deinit(void){
+bool  imu_deinit(void){
 	timer_unregister_callback(gtimer_ID_imu_callback);
 	return true;
 }
 
-float IMU_get_roll(void){
+bool imu_test_connection(){
+	return MPU6050_test_connection();
+}
+
+float imu_get_roll(void){
 	return roll;
 }
 
-float IMU_get_pitch(void){
+float imu_get_pitch(void){
 	return pitch;
 }
 
-float IMU_get_tilt(void){
+float imu_get_yaw(void){
+	return 0;
+}
+
+float imu_get_tilt(void){
 #if TILT == 0
 	return pitch;
 #elif TILT == 1
@@ -64,18 +72,16 @@ float IMU_get_tilt(void){
 #endif
 }
 
-void IMU_set_failed_cb(connection_failed_cb_t connection_failed_cb){
+void imu_set_failed_cb(connection_failed_cb_t connection_failed_cb){
 	gconnection_failed_cb = connection_failed_cb;
 }
 
-void IMU_get_gyro_raw(int16_t raw[3]){
+void imu_get_gyro_raw(int16_t raw[3]){
 	raw[0] = motion_6[3];
 	raw[1] = motion_6[4];
 	raw[2] = motion_6[5];
 }
 
-bool IMU_test_connection(){
-	return MPU6050_test_connection();
-}
+
 
 #endif /* USERCODE_IMU_IMU_C_ */

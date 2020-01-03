@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE CMD_VELOCITY PACKING
 
-#define MAVLINK_MSG_ID_CMD_VELOCITY 2
+#define MAVLINK_MSG_ID_CMD_VELOCITY 3
 
 MAVPACKED(
 typedef struct __mavlink_cmd_velocity_t {
@@ -11,17 +11,17 @@ typedef struct __mavlink_cmd_velocity_t {
 
 #define MAVLINK_MSG_ID_CMD_VELOCITY_LEN 4
 #define MAVLINK_MSG_ID_CMD_VELOCITY_MIN_LEN 4
-#define MAVLINK_MSG_ID_2_LEN 4
-#define MAVLINK_MSG_ID_2_MIN_LEN 4
+#define MAVLINK_MSG_ID_3_LEN 4
+#define MAVLINK_MSG_ID_3_MIN_LEN 4
 
 #define MAVLINK_MSG_ID_CMD_VELOCITY_CRC 63
-#define MAVLINK_MSG_ID_2_CRC 63
+#define MAVLINK_MSG_ID_3_CRC 63
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CMD_VELOCITY { \
-    2, \
+    3, \
     "CMD_VELOCITY", \
     2, \
     {  { "v", NULL, MAVLINK_TYPE_INT16_T, 0, 0, offsetof(mavlink_cmd_velocity_t, v) }, \

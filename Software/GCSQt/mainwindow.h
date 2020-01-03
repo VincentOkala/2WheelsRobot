@@ -3,21 +3,22 @@
 
 #include <QMainWindow>
 
-#include <QSerialPortInfo>
-#include <QSerialPort>
-#include <QHostAddress>
-#include <QNetworkInterface>
-#include <QTcpServer>
-#include <QTcpSocket>
 #include <QTimer>
 #include <QtGamepad/QGamepad>
 
 #include "MAV/protocol/mavlink.h"
-#include "ledindicator.h"
+#include "led_indicator.h"
 #include <QJoysticks.h>
 #include <qcustomplot/qcustomplot.h>
 
-#define MAV_BUFF_SIZE 256
+#include <com.h>
+#include <mode_run.h>
+#include <mode_imu.h>
+#include <mode_hw_tw.h>
+#include <mode_pidt_tw.h>
+#include <mode_pidt_ta.h>
+
+#define MAV_BUFF_SIZE   256
 
 namespace Ui {
 class MainWindow;
@@ -27,93 +28,51 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-//    typedef void (*func_t)(void);
-//    typedef void (*on_mav_recv_t)(mavlink_message_t*);
-
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
-    void on_btnOpenCOM_clicked();
-    void on_btnSend_clicked();
-    void on_COMData_ready();
-    void on_btnOpenServer_clicked();
-    void on_newConnection();
-    void on_ReadyRead();
-    void on_SocketStateChanged(QAbstractSocket::SocketState socketState);
 
-    void on_btn_change_mode_basic_clicked();
-    void on_btn_change_mode_imu_calibration_clicked();
-    void on_btn_change_mode_pid_tunning_clicked();
-    void app_command_timeout();
+    // Com
+    void app_main_on_data_recv(QByteArray bytes);
+    void com_connection_evt(Com::com_evt_t evt);
 
-    void ledIndicatorOff();
+    // Joystick
+    void js_axis_change(const int js, const int axis, const qreal value);
 
-    void mode_pidt_load_timeout();
-    void mode_pidt_write_timeout();
-    void mode_pidt_save_timeout();
+    // Mode
+    void app_command_change_mode(rmode_t mode);
+    void app_command_change_mode_timeout();
 
-    void mode_imu_load_timeout();
-    void mode_imu_write_timeout();
-    void mode_imu_save_timeout();
-
-    void on_btn_mode_pidt_load_params_clicked();
-    void on_btn_respond_ok_clicked();
-    void on_btn_mode_pidt_write_params_clicked();
-    void on_sb_step_KP_valueChanged(const QString &arg1);
-    void on_sb_step_KI_valueChanged(const QString &arg1);
-    void on_sb_KD_valueChanged(const QString &arg1);
-    void on_btn_mode_pidt_save_params_clicked();
-    void on_btn_mode_imu_load_params_clicked();
-    void on_btn_mode_imu_write_params_clicked();
-    void on_btn_mode_imu_save_params_clicked();
-    void on_btn_gyro_calib_clicked();
-
-    void on_js_axis_change(const int js, const int axis, const qreal value);
-    void on_controller_cmd();
+    // Mode messgage forward
+    void app_main_message_forward(QByteArray bytes);
 
 private:
     Ui::MainWindow *ui;
-    QSerialPort *m_serial;
-    QTcpServer *tcpServer;
-    QTcpSocket *socket;
-    LedIndicator *ledIndicator;
-    QJoysticks* qjs;
-    QTimer *controller_timer;
-    QVector<double> qv_x, qv_y;
+
+    QJoysticks *g_qjs;
+    Com_gui *g_com_gui;
+    Led_indicator *g_led_indicator;
+    QVector<QCustomPlot*> g_q_custom_plot;
+
+    Mode_run *g_mode_run;
+    Mode_imu *g_mode_imu;
+    Mode_pidt_tw *g_mode_pidt_tw;
+    Mode_pidt_ta *g_mode_pidt_ta;
+    Mode_hw_tw *g_mode_hw_tw;
+
+    bool g_is_changing_mode = false;
+    rmode_t g_change_to_mode = MODE_RUN;
+    rmode_t g_current_mode = MODE_RUN;
+    bool g_change_mode_success = false;
 
     uint8_t mavbuf[MAV_BUFF_SIZE];
     mavlink_message_t msg;
     mavlink_status_t  status;
-    bool isChangeMode = false;
-    bool changeModeSuccess = false;
-    robot_mode_t changeToMode = MODE_BASIC;
-    robot_mode_t currentMode = MODE_BASIC;
-    bool isDoStSuccessfull = false;
-    int16_t gx_offset;
-    int16_t gy_offset;
-    int16_t gz_offset;
-    float stand_point;
-    bool is_imu_calibrating = false;
 
-    bool send(QByteArray bytes);
-    void receive(QByteArray bytes);
-    QString ByteArrayToString(QByteArray ba);
-    void showStatus(QString qstr, int timeout);
-
+    void show_status(QString qstr, int timeout);
     void app_main_init();
-    void app_main_on_data_recv(QByteArray bytes);
-    void app_command_change_mode(robot_mode_t mode);
-    void on_mode_basic_mav_recv(mavlink_message_t *msg);
-
-    void load_pid_params();
-    void write_pid_params();
-    void save_pid_params();
-    void on_mode_pidt_mav_recv(mavlink_message_t *msg);
-
-    void on_mode_imu_mav_recv(mavlink_message_t *msg);
-    void on_tilt_recv(float tilt);
 };
 
 #endif // MAINWINDOW_H

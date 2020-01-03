@@ -11,6 +11,6 @@
 #include <UserCode/Motors/Motors.h>
 
 void enc_init();
-int32_t enc_read(motors_t motor);
+int16_t enc_read(motors_t motor);
 
 #endif /* USERCODE_ENCODER_ENCODER_H_ */

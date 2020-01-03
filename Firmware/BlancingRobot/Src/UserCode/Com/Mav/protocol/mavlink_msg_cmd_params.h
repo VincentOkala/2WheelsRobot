@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE CMD_PARAMS PACKING
 
-#define MAVLINK_MSG_ID_CMD_PARAMS 12
+#define MAVLINK_MSG_ID_CMD_PARAMS 2
 
 MAVPACKED(
 typedef struct __mavlink_cmd_params_t {
@@ -10,17 +10,17 @@ typedef struct __mavlink_cmd_params_t {
 
 #define MAVLINK_MSG_ID_CMD_PARAMS_LEN 1
 #define MAVLINK_MSG_ID_CMD_PARAMS_MIN_LEN 1
-#define MAVLINK_MSG_ID_12_LEN 1
-#define MAVLINK_MSG_ID_12_MIN_LEN 1
+#define MAVLINK_MSG_ID_2_LEN 1
+#define MAVLINK_MSG_ID_2_MIN_LEN 1
 
 #define MAVLINK_MSG_ID_CMD_PARAMS_CRC 245
-#define MAVLINK_MSG_ID_12_CRC 245
+#define MAVLINK_MSG_ID_2_CRC 245
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_CMD_PARAMS { \
-    12, \
+    2, \
     "CMD_PARAMS", \
     1, \
     {  { "cmd_params", NULL, MAVLINK_TYPE_INT8_T, 0, 0, offsetof(mavlink_cmd_params_t, cmd_params) }, \

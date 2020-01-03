@@ -9,44 +9,85 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setFixedSize(this->width(),this->height());
     this->setWindowTitle("GCS");
 
-    Q_FOREACH(QSerialPortInfo port, QSerialPortInfo::availablePorts()) {
-        ui->cbCOM->addItem(port.portName());
+    // Prepare status bar and led indicator
+    g_led_indicator = new Led_indicator();
+    ui->statusBar->addPermanentWidget(g_led_indicator);
+
+    // Prepare joystick
+    g_qjs = QJoysticks::getInstance();
+    g_qjs->setVirtualJoystickRange(1);
+    connect(g_qjs,SIGNAL(axisChanged(const int, const int, const qreal)),this,SLOT(js_axis_change(const int, const int, const qreal)));
+
+    // Prepare plotter
+    g_q_custom_plot.append(ui->plot_0);
+    g_q_custom_plot.append(ui->plot_1);
+    g_q_custom_plot.append(ui->plot_2);
+    g_q_custom_plot.append(ui->plot_3);
+    g_q_custom_plot.append(ui->plot_4);
+    g_q_custom_plot.append(ui->plot_5);
+    for(int i=0;i < g_q_custom_plot.size();i++){
+        for(int j = 0 ; j < 6; j ++){
+            g_q_custom_plot[i]->addGraph();
+            g_q_custom_plot[i]->graph(j)->setPen(QPen(QColor(10*i%255,20*j%255,30*i*j%255)));
+        }
     }
 
-    ui->cbBaud->addItem("57600");
-    ui->cbBaud->addItem("115200");
-    ui->cbBaud->addItem("9600");
+    // Com
+    g_com_gui = new Com_gui();
+    // Message forwarding: com -> main -> mode
+    connect(ui->wg_com,SIGNAL(ba_recv(QByteArray)),this,SLOT(app_main_on_data_recv(QByteArray)));
+    connect(ui->wg_com,SIGNAL(connection_evt(Com::com_evt_t)),this,SLOT(com_connection_evt(Com::com_evt_t)));
+    ui->wg_com->set_com_gui(g_com_gui);
+    ui->wg_com->set_led_indicator(g_led_indicator);
 
-    m_serial = new QSerialPort();
-    connect(m_serial,  SIGNAL(readyRead()), this, SLOT(on_COMData_ready()));
+    // Run mode
+    g_mode_run = new Mode_run();
+    g_mode_run->set_status_bar(ui->statusBar);
+    g_mode_run->set_plotter(g_q_custom_plot);
 
-    const QHostAddress &localhost = QHostAddress(QHostAddress::LocalHost);
-    for (const QHostAddress &address: QNetworkInterface::allAddresses()) {
-        if (address.protocol() == QAbstractSocket::IPv4Protocol && address != localhost)
-             ui->tbIPAddress->setText(address.toString());
-    }
+    // Imu mode
+    g_mode_imu = new Mode_imu();
+    g_mode_imu->set_status_bar(ui->statusBar);
+    g_mode_imu->set_plotter(g_q_custom_plot);
 
-    tcpServer = new QTcpServer();
-    connect(tcpServer, SIGNAL(newConnection()), this, SLOT(on_newConnection()));
-    socket = new QTcpSocket();
-    ledIndicator = new LedIndicator();
-    ui->statusBar->addPermanentWidget(ledIndicator);
+    // PID mode of tw robot
+    g_mode_pidt_tw = new Mode_pidt_tw();
+    g_mode_pidt_tw->set_status_bar(ui->statusBar);
+    g_mode_pidt_tw->set_plotter(g_q_custom_plot);
+
+    // PID mode of ta robot
+    g_mode_pidt_ta = new Mode_pidt_ta();
+    g_mode_pidt_ta->set_status_bar(ui->statusBar);
+    g_mode_pidt_ta->set_plotter(g_q_custom_plot);
+
+    // Hardware mode
+    g_mode_hw_tw = new Mode_hw_tw();
+    g_mode_hw_tw->set_status_bar(ui->statusBar);
+    g_mode_hw_tw->set_plotter(g_q_custom_plot);
+
+    // Add mode tab
+    ui->Maintab->addTab(g_mode_run,"Mode Run");
+    ui->Maintab->addTab(g_mode_imu,"Mode IMU");
+    ui->Maintab->addTab(g_mode_hw_tw,"Mode HW");
+    ui->Maintab->addTab(g_mode_pidt_tw,"Mode PIDT TW");
+    ui->Maintab->addTab(g_mode_pidt_ta,"Mode PIDT TA");
+    ui->Maintab->addTab(g_com_gui,"Com");
+
+    // Mode change
+    connect(g_mode_run,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
+    connect(g_mode_imu,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
+    connect(g_mode_hw_tw,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
+    connect(g_mode_pidt_tw,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
+    connect(g_mode_pidt_ta,SIGNAL(mode_change(rmode_t)),this,SLOT(app_command_change_mode(rmode_t)));
+
+    // Message forwarding: mode -> main -> com
+    connect(g_mode_run,SIGNAL(mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
+    connect(g_mode_hw_tw,SIGNAL(mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
+    connect(g_mode_imu,SIGNAL(mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
+    connect(g_mode_pidt_tw,SIGNAL(mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
+    connect(g_mode_pidt_ta,SIGNAL(mav_send(QByteArray)),this,SLOT(app_main_message_forward(QByteArray)));
 
     app_main_init();
-
-    qjs = QJoysticks::getInstance();
-    qjs->setVirtualJoystickRange(1);
-    connect(qjs,SIGNAL(axisChanged(const int, const int, const qreal)),this,SLOT(on_js_axis_change(const int, const int, const qreal)));
-
-    controller_timer = new QTimer(this);
-    connect(controller_timer, SIGNAL(timeout()), this, SLOT(on_controller_cmd()));
-
-    ui->plot->addGraph();
-    ui->plot->xAxis->setLabel("Time");
-    ui->plot->yAxis->setLabel("Tilt");
-
-    ui->plot->xAxis->setRange(0, 40);
-    ui->plot->yAxis->setRange(-20, 20);
 }
 
 MainWindow::~MainWindow()
@@ -54,153 +95,49 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::showStatus(QString qstr, int timeout){
+void MainWindow::show_status(QString qstr, int timeout){
     ui->statusBar->showMessage(qstr,timeout);
 }
 
-QString MainWindow::ByteArrayToString(QByteArray ba)
-{
-    QString qstr;
-    char tmp[20];
-    for (uint8_t byte : ba) {
-        sprintf(tmp, "{%02x}", byte);
-        qstr.append(QString(tmp));
-    }
-    return qstr;
-}
-
-void MainWindow::ledIndicatorOff(){
-    ledIndicator->setState(false);
-}
-
-bool MainWindow::send(QByteArray bytes){
-    bool serialSuccess = false;
-    bool socketSuccess = false;
-    if(m_serial->isOpen()){
-        if(m_serial->write(bytes)){
-            serialSuccess = true;
-        }
-
-    }
-    if(socket->isOpen()){
-        if(socket->write(bytes)){
-            socketSuccess = true;
-        }
-    }
-    if(serialSuccess || socketSuccess){
-        ledIndicator->setState(true);
-        QTimer::singleShot(100, this, SLOT(ledIndicatorOff()));
-        QString qstr = ByteArrayToString(bytes);
-        ui->tbReceive->appendHtml("<font color=\"green\">"+qstr+"</font>");
-        return true;
-    }
-    else{
-        return false;
+void MainWindow::com_connection_evt(Com::com_evt_t evt){
+    switch (evt) {
+    case Com::SERIAL_OPEN_SUCCESS:
+        show_status("Serial port opened",1000);
+        break;
+    case Com::SERIAL_OPEN_FAIL:
+        show_status("Unable to open serial port",1000);
+        break;
+    case Com::SERIAL_CLOSED:
+        show_status("Serial port closed",1000);
+        break;
+    case Com::TCP_SERVER_OPEN_SUCCESS:
+        show_status("TCP server opened",1000);
+        break;
+    case Com::TCP_SERVER_OPEN_FAIL:
+        show_status("Unable to open TCP server",1000);
+        break;
+    case Com::TCP_SERVER_CLOSED:
+        show_status("TCP server closed",1000);
+        break;
+    case Com::SOCKET_CONNECTION_OPEN:
+        show_status("Socket opened",1000);
+        break;
+    case Com::SOCKET_CONNECTION_CLOSE:
+        show_status("Socket closed",1000);
+        break;
     }
 }
 
-void MainWindow::receive(QByteArray bytes){
-    ledIndicator->setState(true);
-    QTimer::singleShot(100, this, SLOT(ledIndicatorOff()));
-    QString qstr = ByteArrayToString(bytes);
-    ui->tbReceive->appendHtml("<font color=\"blue\">"+qstr+"</font>");
-    app_main_on_data_recv(bytes);
-}
-
-void MainWindow::on_btnOpenCOM_clicked()
-{
-    if(m_serial->isOpen()){
-        m_serial->clear();
-        ui->btnOpenCOM->setText("Open");
-        ui->cbCOM->setEnabled(true);
-        ui->cbBaud->setEnabled(true);
-        m_serial->close();
+void MainWindow::js_axis_change(const int js, const int axis, const qreal value){
+    Q_UNUSED(js)
+    if(axis == 0){
+        g_mode_pidt_tw->update_joystick(Mode_common::AXIS_0, -value);
+        g_mode_pidt_ta->update_joystick(Mode_common::AXIS_0, -value);
+        g_mode_run->update_joystick(Mode_common::AXIS_0, -value);
     }
-    else{
-        m_serial->setPortName(ui->cbCOM->currentText());
-        m_serial->setBaudRate(ui->cbBaud->currentText().toInt());
-        if(m_serial->open(QIODevice::ReadWrite)){
-            ui->btnOpenCOM->setText("Close");
-            ui->cbCOM->setEnabled(false);
-            ui->cbBaud->setEnabled(false);
-        }
-        else{
-            showStatus("Cannot open com port",2000);
-        }
+    else if(axis == 1){
+        g_mode_pidt_tw->update_joystick(Mode_common::AXIS_1, -value);
+        g_mode_pidt_ta->update_joystick(Mode_common::AXIS_1, -value);
+        g_mode_run->update_joystick(Mode_common::AXIS_1, -value);
     }
-}
-
-void MainWindow::on_btnSend_clicked()
-{
-    if(!send(ui->tbSend->text().toStdString().c_str())){
-        showStatus("Error to send",1000);
-    }
-}
-
-void MainWindow::on_COMData_ready()
-{
-    const QByteArray data = m_serial->readAll();
-    receive(data);
-}
-
-void MainWindow::on_newConnection(){
-    if(!socket->isOpen()){
-        socket = tcpServer->nextPendingConnection();
-        connect(socket, SIGNAL(readyRead()), this, SLOT(on_ReadyRead()));
-        connect(socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)), this, SLOT(on_SocketStateChanged(QAbstractSocket::SocketState)));
-        tcpServer->pauseAccepting();
-        showStatus("Connected from:" +socket->peerAddress().toString(),2000);
-        ui->tbConnectedIP->setText(socket->peerAddress().toString());
-    }
-}
-
-void MainWindow::on_ReadyRead(){
-    if(socket->isOpen()){
-        const QByteArray data = socket->readAll();
-        receive(data);
-    }
-}
-
-void MainWindow::on_SocketStateChanged(QAbstractSocket::SocketState socketState){
-    if(socket->isOpen() && socketState==QAbstractSocket::SocketState::ClosingState){
-        socket->close();
-        tcpServer->resumeAccepting();
-        ui->tbConnectedIP->setText("");
-    }
-}
-
-void MainWindow::on_btnOpenServer_clicked()
-{
-    if(tcpServer->isListening()){
-        ui->tbIPAddress->setEnabled(true);
-        ui->tbPort->setEnabled(true);
-        ui->btnOpenServer->setText("Open");
-        if(socket->isOpen()) socket->close();
-        ui->tbConnectedIP->setText("");
-        tcpServer->close();
-    }
-    else{
-        if(tcpServer->listen(QHostAddress::Any, static_cast<quint16>(ui->tbPort->text().toInt()))){
-            ui->tbIPAddress->setEnabled(false);
-            ui->tbPort->setEnabled(false);
-            ui->btnOpenServer->setText("Close");
-        }
-        else{
-            showStatus("Cannot open tcp server",2000);
-        }
-    }
-}
-
-void MainWindow::on_btn_respond_ok_clicked()
-{
-    mavlink_message_t msg;
-    uint8_t mav_send_buf[255];
-    mavlink_msg_respond_pack(0,0,&msg,RESPOND_OK);
-    uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
-    if(send(QByteArray::fromRawData((char*)(mav_send_buf),len))){
-        showStatus("Sending Respond OK",1000);
-   }
-   else{
-       showStatus("Cannot Send Respond OK",1000);
-   }
 }

@@ -25,12 +25,20 @@ typedef struct{
 	float maxOut;
 
 	// Private variables
+	bool isFistCompute;
+	float sp;
+	float fb;
+	float err;
 	float preIPart;
 	float preError;
-	bool isFistCompute;
+	float P_Part;
+	float I_Part;
+	float D_Part;
+	float U;
 }pid_params_t;
 
-float pid_compute(pid_params_t *pid_params, float error);
+float pid_compute(pid_params_t *pid_params, float sp, float fb);
+float pid_compute_angle(pid_params_t *pid_params, float sp, float fb);
 void pid_reset(pid_params_t *pid_params);
 
 #endif /* USERCODE_PID_PID_H_ */

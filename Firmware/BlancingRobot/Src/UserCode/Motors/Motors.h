@@ -8,6 +8,7 @@
 #ifndef USERCODE_MOTORS_MOTORS_H_
 #define USERCODE_MOTORS_MOTORS_H_
 
+#include <stdbool.h>
 #include "UserCode/user_define.h"
 
 typedef enum{

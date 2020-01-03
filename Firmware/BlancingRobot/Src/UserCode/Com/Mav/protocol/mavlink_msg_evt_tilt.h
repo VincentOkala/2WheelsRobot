@@ -1,7 +1,7 @@
 #pragma once
 // MESSAGE EVT_TILT PACKING
 
-#define MAVLINK_MSG_ID_EVT_TILT 3
+#define MAVLINK_MSG_ID_EVT_TILT 4
 
 MAVPACKED(
 typedef struct __mavlink_evt_tilt_t {
@@ -10,17 +10,17 @@ typedef struct __mavlink_evt_tilt_t {
 
 #define MAVLINK_MSG_ID_EVT_TILT_LEN 4
 #define MAVLINK_MSG_ID_EVT_TILT_MIN_LEN 4
-#define MAVLINK_MSG_ID_3_LEN 4
-#define MAVLINK_MSG_ID_3_MIN_LEN 4
+#define MAVLINK_MSG_ID_4_LEN 4
+#define MAVLINK_MSG_ID_4_MIN_LEN 4
 
 #define MAVLINK_MSG_ID_EVT_TILT_CRC 83
-#define MAVLINK_MSG_ID_3_CRC 83
+#define MAVLINK_MSG_ID_4_CRC 83
 
 
 
 #if MAVLINK_COMMAND_24BIT
 #define MAVLINK_MESSAGE_INFO_EVT_TILT { \
-    3, \
+    4, \
     "EVT_TILT", \
     1, \
     {  { "tilt", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_evt_tilt_t, tilt) }, \

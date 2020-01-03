@@ -25,26 +25,41 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    com.cpp \
+    com_gui.cpp \
+    led_indicator.cpp \
     main.cpp \
     mainwindow.cpp \
     appmain.cpp \
-    mode_basic.cpp \
-    ledindicator.cpp \
-    mode_pidt.cpp \
-    modu_imu.cpp \
+    mode_common.cpp \
+    mode_hw_tw.cpp \
+    mode_imu.cpp \
+    mode_pidt_ta.cpp \
+    mode_pidt_tw.cpp \
+    mode_run.cpp \
     qcustomplot/qcustomplot.cpp
 
 HEADERS += \
     MAV/protocol/mavlink_msg_cmd_encoder_invert.h \
+    MAV/protocol/mavlink_msg_cmd_hw.h \
     MAV/protocol/mavlink_msg_cmd_motor_invert.h \
     MAV/protocol/mavlink_msg_cmd_params.h \
+    MAV/protocol/mavlink_msg_evt_accel_raw.h \
+    MAV/protocol/mavlink_msg_evt_gyro_raw.h \
     MAV/protocol/mavlink_msg_evt_imu_raw.h \
+    MAV/protocol/mavlink_msg_evt_mag_raw.h \
     MAV/protocol/mavlink_msg_evt_sensor.h \
     MAV/protocol/mavlink_msg_evt_tilt.h \
+    MAV/protocol/mavlink_msg_hw_params.h \
     MAV/protocol/mavlink_msg_imu_calibration_params.h \
+    MAV/protocol/mavlink_msg_imu_params.h \
     MAV/protocol/mavlink_msg_motor_speed.h \
     MAV/protocol/mavlink_msg_pid_params.h \
+    MAV/protocol/mavlink_msg_pid_report.h \
     MAV/protocol/mavlink_msg_respond.h \
+    com.h \
+    com_gui.h \
+    led_indicator.h \
         mainwindow.h \
     MAV/protocol/mavlink.h \
     MAV/protocol/mavlink_msg_cmd_accel_offset.h \
@@ -71,11 +86,23 @@ HEADERS += \
     MAV/mavlink_types.h \
     MAV/protocol.h \
     mainwindow.h \
-    ledindicator.h \
+    mode_common.h \
+    mode_imu.h \
+    mode_pidt_ta.h \
+    mode_pidt_tw.h \
+    mode_run.h \
+    mode_hw_tw.h \
     qcustomplot/qcustomplot.h
 
 FORMS += \
-    mainwindow.ui
+    com.ui \
+    com_gui.ui \
+    mainwindow.ui \
+    mode_imu.ui \
+    mode_hw_tw.ui \
+    mode_pidt_ta.ui \
+    mode_pidt_tw.ui \
+    mode_run.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
