@@ -177,6 +177,9 @@ void mode_pidt_init(){
 	motors_init();
 	imu_init();
 
+	params.pid[1].maxIPart = 5;
+	params.pid[1].minIpart = -5;
+
 	pid_reset(&params.pid[0]);
 	pid_reset(&params.pid[1]);
 	pid_reset(&params.pid[2]);
