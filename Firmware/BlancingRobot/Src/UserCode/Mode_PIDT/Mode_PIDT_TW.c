@@ -38,9 +38,10 @@ static void tilt_controller_callback(uint8_t* ctx){
 	float tilt = imu_get_tilt() - params.angle_adjusted;
 
 	float speed = pid_compute(&params.pid[0], tilt_setpoint, tilt);
-	if(tilt > 60 || tilt < -60) {
+	if(tilt > 90 || tilt < -90) {
 		speed = 0;
 		pid_reset(&params.pid[0]);
+		pid_reset(&params.pid[1]);
 	}
 	motors_setspeed(MOTOR_0, speed + (float)gcmd_velocity.omega*OMEGA_COEFF);
 	motors_setspeed(MOTOR_1, speed - (float)gcmd_velocity.omega*OMEGA_COEFF);
