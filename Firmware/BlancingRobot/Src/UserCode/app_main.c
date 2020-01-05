@@ -76,7 +76,7 @@ static void on_mavlink_recv(mavlink_message_t *msg){
 
 void app_main(){
 	// Delay for other module to start
-	HAL_Delay(1000);
+	HAL_Delay(1500);
 
 	// Load parameters from non-volatile memory
 	params_load();

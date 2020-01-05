@@ -40,14 +40,23 @@ SOURCES += \
     qcustomplot/qcustomplot.cpp
 
 HEADERS += \
+    MAV/checksum.h \
+    MAV/mavlink_conversions.h \
+    MAV/mavlink_helpers.h \
+    MAV/mavlink_types.h \
+    MAV/protocol.h \
+    MAV/protocol/mavlink.h \
+    MAV/protocol/mavlink_msg_cmd_change_mode.h \
     MAV/protocol/mavlink_msg_cmd_encoder_invert.h \
     MAV/protocol/mavlink_msg_cmd_hw.h \
     MAV/protocol/mavlink_msg_cmd_motor_invert.h \
     MAV/protocol/mavlink_msg_cmd_params.h \
+    MAV/protocol/mavlink_msg_cmd_velocity.h \
     MAV/protocol/mavlink_msg_evt_accel_raw.h \
     MAV/protocol/mavlink_msg_evt_gyro_raw.h \
     MAV/protocol/mavlink_msg_evt_imu_raw.h \
     MAV/protocol/mavlink_msg_evt_mag_raw.h \
+    MAV/protocol/mavlink_msg_evt_rpy.h \
     MAV/protocol/mavlink_msg_evt_sensor.h \
     MAV/protocol/mavlink_msg_evt_tilt.h \
     MAV/protocol/mavlink_msg_hw_params.h \
@@ -57,34 +66,13 @@ HEADERS += \
     MAV/protocol/mavlink_msg_pid_params.h \
     MAV/protocol/mavlink_msg_pid_report.h \
     MAV/protocol/mavlink_msg_respond.h \
-    com.h \
-    com_gui.h \
-    led_indicator.h \
-        mainwindow.h \
-    MAV/protocol/mavlink.h \
-    MAV/protocol/mavlink_msg_cmd_accel_offset.h \
-    MAV/protocol/mavlink_msg_cmd_change_mode.h \
-    MAV/protocol/mavlink_msg_cmd_gyro_offset.h \
-    MAV/protocol/mavlink_msg_cmd_motor_speed.h \
-    MAV/protocol/mavlink_msg_cmd_pid.h \
-    MAV/protocol/mavlink_msg_cmd_set_accel_offset.h \
-    MAV/protocol/mavlink_msg_cmd_set_gyro_offset.h \
-    MAV/protocol/mavlink_msg_cmd_set_pid.h \
-    MAV/protocol/mavlink_msg_cmd_velocity.h \
-    MAV/protocol/mavlink_msg_evt_accel_raw.h \
-    MAV/protocol/mavlink_msg_evt_gyro_raw.h \
-    MAV/protocol/mavlink_msg_evt_motor_speed.h \
-    MAV/protocol/mavlink_msg_evt_respond.h \
-    MAV/protocol/mavlink_msg_evt_rpy.h \
-    MAV/protocol/mavlink_msg_evt_sensor_status.h \
     MAV/protocol/protocol.h \
     MAV/protocol/testsuite.h \
     MAV/protocol/version.h \
-    MAV/checksum.h \
-    MAV/mavlink_conversions.h \
-    MAV/mavlink_helpers.h \
-    MAV/mavlink_types.h \
-    MAV/protocol.h \
+    com.h \
+    com_gui.h \
+    led_indicator.h \
+    mainwindow.h \
     mainwindow.h \
     mode_common.h \
     mode_imu.h \
