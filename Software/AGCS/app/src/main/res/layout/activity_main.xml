@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:styleable="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtvCoordinate"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="93dp"
+            android:layout_marginLeft="93dp"
+            android:layout_marginBottom="197dp"
+            android:layout_toEndOf="@+id/joystick_left"
+            android:layout_toRightOf="@+id/joystick_left"
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/txtvAngle"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="93dp"
+            android:layout_marginLeft="93dp"
+            android:layout_marginBottom="229dp"
+            android:layout_toEndOf="@+id/joystick_left"
+            android:layout_toRightOf="@+id/joystick_left"
+            android:text="0" />
+
+        <io.github.controlwear.virtual.joystick.android.Joystick
+            android:id="@+id/joystick_left"
+            android:layout_width="394dp"
+            android:layout_height="341dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            styleable:JV_backgroundColor="#009688"
+            styleable:JV_borderColor="#00796B"
+            styleable:JV_borderWidth="8dp"
+            styleable:JV_buttonColor="#FF6E40" />
+
+        <TextView
+            android:id="@+id/txtvStrength"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="93dp"
+            android:layout_marginLeft="93dp"
+            android:layout_marginBottom="262dp"
+            android:layout_toEndOf="@+id/joystick_left"
+            android:layout_toRightOf="@+id/joystick_left"
+            android:text="0" />
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
