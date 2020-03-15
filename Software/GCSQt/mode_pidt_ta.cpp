@@ -7,6 +7,9 @@ Mode_pidt_ta::Mode_pidt_ta(QWidget *parent) :
 {
     ui->setupUi(this);
     g_mode_name = "PIDT";
+    g_controller_timer = new QTimer(this);
+    connect(g_controller_timer, SIGNAL(timeout()), this, SLOT(remote_control_pidt()));
+    g_control_enable = false;
 }
 
 Mode_pidt_ta::~Mode_pidt_ta()
@@ -17,7 +20,7 @@ Mode_pidt_ta::~Mode_pidt_ta()
 void Mode_pidt_ta::mav_recv(mavlink_message_t *msg){
     switch(msg->msgid) {
     case MAVLINK_MSG_ID_PID_PARAMS:
-        if(is_timing()){
+        {
             reset_timeout();
 
             mavlink_pid_params_t pid;
@@ -64,15 +67,15 @@ void Mode_pidt_ta::mav_recv(mavlink_message_t *msg){
     case MAVLINK_MSG_ID_MOTOR_SPEED:
         mavlink_motor_speed_t motor_speed_msg;
         mavlink_msg_motor_speed_decode(msg, &motor_speed_msg);
-        ui->txtb_enc0_a_speed->setText(QString::number(motor_speed_msg.motor_speed_0));
-        ui->txtb_enc1_a_speed->setText(QString::number(motor_speed_msg.motor_speed_1));
+        ui->txtb_enc0_ta_speed->setText(QString::number(motor_speed_msg.motor_speed_0));
+        ui->txtb_enc1_ta_speed->setText(QString::number(motor_speed_msg.motor_speed_1));
         break;
     }
 }
 
 void Mode_pidt_ta::on_btn_change_mode_pidt_clicked()
 {
-    emit mode_change(MODE_PIDT);
+    emit mode_change(MODE_PIDT_TA);
 }
 
 void Mode_pidt_ta::on_btn_mode_pidt_load_params_clicked()
@@ -139,10 +142,10 @@ void Mode_pidt_ta::on_btn_mode_pidt_write_params_pid_whe1_clicked()
     uint8_t mav_send_buf[255];
     uint16_t len;
 
-    float sync_KP = static_cast<float>(ui->sb_sta_kp->value());
-    float sync_KI = static_cast<float>(ui->sb_sta_ki->value());
-    float sync_KD = static_cast<float>(ui->sb_sta_kd->value());
-    mavlink_msg_pid_params_pack(0,0,&msg,PID_SYNC,sync_KP,sync_KI,sync_KD);
+    float w1_KP = static_cast<float>(ui->sb_w1_kp->value());
+    float w1_KI = static_cast<float>(ui->sb_w1_ki->value());
+    float w1_KD = static_cast<float>(ui->sb_w1_kd->value());
+    mavlink_msg_pid_params_pack(0,0,&msg,PID_WHE1,w1_KP,w1_KI,w1_KD);
     len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
     emit mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
 
@@ -202,4 +205,39 @@ void Mode_pidt_ta::update_joystick(axis_t axis, double value){
     case AXIS_1:
         ui->txtb_pidt_vx->setText(QString::number(value));
     }
+}
+
+void Mode_pidt_ta::on_btn_control_enable_clicked()
+{
+    if(g_control_enable == false){
+        g_control_enable = true;
+        ui->btn_control_enable->setText("Enabled");
+        g_controller_timer->start(100);
+    }
+    else{
+        g_control_enable = false;
+        ui->btn_control_enable->setText("Disabled");
+        g_controller_timer->stop();
+    }
+}
+
+void Mode_pidt_ta::remote_control_pidt(){
+    mavlink_message_t msg;
+    uint8_t mav_send_buf[255];
+    int16_t VX = static_cast<int16_t>(ui->txtb_pidt_vx->text().toDouble()*80);
+    int16_t OMEGA = static_cast<int16_t>(ui->txtb_pidt_w->text().toDouble()*100/2);
+    if(VX > -5 && VX < 5) VX = 0;
+    if(VX > 100) VX = 100;
+    if(VX < -100) VX = -100;
+    if(OMEGA > -5 && OMEGA < 5) OMEGA = 0;
+    if(OMEGA > 100) OMEGA = 100;
+    if(OMEGA < -100) OMEGA = -100;
+    mavlink_msg_cmd_velocity_pack(0,0,&msg,VX,OMEGA);
+    uint16_t len = mavlink_msg_to_send_buffer(mav_send_buf, &msg);
+    emit mav_send(QByteArray::fromRawData(reinterpret_cast<char*>(mav_send_buf),len));
+}
+
+void Mode_pidt_ta::on_btn_change_mode_pidt_ta_clicked()
+{
+
 }

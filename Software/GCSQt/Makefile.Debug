@@ -6500,44 +6500,7 @@ debug/com.o: com.cpp com.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/qbasictimer.h \
 		com_gui.h \
 		led_indicator.h \
-		ui_com.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/QVariant \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QApplication \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qapplication.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/qcoreapplication.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/qeventloop.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qdesktopwidget.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qguiapplication.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qinputmethod.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QComboBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qcombobox.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qabstractitemdelegate.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qstyleoption.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qabstractspinbox.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qvalidator.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/qregularexpression.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qicon.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qslider.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qabstractslider.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qstyle.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qtabbar.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qtabwidget.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qrubberband.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qframe.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/qabstractitemmodel.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QGroupBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qgroupbox.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLabel \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qlabel.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLineEdit \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qlineedit.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qtextcursor.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qtextformat.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qpen.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qtextoption.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QPushButton \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qpushbutton.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qabstractbutton.h
+		ui_com.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\com.o com.cpp
 
 debug/com_gui.o: com_gui.cpp com_gui.h \
@@ -6644,36 +6607,7 @@ debug/com_gui.o: com_gui.cpp com_gui.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/qfiledevice.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qvector2d.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qtouchdevice.h \
-		ui_com_gui.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/QVariant \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QApplication \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qapplication.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/qcoreapplication.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtCore/qeventloop.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qdesktopwidget.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qguiapplication.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qinputmethod.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLineEdit \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qlineedit.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qframe.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qtextcursor.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qtextformat.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qpen.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qtextoption.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QPlainTextEdit \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qplaintextedit.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qtextedit.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qabstractscrollarea.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qtextdocument.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qabstracttextdocumentlayout.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qtextlayout.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qglyphrun.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qrawfont.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qfontdatabase.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QPushButton \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qpushbutton.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/qabstractbutton.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtGui/qicon.h
+		ui_com_gui.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\com_gui.o com_gui.cpp
 
 debug/led_indicator.o: led_indicator.cpp led_indicator.h \
@@ -7913,11 +7847,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		mode_hw_tw.h \
 		mode_pidt_tw.h \
 		mode_pidt_ta.h \
-		ui_mainwindow.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QApplication \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QMenuBar \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QTabWidget \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QToolBar
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o mainwindow.cpp
 
 debug/appmain.o: appmain.cpp mainwindow.h \
@@ -8482,11 +8412,7 @@ debug/appmain.o: appmain.cpp mainwindow.h \
 		mode_hw_tw.h \
 		mode_pidt_tw.h \
 		mode_pidt_ta.h \
-		ui_mainwindow.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QApplication \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QMenuBar \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QTabWidget \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QToolBar
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\appmain.o appmain.cpp
 
 debug/mode_common.o: mode_common.cpp mode_common.h \
@@ -9548,13 +9474,7 @@ debug/mode_hw_tw.o: mode_hw_tw.cpp mode_hw_tw.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewdialog.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewwidget.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qtprintsupportversion.h \
-		ui_mode_hw_tw.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QApplication \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QCheckBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QGroupBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLabel \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLineEdit \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QPushButton
+		ui_mode_hw_tw.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mode_hw_tw.o mode_hw_tw.cpp
 
 debug/mode_imu.o: mode_imu.cpp mode_imu.h \
@@ -10086,12 +10006,7 @@ debug/mode_imu.o: mode_imu.cpp mode_imu.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewdialog.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewwidget.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qtprintsupportversion.h \
-		ui_mode_imu.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QApplication \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QGroupBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLabel \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLineEdit \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QPushButton
+		ui_mode_imu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mode_imu.o mode_imu.cpp
 
 debug/mode_pidt_ta.o: mode_pidt_ta.cpp mode_pidt_ta.h \
@@ -10623,13 +10538,7 @@ debug/mode_pidt_ta.o: mode_pidt_ta.cpp mode_pidt_ta.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewdialog.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewwidget.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qtprintsupportversion.h \
-		ui_mode_pidt_ta.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QApplication \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QDoubleSpinBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QGroupBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLabel \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLineEdit \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QPushButton
+		ui_mode_pidt_ta.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mode_pidt_ta.o mode_pidt_ta.cpp
 
 debug/mode_pidt_tw.o: mode_pidt_tw.cpp mode_pidt_tw.h \
@@ -11161,14 +11070,7 @@ debug/mode_pidt_tw.o: mode_pidt_tw.cpp mode_pidt_tw.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewdialog.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewwidget.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qtprintsupportversion.h \
-		ui_mode_pidt_tw.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QApplication \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QComboBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QDoubleSpinBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QGroupBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLabel \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLineEdit \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QPushButton
+		ui_mode_pidt_tw.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mode_pidt_tw.o mode_pidt_tw.cpp
 
 debug/mode_run.o: mode_run.cpp mode_run.h \
@@ -11700,12 +11602,7 @@ debug/mode_run.o: mode_run.cpp mode_run.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewdialog.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qprintpreviewwidget.h \
 		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtPrintSupport/qtprintsupportversion.h \
-		ui_mode_run.h \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QApplication \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QGroupBox \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLabel \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QLineEdit \
-		D:/ProgramFiles/Qt/5.12.6/mingw73_32/include/QtWidgets/QPushButton
+		ui_mode_run.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mode_run.o mode_run.cpp
 
 debug/qcustomplot.o: qcustomplot/qcustomplot.cpp qcustomplot/qcustomplot.h \

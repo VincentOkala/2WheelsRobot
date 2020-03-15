@@ -29,8 +29,8 @@ static void wheel_callback(uint8_t* ctx){
 	int16_t motor0_speed = enc_read(MOTOR_0);
 	int16_t motor1_speed = enc_read(MOTOR_1);
 
-	float speed0 = pid_compute(&params.pid_whe0,gmotor0_sp, motor0_speed);
-	float speed1 = pid_compute(&params.pid_whe1,gmotor1_sp, motor1_speed);
+	float speed0 = pid_compute(&params.pid[0], gmotor0_speed, motor0_speed);
+	float speed1 = pid_compute(&params.pid[1], gmotor1_speed, motor1_speed);
 
 	motors_setspeed(MOTOR_0, speed0);
 	motors_setspeed(MOTOR_1, speed1);
@@ -41,7 +41,7 @@ static void sync_callback(uint8_t* ctx){
 		int16_t motor0_speed = enc_read(MOTOR_0);
 		int16_t motor1_speed = enc_read(MOTOR_1);
 
-		float balance = pid_compute(&params.pid_sync, atan2(gmotor1_speed,gmotor0_speed), atan2((float)motor1_speed,(float)motor0_speed));
+		float balance = pid_compute(&params.pid[2], atan2(gmotor1_speed,gmotor0_speed), atan2((float)motor1_speed,(float)motor0_speed));
 
 		// adjust set point
 		gmotor0_sp = gmotor0_speed - balance;
@@ -58,13 +58,13 @@ void mode_run_init(){
 	// Hardware initialization
 	motors_init();
 
-	pid_reset(&params.pid_whe0);
-	pid_reset(&params.pid_whe1);
-	pid_reset(&params.pid_sync);
+	pid_reset(&params.pid[0]);
+	pid_reset(&params.pid[1]);
+	pid_reset(&params.pid[2]);
 
 	// Periodic task initialization
 	gwhe_id = timer_register_callback(wheel_callback, WHEEL_PERIOD, 0, TIMER_MODE_REPEAT);
-	gsync_id = timer_register_callback(sync_callback, SYNC_PERIOD, 0, TIMER_MODE_REPEAT);
+//	gsync_id = timer_register_callback(sync_callback, SYNC_PERIOD, 0, TIMER_MODE_REPEAT);
 }
 
 void mode_run_deinit(){
@@ -73,7 +73,7 @@ void mode_run_deinit(){
 
 	// Periodic task de-initialization
 	timer_unregister_callback(gwhe_id);
-	timer_unregister_callback(gsync_id);
+//	timer_unregister_callback(gsync_id);
 }
 
 void on_mode_run_mavlink_recv(mavlink_message_t *msg){
@@ -84,17 +84,21 @@ void on_mode_run_mavlink_recv(mavlink_message_t *msg){
 			mavlink_msg_cmd_velocity_decode(msg, &cmd_velocity);
 			gmotor0_speed = (cmd_velocity.v - cmd_velocity.omega);
 			gmotor1_speed = (cmd_velocity.v + cmd_velocity.omega);
-			if(gmotor0_speed > -10 && gmotor0_speed < 10) {
+			if(gmotor0_speed < -135) gmotor0_speed = -135;
+			if(gmotor0_speed > 135) gmotor0_speed = 135;
+			if(gmotor0_speed > -5 && gmotor0_speed < 5) {
 				gmotor0_speed = 0;
-				pid_reset(&params.pid_whe0);
-				pid_reset(&params.pid_whe1);
-				pid_reset(&params.pid_sync);
+				pid_reset(&params.pid[0]);
+				pid_reset(&params.pid[1]);
+				pid_reset(&params.pid[2]);
 			}
-			if(gmotor1_speed > -10 && gmotor1_speed < 10) {
+			if(gmotor1_speed < -135) gmotor1_speed = -135;
+			if(gmotor1_speed > 135) gmotor1_speed = 135;
+			if(gmotor1_speed > -5 && gmotor1_speed < 5) {
 				gmotor1_speed = 0;
-				pid_reset(&params.pid_whe0);
-				pid_reset(&params.pid_whe1);
-				pid_reset(&params.pid_sync);
+				pid_reset(&params.pid[0]);
+				pid_reset(&params.pid[1]);
+				pid_reset(&params.pid[2]);
 			}
 		}
 		break;

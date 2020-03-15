@@ -490,7 +490,7 @@
      <string>Enc speed:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txtb_enc0_a_speed">
+   <widget class="QLineEdit" name="txtb_enc0_ta_speed">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -860,7 +860,7 @@
      <string>Enc speed:</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="txtb_enc1_a_speed">
+   <widget class="QLineEdit" name="txtb_enc1_ta_speed">
     <property name="geometry">
      <rect>
       <x>320</x>

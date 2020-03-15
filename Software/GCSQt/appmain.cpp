@@ -19,8 +19,11 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
                     case MODE_IMU:
                         g_current_mode = MODE_IMU;
                         break;
-                    case MODE_PIDT:
-                        g_current_mode = MODE_PIDT;
+                    case MODE_PIDT_TW:
+                        g_current_mode = MODE_PIDT_TW;
+                        break;
+                    case MODE_PIDT_TA:
+                        g_current_mode = MODE_PIDT_TA;
                         break;
                     case MODE_HW:
                         g_current_mode = MODE_HW;
@@ -39,8 +42,11 @@ void MainWindow::app_main_on_data_recv(QByteArray bytes){
                 case MODE_IMU:
                     g_mode_imu->mav_recv(&msg);
                     break;
-                case MODE_PIDT:
+                case MODE_PIDT_TW:
                     g_mode_pidt_tw->mav_recv(&msg);
+                    break;
+                case MODE_PIDT_TA:
+                    g_mode_pidt_ta->mav_recv(&msg);
                     break;
                 case MODE_HW:
                     g_mode_hw_tw->mav_recv(&msg);

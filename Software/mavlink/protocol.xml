@@ -12,7 +12,8 @@
 			<entry name="MODE_RUN">Default mode</entry>
 			<entry name="MODE_HW">Motor configuration mode</entry>
 			<entry name="MODE_IMU">IMU calibration mode</entry>
-			<entry name="MODE_PIDT">PID calibration mode</entry>
+			<entry name="MODE_PIDT_TW">PID calibration mode</entry>
+			<entry name="MODE_PIDT_TA">PID calibration mode</entry>
 		</enum>
 
 		<enum name="cmd_t">

@@ -15,8 +15,8 @@
 
 #define IMU_MPU6050
 
-#define ROBOT_MODEL_TWO_WHEELS
-//#define ROBOT_MODEL_TANK
+//#define ROBOT_MODEL_TWO_WHEELS
+#define ROBOT_MODEL_TANK
 //#define ROBOT_MODEL_OMNI
 
 // Motor 0 define
@@ -48,8 +48,8 @@
 #define RX_DMA_BUF_SIZE		512
 #define TX_CIR_BUF_SIZE 	512
 #define RX_CIR_BUF_SIZE 	512
-#define SERIAL_PERIOD		50	// UART transmission
-#define MAV_BUFF_SIZE 		256
+#define SERIAL_PERIOD		10	// UART transmission
+#define MAV_BUFF_SIZE 		512
 #define MAVLINK_CB_PERIOD	10	// Mavlink read message callback
 
 // Parameters define

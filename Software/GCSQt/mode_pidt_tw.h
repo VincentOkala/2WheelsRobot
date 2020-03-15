@@ -55,8 +55,8 @@ private slots:
 
 private:
     Ui::Mode_pidt_tw *ui;
-    QTimer *g_controller_timer;
 
+    QTimer *g_controller_timer;
     bool g_control_enable = false;
 
     void pid_plot(uint32_t len, QVector<QVector<double>> q, QCustomPlot *q_custom_plot);

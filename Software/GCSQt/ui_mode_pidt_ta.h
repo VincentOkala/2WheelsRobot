@@ -57,7 +57,7 @@ public:
     QLineEdit *txtb_motor0_speed;
     QLabel *label_32;
     QLabel *label_33;
-    QLineEdit *txtb_enc0_a_speed;
+    QLineEdit *txtb_enc0_ta_speed;
     QPushButton *btn_set_speed0;
     QPushButton *btn_mode_pidt_load_params;
     QGroupBox *groupBox_3;
@@ -85,7 +85,7 @@ public:
     QLineEdit *txtb_motor1_speed;
     QLabel *label_30;
     QLabel *label_31;
-    QLineEdit *txtb_enc1_a_speed;
+    QLineEdit *txtb_enc1_ta_speed;
     QPushButton *btn_set_speed1;
 
     void setupUi(QWidget *Mode_pidt_ta)
@@ -219,9 +219,9 @@ public:
         label_33 = new QLabel(groupBox_14);
         label_33->setObjectName(QString::fromUtf8("label_33"));
         label_33->setGeometry(QRect(260, 20, 71, 20));
-        txtb_enc0_a_speed = new QLineEdit(groupBox_14);
-        txtb_enc0_a_speed->setObjectName(QString::fromUtf8("txtb_enc0_a_speed"));
-        txtb_enc0_a_speed->setGeometry(QRect(320, 20, 81, 20));
+        txtb_enc0_ta_speed = new QLineEdit(groupBox_14);
+        txtb_enc0_ta_speed->setObjectName(QString::fromUtf8("txtb_enc0_ta_speed"));
+        txtb_enc0_ta_speed->setGeometry(QRect(320, 20, 81, 20));
         btn_set_speed0 = new QPushButton(groupBox_14);
         btn_set_speed0->setObjectName(QString::fromUtf8("btn_set_speed0"));
         btn_set_speed0->setGeometry(QRect(170, 20, 81, 23));
@@ -312,9 +312,9 @@ public:
         label_31 = new QLabel(groupBox_10);
         label_31->setObjectName(QString::fromUtf8("label_31"));
         label_31->setGeometry(QRect(260, 20, 71, 20));
-        txtb_enc1_a_speed = new QLineEdit(groupBox_10);
-        txtb_enc1_a_speed->setObjectName(QString::fromUtf8("txtb_enc1_a_speed"));
-        txtb_enc1_a_speed->setGeometry(QRect(320, 20, 81, 20));
+        txtb_enc1_ta_speed = new QLineEdit(groupBox_10);
+        txtb_enc1_ta_speed->setObjectName(QString::fromUtf8("txtb_enc1_ta_speed"));
+        txtb_enc1_ta_speed->setGeometry(QRect(320, 20, 81, 20));
         btn_set_speed1 = new QPushButton(groupBox_10);
         btn_set_speed1->setObjectName(QString::fromUtf8("btn_set_speed1"));
         btn_set_speed1->setGeometry(QRect(170, 20, 81, 23));

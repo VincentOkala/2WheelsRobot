@@ -56,8 +56,14 @@ static void on_mavlink_recv(mavlink_message_t *msg){
 			gmode_deinit = mode_imu_deinit;
 			gon_mode_mav_recv = on_mode_imu_mavlink_recv;
 		}
-		else if(cmd_change_mode.cmd_change_mode == MODE_PIDT){
-			gmode = MODE_PIDT;
+		else if(cmd_change_mode.cmd_change_mode == MODE_PIDT_TW){
+			gmode = MODE_PIDT_TW;
+			gmode_init = mode_pidt_init;
+			gmode_deinit = mode_pidt_deinit;
+			gon_mode_mav_recv = on_mode_pidt_mavlink_recv;
+		}
+		else if(cmd_change_mode.cmd_change_mode == MODE_PIDT_TA){
+			gmode = MODE_PIDT_TA;
 			gmode_init = mode_pidt_init;
 			gmode_deinit = mode_pidt_deinit;
 			gon_mode_mav_recv = on_mode_pidt_mavlink_recv;

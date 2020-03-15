@@ -312,7 +312,7 @@ void Mode_pidt_tw::on_btn_control_enable_clicked()
 
 void Mode_pidt_tw::on_btn_change_mode_pidt_clicked()
 {
-    emit mode_change(MODE_PIDT);
+    emit mode_change(MODE_PIDT_TW);
 }
 
 void Mode_pidt_tw::update_joystick(axis_t axis, double value){

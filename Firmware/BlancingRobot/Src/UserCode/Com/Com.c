@@ -40,7 +40,9 @@ void com_set_on_mav_recv(on_mav_recv_t on_mav_recv){
 }
 
 void com_send(uint8_t *data, uint16_t len){
-	uart_send(&uart_drv, data, len);
+	if(!uart_send(&uart_drv, data, len)){
+		HAL_GPIO_TogglePin(ONBOARD_LED_GPIO_Port, ONBOARD_LED_Pin);
+	}
 }
 
 void respond_ok(void){
