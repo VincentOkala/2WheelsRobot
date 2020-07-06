@@ -1,0 +1,20 @@
+function y = create_data(n_samples, filename)
+    fID = fopen(filename, 'w+');
+
+    formatSpec = '%1.4f, %1.4f, %1.4f, %1.4f, %1.4f, %1.4f, %1.4f, %1.4f\n';
+    gx = zeros(n_samples,1);
+    gy = zeros(n_samples,1);
+    gz = zeros(n_samples,1);
+    ax = zeros(n_samples,1);
+    ay = zeros(n_samples,1);
+    az = zeros(n_samples,1);
+    c1 = zeros(n_samples,1);
+    c2 = zeros(n_samples,1);
+    for i=1:n_samples 
+        gx[i][1] 
+        
+        
+        fprintf(fID, formatSpec, gx, gy, gz, );
+        
+    end
+end
